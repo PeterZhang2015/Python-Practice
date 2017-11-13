@@ -22,9 +22,11 @@ element[0].click()
 email_address_xpath = '//*[@aria-label="Email or phone"]'
 email_address_element = browser.find_element_by_xpath(email_address_xpath)
 
+#Define mail address information.
+loginMail = "PythonPracticeMail@gmail.com"
 
 #username_element.click()
-email_address_element.send_keys("test@gmail.com.au")
+email_address_element.send_keys(loginMail)
 
 
 #set next button xpath
@@ -42,7 +44,9 @@ password_xpath = '//*[@aria-label="Enter your password"]'
 
 password_element = browser.find_element_by_xpath(password_xpath)
 
-password_content = "1234567"
+#Define login password.
+password_content = "woshinibaba"
+
 password_element.send_keys(password_content)
 
 #set next button xpath
