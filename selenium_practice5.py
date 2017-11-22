@@ -89,7 +89,7 @@ avoid_dead_loop_counter = 100
 # loop all unread mail and reply only for target mail sender.
 while unread_mail_number > 0 and avoid_dead_loop_counter > 0:
 
-    print("Find an Email from %s." % target_mail_sender)
+    print("Find an unread Email from %s." % target_mail_sender)
 
     #Get the first found element.
     unread_mail_element = unread_mail_elements[0]
