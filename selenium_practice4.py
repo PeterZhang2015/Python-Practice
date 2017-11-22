@@ -1,4 +1,5 @@
 import time
+import sys
 
 from selenium import webdriver
 
@@ -62,6 +63,7 @@ next_button_element.click()
 #Needs to sleep sometime after web page transfer
 time.sleep(6)
 
+
 #Start to make a new mail.
 new_mail_button_xpath = '//div[text()="COMPOSE"]'
 
@@ -114,6 +116,10 @@ send_button_element = browser.find_element_by_xpath(send_button_xpath)
 
 #Click send button to send the email.
 send_button_element.click()
+
+
+
+
 
 
 #end of test case.
