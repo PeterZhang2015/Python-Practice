@@ -6,7 +6,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
 #Used to login Gmail box
-def Login_Gmail_Box(browser, login_Mail, login_password, message_body):
+def Login_Gmail_Box(browser, login_Mail, login_password):
 
     #Set testing url
     url = "https://www.google.com.au"
@@ -218,8 +218,14 @@ def Forward_Unread_Mails_With_Keyword(browser, keyword, forward_target_mail, mes
 
     # Importance of using "" in xpath.
     #unread_mail_with_keyword_elements_xpath = '//*[@class="zA zE"]//*[@role="link"]//*[contains(text(), "%s")]' % keyword
-    unread_mail_with_keyword_elements_xpath = '//*[@class="zA zE"]//*[@role="link"]//*[contains(translate(text(),"ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz"), "%s")]' % keyword
-    unread_mail_with_keyword_elements = browser.find_elements_by_xpath(unread_mail_with_keyword_elements_xpath)
+    #unread_mail_with_keyword_elements_xpath = '//*[@class="zA zE"]//*[@role="link"]//*[contains(translate(text(),"ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz"), "%s")]' % keyword
+    #unread_mail_with_keyword_elements = browser.find_elements_by_xpath(unread_mail_with_keyword_elements_xpath)
+    #unread_mail_with_keyword_number = len(unread_mail_with_keyword_elements)
+
+    base_xpath = '//*[@class="zA zE"]//*[@role="link"]//'
+    text = "urgent"
+
+    unread_mail_with_keyword_elements = Find_Elements_By_Case_Insensitive_Text(browser, base_xpath,                                                                                               text)
     unread_mail_with_keyword_number = len(unread_mail_with_keyword_elements)
 
     print("There are %s unread email with keyword %s" % (unread_mail_with_keyword_number, keyword))
@@ -292,8 +298,12 @@ def Forward_Unread_Mails_With_Keyword(browser, keyword, forward_target_mail, mes
         time.sleep(2)
 
         # Re-find the remaining unread mail.
-        unread_mail_with_keyword_elements = browser.find_elements_by_xpath(unread_mail_with_keyword_elements_xpath)
+        #unread_mail_with_keyword_elements = browser.find_elements_by_xpath(unread_mail_with_keyword_elements_xpath)
+        #unread_mail_with_keyword_number = len(unread_mail_with_keyword_elements)
+
+        unread_mail_with_keyword_elements = Find_Elements_By_Case_Insensitive_Text(browser, base_xpath, text)
         unread_mail_with_keyword_number = len(unread_mail_with_keyword_elements)
+
         # if unread_mail_with_keyword_number == 0:
         #   inbox_xpath = '//*[@title="Inbox"]'
 
@@ -304,6 +314,34 @@ def Forward_Unread_Mails_With_Keyword(browser, keyword, forward_target_mail, mes
 
         avoid_dead_loop_counter = avoid_dead_loop_counter - 1
         # end of while unread_mail_number > 0 and avoid_dead_loop_counter > 0:.
+
+#Get element by case insensitive text
+def Find_Element_By_Case_Insensitive_Text(browser, base_xpath, text):
+    case_insensitive_text_path = '*[contains(translate(text(),"ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz"), "%s")]'
+
+
+    element_xpath = "%s%s" % (base_xpath, case_insensitive_text_path)
+
+    element = browser.find_element_by_xpath(element_xpath)
+
+    return element
+
+#Get element by case insensitive text
+def Find_Elements_By_Case_Insensitive_Text(browser, base_xpath, text):
+    case_insensitive_text_path = '*[contains(translate(text(),"ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz"), "%s")]' % text
+
+    element_xpath = "%s%s" % (base_xpath, case_insensitive_text_path)
+
+    print("The whole xpath is %s" % element_xpath)
+
+    elements = browser.find_elements_by_xpath(element_xpath)
+
+    elements_number = len(elements)
+    print("The number of matched elelments is %d" % elements_number)
+
+    return elements
+
+
 
 #end of test case.
 

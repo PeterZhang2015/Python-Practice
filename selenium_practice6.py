@@ -1,6 +1,8 @@
 import time
 import sys
 
+import My_Selenium_Library
+
 from selenium import webdriver
 
 from selenium.webdriver.common.keys import Keys
@@ -73,11 +75,17 @@ keyword = "urgent"
 
 #Please note  that translate attribute fuctions can be used for case insensitive text match.
 #Importance of using "" in xpath.
-unread_mail_with_keyword_elements_xpath = '//*[@class="zA zE"]//*[@role="link"]//*[contains(translate(text(),"ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz"), "%s")]' % keyword
-unread_mail_with_keyword_elements = browser.find_elements_by_xpath(unread_mail_with_keyword_elements_xpath)
+#unread_mail_with_keyword_elements_xpath = '//*[@class="zA zE"]//*[@role="link"]//*[contains(translate(text(),"ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz"), "%s")]' % keyword
+#unread_mail_with_keyword_elements = browser.find_elements_by_xpath(unread_mail_with_keyword_elements_xpath)
+
+
+base_xpath = '//*[@class="zA zE"]//*[@role="link"]//'
+text = "urgent"
+
+unread_mail_with_keyword_elements_xpath = "%s%s" % (base_xpath, text)
+
+unread_mail_with_keyword_elements = My_Selenium_Library.Find_Elements_By_Case_Insensitive_Text(browser, base_xpath, text)
 unread_mail_with_keyword_number = len(unread_mail_with_keyword_elements)
-
-
 print("There are %s unread email with keyword %s" % (unread_mail_with_keyword_number,keyword))
 
 
@@ -154,7 +162,8 @@ while unread_mail_with_keyword_number > 0 and avoid_dead_loop_counter > 0:
     time.sleep(2)
 
     #Re-find the remaining unread mail.
-    unread_mail_with_keyword_elements = browser.find_elements_by_xpath(unread_mail_with_keyword_elements_xpath)
+    unread_mail_with_keyword_elements = My_Selenium_Library.Find_Elements_By_Case_Insensitive_Text(browser, base_xpath, text)
+
     unread_mail_with_keyword_number = len(unread_mail_with_keyword_elements)
     #if unread_mail_with_keyword_number == 0:
      #   inbox_xpath = '//*[@title="Inbox"]'
