@@ -6,7 +6,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
 #Used to login Gmail box
-def Login_Gmail_Box(browser, login_Mail, login_password):
+def Login_Gmail_Box(browser, login_Mail, login_password, message_body):
 
     #Set testing url
     url = "https://www.google.com.au"
@@ -163,7 +163,7 @@ def Reply_Unread_Mail(browser, mail_sender, reply_content):
         avoid_dead_loop_counter = avoid_dead_loop_counter - 1
 
 #Forward unread mails with a certain keyword to another mail box.
-def Forward_Unread_Mails_With_Keyword(browser, keyword, forward_target_mail):
+def Forward_Unread_Mails_With_Keyword(browser, keyword, forward_target_mail, message_body):
 
     # define select text
     element = browser.find_elements_by_link_text("Gmail")
@@ -217,10 +217,9 @@ def Forward_Unread_Mails_With_Keyword(browser, keyword, forward_target_mail):
     time.sleep(6)
 
     # Importance of using "" in xpath.
-    unread_mail_with_keyword_elements_xpath = '//*[@class="zA zE"]//*[@role="link"]//*[contains(text(), "%s")]' % keyword
-
+    #unread_mail_with_keyword_elements_xpath = '//*[@class="zA zE"]//*[@role="link"]//*[contains(text(), "%s")]' % keyword
+    unread_mail_with_keyword_elements_xpath = '//*[@class="zA zE"]//*[@role="link"]//*[contains(translate(text(),"ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz"), "%s")]' % keyword
     unread_mail_with_keyword_elements = browser.find_elements_by_xpath(unread_mail_with_keyword_elements_xpath)
-
     unread_mail_with_keyword_number = len(unread_mail_with_keyword_elements)
 
     print("There are %s unread email with keyword %s" % (unread_mail_with_keyword_number, keyword))
@@ -257,11 +256,8 @@ def Forward_Unread_Mails_With_Keyword(browser, keyword, forward_target_mail):
         forward_target_mail_element.click()
         forward_target_mail_element.send_keys(forward_target_mail)
 
-        time.sleep(
-            2)  # Importace for the sleeping time between some operations, especially for actions after the focus transfer
+        time.sleep(2)  # Importace for the sleeping time between some operations, especially for actions after the focus transfer
 
-        # Fill the forwarded mail body.
-        message_body = "Please help me check this urgent mail, I am not available at this moment. Thank you very much."
         # Perform two "Tab" key in order to focus on message body element.
         forward_target_mail_element.send_keys(Keys.TAB)
         time.sleep(1)

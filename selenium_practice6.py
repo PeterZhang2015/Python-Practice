@@ -69,14 +69,12 @@ next_button_element.click()
 time.sleep(6)
 
 
-keyword = "Urgent"
+keyword = "urgent"
 
+#Please note  that translate attribute fuctions can be used for case insensitive text match.
 #Importance of using "" in xpath.
-unread_mail_with_keyword_elements_xpath = '//*[@class="zA zE"]//*[@role="link"]//*[contains(text(), "%s")]' % keyword
-
+unread_mail_with_keyword_elements_xpath = '//*[@class="zA zE"]//*[@role="link"]//*[contains(translate(text(),"ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz"), "%s")]' % keyword
 unread_mail_with_keyword_elements = browser.find_elements_by_xpath(unread_mail_with_keyword_elements_xpath)
-
-
 unread_mail_with_keyword_number = len(unread_mail_with_keyword_elements)
 
 
