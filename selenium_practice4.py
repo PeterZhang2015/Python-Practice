@@ -106,6 +106,13 @@ time.sleep(2)
 message_body_element=browser.switch_to.active_element
 message_body_element.send_keys(message_body_content)
 
+
+attached_file_element_path = '//*[@aria-label="Attach files"]'
+attached_file_element = browser.find_element_by_xpath(attached_file_element_path)
+attached_file_element.click()
+
+
+
 time.sleep(10)
 
 #Set send button xpath.

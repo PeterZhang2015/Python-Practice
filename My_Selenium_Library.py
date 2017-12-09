@@ -332,7 +332,7 @@ def Find_Elements_By_Case_Insensitive_Text(browser, base_xpath, text):
 
     element_xpath = "%s%s" % (base_xpath, case_insensitive_text_path)
 
-    print("The whole xpath is %s" % element_xpath)
+    #print("The whole xpath is %s" % element_xpath)
 
     elements = browser.find_elements_by_xpath(element_xpath)
 
