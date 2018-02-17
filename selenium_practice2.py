@@ -7,7 +7,7 @@ from selenium import webdriver
 url = "https://www.google.com.au"
 
 #Open URL with specified web browser.
-browser = webdriver.Firefox()
+browser = webdriver.Chrome()
 browser.get(url)
 
 #define select text
@@ -23,7 +23,7 @@ email_address_xpath = '//*[@aria-label="Email or phone"]'
 email_address_element = browser.find_element_by_xpath(email_address_xpath)
 
 #username_element.click()
-email_address_element.send_keys("test@gmail.com.au")
+email_address_element.send_keys("PythonPracticeMail@gmail.com")
 
 
 #set next button xpath
@@ -41,7 +41,7 @@ password_xpath = '//*[@aria-label="Enter your password"]'
 
 password_element = browser.find_element_by_xpath(password_xpath)
 
-password_content = "1234567"
+password_content = "woshinibaba"
 password_element.send_keys(password_content)
 
 #set next button xpath

@@ -1,5 +1,7 @@
 from selenium import webdriver
 
+import Selenium2Library
+
 #Set testing url
 url = "http://inventwithpython.com"
 

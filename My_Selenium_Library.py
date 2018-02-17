@@ -128,6 +128,7 @@ def Reply_Unread_Mail(browser, mail_sender, reply_content):
         unread_mail_element.click()
 
         # Reply the mail.
+        time.sleep(1)
         reply_element = browser.find_element_by_xpath(reply_xpath)
         reply_element.click()
         new_reply_element = browser.switch_to.active_element
@@ -139,7 +140,7 @@ def Reply_Unread_Mail(browser, mail_sender, reply_content):
         print("Have replied to Email from %s automatically." % mail_sender)
 
         # It is import to set waiting time when the webpage changes by some actions.
-        time.sleep(5)
+        time.sleep(2)
 
         # click inbox
         inbox_unread_elements = browser.find_elements_by_xpath(inbox_xpath)
@@ -151,14 +152,14 @@ def Reply_Unread_Mail(browser, mail_sender, reply_content):
             inbox_unread_element = inbox_unread_elements[0]
 
         inbox_unread_element.click()
+        
+        time.sleep(2)
 
         # Re-find the remaining unread mail.
         unread_mail_elements = browser.find_elements_by_xpath(unread_mail_elements_from_target_sender_xpath)
         unread_mail_number = len(unread_mail_elements)
         if unread_mail_number == 0:
             inbox_xpath = '//*[@title="Inbox"]'
-
-        time.sleep(5)
 
         avoid_dead_loop_counter = avoid_dead_loop_counter - 1
 
