@@ -38,7 +38,7 @@ class iosSettingTest(unittest.TestCase):
         el4 = self.driver.find_element_by_xpath("(//XCUIElementTypeOther[@name=\"table index\"])[2]")
         el4.click()
 
-        #el5 = self.driver.find_element_by_xpath("//XCUIElementTypeStaticText[@name=\"Australia\"]")
+        #el5 = self.driver.find_element_by_xpath("//XCUIElementTypeStaticText[@name=\"American Samoa\"]")
         el5 = self.driver.find_element_by_accessibility_id("American Samoa")
         el5.click()
         el6 = self.driver.find_element_by_xpath(
