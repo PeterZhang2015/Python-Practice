@@ -31,6 +31,7 @@ browser.get(url)
 
 time.sleep(8)
 
+
 #Find the element according to CSS name.
 records_path ='//*[@data-test-subj="docTableExpandToggleColumn"]'
 
