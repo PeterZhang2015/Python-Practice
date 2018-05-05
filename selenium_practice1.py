@@ -6,7 +6,7 @@ import Selenium2Library
 url = "http://inventwithpython.com"
 
 #Open URL with specified web browser.
-browser = webdriver.Firefox()
+browser = webdriver.Chrome()
 browser.get(url)
 
 #Find the element according to CSS name.

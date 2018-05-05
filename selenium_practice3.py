@@ -7,7 +7,7 @@ from selenium import webdriver
 url = "https://www.google.com.au"
 
 #Open URL with specified web browser.
-browser = webdriver.Firefox()
+browser = webdriver.Chrome()
 browser.get(url)
 
 #define select text
