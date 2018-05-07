@@ -77,7 +77,7 @@ def ExpandRecentJsonOnKibanaRecords(elements, elements_xpath, recent_records_num
         recent_records_number = recent_records_number - 1
         # end of while elements_number > 0 and recent_records_number > 0:
 
-#POST customized data to the recent record with the same test path name on Kibana.
+#Function of POST customized data to the recent record with the same test path name on Kibana.
 def PostCustomizedDataToLatestRecord(elements, elements_xpath, recent_records_number, target_test_case_name, insert_field):
 
     elements_number = len(elements)
