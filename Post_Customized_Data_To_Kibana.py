@@ -88,49 +88,49 @@ def PostCustomizedDataToLatestRecord(elements, elements_xpath, recent_records_nu
     # loop all json value text area.
     while elements_number > 0 and recent_records_number > 0:
 
-        print ("***********index*************8")
+        print ("***********index*************")
         print(index)
 
         # json_information_text = repr(json_value_element[index].text)
         json_information_text = elements[index].text
-        print ("***********json_information_text*************8")
+        print ("***********json_information_text*************")
         print(json_information_text)
         time.sleep(2)
 
         if json_information_text:
             data = json.loads(json_information_text.replace('\n', ''))
             test_case_name = data["_source"]["testPath"]
-            print ("***********test case name from format json*************8")
+            print ("***********test case name from format json*************")
             print (test_case_name)
 
             data_index = data["_index"]
-            print ("***********index from format json*************8")
+            print ("***********index from format json*************")
             print (data_index)
 
             type = data["_type"]
-            print ("***********type from format json*************8")
+            print ("***********type from format json*************")
             print (type)
 
             id = data["_id"]
-            print ("***********test id from format json*************8")
+            print ("***********test id from format json*************")
             print (id)
 
             if (test_case_name == target_test_case_name):
                 print ("Found testing case name:", test_case_name)
 
                 m = re.sub(r'(.*)("agentId":)', r'\1{}\2'.format(insert_field), json_information_text)
-                print ("***********POST body*************8")
+                print ("***********POST body*************")
                 print (m)
 
                 temp_data = json.loads(m)
                 json_source = temp_data["_source"]
                 json_source = json.dumps(json_source)
 
-                print ("***********json_source*************8")
+                print ("***********json_source*************")
                 print (json_source)
 
                 url = 'https://192.168.32.75:9200/{}/{}/{}'.format(data_index, type, id)
-                print ("***********post URL*************8")
+                print ("***********post URL*************")
                 print (url)
 
                 username = "api"
@@ -138,8 +138,8 @@ def PostCustomizedDataToLatestRecord(elements, elements_xpath, recent_records_nu
 
                 # response = requests.post(url, data=m, auth=('api', 'index'))
                 # response = requests.post(url, data=json_source,  auth=HTTPDigestAuth(raw_input("api"), raw_input("index")), verify=True)
-                response = requests.post(url, data=json_source, auth=('api', 'index'), verify=False)
-                print ("***********post response*************8")
+                response = requests.post(url, data=json_source, auth=(username, password), verify=False)
+                print ("***********post response*************")
                 print (response)
 
                 break
@@ -157,7 +157,7 @@ def PostCustomizedDataToLatestRecord(elements, elements_xpath, recent_records_nu
         recent_records_number = recent_records_number - 1
         # end of while record_element_number > 0 and avoid_dead_loop_counter > 0:
 
-
+#################Main test logical#################################.
 #Open URL with specified web browser.
 browser = OpenWebUrlWithMaxWindow(kibana_url)
 time.sleep(12)
