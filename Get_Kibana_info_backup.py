@@ -19,7 +19,6 @@ pwd = "admin"
 
 url = "https://{}:{}@192.168.32.75:5601".format(usr, pwd)
 
-project_path = "main/Temp"
 target_test_case_name = "main/Temp/test_cases/temp.fftc"
 
 
@@ -30,6 +29,7 @@ browser = webdriver.Chrome(chrome_options=options)
 browser.get(url)
 
 time.sleep(8)
+
 
 #Find the element according to CSS name.
 records_path ='//*[@data-test-subj="docTableExpandToggleColumn"]'
