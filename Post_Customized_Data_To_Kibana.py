@@ -22,17 +22,23 @@ target_test_case_name = "main/Temp/test_cases/temp.fftc"
 
 recent_records_number = 10
 
+
+
 #Set functions
 #Function of open web url with max browser window.
 def OpenWebUrlWithMaxWindow(url):
     options = webdriver.ChromeOptions()
     options.add_argument("--start-maximized")
-    browser = webdriver.Chrome(chrome_options=options)
+    browser = webdriver.Chrome("C:/Setup/Python27/Scripts/chromedriver.exe", chrome_options=options)
     browser.get(url)
     return browser
+    #browser = webdriver.Firefox()
+    #browser.maximize_window()
+    #browser.get(url)
+    #return browser
 
 #Function of expand some records on Kibana.
-def ExpandRecentRecordsOnKibana(elements, elements_xpath, recent_records_number):
+def ExpandRecentRecordsOnKibana(browser, elements, elements_xpath, recent_records_number):
     elements_number = len(elements)
     print ("Record number", elements_number)
 
@@ -50,12 +56,12 @@ def ExpandRecentRecordsOnKibana(elements, elements_xpath, recent_records_number)
 
         # Modify loop variables
         index = index + 1
-        element_numbers = elements_number - 1
+        elements_number = elements_number - 1
         recent_records_number = recent_records_number - 1
         # end of while elements_number > 0 and recent_records_number > 0:
 
 #Function of expand some records on Kibana.
-def ExpandRecentJsonOnKibanaRecords(elements, elements_xpath, recent_records_number):
+def ExpandRecentJsonOnKibanaRecords(browser, elements, elements_xpath, recent_records_number):
 
     elements_number = len(elements)
     print ("Json number", elements_number)
@@ -78,7 +84,7 @@ def ExpandRecentJsonOnKibanaRecords(elements, elements_xpath, recent_records_num
         # end of while elements_number > 0 and recent_records_number > 0:
 
 #Function of POST customized data to the recent record with the same test path name on Kibana.
-def PostCustomizedDataToLatestRecord(elements, elements_xpath, recent_records_number, target_test_case_name, insert_field):
+def PostCustomizedDataToLatestRecord(browser, elements, elements_xpath, recent_records_number, target_test_case_name, insert_field):
 
     elements_number = len(elements)
     print ("json value number", elements_number)
@@ -158,32 +164,37 @@ def PostCustomizedDataToLatestRecord(elements, elements_xpath, recent_records_nu
         # end of while record_element_number > 0 and avoid_dead_loop_counter > 0:
 
 #################Main test logical#################################.
-#Open URL with specified web browser.
-browser = OpenWebUrlWithMaxWindow(kibana_url)
-time.sleep(12)
+def main():
+    #Open URL with specified web browser.
+    browser = OpenWebUrlWithMaxWindow(kibana_url)
+    time.sleep(12)
 
-#Find the record elements according to attribute.
-records_path ='//*[@data-test-subj="docTableExpandToggleColumn"]'
-record_elements = browser.find_elements_by_xpath(records_path)
-#Expand some recent records on Kibana.
-ExpandRecentRecordsOnKibana(record_elements, records_path, recent_records_number)
+    #Find the record elements according to attribute.
+    records_path ='//*[@data-test-subj="docTableExpandToggleColumn"]'
+    record_elements = browser.find_elements_by_xpath(records_path)
+    #Expand some recent records on Kibana.
+    ExpandRecentRecordsOnKibana(browser, record_elements, records_path, recent_records_number)
 
-#Find the json elements according to attribute.
-json_path = '//*[@ng-click="mode=\'JSON\'"]'
-json_elements = browser.find_elements_by_xpath(json_path)
-#Expand some recent Json on Kibana records.
-ExpandRecentJsonOnKibanaRecords(json_elements, json_path, recent_records_number)
+    #Find the json elements according to attribute.
+    json_path = '//*[@ng-click="mode=\'JSON\'"]'
+    json_elements = browser.find_elements_by_xpath(json_path)
+    #Expand some recent Json on Kibana records.
+    ExpandRecentJsonOnKibanaRecords(browser, json_elements, json_path, recent_records_number)
 
-#Find the json elements according to attribute.
-json_value_path = '//*[@class="ace_content"]'
-json_text_elements = browser.find_elements_by_xpath(json_value_path)
+    #Find the json elements according to attribute.
+    json_value_path = '//*[@class="ace_content"]'
+    json_text_elements = browser.find_elements_by_xpath(json_value_path)
 
-#Post customized data to recent Kibana record with the same test path name.
-output_file_name = "output_response.txt"
-file = open(output_file_name, "r")
-insert_field = file.read()
-#insert_field = '"testCustomedField": {},\\n    '.format(testCustomizedField)
-PostCustomizedDataToLatestRecord(json_text_elements, json_value_path, recent_records_number, target_test_case_name, insert_field)
+    #Post customized data to recent Kibana record with the same test path name.
+    output_file_name = "output_response.txt"
+    file = open(output_file_name, "r")
+    insert_field = file.read()
+    #insert_field = '"testCustomedField": {},\\n    '.format(testCustomizedField)
+    PostCustomizedDataToLatestRecord(browser, json_text_elements, json_value_path, recent_records_number, target_test_case_name, insert_field)
+
+#Call main function.
+if __name__ == "__main__":
+    main()
 
 
 
