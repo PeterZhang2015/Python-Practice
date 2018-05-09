@@ -12,16 +12,25 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.support.ui import WebDriverWait as wait
 from selenium.webdriver.support import expected_conditions as EC
+import sys
 
 #Set variables
 usr = "admin"
 pwd = "admin"
 kibana_url = "https://{}:{}@192.168.32.75:5601".format(usr, pwd)
 
-target_test_case_name = "main/Temp/test_cases/temp.fftc"
+#Get Parameters calling this python script
+insert_field = sys.argv[1]
+print ("***********insert_field*************")
+print(insert_field)
 
-recent_records_number = 10
+target_test_case_name = sys.argv[2]
+print ("***********target_test_case_name*************")
+print(target_test_case_name)
 
+recent_records_number = int(sys.argv[3])
+print ("***********recent_records_number*************")
+print(recent_records_number)
 
 
 #Set functions
@@ -104,7 +113,10 @@ def PostCustomizedDataToLatestRecord(browser, elements, elements_xpath, recent_r
         time.sleep(2)
 
         if json_information_text:
-            data = json.loads(json_information_text.replace('\n', ''))
+            json_information_text = json_information_text.replace('\r\n', '')
+            json_information_text = json_information_text.replace('\\n', '')
+            json_information_text = json_information_text.replace('\n', '')
+            data = json.loads(json_information_text)
             test_case_name = data["_source"]["testPath"]
             print ("***********test case name from format json*************")
             print (test_case_name)
@@ -186,9 +198,10 @@ def main():
     json_text_elements = browser.find_elements_by_xpath(json_value_path)
 
     #Post customized data to recent Kibana record with the same test path name.
-    output_file_name = "output_response.txt"
-    file = open(output_file_name, "r")
-    insert_field = file.read()
+    #output_file_name = "output_response.txt"
+    #file = open(output_file_name, "r")
+    #insert_field = file.read()
+    insert_field = sys.argv[1]
     #insert_field = '"testCustomedField": {},\\n    '.format(testCustomizedField)
     PostCustomizedDataToLatestRecord(browser, json_text_elements, json_value_path, recent_records_number, target_test_case_name, insert_field)
 

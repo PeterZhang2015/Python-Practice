@@ -1,76 +1,56 @@
 {
-  "_index": "report-v700-2018.03.16-000032",
+  "_index": "report-v700-2018.03.16-000034",
   "_type": "report",
-  "_id": "bbb8a382-32b7-40d8-8c8f-5126b037bba0",
-  "_version": 4,
+  "_id": "5a5e535f-adf9-44c6-af23-4aae3cd9bedb",
+  "_version": 2,
   "_score": null,
   "_source": {
     "agentHost": "192.168.32.1",
+    "testCustomedField": 123456789123456789,
     "agentId": "4f2c40c2-4ebf-4056-b5d3-c0be21df5285",
     "agentName": "Peter-Zhang",
     "callbackURL": null,
-    "createTime": 1525672515120,
+    "createTime": 1525826821351,
     "detailLevel": "ALL_ISSUES_ALL_STEPS",
-    "dispatchTime": "1525672515222",
-    "domain": "ldap",
-    "endTime": 0,
-    "executionLastUnsatisfiedCondition": "CAN_EXECUTE",
+    "dispatchTime": 0,
+    "domain": null,
+    "endTime": 1525826821179,
+    "executionLastUnsatisfiedCondition": "NOT_YET_PROCESSED",
+    "failureReason": null,
+    "executionLastUnsatisfiedCondition": "NOT_YET_PROCESSED",
     "failureReason": null,
     "fsIdentifier": null,
     "ignoredRequirements": [],
     "discardReport": false,
-    "latestUpdateTime": "1525672515230",
-    "mergedRequirements": [
-      {
-        "name": "location",
-        "value": "laptop.windows10"
-      },
-      {
-        "name": "language",
-        "value": "python"
-      }
-    ],
+    "latestUpdateTime": 1525826821351,
+    "mergedRequirements": [],
     "oldPk": 0,
     "parameterFilePath": null,
     "parameters": [],
-    "parentReportId": null,
-    "parentStepIndex": null,
+    "parentReportId": "a8bef182-1620-4c9b-88f5-024c1c61fee9",
+    "parentStepIndex": "2.1",
     "percentageComplete": 0,
     "reportFileCompressionType": "NONE",
     "reportFileSource": "ELASTIC",
     "reportFormat": "NONE",
-    "reportId": "bbb8a382-32b7-40d8-8c8f-5126b037bba0",
-    "reportIdPath": "bbb8a382-32b7-40d8-8c8f-5126b037bba0",
+    "reportId": "5a5e535f-adf9-44c6-af23-4aae3cd9bedb",
+    "reportIdPath": "a8bef182-1620-4c9b-88f5-024c1c61fee9/5a5e535f-adf9-44c6-af23
+-4aae3cd9bedb",
     "reportVersion": "7.0",
-    "requirements": [
-      {
-        "name": "location",
-        "value": "laptop.windows10"
-      }
-    ],
+    "requirements": [],
     "reservationId": null,
-    "result": "INDETERMINATE",
+    "result": "PASS",
     "runlistGuid": null,
     "runlistItemId": null,
     "runlistPath": null,
-    "sessionId": "bbb8a382-32b7-40d8-8c8f-5126b037bba0",
-    "startTime": 1525672515494,
-    "status": "IN_PROGRESS",
+    "sessionId": "a8bef182-1620-4c9b-88f5-024c1c61fee9",
+    "startTime": 1525826821065,
+    "status": null,
     "tags": [],
     "testCategory": "STANDARD",
     "testId": null,
-    "testPath": "main/Python-Practice/Python-Practice/Get_Kibana_info.py",
-    "token": "eyJzaWduYXR1cmUiOiAiNzMxOGNjMmIzNzk5NTA0MzdiNmI1NDI4MGQ4NWVmMjMzZjIxY2ZkOT
-gzYmIxM2VhNDAyYzVjMmRmZWNiNDRlMDM3MjdhNTEwN2NiYjZhMDNlNzAwNTkxNWRhNmMyMThkYzIzNDk1M2IwZG
-I0Y2NlOTk2OTdhZjM1OWI1OGRlMWRmMDBlYzg3ZmY5NWZkMzgwM2U1ODEyODE3OWQ5YjNjMjkwNTI0Y2Y5MDM2M2
-MxMWNiZjgxOTc0MjEwZTI2NmQ4OGI1N2NhZTcyZjQxZWJhZmY1NDI5NTFhYzQ3MzU1OGJhYzRhMjE0YjEzZmMyYT
-FlYjE4ZmExZGY4MzYyOTc0MzcwODcyNzRiNDc1ODZkZWFjZWFjOGYzZjJkMWJiOTJmOTBlY2Q4YTRlMjgxNjlhNW
-FhMGRmYWMxNTU3ZTgyOWU5ODliYzVlNDNhNDUxMzYwZGM5ZjlmM2QyNGQ3NTYyNDM2ZjcxMGI2ZDQyZGZjOTNjYT
-UzYWNjY2ZjMGE5MjY1MTQ5Nzc5ODZiMjQ1NTQ1Y2QzMGFiMDVlZmE5ZTM2MmY2ODY0MDJlZTg0OGY4YmY4OWZhMj
-lkZTRiMTQ4ODExMDk0YWNjYWRmMzgxN2IwYjc2NDlkMmRlMmQyZDJkZDE4NTcxNjA5NDEzNTM1YWJlNWNmNTJjOD
-U4YmFiZmMzNDEiLCAicGFja2V0IjogIntcImV4cGlyYXRpb25cIjogMTU1NzIwODUxNSwgXCJzdGFydF90aW1lXC
-I6IDE1MjU2NzIyMTUsIFwiaWRcIjogXCJwZXRlclwiLCBcInVzZXJfbmFtZVwiOiBcIlBldGVyXCIsIFwiZG9tYW
-luXCI6IFwibGRhcFwifSJ9",
+    "testPath": "main/PostDataToKibana/test_cases/temp.fftc",
+    "token": null,
     "topologyId": null,
     "topologyName": null,
     "topologyPath": null,
@@ -78,32 +58,27 @@ luXCI6IFwibGRhcFwifSJ9",
     "topologyVersionId": null,
     "userId": "peter",
     "isRunlistFirst": false,
-    "isReservationBySvc": "false",
+    "isReservationBySvc": false,
     "isRunlistLast": false
   },
   "fields": {
     "dispatchTime": [
-      1525672515222
+      0
     ],
     "createTime": [
-      1525672515120
+      1525826821351
     ],
     "latestUpdateTime": [
-      1525672515230
+      1525826821351
     ],
     "startTime": [
-      1525672515494
+      1525826821065
     ],
     "endTime": [
-      0
+      1525826821179
     ]
   },
   "sort": [
-    1525672515494
+    1525826821179
   ]
 }
-
-
-
-
-

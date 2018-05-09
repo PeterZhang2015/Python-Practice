@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ae7478cc-ca1f-4331-9640-045e230ddbd3" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/json_data1.txt" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/Post_Customized_Data_To_Kibana.py" afterPath="$PROJECT_DIR$/Post_Customized_Data_To_Kibana.py" />
-      <change beforePath="$PROJECT_DIR$/geckodriver.log" afterPath="$PROJECT_DIR$/geckodriver.log" />
+      <change beforePath="$PROJECT_DIR$/aTemp.py" afterPath="$PROJECT_DIR$/aTemp.py" />
+      <change beforePath="$PROJECT_DIR$/json_data.txt" afterPath="$PROJECT_DIR$/json_data.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,16 +17,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="My_Selenium_Library.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/My_Selenium_Library.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5850">
-              <caret line="239" column="5" lean-forward="false" selection-start-line="239" selection-start-column="5" selection-end-line="239" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="selenium_practice1.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/selenium_practice1.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -52,9 +44,11 @@
       <file leaf-file-name="Post_Customized_Data_To_Kibana.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Post_Customized_Data_To_Kibana.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="29" column="4" lean-forward="false" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
-              <folding />
+            <state relative-caret-position="5600">
+              <caret line="224" column="0" lean-forward="true" selection-start-line="224" selection-start-column="0" selection-end-line="224" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#30#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -62,11 +56,21 @@
       <file leaf-file-name="aTemp.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/aTemp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="625">
-              <caret line="25" column="62" lean-forward="false" selection-start-line="25" selection-start-column="62" selection-end-line="25" selection-end-column="62" />
+            <state relative-caret-position="63">
+              <caret line="25" column="4" lean-forward="false" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="62" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="json_data.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/json_data.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="6" column="10" lean-forward="false" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="10" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -98,16 +102,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="175">
               <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="My_Own_Library.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/My_Own_Library.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="10" column="44" lean-forward="false" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -194,9 +188,10 @@
         <option value="$PROJECT_DIR$/selenium_practice3.py" />
         <option value="$PROJECT_DIR$/My_Selenium_Library.py" />
         <option value="$PROJECT_DIR$/Get_Kibana_info_backup.py" />
-        <option value="$PROJECT_DIR$/aTemp.py" />
         <option value="$PROJECT_DIR$/Get_Kibana_info.py" />
         <option value="$PROJECT_DIR$/selenium_practice1.py" />
+        <option value="$PROJECT_DIR$/json_data.txt" />
+        <option value="$PROJECT_DIR$/aTemp.py" />
         <option value="$PROJECT_DIR$/Post_Customized_Data_To_Kibana.py" />
       </list>
     </option>
@@ -280,7 +275,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Post_Customized_Data_To_Kibana">
+  <component name="RunManager" selected="Python.aTemp">
     <configuration name="Get_Kibana_info" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -380,10 +375,10 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.Post_Customized_Data_To_Kibana" />
-        <item index="1" class="java.lang.String" itemvalue="Python.selenium_practice1" />
-        <item index="2" class="java.lang.String" itemvalue="Python.Get_Kibana_info" />
-        <item index="3" class="java.lang.String" itemvalue="Python.aTemp" />
+        <item index="0" class="java.lang.String" itemvalue="Python.aTemp" />
+        <item index="1" class="java.lang.String" itemvalue="Python.Post_Customized_Data_To_Kibana" />
+        <item index="2" class="java.lang.String" itemvalue="Python.selenium_practice1" />
+        <item index="3" class="java.lang.String" itemvalue="Python.Get_Kibana_info" />
         <item index="4" class="java.lang.String" itemvalue="Python.decoder" />
       </list>
     </recent_temporary>
@@ -463,20 +458,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/RomeoAndJuliet.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/usage_webbrowser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="18" lean-forward="false" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Practice1_download comics.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1005">
@@ -707,16 +688,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/aTemp.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="625">
-          <caret line="25" column="62" lean-forward="false" selection-start-line="25" selection-start-column="62" selection-end-line="25" selection-end-column="62" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/selenium_practice1.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -727,11 +698,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/json_data1.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1275">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/json_data.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="6" column="10" lean-forward="false" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/aTemp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="25" column="4" lean-forward="false" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="62" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Post_Customized_Data_To_Kibana.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="29" column="4" lean-forward="false" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
-          <folding />
+        <state relative-caret-position="5600">
+          <caret line="224" column="0" lean-forward="true" selection-start-line="224" selection-start-column="0" selection-end-line="224" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

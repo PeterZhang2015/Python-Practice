@@ -40,5 +40,10 @@ if json_information_text:
     print ("***********test id from format json*************8")
     print (id)
 
+    time.sleep(2)
+    reportIdPath = data["_source"]["reportIdPath"]
+    print ("***********reportIdPath*************8")
+    print (reportIdPath)
+
 
 
