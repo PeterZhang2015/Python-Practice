@@ -14,10 +14,7 @@ from selenium.webdriver.support.ui import WebDriverWait as wait
 from selenium.webdriver.support import expected_conditions as EC
 import sys
 
-#Set variables
-usr = "admin"
-pwd = "admin"
-kibana_url = "https://{}:{}@192.168.32.75:5601".format(usr, pwd)
+
 
 #Get Parameters calling this python script
 insert_field = sys.argv[1]
@@ -32,19 +29,34 @@ recent_records_number = int(sys.argv[3])
 print ("***********recent_records_number*************")
 print(recent_records_number)
 
+ite_ip_address = str(sys.argv[4])
+print ("***********ite_ip_address*************")
+print(ite_ip_address)
+
+ite_username = str(sys.argv[5])
+print ("***********ite_username*************")
+print(ite_username)
+
+ite_password = str(sys.argv[6])
+print ("***********ite_password*************")
+print(ite_password)
+
+chromedriver_path = str(sys.argv[7])
+print ("***********chromedriver_path*************")
+print(chromedriver_path)
+
+#Set variables
+kibana_url = "https://{}:{}@{}:5601".format(ite_username, ite_password, ite_ip_address)
 
 #Set functions
 #Function of open web url with max browser window.
 def OpenWebUrlWithMaxWindow(url):
     options = webdriver.ChromeOptions()
     options.add_argument("--start-maximized")
-    browser = webdriver.Chrome("C:/Setup/Python27/Scripts/chromedriver.exe", chrome_options=options)
+    browser = webdriver.Chrome(chromedriver_path, chrome_options=options)
     browser.get(url)
     return browser
-    #browser = webdriver.Firefox()
-    #browser.maximize_window()
-    #browser.get(url)
-    #return browser
+
 
 #Function of expand some records on Kibana.
 def ExpandRecentRecordsOnKibana(browser, elements, elements_xpath, recent_records_number):
@@ -147,7 +159,7 @@ def PostCustomizedDataToLatestRecord(browser, elements, elements_xpath, recent_r
                 print ("***********json_source*************")
                 print (json_source)
 
-                url = 'https://192.168.32.75:9200/{}/{}/{}'.format(data_index, type, id)
+                url = 'https://{}:9200/{}/{}/{}'.format(ite_ip_address, data_index, type, id)
                 print ("***********post URL*************")
                 print (url)
 
