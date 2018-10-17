@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ae7478cc-ca1f-4331-9640-045e230ddbd3" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/HTML_to_Text_Example.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/selenium_google_translate.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Temp.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/google_translate_python_API.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/google_translate_selenium_API.py" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/google_translate.py" afterPath="$PROJECT_DIR$/google_translate.py" />
+      <change beforePath="$PROJECT_DIR$/selenium_google_translate.py" afterPath="$PROJECT_DIR$/selenium_google_translate.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,8 +21,8 @@
       <file leaf-file-name="Post_Customized_Data_To_Kibana.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Post_Customized_Data_To_Kibana.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-20">
-              <caret line="43" column="17" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="17" />
+            <state relative-caret-position="264">
+              <caret line="150" column="77" lean-forward="false" selection-start-line="150" selection-start-column="65" selection-end-line="150" selection-end-column="77" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -30,8 +33,8 @@
       <file leaf-file-name="HTML_to_Text_Example.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HTML_to_Text_Example.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="18" column="17" lean-forward="true" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+            <state relative-caret-position="315">
+              <caret line="18" column="17" lean-forward="false" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
               </folding>
@@ -42,18 +45,32 @@
       <file leaf-file-name="Get_All_Elasticsearch_Indexes.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../iTestProjects/velocityElasticsearchBackup/test_cases/Get_All_Elasticsearch_Indexes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="4" selection-end-column="10" />
-              <folding />
+            <state relative-caret-position="168">
+              <caret line="34" column="17" lean-forward="true" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#30#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="selenium_google_translate.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="selenium_google_translate.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/selenium_google_translate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+            <state relative-caret-position="300">
+              <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="35" selection-end-column="78" />
+              <folding>
+                <element signature="e#24#54#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Temp.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Temp.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="350">
+              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="78" />
               <folding>
                 <element signature="e#24#54#0" expanded="true" />
               </folding>
@@ -64,41 +81,45 @@
       <file leaf-file-name="google_translate.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/google_translate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="7" column="34" lean-forward="false" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="79" />
+            <state relative-caret-position="125">
+              <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="104" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="send_mail_in_gmail.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/send_mail_in_gmail.py">
+      <file leaf-file-name="google_translate_python_API.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../iTestProjects/language_tanslation/test_cases/google_translate_python_API.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="100">
+              <caret line="33" column="5" lean-forward="false" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
               <folding>
-                <element signature="e#0#26#0" expanded="true" />
+                <element signature="e#25#59#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="usage_requests.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/usage_requests.py">
+      <file leaf-file-name="google_translate_selenium_API.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../iTestProjects/language_tanslation/test_cases/google_translate_selenium_API.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="100">
+              <caret line="55" column="5" lean-forward="false" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
+              <folding>
+                <element signature="e#24#54#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="usage_webbrowser.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/usage_webbrowser.py">
+      <file leaf-file-name="google_translate_python_API.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/google_translate_python_API.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="15" column="31" lean-forward="false" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
-              <folding />
+            <state relative-caret-position="600">
+              <caret line="24" column="88" lean-forward="false" selection-start-line="24" selection-start-column="88" selection-end-line="24" selection-end-column="88" />
+              <folding>
+                <element signature="e#25#59#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -115,16 +136,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="use_my_library1.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/use_my_library1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="10" column="14" lean-forward="false" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -136,9 +147,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>chro</find>
-      <find>switch_to</find>
-      <find>new_reply_element</find>
       <find>sys</find>
       <find>tab</find>
       <find>message_body</find>
@@ -166,6 +174,9 @@
       <find>u</find>
       <find>request</find>
       <find>chromedriver_path</find>
+      <find>json</find>
+      <find>re.</find>
+      <find>src_language_path</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -207,12 +218,17 @@
         <option value="$PROJECT_DIR$/Add_Hyperlink.py" />
         <option value="$PROJECT_DIR$/../iTestProjects/License_Server_Driver/get_current_time.py" />
         <option value="$PROJECT_DIR$/../iTestProjects/License_Server_Driver/post_data_to_Kibana.py" />
-        <option value="$PROJECT_DIR$/google_translate.py" />
         <option value="$PROJECT_DIR$/Get_All_Elasticsearch_Indexes" />
         <option value="$PROJECT_DIR$/../iTestProjects/velocityElasticsearchBackup/test_cases/Get_All_Elasticsearch_Indexes.py" />
         <option value="$PROJECT_DIR$/Post_Customized_Data_To_Kibana.py" />
         <option value="$PROJECT_DIR$/HTML_to_Text_Example.py" />
+        <option value="$PROJECT_DIR$/google_translate_python_API.py" />
+        <option value="$PROJECT_DIR$/google_translate_selenium_API.py" />
+        <option value="$PROJECT_DIR$/google_translate.py" />
+        <option value="$PROJECT_DIR$/Temp.py" />
         <option value="$PROJECT_DIR$/selenium_google_translate.py" />
+        <option value="$PROJECT_DIR$/../iTestProjects/language_tanslation/test_cases/google_translate_python_API.py" />
+        <option value="$PROJECT_DIR$/../iTestProjects/language_tanslation/test_cases/google_translate_selenium_API.py" />
       </list>
     </option>
   </component>
@@ -260,8 +276,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -273,11 +287,13 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
-    <property name="last_opened_file_path" value="$USER_HOME$" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/GitHubDesktop/app-1.1.1/resources/app/git/cmd/git.exe" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -297,8 +313,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.selenium_google_translate">
-    <configuration name="Get_All_Elasticsearch_Indexes" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.google_translate_python_API (1)">
+    <configuration name="Temp" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -310,25 +326,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Test" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Get_All_Elasticsearch_Indexes" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="HTML_to_Text_Example" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Test" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/HTML_to_Text_Example.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Temp.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -352,19 +350,37 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="post_data_to_Kibana" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="google_translate_python_API (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../iTestProjects/License_Server_Driver" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../iTestProjects/language_tanslation/test_cases" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Test" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../iTestProjects/License_Server_Driver/post_data_to_Kibana.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../iTestProjects/language_tanslation/test_cases/google_translate_python_API.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="google_translate_selenium_API" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../iTestProjects/language_tanslation/test_cases" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Test" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../iTestProjects/language_tanslation/test_cases/google_translate_selenium_API.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -389,19 +405,19 @@
       <option name="MODULE_MODE" value="false" />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.post_data_to_Kibana" />
-      <item index="1" class="java.lang.String" itemvalue="Python.google_translate" />
-      <item index="2" class="java.lang.String" itemvalue="Python.Get_All_Elasticsearch_Indexes" />
-      <item index="3" class="java.lang.String" itemvalue="Python.HTML_to_Text_Example" />
-      <item index="4" class="java.lang.String" itemvalue="Python.selenium_google_translate" />
+      <item index="0" class="java.lang.String" itemvalue="Python.google_translate" />
+      <item index="1" class="java.lang.String" itemvalue="Python.selenium_google_translate" />
+      <item index="2" class="java.lang.String" itemvalue="Python.Temp" />
+      <item index="3" class="java.lang.String" itemvalue="Python.google_translate_selenium_API" />
+      <item index="4" class="java.lang.String" itemvalue="Python.google_translate_python_API (1)" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.selenium_google_translate" />
-        <item index="1" class="java.lang.String" itemvalue="Python.HTML_to_Text_Example" />
-        <item index="2" class="java.lang.String" itemvalue="Python.Get_All_Elasticsearch_Indexes" />
-        <item index="3" class="java.lang.String" itemvalue="Python.google_translate" />
-        <item index="4" class="java.lang.String" itemvalue="Python.post_data_to_Kibana" />
+        <item index="0" class="java.lang.String" itemvalue="Python.google_translate_python_API (1)" />
+        <item index="1" class="java.lang.String" itemvalue="Python.google_translate_selenium_API" />
+        <item index="2" class="java.lang.String" itemvalue="Python.selenium_google_translate" />
+        <item index="3" class="java.lang.String" itemvalue="Python.Temp" />
+        <item index="4" class="java.lang.String" itemvalue="Python.google_translate" />
       </list>
     </recent_temporary>
   </component>
@@ -428,7 +444,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.234375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3417431" sideWeight="0.35572916" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42087156" sideWeight="0.64427084" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22018349" sideWeight="0.64427084" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -482,16 +498,11 @@
           <option name="timeStamp" value="26" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="27" />
+      <option name="time" value="28" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/temp1.py" />
-    <entry file="file://$PROJECT_DIR$/test.py" />
-    <entry file="file://$PROJECT_DIR$/requests.py" />
-    <entry file="file://$PROJECT_DIR$/webbrowser.py" />
-    <entry file="file://$PROJECT_DIR$/temp1.py" />
     <entry file="file://$PROJECT_DIR$/web_browser.py" />
     <entry file="file://$PROJECT_DIR$/RomeoAndJuliet.txt">
       <provider selected="true" editor-type-id="text-editor">
@@ -661,9 +672,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#11#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -672,7 +680,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -719,46 +727,98 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Post_Customized_Data_To_Kibana.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-20">
-          <caret line="43" column="17" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/HTML_to_Text_Example.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="18" column="17" lean-forward="true" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+        <state relative-caret-position="315">
+          <caret line="18" column="17" lean-forward="false" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../iTestProjects/velocityElasticsearchBackup/test_cases/Get_All_Elasticsearch_Indexes.py">
+    <entry file="file://$PROJECT_DIR$/google_translate_selenium_API.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="4" selection-end-column="10" />
-          <folding />
+        <state relative-caret-position="114">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="11" selection-end-column="27" />
+          <folding>
+            <element signature="e#24#54#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/google_translate_python_API.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="24" column="88" lean-forward="false" selection-start-line="24" selection-start-column="88" selection-end-line="24" selection-end-column="88" />
+          <folding>
+            <element signature="e#25#59#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/google_translate.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="34" lean-forward="false" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="79" />
+        <state relative-caret-position="125">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="104" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../iTestProjects/velocityElasticsearchBackup/test_cases/Get_All_Elasticsearch_Indexes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="34" column="17" lean-forward="true" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Post_Customized_Data_To_Kibana.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="150" column="77" lean-forward="false" selection-start-line="150" selection-start-column="65" selection-end-line="150" selection-end-column="77" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Temp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="78" />
+          <folding>
+            <element signature="e#24#54#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/selenium_google_translate.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        <state relative-caret-position="300">
+          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="35" selection-end-column="78" />
+          <folding>
+            <element signature="e#24#54#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../iTestProjects/language_tanslation/test_cases/google_translate_python_API.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="33" column="5" lean-forward="false" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+          <folding>
+            <element signature="e#25#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../iTestProjects/language_tanslation/test_cases/google_translate_selenium_API.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="55" column="5" lean-forward="false" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
           <folding>
             <element signature="e#24#54#0" expanded="true" />
           </folding>

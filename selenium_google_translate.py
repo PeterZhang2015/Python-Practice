@@ -17,15 +17,23 @@ browser.get(google_translate_url)
 time.sleep(5)
 
 # Find the src language text area element.
-src_language_path = '//textarea[@id="source"]'
-src_language_element = browser.find_element_by_xpath(src_language_path)
-src_language_element.send_keys(language_for_translating)
+src_text_path = '//textarea[@id="source"]'
+src_text_element = browser.find_element_by_xpath(src_text_path)
+src_text_element.send_keys(language_for_translating)
 
 time.sleep(2)
 
-# Get translated languate.
-dest_language_path = '//*[@id="gt-res-dir-ctr"]'
-dest_language_element = browser.find_element_by_xpath(dest_language_path)
-dest_language=dest_language_element.text
+# Get translated language.
+dest_text_path = '//*[@id="gt-res-dir-ctr"]'
+dest_text_element = browser.find_element_by_xpath(dest_text_path)
+dest_text=dest_text_element.text
 
-print dest_language
+# Get source language.
+src_language_path = '//*[contains(text(), "- detected")][@role="button"]'
+src_language_element = browser.find_element_by_xpath(src_language_path)
+src_language_detected=src_language_element.text
+
+src_language = re.search(r'(.*)( - detected)', src_language_detected).group(1)
+
+
+print src_language
