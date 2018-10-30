@@ -32,14 +32,14 @@ print response_map.queries()
 
 print response_map.prompt()
 
-print response_map.Packets_Sent()
-print response_map.Packets_Received()
-print response_map.Packets_Lost()
-print response_map.Packets_Lost_Percentage()
+print response_map.packets_sent()
+print response_map.packets_received()
+print response_map.packets_lost()
+print response_map.packets_lost_percentage()
 
-print response_map.Minimum_Latency()
-print response_map.Maximum_Latency()
-print response_map.Average_Latency()
+print response_map.minimum_latency()
+print response_map.maximum_latency()
+print response_map.average_latency()
 
 #response_map.close()
 session.close()
