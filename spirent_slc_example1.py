@@ -9,7 +9,9 @@ print project_list
 #define parameters
 project_name = "spirent_slc"
 session_name = "Command_Prompt_ffsp"
+quick_calls_name = "Command_Prompt_QC_fftc"
 response_map_name = "slc_windows_ping_ffrm"
+quick_call_name1 = "Get_Date_Time"
 
 #Check target iTest project exist.
 if project_name not in project_list:
@@ -24,9 +26,6 @@ print project
 project_list = project.list(parameter_file=True, response_map=True)
 print project_list
 
-#Check quick call list for a session.
-#quickCallList = project.Command_Prompt_QC_fftc.list()
-#print quickCallList
 
 #Check target session profile exist in target iTest project.
 if session_name not in project_list:
@@ -36,6 +35,25 @@ if session_name not in project_list:
 #Open target session in target project.
 session_string = "session = project.{}.open()" .format(session_name)
 exec(session_string)
+
+
+#Check quick call list for a session.
+quickCallList_string = "quickCallList = project.{}.list()" .format(quick_calls_name)
+exec(quickCallList_string)
+print quickCallList
+
+#Check quick call exist.
+if quick_call_name1 not in quickCallList:
+    print("quick call %s is not in project %s" % (quick_call_name1, project))
+    sys.exit(0)
+
+quickCall_string1 = "current_date_time = project.{}.{}()" .format(session_name, quick_call_name1)
+exec(quickCall_string1)
+#current_date_time = project.Command_Prompt_ffsp.Get_Date_Time()
+print current_date_time
+
+
+
 
 #Check target response map exist in target iTest project.
 if response_map_name not in project_list:
