@@ -12,6 +12,7 @@ session_name = "Command_Prompt_ffsp"
 quick_calls_name = "Command_Prompt_QC_fftc"
 response_map_name = "slc_windows_ping_ffrm"
 quick_call_name1 = "Get_Date_Time"
+quick_call_name2 = "Get_List_Largest"
 
 #Check target iTest project exist.
 if project_name not in project_list:
@@ -51,6 +52,20 @@ quickCall_string1 = "current_date_time = project.{}.{}()" .format(session_name, 
 exec(quickCall_string1)
 #current_date_time = project.Command_Prompt_ffsp.Get_Date_Time()
 print current_date_time
+
+#Check quick call exist.
+if quick_call_name2 not in quickCallList:
+    print("quick call %s is not in project %s" % (quick_call_name1, project))
+    sys.exit(0)
+
+inputList = [5,2,7,2,1,8,3,2,4,6,7]
+inputList = " ".join(map(str, inputList))
+
+quickCall_string2 = "largestElement = project.{}.{}(List_In=\"{}\")" .format(session_name, quick_call_name2, inputList)
+print(quickCall_string2)
+exec(quickCall_string2)
+#current_date_time = project.Command_Prompt_ffsp.Get_Date_Time()
+print(largestElement)
 
 
 
