@@ -11,13 +11,13 @@ inputList = " ".join([str(i) for i in inputList])
 print inputList
 
 
-#src_language_detected = "Chinese - detected"
-
-#src_language = re.search(r'(.*)( - detected)', src_language_detected).group(0)
-
-#print src_language
-
-#src_language = re.search(r'(.*)( - detected)', src_language_detected).group(1)
-
-
-#print src_language
+# src_language_detected = "Chinese - detected"
+#
+# src_language = re.search(r'(.*)( - detected)', src_language_detected).group(0)
+#
+# print src_language
+#
+# src_language = re.search(r'(.*)( - detected)', src_language_detected).group(1)
+#
+#
+# print src_language

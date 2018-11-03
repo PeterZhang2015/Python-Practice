@@ -58,7 +58,7 @@ if quick_call_name2 not in quickCallList:
     print("quick call %s is not in project %s" % (quick_call_name1, project))
     sys.exit(0)
 
-inputList = [5,2,7,2,1,8,3,2,4,6,7]
+inputList = [5,2,7,22,1,8,3,2,4,6,7]
 inputList = " ".join(map(str, inputList))
 
 quickCall_string2 = "largestElement = project.{}.{}(List_In=\"{}\")" .format(session_name, quick_call_name2, inputList)
