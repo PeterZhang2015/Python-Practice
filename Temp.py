@@ -4,6 +4,22 @@ from selenium import webdriver
 import time
 import re
 import sys
+import json
+
+result = {
+  "largest_value": "22",
+  "type": "test"
+}
+
+largest_value = result["largest_value"]
+print largest_value
+type = result["type"]
+print type
+
+# json_str = json.dumps(result)
+# print json_str
+# largest_value = json_str["largest_value"]
+# print largest_value
 
 inputList = [5,2,7,2,1,8,3,2,4,6,7]
 inputList = " ".join([str(i) for i in inputList])

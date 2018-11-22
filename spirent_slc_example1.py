@@ -1,5 +1,6 @@
 from SpirentSLC import SLC
 import sys
+import json
 
 slc = SLC.init(host='localhost:9005')
 
@@ -58,17 +59,25 @@ if quick_call_name2 not in quickCallList:
     print("quick call %s is not in project %s" % (quick_call_name1, project))
     sys.exit(0)
 
+#set input parameters for quick call 2.
 inputList = [5,2,7,22,1,8,3,2,4,6,7]
 inputList = " ".join(map(str, inputList))
 
-quickCall_string2 = "largestElement = project.{}.{}(List_In=\"{}\")" .format(session_name, quick_call_name2, inputList)
+quickCall_string2 = "result = project.{}.{}(List_In=\"{}\")" .format(session_name, quick_call_name2, inputList)
 print(quickCall_string2)
 exec(quickCall_string2)
 #current_date_time = project.Command_Prompt_ffsp.Get_Date_Time()
-print(largestElement)
+print(result)
 
+#Format the return value to json format.
+result = str(result)
+result = json.loads(result)
+print(result)
 
-
+largest_value = result["largest_value"]
+type = result["type"]
+print(largest_value)
+print(type)
 
 #Check target response map exist in target iTest project.
 if response_map_name not in project_list:
