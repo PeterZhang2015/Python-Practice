@@ -6,6 +6,13 @@ import re
 import sys
 import json
 
+try:
+  import crypto
+except ImportError:
+    print("Not installed.")
+else:
+    print("Installed.")
+
 result = {
   "largest_value": "22",
   "type": "test"
