@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from selenium import webdriver
+from selenium.webdriver.support.ui import Select
 
 import time
 import re
@@ -30,6 +31,17 @@ def main():
     browser.get(google_translate_url)
     time.sleep(5)
 
+    # Click language list button.
+    dest_language_menu_path = "//*[@class='tl-more tlid-open-target-language-list'][@role='button']"
+    dest_language_menu_element = browser.find_element_by_xpath(dest_language_menu_path)
+    dest_language_menu_element.click()
+
+    # Set destination language.
+    dest_language_path = '//*[@class="language-list-unfiltered-langs-tl_list"]//*[@class="language_list_item language_list_item_language_name"][text()="{}"]'.format(translating_to_language)
+    dest_language_element = browser.find_element_by_xpath(dest_language_path)
+    dest_language_element.click()
+    time.sleep(2)
+
     # Find the src language text area element.
     src_text_path = '//textarea[@id="source"]'
     src_text_element = browser.find_element_by_xpath(src_text_path)
@@ -37,8 +49,9 @@ def main():
 
     time.sleep(2)
 
+
     # Get translated languate.
-    dest_text_path = '//*[@id="gt-res-dir-ctr"]'
+    dest_text_path = '//*[@class="result-shield-container tlid-copy-target"]'
     dest_text_element = browser.find_element_by_xpath(dest_text_path)
     dest_text=dest_text_element.text
 
@@ -50,7 +63,9 @@ def main():
     src_language_element = browser.find_element_by_xpath(src_language_path)
     src_language_detected = src_language_element.text
 
-    src_language = re.search(r'(.*)( - detected)', src_language_detected).group(1)
+    #print(src_language_detected)
+
+    src_language = re.search(r'(.*)( - DETECTED)', src_language_detected).group(1)
 
     #print ("***********Source Language*************")
     #print(src_language)
