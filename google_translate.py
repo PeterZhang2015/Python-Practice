@@ -11,10 +11,10 @@ print ("***********Text for translating*************")
 print(text_for_translating)
 
 translator = Translator()
-src_language=translator.detect(text_for_translating)
+src_language = translator.detect(text_for_translating)
 print(src_language)
 
-output = translator.translate(text_for_translating,dest=dest_language)
+output = translator.translate(text_for_translating, dest=dest_language)
 print(output)
 print(output.text)
 print(output.src)
