@@ -41,6 +41,8 @@ exec(session_string)
 
 #Check quick call list for a session.
 quickCallList_string = "quickCallList = project.{}.list()" .format(quick_calls_name)
+#quickCallList_string = "quickCallList = project.{}.list()" .format(session_name)
+print quickCallList_string
 exec(quickCallList_string)
 print quickCallList
 
