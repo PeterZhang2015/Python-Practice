@@ -65,7 +65,7 @@
 # print local_pcap_location
 
 
-
+import os
 import subprocess
 import re
 #################getTsharkRequest#################################.
@@ -103,6 +103,10 @@ def main():
     local_pcap_location = "c:/temp/WebBrowsingWap_2018-08-21_143947.pcap"
     filter_str = "http.host == wap.telstra.com"
     getTsharkRequest(local_pcap_location, filter_str)
+
+
+    # result = os.path.isfile('c:/temp/WebBrowsingWap_2018-08-21_143947.pcap')
+    # print result
 
     # response = "71 2018-08-20 19:19:27.045757 144.140.217.42 → 10.61.2.180   HTTP/1.1 302 Found  (text/html) 491 GTP <HTTP>"
     # match_result = re.findall(r"(\d+) (\S+) (\S+) (\S+) (\S+) (.*) (\S+) (\d+) (\S+) (\S+)", response)
