@@ -92,12 +92,9 @@ def getTsharkRequest(pcap_file, filter_str, packet_fields=None, return_data=None
     print "response is: " + response
 
     line_list = response.splitlines()
-    print len(line_list)
+    print "result number is: " + str(len(line_list))
 
-    #match_result = re.findall(r"(\d+) (\S+) (\S+) (\S+) (\S+) (.*) (\S+) (\d+) (\S+) (\S+)", response, re.M)
-    # print match_result
-
-
+    return len(line_list)
 
 
 
