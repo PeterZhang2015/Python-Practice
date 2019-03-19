@@ -68,6 +68,7 @@
 import os
 import subprocess
 import re
+import sys
 #################getTsharkRequest#################################.
 def getTsharkRequest(pcap_file, filter_str, packet_fields=None, return_data=None):
 
@@ -89,21 +90,89 @@ def getTsharkRequest(pcap_file, filter_str, packet_fields=None, return_data=None
     else:
         response = subprocess.check_output(['tshark', '-nr', pcap_file, '-Y', filter_str])
 
-    print "response is: " + response
+    print response
 
     line_list = response.splitlines()
+
+
     print "result number is: " + str(len(line_list))
 
     return len(line_list)
 
 
+#################getTsharkFilterResults#################################.
+def getTsharkFilterResults(pcap_file, filter_str):
+
+    # Initialize variables
+    frame_number_list = []
+
+    # Decode pcap file by tshark command.
+    response = subprocess.check_output(['tshark', '-nr', pcap_file, '-Y', filter_str])
+
+    # Split the filtered result lines.
+    line_list = response.splitlines()
+    print len(line_list)
+
+    # Get frame number list of the matched results.
+    for line in line_list:
+        # Delete the leading space of a line and split it by space character.
+        line = line.lstrip()
+        temp_list = line.split(' ')
+
+        # Take the first element as the frame number.
+        frame_number_list.append(temp_list[0])
+
+    # Return frame number list of the matched results
+    return frame_number_list
+
+
+#################wiresharkAnalysis#################################.
+def wiresharkAnalysis(pcap_file, target_web_host, redirect_url):
+
+    # Set filter string for checking HTTP host
+    filter_str = "http.host == {}".format(target_web_host)
+
+    # Find the frame number list that can match with the filter in the wireshark pcap.
+    request_frame_number_list = getTsharkFilterResults(pcap_file, filter_str)
+    matched_result_number = len(request_frame_number_list)
+    if matched_result_number > 0:
+        print "HTTP Get with web host {} found".format(target_web_host)
+    else:
+        print "HTTP Get with web host {} cannot been found".format(target_web_host)
+        sys.exit()
+
+    # Check there is response for each request frame.
+    for request_frame_number in request_frame_number_list:
+        # Set filter string for checking response of each request.
+        filter_str = "tcp.analysis.acks_frame == {} && http.response.code == 302 && http.location ==  \"{}\"".format(request_frame_number, redirect_url)
+
+        # Find the frame number list that can match with the filter in the wireshark pcap.
+        response_frame_number_list = getTsharkFilterResults(pcap_file, filter_str)
+        matched_result_number = len(response_frame_number_list)
+        if matched_result_number > 0:
+            print "Find matched response for HTTP Get request with frame number {}".format(request_frame_number)
+        else:
+            print "Cannot find matched response for HTTP Get request with frame number {}".format(request_frame_number)
+            sys.exit()
+
+    print "Find matched response for all HTTP Get request!"
 
 #################Main test logical#################################.
 def main():
-    local_pcap_location = "c:/temp/WebBrowsingWap_2018-08-21_143947.pcap"
-    filter_str = "http.host == wap.telstra.com"
-    getTsharkRequest(local_pcap_location, filter_str)
 
+    target_web_host = "wap.telstra.com"
+    redirect_url = "http://m.bigpond.com"
+
+    # getTsharkRequest(local_pcap_location, filter_str)
+    # local_pcap_location = "c:/temp/WebBrowsingWap_2018-08-21_143947.pcap"
+    # frame_number_list = getTsharkFilterResults(local_pcap_location, filter_str)
+    # print len(frame_number_list)
+
+    pcap_file = "c:/temp/WebBrowsingWap_2018-08-21_143947.pcap"
+    target_web_host = "wap.telstra.com"
+    redirect_url = "http://m.bigpond.com"
+
+    wiresharkAnalysis(pcap_file, target_web_host, redirect_url)
 
     # result = os.path.isfile('c:/temp/WebBrowsingWap_2018-08-21_143947.pcap')
     # print result
