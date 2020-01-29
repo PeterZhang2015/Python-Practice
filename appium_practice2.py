@@ -15,11 +15,19 @@ PATH = lambda p: os.path.abspath(
 )
  
 class MAndroid2Tests(unittest.TestCase):
+    # def __init__(self, platformName, platformVersion, deviceName, udid, appPackage, appActivity):
+    #     self.platformName = platformName
+    #     self.platformVersion = platformVersion
+    #     self.deviceName = deviceName
+    #     self.udid = udid
+    #     self.appPackage = appPackage
+    #     self.appActivity = appActivity
+
     def setUp(self):
         desired_caps = {}
         desired_caps['platformName'] = 'Android'
         desired_caps['platformVersion'] = '7.0'
-        desired_caps['deviceName'] = 'Galaxy S7'
+        desired_caps['deviceName'] = 'SM-G930F'
         desired_caps['udid'] = 'ce071607a2e74a1a05'
         desired_caps['appPackage'] = 'com.matrium.mandroid2'
         desired_caps['appActivity'] = '.MainActivity'
@@ -77,6 +85,8 @@ class MAndroid2Tests(unittest.TestCase):
         else:
             print("Cannot find the fifth permission")
             return
+
+        sleep(2)
 
         logoutButtonId = "com.matrium.mandroid2:id/userLogout"
         self.wait.until(presence_of_element_located((By.ID, logoutButtonId)))

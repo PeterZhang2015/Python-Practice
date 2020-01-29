@@ -174,9 +174,9 @@ def PostCustomizedDataToLatestRecord(browser, elements, elements_xpath, recent_r
 
                 break
             else:
-                print "Continue"
+                print ("Continue")
         else:
-            print "Continue"
+            print ("Continue")
 
         # Re-define link element
         elements = browser.find_elements_by_xpath(elements_xpath)

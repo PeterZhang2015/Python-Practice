@@ -40,7 +40,7 @@ def getLibrariesPath(management_ip, management_port, username, password):
 
     # Get API information through Landslide REST API.
     response = requests.get(url, auth=HTTPBasicAuth(username, password))
-    print response.text
+    print (response.text)
 
     # Get libraries path from the API information response.
     data = json.loads(response.text)
@@ -92,7 +92,7 @@ def getTestSessionsName(management_ip, management_port, username, password, libr
 def executeLandslideTestSession(management_ip, management_port, username, password, body):
 
     # Construct the URL to execute test session.
-    url = "http://{}:{}/api/runningTests".format(memenanagt_ip, management_port)
+    url = "http://{}:{}/api/runningTests".format(management_ip, management_port)
 
     # Execute Landslide test session with the input body through Landslide REST API.
     response = requests.post(url, body, auth=HTTPBasicAuth(username, password))
@@ -103,7 +103,7 @@ def executeLandslideTestSession(management_ip, management_port, username, passwo
     response_code = test_session_info["code"]
 
     if response_code != "200":  # Fail to run the test session.
-        print "Fail to execute the test session."
+        print ("Fail to execute the test session.")
         sys.exit()
 
     test_session_id = test_session_info["id"]
@@ -125,7 +125,7 @@ def stopLandslideTestSession(management_ip, management_port, username, password,
     result = test_session_info["result"]
 
     if result != "Command successful":  # Fail to stop the test session.
-        print "Fail to stop the test session."
+        print ("Fail to stop the test session.")
         sys.exit()
 
 #################getTestMeasurements#################################.
@@ -145,7 +145,7 @@ def getTestMeasurements(management_ip, management_port, username, password, test
     result = test_measurement_info["result"]
 
     if result != "Command successful":  # Fail to stop the test session.
-        print "Fail to stop the test session."
+        print ("Fail to stop the test session.")
         sys.exit()
 
     for test_server in test_measurement_info["testServers"]:
@@ -173,7 +173,7 @@ def getTestCriteriasResult(management_ip, management_port, username, password, t
     result = test_criteria_info["criteriaStatus"]
 
     if result != "PASSED":  # Fail to stop the test session.
-        print "Test session failed according to the criteria on Landslide test session."
+        print ("Test session failed according to the criteria on Landslide test session.")
         sys.exit()
 
     test_criteria_result_list = test_criteria_info["criteria"]
@@ -198,7 +198,7 @@ def getTestWiresharkPcapUrl(management_ip, management_port, username, password, 
     response_code = wireshark_pcap_info["code"]
 
     if response_code != "200":  # Fail to get the wireshark pcap url.
-        print "Fail to get wireshark pcap url."
+        print ("Fail to get wireshark pcap url.")
         sys.exit()
 
     wireshark_pcap_url = wireshark_pcap_info["captureFileUrl"]
@@ -247,9 +247,9 @@ def downloadFile(username, password, remote_file_location, local_file_location):
 
     # Check whether the file was downloaded successfully or not.
     if os.path.isfile(local_file_location):
-        print "Successfully download {}".format(remote_file_location)
+        print ("Successfully download {}".format(remote_file_location))
     else:
-        print "Failed to download {}".format(remote_file_location)
+        print ("Failed to download {}".format(remote_file_location))
         sys.exit()
 
 
@@ -265,7 +265,7 @@ def getTsharkFilterResults(pcap_file, filter_str):
 
     # Split the filtered result lines.
     line_list = response.splitlines()
-    print len(line_list)
+    print (len(line_list))
 
     # Get frame number list of the matched results.
     for line in line_list:
@@ -290,9 +290,9 @@ def wiresharkAnalysis(pcap_file, target_web_host, redirect_url):
     request_frame_number_list = getTsharkFilterResults(pcap_file, filter_str)
     matched_result_number = len(request_frame_number_list)
     if matched_result_number > 0:
-        print "HTTP Get with web host {} found".format(target_web_host)
+        print ("HTTP Get with web host {} found".format(target_web_host))
     else:
-        print "HTTP Get with web host {} cannot been found".format(target_web_host)
+        print ("HTTP Get with web host {} cannot been found".format(target_web_host))
         sys.exit()
 
     # Check there is response for each request frame.
@@ -304,12 +304,12 @@ def wiresharkAnalysis(pcap_file, target_web_host, redirect_url):
         response_frame_number_list = getTsharkFilterResults(pcap_file, filter_str)
         matched_result_number = len(response_frame_number_list)
         if matched_result_number > 0:
-            print "Find matched response for HTTP Get request with frame number {}".format(request_frame_number)
+            print ("Find matched response for HTTP Get request with frame number {}".format(request_frame_number))
         else:
-            print "Cannot find matched response for HTTP Get request with frame number {}".format(request_frame_number)
+            print ("Cannot find matched response for HTTP Get request with frame number {}".format(request_frame_number))
             sys.exit()
 
-    print "Find matched response for all HTTP Get request!"
+    print ("Find matched response for all HTTP Get request!")
 
 #################Main test logical#################################.
 def main():
@@ -328,7 +328,7 @@ def main():
     test_case_name = os.path.basename(sys.argv[0][:-3])
     timeStamp = datetime.now().strftime('_%Y-%m-%d_%H-%M-%S')
     local_pcap_location = "{}{}{}.pcap".format(local_download_folder, test_case_name, timeStamp)
-    print local_pcap_location
+    print (local_pcap_location)
 
     MmeSut_data = {}
     MmeSut_data['class'] = "Sut"
@@ -342,57 +342,55 @@ def main():
 
     #Get libraries path.
     libraries_path = getLibrariesPath(management_ip, management_port, username, password)
-    print libraries_path
+    print (libraries_path)
 
     #Get libraries id.
     libraries_id = getLibrariesId(libraries_path, username, password, library_name)
-    print libraries_id
+    print (libraries_id)
 
     #Get test sessions name list.
     test_sessions_name_list = getTestSessionsName(management_ip, management_port, username, password, libraries_id)
-    print test_sessions_name_list
+    print (test_sessions_name_list)
 
     # Check whether the test session exists in test sessions name list.
     if test_session_name in test_sessions_name_list:
-        print "{} exists on Landslide.".format(test_session_name)
+        print ("{} exists on Landslide.".format(test_session_name))
     else:
-        print "{} does not exist on Landslide, abort execution.".format(test_session_name)
+        print ("{} does not exist on Landslide, abort execution.".format(test_session_name))
         sys.exit()
 
     # Construct post data structure to execute Landslide test session with optional modified parameters.
     json_data = constructTestSessionExecutionBody(libraries_id, test_session_name, parameters_data)
 
-    # #Run the test session and get the running test session ID.
-    # test_session_id = executeLandslideTestSession(management_ip, management_port, username, password, json_data)
-    # print test_session_id
-    #
-    # #Setting waiting time for the test session execution.
-    # time.sleep(10)
-    #
-    # #Stop the running test session.
-    # stopLandslideTestSession(management_ip, management_port, username, password, test_session_id)
+    #Run the test session and get the running test session ID.
+    test_session_id = executeLandslideTestSession(management_ip, management_port, username, password, json_data)
+    print (test_session_id)
 
-    test_session_id =
+    #Setting waiting time for the test session execution.
+    time.sleep(10)
+
+    #Stop the running test session.
+    stopLandslideTestSession(management_ip, management_port, username, password, test_session_id)
 
     #Get test measurements.
     test_summary_list = getTestMeasurements(management_ip, management_port, username, password, test_session_id)
-    print test_summary_list
+    print (test_summary_list)
 
     #Get test criterias results.
     test_criteria_result_list = getTestCriteriasResult(management_ip, management_port, username, password, test_session_id)
-    print test_criteria_result_list
+    print (test_criteria_result_list)
 
     #Get wireshark pcap url.
     wireshark_pcap_url = getTestWiresharkPcapUrl(management_ip, management_port, username, password, test_session_id, pcap_port_name)
-    print wireshark_pcap_url
+    print (wireshark_pcap_url)
 
     #Download wireshark pcap from Landslide.
     download_result = downloadFile(username, password, wireshark_pcap_url, local_pcap_location)
     if download_result != "Successful":
-        print "Fail to download wireshark pcap file from Landslide, abort."
+        print ("Fail to download wireshark pcap file from Landslide, abort.")
         sys.exit()
     else:
-        print "Get wireshark pcap from Landslide successfully."
+        print ("Get wireshark pcap from Landslide successfully.")
 
     #Analyze the downloaded wireshark pcap.
     #wiresharkAnalysis(pcap_file, target_web_host, redirect_url)
