@@ -1,0 +1,21 @@
+[ {
+  "uid" : "a0d12ccb05fd1e07",
+  "name" : "test_MAndroid2_Relogin",
+  "time" : {
+    "start" : 1580267298680,
+    "stop" : 1580267324262,
+    "duration" : 25582
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "8735f1d5340bfbe3",
+  "name" : "test_MAndroid2_logout",
+  "time" : {
+    "start" : 1580267324266,
+    "stop" : 1580267325396,
+    "duration" : 1130
+  },
+  "status" : "broken",
+  "severity" : "normal"
+} ]

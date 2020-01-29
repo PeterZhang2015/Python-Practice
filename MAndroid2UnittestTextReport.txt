@@ -1,0 +1,12 @@
+test_MAndroid2_Relogin (MAndroid2TestCases.MAndroid2TestCases) ... ok
+getDesiredCaps (MAndroid2TestCases.MAndroid2TestCases) ... ERROR
+
+======================================================================
+ERROR: getDesiredCaps (MAndroid2TestCases.MAndroid2TestCases)
+----------------------------------------------------------------------
+TypeError: getDesiredCaps() missing 1 required positional argument: 'handset_id'
+
+----------------------------------------------------------------------
+Ran 2 tests in 72.445s
+
+FAILED (errors=1)

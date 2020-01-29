@@ -1,0 +1,33 @@
+{
+  "uid" : "83edc06c07f9ae9e47eb6dd1b683e4e2",
+  "name" : "packages",
+  "children" : [ {
+    "name" : "test_MAndroid2TestCases",
+    "children" : [ {
+      "name" : "test_MAndroid2_Relogin",
+      "uid" : "a0d12ccb05fd1e07",
+      "parentUid" : "2aa31dadb236887b89d220754307953c",
+      "status" : "passed",
+      "time" : {
+        "start" : 1580267298680,
+        "stop" : 1580267324262,
+        "duration" : 25582
+      },
+      "flaky" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "test_MAndroid2_logout",
+      "uid" : "8735f1d5340bfbe3",
+      "parentUid" : "2aa31dadb236887b89d220754307953c",
+      "status" : "broken",
+      "time" : {
+        "start" : 1580267324266,
+        "stop" : 1580267325396,
+        "duration" : 1130
+      },
+      "flaky" : true,
+      "parameters" : [ ]
+    } ],
+    "uid" : "2aa31dadb236887b89d220754307953c"
+  } ]
+}

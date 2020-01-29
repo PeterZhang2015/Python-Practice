@@ -1,0 +1,41 @@
+{
+  "67195ce8f62c91b6f5b480a1a010bce1" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 1,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "f136170c8f33ef09",
+      "status" : "passed",
+      "time" : {
+        "start" : 1580256302155,
+        "stop" : 1580256328503,
+        "duration" : 26348
+      }
+    } ]
+  },
+  "beee51d499a2095608583f89c3e2ef50" : {
+    "statistic" : {
+      "failed" : 0,
+      "broken" : 1,
+      "skipped" : 0,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "833cb54d435c74ff",
+      "status" : "broken",
+      "statusDetails" : "SystemExit: Cannot find the first permission",
+      "time" : {
+        "start" : 1580256328508,
+        "stop" : 1580256329985,
+        "duration" : 1477
+      }
+    } ]
+  }
+}

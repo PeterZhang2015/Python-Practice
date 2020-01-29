@@ -1,0 +1,3 @@
+"Status","Name","Duration in ms","Description"
+"passed","test_MAndroid2TestCases.TestMAndroid2TestCases#test_MAndroid2_Relogin","26348",""
+"broken","test_MAndroid2TestCases.TestMAndroid2TestCases#test_MAndroid2_logout","1477",""

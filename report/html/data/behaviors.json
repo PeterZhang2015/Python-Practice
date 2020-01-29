@@ -1,0 +1,29 @@
+{
+  "uid" : "b1a8273437954620fa374b796ffaacdd",
+  "name" : "behaviors",
+  "children" : [ {
+    "name" : "test_MAndroid2_Relogin",
+    "uid" : "f136170c8f33ef09",
+    "parentUid" : "b1a8273437954620fa374b796ffaacdd",
+    "status" : "passed",
+    "time" : {
+      "start" : 1580256302155,
+      "stop" : 1580256328503,
+      "duration" : 26348
+    },
+    "flaky" : false,
+    "parameters" : [ ]
+  }, {
+    "name" : "test_MAndroid2_logout",
+    "uid" : "833cb54d435c74ff",
+    "parentUid" : "b1a8273437954620fa374b796ffaacdd",
+    "status" : "broken",
+    "time" : {
+      "start" : 1580256328508,
+      "stop" : 1580256329985,
+      "duration" : 1477
+    },
+    "flaky" : true,
+    "parameters" : [ ]
+  } ]
+}

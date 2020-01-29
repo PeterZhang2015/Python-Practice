@@ -1,0 +1,37 @@
+{
+  "uid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
+  "name" : "timeline",
+  "children" : [ {
+    "name" : "Peter-Zhang",
+    "children" : [ {
+      "name" : "154780-MainThread",
+      "children" : [ {
+        "name" : "test_MAndroid2_Relogin",
+        "uid" : "a0d12ccb05fd1e07",
+        "parentUid" : "0d39fce4e833014cd190427f072efaa9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1580267298680,
+          "stop" : 1580267324262,
+          "duration" : 25582
+        },
+        "flaky" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_MAndroid2_logout",
+        "uid" : "8735f1d5340bfbe3",
+        "parentUid" : "0d39fce4e833014cd190427f072efaa9",
+        "status" : "broken",
+        "time" : {
+          "start" : 1580267324266,
+          "stop" : 1580267325396,
+          "duration" : 1130
+        },
+        "flaky" : true,
+        "parameters" : [ ]
+      } ],
+      "uid" : "0d39fce4e833014cd190427f072efaa9"
+    } ],
+    "uid" : "5e0f6626245758c452ab12715c866883"
+  } ]
+}

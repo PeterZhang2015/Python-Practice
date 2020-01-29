@@ -1,0 +1,25 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "name" : "categories",
+  "children" : [ {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "SystemExit: Cannot find the first permission",
+      "children" : [ {
+        "name" : "test_MAndroid2_logout",
+        "uid" : "833cb54d435c74ff",
+        "parentUid" : "b8a17b7dd7e71674f40320cd80f03096",
+        "status" : "broken",
+        "time" : {
+          "start" : 1580256328508,
+          "stop" : 1580256329985,
+          "duration" : 1477
+        },
+        "flaky" : true,
+        "parameters" : [ ]
+      } ],
+      "uid" : "b8a17b7dd7e71674f40320cd80f03096"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ]
+}

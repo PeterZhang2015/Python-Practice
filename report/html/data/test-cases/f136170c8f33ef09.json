@@ -1,0 +1,162 @@
+{
+  "uid" : "f136170c8f33ef09",
+  "name" : "test_MAndroid2_Relogin",
+  "fullName" : "test_MAndroid2TestCases.TestMAndroid2TestCases#test_MAndroid2_Relogin",
+  "historyId" : "67195ce8f62c91b6f5b480a1a010bce1",
+  "time" : {
+    "start" : 1580256302155,
+    "stop" : 1580256328503,
+    "duration" : 26348
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ {
+    "name" : "_Class__pytest_setup_class",
+    "time" : {
+      "start" : 1580256275556,
+      "stop" : 1580256302151,
+      "duration" : 26595
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0
+  } ],
+  "afterStages" : [ {
+    "name" : "_Class__pytest_setup_class::0",
+    "time" : {
+      "start" : 1580256330306,
+      "stop" : 1580256330776,
+      "duration" : 470
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0
+  } ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "test_MAndroid2TestCases"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestMAndroid2TestCases"
+  }, {
+    "name" : "host",
+    "value" : "Peter-Zhang"
+  }, {
+    "name" : "thread",
+    "value" : "141400-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "test_MAndroid2TestCases"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "c62b387aab937321",
+      "status" : "passed",
+      "time" : {
+        "start" : 1580255672340,
+        "stop" : 1580255697667,
+        "duration" : 25327
+      }
+    }, {
+      "uid" : "79abb3b149d0a8a2",
+      "status" : "passed",
+      "time" : {
+        "start" : 1580255592404,
+        "stop" : 1580255617130,
+        "duration" : 24726
+      }
+    }, {
+      "uid" : "f36bd27526d78b24",
+      "status" : "passed",
+      "time" : {
+        "start" : 1580255320326,
+        "stop" : 1580255345984,
+        "duration" : 25658
+      }
+    }, {
+      "uid" : "fe9d0c7eb5023ec8",
+      "status" : "passed",
+      "time" : {
+        "start" : 1580255016679,
+        "stop" : 1580255041959,
+        "duration" : 25280
+      }
+    }, {
+      "uid" : "dc59687ffad35e88",
+      "status" : "passed",
+      "time" : {
+        "start" : 1580192953321,
+        "stop" : 1580192981432,
+        "duration" : 28111
+      }
+    }, {
+      "uid" : "d7fe6911a1c86acd",
+      "status" : "passed",
+      "time" : {
+        "start" : 1580188368154,
+        "stop" : 1580188392643,
+        "duration" : 24489
+      }
+    }, {
+      "uid" : "20fc30ae05f069d7",
+      "status" : "passed",
+      "time" : {
+        "start" : 1580188103090,
+        "stop" : 1580188129288,
+        "duration" : 26198
+      }
+    }, {
+      "uid" : "547202fb92340e72",
+      "status" : "passed",
+      "time" : {
+        "start" : 1580188032878,
+        "stop" : 1580188034690,
+        "duration" : 1812
+      }
+    }, {
+      "uid" : "437b6ee988724eaa",
+      "status" : "passed",
+      "time" : {
+        "start" : 1580187366616,
+        "stop" : 1580187393372,
+        "duration" : 26756
+      }
+    }, {
+      "uid" : "652d0fe01df6caaa",
+      "status" : "passed",
+      "time" : {
+        "start" : 1580187164634,
+        "stop" : 1580187191081,
+        "duration" : 26447
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "f136170c8f33ef09.json",
+  "parameterValues" : [ ]
+}

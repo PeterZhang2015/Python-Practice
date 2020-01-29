@@ -1,0 +1,80 @@
+{
+  "uid" : "228c411f2720025a",
+  "name" : "test_MAndroid2_Relogin",
+  "fullName" : "test_MAndroid2TestCases.TestMAndroid2TestCases#test_MAndroid2_Relogin",
+  "historyId" : "67195ce8f62c91b6f5b480a1a010bce1",
+  "time" : {
+    "start" : 1580255592404,
+    "stop" : 1580255617130,
+    "duration" : 24726
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ {
+    "name" : "_Class__pytest_setup_class",
+    "time" : {
+      "start" : 1580255567511,
+      "stop" : 1580255592401,
+      "duration" : 24890
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0
+  } ],
+  "afterStages" : [ {
+    "name" : "_Class__pytest_setup_class::0",
+    "time" : {
+      "start" : 1580255618519,
+      "stop" : 1580255618809,
+      "duration" : 290
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0
+  } ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "test_MAndroid2TestCases"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestMAndroid2TestCases"
+  }, {
+    "name" : "host",
+    "value" : "Peter-Zhang"
+  }, {
+    "name" : "thread",
+    "value" : "140708-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "test_MAndroid2TestCases"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "228c411f2720025a.json",
+  "parameterValues" : [ ]
+}

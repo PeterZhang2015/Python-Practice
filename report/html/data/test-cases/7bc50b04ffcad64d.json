@@ -1,0 +1,82 @@
+{
+  "uid" : "7bc50b04ffcad64d",
+  "name" : "test_MAndroid2_logout",
+  "fullName" : "test_MAndroid2TestCases.TestMAndroid2TestCases#test_MAndroid2_logout",
+  "historyId" : "beee51d499a2095608583f89c3e2ef50",
+  "time" : {
+    "start" : 1580255345989,
+    "stop" : 1580255347446,
+    "duration" : 1457
+  },
+  "status" : "broken",
+  "statusMessage" : "SystemExit: Cannot find the first permission",
+  "statusTrace" : "self = <test_MAndroid2TestCases.TestMAndroid2TestCases object at 0x0000017D70E839E8>\n\n    def test_MAndroid2_logout(self):\n    \n        # Confirm the five permission for MAndroid2.\n        permissionAllowButtonId = \"com.android.packageinstaller:id/permission_allow_button\"\n        if (appiumLibrary.isElement(self, \"id\", permissionAllowButtonId)):\n            self.driver.find_element_by_id(permissionAllowButtonId).click()\n        # sleep(2)\n        else:\n            print(\"Cannot find the first permission\")\n>           sys.exit(\"Cannot find the first permission\")\nE           SystemExit: Cannot find the first permission\n\ntest_MAndroid2TestCases.py:189: SystemExit",
+  "flaky" : false,
+  "beforeStages" : [ {
+    "name" : "_Class__pytest_setup_class",
+    "time" : {
+      "start" : 1580255292248,
+      "stop" : 1580255320323,
+      "duration" : 28075
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0
+  } ],
+  "afterStages" : [ {
+    "name" : "_Class__pytest_setup_class::0",
+    "time" : {
+      "start" : 1580255347681,
+      "stop" : 1580255347909,
+      "duration" : 228
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 0
+  } ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "test_MAndroid2TestCases"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestMAndroid2TestCases"
+  }, {
+    "name" : "host",
+    "value" : "Peter-Zhang"
+  }, {
+    "name" : "thread",
+    "value" : "127372-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "test_MAndroid2TestCases"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "7bc50b04ffcad64d.json",
+  "parameterValues" : [ ]
+}

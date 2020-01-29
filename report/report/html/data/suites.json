@@ -1,0 +1,37 @@
+{
+  "uid" : "98d3104e051c652961429bf95fa0b5d6",
+  "name" : "suites",
+  "children" : [ {
+    "name" : "test_MAndroid2TestCases",
+    "children" : [ {
+      "name" : "TestMAndroid2TestCases",
+      "children" : [ {
+        "name" : "test_MAndroid2_Relogin",
+        "uid" : "a0d12ccb05fd1e07",
+        "parentUid" : "52da083018fbde3c88acca7b7b57f7a8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1580267298680,
+          "stop" : 1580267324262,
+          "duration" : 25582
+        },
+        "flaky" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "test_MAndroid2_logout",
+        "uid" : "8735f1d5340bfbe3",
+        "parentUid" : "52da083018fbde3c88acca7b7b57f7a8",
+        "status" : "broken",
+        "time" : {
+          "start" : 1580267324266,
+          "stop" : 1580267325396,
+          "duration" : 1130
+        },
+        "flaky" : true,
+        "parameters" : [ ]
+      } ],
+      "uid" : "52da083018fbde3c88acca7b7b57f7a8"
+    } ],
+    "uid" : "ed257a5698b9c183152bf13019297064"
+  } ]
+}
