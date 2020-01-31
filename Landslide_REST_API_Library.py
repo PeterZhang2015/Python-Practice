@@ -42,11 +42,17 @@ def getLibrariesPath(management_ip, management_port, username, password):
     response = requests.get(url, auth=HTTPBasicAuth(username, password))
     print (response.text)
 
-    # Get libraries path from the API information response.
-    data = json.loads(response.text)
-    libraries_path = data["libraries"]
+    if response.status_code == 200:
+        # Get libraries path from the API information response.
+        data = json.loads(response.text)
+        libraries_path = data["libraries"]
 
-    return libraries_path
+        return libraries_path
+    else:
+        print('[!] HTTP {0} calling [{1}]'.format(response.status_code, url))
+        return None
+
+
 
 #################getLibrariesId#################################.
 def getLibrariesId(libraries_path, username, password, library_name):
@@ -55,16 +61,22 @@ def getLibrariesId(libraries_path, username, password, library_name):
     response = requests.get(libraries_path, auth=HTTPBasicAuth(username, password))
     print(response.text)
 
-    # Get library id from the API information response.
-    libraries_info = json.loads(response.text)
-    data_list = libraries_info["libraries"]
-    for data in data_list:
-        #Get the library id of input library name.
-        if data["name"] == library_name:  # And room also, then update info.
-            libraries_id = data["id"]
-            exit
+    if response.status_code == 200:
+        # Get library id from the API information response.
+        libraries_info = json.loads(response.text)
+        data_list = libraries_info["libraries"]
+        for data in data_list:
+            # Get the library id of input library name.
+            if data["name"] == library_name:  # And room also, then update info.
+                libraries_id = data["id"]
+                exit
 
-    return str(libraries_id)
+        return str(libraries_id)
+    else:
+        print('[!] HTTP {0} calling [{1}]'.format(response.status_code, libraries_path))
+        return None
+
+
 
 #################getTestSessionsName#################################.
 def getTestSessionsName(management_ip, management_port, username, password, libraries_id):
@@ -79,14 +91,20 @@ def getTestSessionsName(management_ip, management_port, username, password, libr
     response = requests.get(url, auth=HTTPBasicAuth(username, password))
     print(response.text)
 
-    # Get test sessions name list from the API information response.
-    formated_response = json.loads(response.text)
-    testSessionsList = formated_response['testSessions']
-    for testSession in testSessionsList:
-        name = testSession['name']
-        test_sessions_name_list.append(name)
+    if response.status_code == 200:
+        # Get test sessions name list from the API information response.
+        formated_response = json.loads(response.text)
+        testSessionsList = formated_response['testSessions']
+        for testSession in testSessionsList:
+            name = testSession['name']
+            test_sessions_name_list.append(name)
 
-    return test_sessions_name_list
+        return test_sessions_name_list
+    else:
+        print('[!] HTTP {0} calling [{1}]'.format(response.status_code, url))
+        return None
+
+
 
 #################executeLandslideTestSession#################################.
 def executeLandslideTestSession(management_ip, management_port, username, password, body):
@@ -98,17 +116,23 @@ def executeLandslideTestSession(management_ip, management_port, username, passwo
     response = requests.post(url, body, auth=HTTPBasicAuth(username, password))
     print(response.text)
 
-    # Get running test session id if it has been executed successfully from the API information response.
-    test_session_info = json.loads(response.text)
-    response_code = test_session_info["code"]
+    if response.status_code == 200:
+        # Get running test session id if it has been executed successfully from the API information response.
+        test_session_info = json.loads(response.text)
+        response_code = test_session_info["code"]
 
-    if response_code != "200":  # Fail to run the test session.
-        print ("Fail to execute the test session.")
-        sys.exit()
+        if response_code != "200":  # Fail to run the test session.
+            print("Fail to execute the test session.")
+            return None
 
-    test_session_id = test_session_info["id"]
+        test_session_id = test_session_info["id"]
 
-    return test_session_id
+        return test_session_id
+    else:
+        print('[!] HTTP {0} calling [{1}]'.format(response.status_code, url))
+        return None
+
+
 
 #################stopLandslideTestSession#################################.
 def stopLandslideTestSession(management_ip, management_port, username, password, test_session_id):
@@ -120,13 +144,22 @@ def stopLandslideTestSession(management_ip, management_port, username, password,
     response = requests.post(url, auth=HTTPBasicAuth(username, password))
     print(response.text)
 
-    # Check whether the test session has been stopped successfully from the API information response.
-    test_session_info = json.loads(response.text)
-    result = test_session_info["result"]
+    if response.status_code == 200:
+        # Check whether the test session has been stopped successfully from the API information response.
+        test_session_info = json.loads(response.text)
+        result = test_session_info["result"]
 
-    if result != "Command successful":  # Fail to stop the test session.
-        print ("Fail to stop the test session.")
-        sys.exit()
+        if result != "Command successful":  # Fail to stop the test session.
+            print("Fail to stop the test session.")
+            return False
+        else:
+            return True
+    else:
+        print('[!] HTTP {0} calling [{1}]'.format(response.status_code, url))
+        return False
+
+
+
 
 #################getTestMeasurements#################################.
 def getTestMeasurements(management_ip, management_port, username, password, test_session_id):
@@ -140,19 +173,27 @@ def getTestMeasurements(management_ip, management_port, username, password, test
     response = requests.get(url, auth=HTTPBasicAuth(username, password))
     print(response.text)
 
-    # Check REST API response.
-    test_measurement_info = json.loads(response.text)
-    result = test_measurement_info["result"]
+    if response.status_code == 200:
+        # Check REST API response.
+        test_measurement_info = json.loads(response.text)
+        result = test_measurement_info["result"]
 
-    if result != "Command successful":  # Fail to stop the test session.
-        print ("Fail to stop the test session.")
-        sys.exit()
+        if result != "Command successful":  # Fail to stop the test session.
+            print("Fail to stop the test session.")
+            return None
 
-    for test_server in test_measurement_info["testServers"]:
-        for test_case in test_server["testCases"]:
-            test_summary_list.append(test_case["tabs"]["Test Summary"])
+        for test_server in test_measurement_info["testServers"]:
+            for test_case in test_server["testCases"]:
+                test_summary_list.append(test_case["tabs"]["Test Summary"])
 
-    return test_summary_list
+        return test_summary_list
+    else:
+        print('[!] HTTP {0} calling [{1}]'.format(response.status_code, url))
+        return None
+
+
+
+
 
 
 #################getTestCriteriasResult#################################.
@@ -168,17 +209,23 @@ def getTestCriteriasResult(management_ip, management_port, username, password, t
     response = requests.get(url, auth=HTTPBasicAuth(username, password))
     print(response.text)
 
-    # Check REST API response.
-    test_criteria_info = json.loads(response.text)
-    result = test_criteria_info["criteriaStatus"]
+    if response.status_code == 200:
+        # Check REST API response.
+        test_criteria_info = json.loads(response.text)
+        result = test_criteria_info["criteriaStatus"]
 
-    if result != "PASSED":  # Fail to stop the test session.
-        print ("Test session failed according to the criteria on Landslide test session.")
-        sys.exit()
+        if result != "PASSED":  # Fail to stop the test session.
+            print("Test session failed according to the criteria on Landslide test session.")
+            return None
 
-    test_criteria_result_list = test_criteria_info["criteria"]
+        test_criteria_result_list = test_criteria_info["criteria"]
 
-    return test_criteria_result_list
+        return test_criteria_result_list
+    else:
+        print('[!] HTTP {0} calling [{1}]'.format(response.status_code, url))
+        return None
+
+
 
 #################getTestWiresharkPcapUrl#################################.
 def getTestWiresharkPcapUrl(management_ip, management_port, username, password, test_session_id, pcap_port_name):
@@ -193,17 +240,23 @@ def getTestWiresharkPcapUrl(management_ip, management_port, username, password, 
     response = requests.get(url, auth=HTTPBasicAuth(username, password))
     print(response.text)
 
-    # Check REST API response.
-    wireshark_pcap_info = json.loads(response.text)
-    response_code = wireshark_pcap_info["code"]
+    if response.status_code == 200:
+        # Check REST API response.
+        wireshark_pcap_info = json.loads(response.text)
+        response_code = wireshark_pcap_info["code"]
 
-    if response_code != "200":  # Fail to get the wireshark pcap url.
-        print ("Fail to get wireshark pcap url.")
-        sys.exit()
+        if response_code != "200":  # Fail to get the wireshark pcap url.
+            print("Fail to get wireshark pcap url.")
+            return None
 
-    wireshark_pcap_url = wireshark_pcap_info["captureFileUrl"]
+        wireshark_pcap_url = wireshark_pcap_info["captureFileUrl"]
 
-    return wireshark_pcap_url
+        return wireshark_pcap_url
+    else:
+        print('[!] HTTP {0} calling [{1}]'.format(response.status_code, url))
+        return None
+
+
 
 
 #################constructTestSessionExecutionBody#################################.
@@ -248,9 +301,10 @@ def downloadFile(username, password, remote_file_location, local_file_location):
     # Check whether the file was downloaded successfully or not.
     if os.path.isfile(local_file_location):
         print ("Successfully download {}".format(remote_file_location))
+        return True
     else:
         print ("Failed to download {}".format(remote_file_location))
-        sys.exit()
+        return False
 
 
 
@@ -343,14 +397,20 @@ def main():
     #Get libraries path.
     libraries_path = getLibrariesPath(management_ip, management_port, username, password)
     print (libraries_path)
+    if (libraries_path == None):
+        sys.exit("Cannot get library path.")
 
     #Get libraries id.
     libraries_id = getLibrariesId(libraries_path, username, password, library_name)
     print (libraries_id)
+    if (libraries_id == None):
+        sys.exit("Cannot get library ID by library name ", library_name)
 
     #Get test sessions name list.
     test_sessions_name_list = getTestSessionsName(management_ip, management_port, username, password, libraries_id)
     print (test_sessions_name_list)
+    if (test_sessions_name_list == None):
+        sys.exit("Cannot get test sessions name list by library id ", libraries_id)
 
     # Check whether the test session exists in test sessions name list.
     if test_session_name in test_sessions_name_list:
@@ -365,28 +425,38 @@ def main():
     #Run the test session and get the running test session ID.
     test_session_id = executeLandslideTestSession(management_ip, management_port, username, password, json_data)
     print (test_session_id)
+    if (test_session_id == None):
+        sys.exit("Failed to execute test session.")
 
     #Setting waiting time for the test session execution.
     time.sleep(10)
 
     #Stop the running test session.
-    stopLandslideTestSession(management_ip, management_port, username, password, test_session_id)
+    result = stopLandslideTestSession(management_ip, management_port, username, password, test_session_id)
+    if (result == False):
+        sys.exit("Failed to stop test session with test session ID ", test_session_id)
 
     #Get test measurements.
     test_summary_list = getTestMeasurements(management_ip, management_port, username, password, test_session_id)
     print (test_summary_list)
+    if (test_summary_list == None):
+        sys.exit("Failed to get test summary list for test session ID ", test_session_id)
 
     #Get test criterias results.
     test_criteria_result_list = getTestCriteriasResult(management_ip, management_port, username, password, test_session_id)
     print (test_criteria_result_list)
+    if (test_criteria_result_list == None):
+        sys.exit("Failed to get test criteria result list for test session ID ", test_session_id)
 
     #Get wireshark pcap url.
     wireshark_pcap_url = getTestWiresharkPcapUrl(management_ip, management_port, username, password, test_session_id, pcap_port_name)
     print (wireshark_pcap_url)
+    if (test_criteria_result_list == None):
+        sys.exit("Failed to get wireshark pcap url for test session ID {} on port {}".format(test_session_id, pcap_port_name))
 
     #Download wireshark pcap from Landslide.
     download_result = downloadFile(username, password, wireshark_pcap_url, local_pcap_location)
-    if download_result != "Successful":
+    if download_result != "True":
         print ("Fail to download wireshark pcap file from Landslide, abort.")
         sys.exit()
     else:

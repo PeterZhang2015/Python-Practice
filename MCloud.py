@@ -31,10 +31,19 @@ class MCloudControl(object):
 
         print (self._url('/user/devices'))
 
-        dictResponse = json.loads(resp.content)
-        print(dictResponse)
+        if resp.status_code == 200:
+            # Check REST API response.
+            dictResponse = json.loads(resp.content)
+            print(dictResponse)
 
-        self.deviceSerialList.append(deviceSerial)
+            self.deviceSerialList.append(deviceSerial)
+
+            return True
+        else:
+            print('[!] HTTP {0} calling [{1}]'.format(resp.status_code, self._url('/user/devices')))
+            return False
+
+
 
     def remoteConnect(self, deviceSerial):
         # Set authorization Token to acces mCloud through REST API.
@@ -50,9 +59,16 @@ class MCloudControl(object):
 
         print(self._url('/user/devices/{}/remoteConnect'.format(deviceSerial)))
 
-        dictResponse = json.loads(resp.content)
-        print(dictResponse)
-        return resp
+        if resp.status_code == 200:
+            # Check REST API response.
+            dictResponse = json.loads(resp.content)
+            print(dictResponse)
+            return resp
+        else:
+            print('[!] HTTP {0} calling [{1}]'.format(self._url('/user/devices/{}/remoteConnect'.format(deviceSerial))))
+            return None
+
+
 
     def releaseDevice(self, deviceSerial):
         # Set authorization Token to acces mCloud through REST API.
@@ -63,8 +79,16 @@ class MCloudControl(object):
         resp = requests.delete(self._url('/user/devices/' + deviceSerial),
                              headers=headers)
         print(self._url('/user/devices/' + deviceSerial))
-        dictResponse = json.loads(resp.content)
-        print(dictResponse)
+
+        if resp.status_code == 200:
+            # Check REST API response.
+            dictResponse = json.loads(resp.content)
+            print(dictResponse)
+            return True
+        else:
+            print('[!] HTTP {0} calling [{1}]'.format(self._url('/user/devices/' + deviceSerial)))
+            return False
+
 
     def getDeviceSerialByImsi(self, userIMSI):
         # Initialize return value.
@@ -82,40 +106,49 @@ class MCloudControl(object):
         dictResponse = json.loads(resp.content)
         print(dictResponse)
 
-        # Get device list from response body.
-        devices_list = dictResponse['devices']
+        if resp.status_code == 200:
+            # Check REST API response.
+            # Get device list from response body.
+            devices_list = dictResponse['devices']
 
-        # Check whether any handset is connected on mcloud.
-        if (len(devices_list) == 0):
-            raise SystemExit("There is not handset connected to the mcloud.")
+            # Check whether any handset is connected on mcloud.
+            if (len(devices_list) == 0):
+                raise SystemExit("There is not handset connected to the mcloud.")
 
-        # Loop to check the device that can be matched with the testing user IMSI.
-        for device in devices_list:
-            # Only check the present handsets.
-            if ((device['present'] != True) or (device['phone']['imsi'] == None)):
-                continue
+            # Loop to check the device that can be matched with the testing user IMSI.
+            for device in devices_list:
+                # Only check the present handsets.
+                if ((device['present'] != True) or (device['phone']['imsi'] == None)):
+                    continue
 
-            # Get the device serial of the matched IMSI.
-            if (device['phone']['imsi'] == userIMSI):
-                device_serial = device['serial']
-                break
+                # Get the device serial of the matched IMSI.
+                if (device['phone']['imsi'] == userIMSI):
+                    device_serial = device['serial']
+                    break
 
-        #Check that whether the device has been occupied by someone else
-        if (device['owner'] != None):
-            current_device_owner_email = device['owner']['email']
+            # Check that whether the device has been occupied by someone else
+            if (device['owner'] != None):
+                current_device_owner_email = device['owner']['email']
 
-        if (device['owner'] == None):
-            print("Handset with IMSI {} has not been occupied.".format(userIMSI))
+            if (device['owner'] == None):
+                print("Handset with IMSI {} has not been occupied.".format(userIMSI))
 
-        elif (current_device_owner_email == self.mcloud_login_user_email):
-            self.releaseDevice(device_serial)
-            print ("Handset with IMSI {} has been occupied by myself {}.".format(userIMSI, self.mcloud_login_user_email))
+            elif (current_device_owner_email == self.mcloud_login_user_email):
+                self.releaseDevice(device_serial)
+                print("Handset with IMSI {} has been occupied by myself {}.".format(userIMSI,
+                                                                                    self.mcloud_login_user_email))
 
+            else:
+                print("Handset with IMSI {} has been occupied by mcloud user {}.".format(userIMSI,
+                                                                                         device['owner']['email']))
+                return None
+
+            return device_serial
         else:
-            print ("Handset with IMSI {} has been occupied by mcloud user {}.".format(userIMSI, device['owner']['email']))
+            print('[!] HTTP {0} calling [{1}]'.format(self._url('/devices')))
             return None
 
-        return device_serial
+
 
     def connectToMcloudUser(self, userIMSI):
         # Try to find the device serial of the matched IMSI.
@@ -128,10 +161,18 @@ class MCloudControl(object):
             print("Find the matched IMSI {} on mcloud".format(userIMSI))
 
         # Use the device on mcloud.
-        self.requestDevice(device_serial)
+        result = self.requestDevice(device_serial)
+        if (result == False):
+            print("Failed to use the device {} on mcloud.".format(device_serial))
+            return None
 
         # Get the device remote control url.
         resp = self.remoteConnect(device_serial)
+        # Abort the execution if failed to call the API.
+        if (resp == None):
+            print ("Fail to remoteConnect {} on mcloud".format(userIMSI))
+            return None
+
         dictResponse = json.loads(resp.content)
 
         # Abort the execution if it cannot get the remote control url of the testing device.
@@ -154,7 +195,9 @@ class MCloudControl(object):
         # release all used devices.
         for device_serial in deviceSerialList:
             print ("released device_serial is {}".format(device_serial))
-            self.releaseDevice(device_serial)
+            result = self.releaseDevice(device_serial)
+            if (result == False):
+                sys.exit("Failed to release device ", device_serial)
 
         # ADB disconnect to all devices.
         subprocess.call("adb disconnect")

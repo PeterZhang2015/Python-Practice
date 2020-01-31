@@ -9,8 +9,8 @@ PATH = lambda p: os.path.abspath(
 
 
 if __name__ == '__main__':
-    # testIMSI = '505025504563848'
-    testIMSI = 'ce071607a2e74a1a05'
+    testIMSI = '505025504563848'
+    # testIMSI = 'ce071607a2e74a1a05'
 
     # Add test cases to test suite.
     suite = unittest.TestSuite()

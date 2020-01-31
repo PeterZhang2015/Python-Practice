@@ -25,16 +25,20 @@ class MAndroid2TestCases(unittest.TestCase):
     appPackage = 'com.matrium.mandroid2'
     appActivity = '.MainActivity'
 
-    def __init__(self, testName, handset_id):
+    def __init__(self, testName, testIMSI):
         #unittest.TestCase.__init__(self, handset_id)
         super(MAndroid2TestCases, self).__init__(testName)
-        self.handset_id = handset_id
+        self.testIMSI = testIMSI
 
     def setUp(self):
         mcloud = MCloudControl()
-        #handset_id = mcloud.connectToMcloudUser(testIMSI)
-        handset_id = self.handset_id
+        handset_id = mcloud.connectToMcloudUser(self.testIMSI)
+        #handset_id = self.handset_id
         print (handset_id)
+
+        if (handset_id == None):
+            sys.exit("Cannot connect to {} on MCloud.".format(self.testIMSI))
+
         desired_caps = self.getDesiredCaps(handset_id)
 
         self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
@@ -178,18 +182,18 @@ class MAndroid2TestCases(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    # unittest.main
+     unittest.main
     #testIMSI= "505024602691813"
-    testIMSI = "505025504563848"
+    # testIMSI = "505025504563848"
 
    # adb = subprocess.Popen(['adb', 'start-server'])
 
-    MAndroid2Tests = MAndroid2TestCases()
-
-    MAndroid2Tests.setUp(testIMSI)
-
-    MAndroid2Tests.test_MAndroid2_Relogin()
-
-    MAndroid2Tests.tearDown()
+    # MAndroid2Tests = MAndroid2TestCases('test_MAndroid2_Relogin', testIMSI)
+    #
+    # MAndroid2Tests.setUp()
+    #
+    # MAndroid2Tests.test_MAndroid2_Relogin()
+    #
+    # MAndroid2Tests.tearDown()
 
   #  adb.terminate()
