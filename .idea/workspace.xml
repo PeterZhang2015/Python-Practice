@@ -2,15 +2,51 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ae7478cc-ca1f-4331-9640-045e230ddbd3" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Temp2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appiumLibrary.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/appium_practice2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json_data2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LandslideBaseYaml.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LandslideReport.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LandslideReportTemplate.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LandslideTestCaseExample.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LandslideTestCaseYamlExample.YAML" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/MAndroid2SmokeTestParameters.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testCaseInfo/testCaseInfo.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testEnvironment/testEnvironment.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testParameters/voiceCall/testParameters1.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testParameters/voiceCall/testParameters2.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testUsers/testUser1.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testUsers/testUser2.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/conftest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/library/MAndroid2BaseAPI.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/library/MAndroid2BaseCommon.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/library/MAndroid2BaseExcel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/library/MAndroid2BaseMCloud.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/library/MAndroid2BaseYaml.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/excel/MAndroid2TestReportTemplate.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/html/assets/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/html/htmlReport_27_Apr_2020_11_54_10.671899.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/html/htmlReport_27_Apr_2020_13_25_57.643256.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/html/htmlReport_27_Apr_2020_13_36_41.581831.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/html/htmlReport_27_Apr_2020_13_52_04.824065.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/html/htmlReport_27_Apr_2020_14_04_40.858382.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/html/htmlReport_27_Apr_2020_14_07_36.545168.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/json/jsonReport_27_Apr_2020_11_54_10.671899.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/json/jsonReport_27_Apr_2020_13_25_57.643256.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/json/jsonReport_27_Apr_2020_13_36_41.581831.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/json/jsonReport_27_Apr_2020_13_52_04.824065.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/json/jsonReport_27_Apr_2020_14_04_40.858382.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/json/jsonReport_27_Apr_2020_14_07_36.545168.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/testcases/backup.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/testcases/temp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/testcases/test_MAndroid2TestCases.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/YMAL/LandslideTestCaseYamlExample.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/conftest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pytest.ini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test_MAndroid2TestCases_ReportPortal.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Landslide_REST_API_Library.py" beforeDir="false" afterPath="$PROJECT_DIR$/Landslide_REST_API_Library.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/Temp.py" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,43 +59,6 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>target_test_case_name</find>
-      <find>r'</find>
-      <find>text</find>
-      <find>test_case_name = data[&quot;_source&quot;][&quot;testPath&quot;]</find>
-      <find>project_path</find>
-      <find>json.dumps</find>
-      <find>custo</find>
-      <find>open</find>
-      <find>url</find>
-      <find>u</find>
-      <find>request</find>
-      <find>chromedriver_path</find>
-      <find>re.</find>
-      <find>src_language_path</find>
-      <find>spirent_slc</find>
-      <find>Command_Prompt_ffsp</find>
-      <find>slc_windows_ping_ffrm</find>
-      <find>quick_calls_name</find>
-      <find>quickCallList</find>
-      <find>_getSession</find>
-      <find>send</find>
-      <find>c_language = re.search(r'(.*)( - detected)', src_language_detected).group(1)</find>
-      <find>load</find>
-      <find>getLibrariesId</find>
-      <find>redi</find>
-      <find>+</find>
-      <find>split</find>
-      <find>sleep</find>
-      <find>Login_Gmail_Box</find>
-      <find>json</find>
-    </findStrings>
-    <dirStrings>
-      <dir>$PROJECT_DIR$</dir>
-    </dirStrings>
-  </component>
   <component name="Git.Settings">
     <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -68,10 +67,15 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="C:/Setup/Git/bin/git.exe" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/MAndroid2SmokeTest/library" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -83,24 +87,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Work\Projects\Python-Practice\MAndroid2SmokeTest\library" />
+      <recent name="C:\Work\Projects\Python-Practice\MAndroid2SmokeTest\testcases" />
       <recent name="C:\Work\Projects\Python-Practice" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Python tests.Unittests for appium_practice2.MAndroid2Tests.test_relogin">
-    <configuration name="Temp2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.test_MAndroid2TestCases">
+    <configuration name="MAndroid2BaseAPI" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Test" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -108,11 +102,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MAndroid2SmokeTest/library" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Temp2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MAndroid2SmokeTest/library/MAndroid2BaseAPI.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -121,7 +115,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="reply_unread_mail_in_gmail" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="MAndroid2BaseYaml (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Test" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -129,11 +123,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MAndroid2SmokeTest/library" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/reply_unread_mail_in_gmail.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MAndroid2SmokeTest/library/MAndroid2BaseYaml.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -142,62 +136,73 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for appium_practice2.MAndroid2Tests" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="test_MAndroid2TestCases" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Test" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MAndroid2SmokeTest/testcases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MAndroid2SmokeTest/testcases/test_MAndroid2TestCases.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for temp.test_timeline" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="Test" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MAndroid2SmokeTest/testcases" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;appium_practice2.MAndroid2Tests&quot;" />
+      <option name="_new_target" value="&quot;temp.test_timeline&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for appium_practice2.MAndroid2Tests.test_relogin" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="pytest in temp.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="Test" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MAndroid2SmokeTest/testcases" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;appium_practice2.MAndroid2Tests.test_relogin&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Unittests in appium_practice2.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="Test" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/appium_practice2.py&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/MAndroid2SmokeTest/testcases/temp.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.reply_unread_mail_in_gmail" />
-      <item itemvalue="Python.Temp2" />
-      <item itemvalue="Python tests.Unittests for appium_practice2.MAndroid2Tests.test_relogin" />
-      <item itemvalue="Python tests.Unittests for appium_practice2.MAndroid2Tests" />
-      <item itemvalue="Python tests.Unittests in appium_practice2.py" />
+      <item itemvalue="Python.test_MAndroid2TestCases" />
+      <item itemvalue="Python.MAndroid2BaseYaml (1)" />
+      <item itemvalue="Python.MAndroid2BaseAPI" />
+      <item itemvalue="Python tests.pytest for temp.test_timeline" />
+      <item itemvalue="Python tests.pytest in temp.py" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Unittests for appium_practice2.MAndroid2Tests.test_relogin" />
-        <item itemvalue="Python tests.Unittests in appium_practice2.py" />
-        <item itemvalue="Python tests.Unittests for appium_practice2.MAndroid2Tests" />
-        <item itemvalue="Python.Temp2" />
-        <item itemvalue="Python.reply_unread_mail_in_gmail" />
+        <item itemvalue="Python.test_MAndroid2TestCases" />
+        <item itemvalue="Python tests.pytest for temp.test_timeline" />
+        <item itemvalue="Python tests.pytest in temp.py" />
+        <item itemvalue="Python.MAndroid2BaseYaml (1)" />
+        <item itemvalue="Python.MAndroid2BaseAPI" />
       </list>
     </recent_temporary>
   </component>
@@ -228,18 +233,80 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <ignored-roots>
       <path value="$USER_HOME$" />
     </ignored-roots>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="377" y="145" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1585030241236">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="377" y="145" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1585030241236" />
+    <state x="533" y="95" key="FileChooserDialogImpl" timestamp="1587344653274">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="533" y="95" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1587344653274" />
+    <state width="1247" height="142" key="GridCell.Tab.0.bottom" timestamp="1587966975731">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1247" height="142" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1587966975731" />
+    <state width="1247" height="142" key="GridCell.Tab.0.center" timestamp="1587966975731">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1247" height="142" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1587966975731" />
+    <state width="1247" height="142" key="GridCell.Tab.0.left" timestamp="1587966975731">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1247" height="142" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1587966975731" />
+    <state width="1247" height="142" key="GridCell.Tab.0.right" timestamp="1587966975731">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1247" height="142" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1587966975731" />
+    <state width="1259" height="173" key="GridCell.Tab.1.bottom" timestamp="1585115894743">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1259" height="173" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1585115894743" />
+    <state width="1259" height="173" key="GridCell.Tab.1.center" timestamp="1585115894743">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1259" height="173" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1585115894743" />
+    <state width="1259" height="173" key="GridCell.Tab.1.left" timestamp="1585115894743">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1259" height="173" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1585115894743" />
+    <state width="1259" height="173" key="GridCell.Tab.1.right" timestamp="1585115894743">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1259" height="173" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1585115894743" />
+    <state x="142" y="0" key="SettingsEditor" timestamp="1587259102075">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1587259102075" />
+    <state x="336" y="166" key="com.intellij.ide.util.TipDialog" timestamp="1587259243962">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="336" y="166" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1587259243962" />
+    <state x="272" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1587617766733">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="272" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1280.680@0.0.1280.680" timestamp="1587617766733" />
+    <state x="446" y="0" width="612" height="680" key="find.popup" timestamp="1587344663396">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="446" y="0" width="612" height="680" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1587344663396" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1580446907090">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1580446907090" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -249,7 +316,62 @@
           <line>3</line>
           <option name="timeStamp" value="26" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/MAndroid2TestCases.py</url>
+          <line>186</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../../../Setup/Python37/Lib/site-packages/xlsxwriter/chart.py</url>
+          <line>834</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/MAndroid2TestSuite.py</url>
+          <line>16</line>
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/MCloud.py</url>
+          <line>202</line>
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/MCloud.py</url>
+          <line>191</line>
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/MCloud.py</url>
+          <line>129</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/MCloud.py</url>
+          <line>85</line>
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/MCloud.py</url>
+          <line>64</line>
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/MCloud.py</url>
+          <line>36</line>
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test_MAndroid2TestCases_ReportPortal.py</url>
+          <line>66</line>
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="device_serial" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

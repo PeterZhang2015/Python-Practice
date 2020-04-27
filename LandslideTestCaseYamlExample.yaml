@@ -1,0 +1,18 @@
+testinfo:
+    checkPoint: Voice call established successfully
+    description: 3G voice
+    function: 3G voice call
+    id: LanslideTestCase001
+    pre_condition: Connect to 3G network
+    steps: Place voice call from user A to user B
+
+testparameters:
+    input_parameter1: 1
+    input_parameter2: 2
+    input_parameter3: 3
+    input_parameter4: 4
+
+checkMetric:
+    checkMetric1: active_session
+    checkMetric2: 200OK
+

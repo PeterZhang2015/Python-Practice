@@ -426,6 +426,10 @@ def main():
     test_session_id = executeLandslideTestSession(management_ip, management_port, username, password, json_data)
     print (test_session_id)
     if (test_session_id == None):
+        # # Stop the running test session.
+        # result = stopLandslideTestSession(management_ip, management_port, username, password, test_session_id)
+        # if (result == False):
+        #     sys.exit("Failed to stop test session with test session ID ".format(test_session_id))
         sys.exit("Failed to execute test session.")
 
     #Setting waiting time for the test session execution.
