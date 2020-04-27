@@ -56,16 +56,15 @@ def disconnectTestUsers():
     print("deviceSerialList to be disconnected is {}".format(mcloud.deviceSerialList))
     mcloud.tearDownUsingDevices(mcloud.deviceSerialList)
 
-def addJsonReportMetaData(json_metadata, testEnvironment, testUsers, testParameters, testCaseInfo, testResults):
+def addJsonReportMetaData(json_metadata, testEnvironment, testParameters, testCaseInfo, testResults):
     json_metadata['testEnvironment'] = testEnvironment
-    json_metadata['testUsers'] = testUsers
     json_metadata['testParameters'] = testParameters
     json_metadata['testCaseInfo'] = testCaseInfo
     json_metadata['testResults'] = testResults
 
 
 
-def executeTestLogic(testEnvironment, testUsers, testCaseInfo, testCaseKey, testParameters):
+def executeTestLogic(testEnvironment, testCaseInfo, testCaseKey, testParameters):
     responseList = []
 
     if (testCaseKey == 'VoiceCall'):
@@ -74,19 +73,19 @@ def executeTestLogic(testEnvironment, testUsers, testCaseInfo, testCaseKey, test
             response = {}
             if (testStep == 'Place voice call.'):
                 placeResponse = placeBasicVoiceCall(testEnvironment['MAndroid2AgentPath'],
-                                                    testUsers['MO']['handsetID'],
-                                                    testUsers['MT']['MSISDN'])
+                                                    testEnvironment['testUsers']['MO']['handsetID'],
+                                                    testEnvironment['testUsers']['MT']['MSISDN'])
                 response['placeVoiceCall'] = placeResponse
             elif (testStep == 'Receive voice call.'):
                 receiveResponse = receiveBasicVoiceCall(testEnvironment['MAndroid2AgentPath'],
-                                                        testUsers['MT']['handsetID'])
+                                                        testEnvironment['testUsers']['MT']['handsetID'])
                 response['receiveVoiceCall'] = receiveResponse
             elif (testStep == 'Wait for call duraton.'):
                 if (testParameters['VoiceCall']['Duration'] > 0):
                         sleep(testParameters['VoiceCall']['Duration'])
             elif (testStep == 'End voice call.'):
                 endResponse = endBasicVoiceCall(testEnvironment['MAndroid2AgentPath'],
-                                                testUsers['MO']['handsetID'])
+                                                testEnvironment['testUsers']['MO']['handsetID'])
                 response['endVoiceCall'] = endResponse
             else:
                 assert ("Test step {} cannot be recognized in test case.".format(testStep))

@@ -35,23 +35,17 @@ class TestMAndroid2TestCases():
     # Initialize variables.
     testEnvironmentPath = "../configuration/testEnvironment/"
     testEnvironmentName = "testEnvironment"
-    testUserPath = "../configuration/testUsers/"
-    testUserName = "testUsers"
     testParametersPath = "../configuration/testParameters/voiceCall/"
     testParametersName = "testParameters"
 
-
     testEnvironment = getAllConfigureInfo(testEnvironmentPath, testEnvironmentName)
-    testUsers = getAllConfigureInfo(testUserPath, testUserName)
     testParameters = getAllConfigureInfo(testParametersPath, testParametersName)
 
     @pytest.mark.parametrize("testEnvironment", testEnvironment)
-    @pytest.mark.parametrize("testUsers", testUsers)
     @pytest.mark.parametrize("testParameters", testParameters)
-    def test_MAndroid2_VoiceCall(self, json_metadata, testEnvironment, testUsers, testParameters):
+    def test_MAndroid2_VoiceCall(self, json_metadata, testEnvironment, testParameters):
         # Initialization
         self.testEnvironment = testEnvironment
-        self.testUsers = testUsers
         self.testParameters = testParameters
         self.responseList = []
         self.testResults = []
@@ -63,7 +57,7 @@ class TestMAndroid2TestCases():
         self.testCaseInfo = getConfigureInfo(testCaseInfoFileName, testCaseInfoName)
 
         # Checking Test parameters.
-        self.checkConfiguration(testEnvironment, testUsers)
+        self.checkConfiguration(testEnvironment)
         assert ("VoiceCall" in self.testParameters)
         assert ("Duration" in self.testParameters['VoiceCall'])
         print("Voice call duration is {}".format(testParameters['VoiceCall']['Duration']))
@@ -76,15 +70,15 @@ class TestMAndroid2TestCases():
         mcloud.mcloudLoginUser = self.testEnvironment['Login']['User']
         mcloud.mcloudLoginToken = self.testEnvironment['Login']['accessToken']
 
-        self.testUsers['MO']['handsetID'] = mcloud.connectToMcloudUser(self.testUsers['MO']['IMSI'])
-        print("MO Handset ID is {}".format(self.testUsers['MO']['handsetID']))
+        self.testEnvironment['testUsers']['MO']['handsetID'] = mcloud.connectToMcloudUser(self.testEnvironment['testUsers']['MO']['IMSI'])
+        print("MO Handset ID is {}".format(self.testEnvironment['testUsers']['MO']['handsetID']))
 
-        self.testUsers['MT']['handsetID'] = mcloud.connectToMcloudUser(self.testUsers['MT']['IMSI'])
-        print("MT Handset ID is {}".format(self.testUsers['MT']['handsetID']))
+        self.testEnvironment['testUsers']['MT']['handsetID'] = mcloud.connectToMcloudUser(self.testEnvironment['testUsers']['MT']['IMSI'])
+        print("MT Handset ID is {}".format(self.testEnvironment['testUsers']['MT']['handsetID']))
 
         # Starting test logic.
         print("Starting voice call test case.")
-        self.responseList = executeTestLogic(self.testEnvironment, self.testUsers, self.testCaseInfo, testCaseKey, self.testParameters)
+        self.responseList = executeTestLogic(self.testEnvironment, self.testCaseInfo, testCaseKey, self.testParameters)
 
         # Disconnect testing users.
         print("deviceSerialList to be disconnected is {}".format(mcloud.deviceSerialList))
@@ -94,7 +88,7 @@ class TestMAndroid2TestCases():
         self.testResults = verifyTestCaseResult(self.testCaseInfo, testCaseKey, self.responseList)
 
         # Adding information to json report.
-        addJsonReportMetaData(json_metadata, self.testEnvironment, self.testUsers, self.testParameters, self.testCaseInfo, self.testResults)
+        addJsonReportMetaData(json_metadata, self.testEnvironment, self.testParameters, self.testCaseInfo, self.testResults)
 
         # Assert test result.
         for result in self.testResults:
@@ -104,7 +98,7 @@ class TestMAndroid2TestCases():
     def test_example(self):
         print ("***************************test Example************************************")
 
-    def checkConfiguration(self, testEnvironment, testUsers):
+    def checkConfiguration(self, testEnvironment):
         # Check test environment information from configuration file.
         assert ("MCloud" in testEnvironment)
         assert ("baseUrl" in testEnvironment['MCloud'])
@@ -113,14 +107,14 @@ class TestMAndroid2TestCases():
         assert ("accessToken" in testEnvironment['Login'])
         assert ("MAndroid2AgentPath" in testEnvironment)
 
-        # Check test users information from configuration file.
-        assert ("MO" in testUsers)
-        assert ("IMSI" in testUsers['MO'])
-        assert ("MSISDN" in testUsers['MO'])
+        assert ("testUsers" in testEnvironment)
+        assert ("MO" in testEnvironment['testUsers'])
+        assert ("IMSI" in testEnvironment['testUsers']['MO'])
+        assert ("MSISDN" in testEnvironment['testUsers']['MO'])
 
-        assert ("MT" in testUsers)
-        assert ("IMSI" in testUsers['MT'])
-        assert ("MSISDN" in testUsers['MT'])
+        assert ("MT" in testEnvironment['testUsers'])
+        assert ("IMSI" in testEnvironment['testUsers']['MT'])
+        assert ("MSISDN" in testEnvironment['testUsers']['MT'])
 
 
 
