@@ -33,9 +33,6 @@ RELPATH = lambda p: os.path.relpath(
 
 class TestMAndroid2TestCases():
     # Initialize variables.
-    mo = {}
-    mt = {}
-
     testEnvironmentPath = "../configuration/testEnvironment/"
     testEnvironmentName = "testEnvironment"
     testUserPath = "../configuration/testUsers/"
