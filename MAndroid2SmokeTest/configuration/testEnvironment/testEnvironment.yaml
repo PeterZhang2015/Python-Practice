@@ -1,0 +1,9 @@
+testEnvironment:
+    MCloud:
+        baseUrl: 'http://mcloud.matrium.com.au:7100/api/v1'
+    Login:
+        User: 'Peter.Zhang@matrium.com.au'
+        accessToken: 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'
+    MAndroid2AgentPath: 'c:\tmp\MatriumMAndroid2-release.jar'
+
+

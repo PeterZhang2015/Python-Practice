@@ -1,0 +1,19 @@
+VoiceCallTestCaseInfo:
+    TestCaseID: 'MAndroid2_Smoke_Test_001_Voice_Call'
+    Description: 'Basic voice call.'
+    Precondition: 'None.'
+    TestSteps:
+    - 'Place voice call.'
+    - 'Receive voice call.'
+    - 'Wait for call duraton.'
+    - 'End voice call.'
+    CheckPoints:
+    - 'Place voice call successfully.'
+    - 'Receive voice call successfully.'
+    - 'End voice call successfully.'
+    
+        
+        
+        
+
+
