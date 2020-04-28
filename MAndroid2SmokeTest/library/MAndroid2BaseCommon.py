@@ -87,6 +87,15 @@ def checkTestParametersConfig(testParameters, testCaseKey):
         assert ("Duration" in testParameters['VoiceCall'])
         print("Voice call duration is {}".format(testParameters['VoiceCall']['Duration']))
 
+def checkTestCaseInfoConfig(testCaseInfo):
+    # Check test case info from configuration file.
+    assert ("TestCaseID" in testCaseInfo)
+    assert ("Description" in testCaseInfo)
+    assert ("Precondition" in testCaseInfo)
+    assert ("TestSteps" in testCaseInfo)
+    assert ("CheckPoints" in testCaseInfo)
+
+
 def executeTestLogic(testEnvironment, testCaseInfo, testCaseKey, testParameters):
     responseList = []
 

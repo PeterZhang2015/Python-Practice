@@ -13,7 +13,8 @@ import pytest
 from MAndroid2SmokeTest.library.MAndroid2BaseYaml import getYam
 from MAndroid2SmokeTest.library.MAndroid2BaseMCloud import MCloudControl
 from MAndroid2SmokeTest.library.MAndroid2BaseCommon import addJsonReportMetaData, executeTestLogic, \
-    verifyTestCaseResult, connectTestUsers, checkTestEnvironmentConfig, checkTestParametersConfig
+    verifyTestCaseResult, connectTestUsers, checkTestEnvironmentConfig, checkTestParametersConfig, \
+    checkTestCaseInfoConfig
 from MAndroid2SmokeTest.library.MAndroid2BaseCommon import disconnectTestUsers
 from MAndroid2SmokeTest.library.MAndroid2BaseYaml import getAllConfigureInfo
 from MAndroid2SmokeTest.library.MAndroid2BaseYaml import getConfigureInfo
@@ -45,40 +46,38 @@ class TestMAndroid2TestCases():
     @pytest.mark.parametrize("testParameters", testParameters)
     def test_MAndroid2_VoiceCall(self, json_metadata, testEnvironment, testParameters):
         # Initialization
-        self.testEnvironment = testEnvironment
-        self.testParameters = testParameters
-        self.responseList = []
-        self.testResults = []
+        responseList = []
+        testResults = []
         testCaseKey = 'VoiceCall'
         testCaseInfoFileName = "../configuration/testCaseInfo/testCaseInfo.yaml"
 
         # Checking Test parameters.
         checkTestEnvironmentConfig(testEnvironment)
-        checkTestParametersConfig(self.testParameters, testCaseKey)
+        checkTestParametersConfig(testParameters, testCaseKey)
 
         # Read test case info.
-        self.testCaseInfo = getConfigureInfo(testCaseInfoFileName, testCaseKey)
+        testCaseInfo = getConfigureInfo(testCaseInfoFileName, testCaseKey)
+        checkTestCaseInfoConfig(testCaseInfo)
 
         # ConnectTestUsers.
-        connectTestUsers(self.testEnvironment, "MOMT")
+        connectTestUsers(testEnvironment, "MOMT")
 
         # Starting test logic.
         print("Starting voice call test case.")
-        self.responseList = executeTestLogic(self.testEnvironment, self.testCaseInfo, testCaseKey, self.testParameters)
+        responseList = executeTestLogic(testEnvironment, testCaseInfo, testCaseKey, testParameters)
 
         # Disconnect testing users.
         disconnectTestUsers()
 
         # Verify test result.
-        self.testResults = verifyTestCaseResult(self.testCaseInfo, testCaseKey, self.responseList)
+        testResults = verifyTestCaseResult(testCaseInfo, testCaseKey, responseList)
 
         # Adding information to json report.
-        addJsonReportMetaData(json_metadata, self.testEnvironment, self.testParameters, self.testCaseInfo, self.testResults)
+        addJsonReportMetaData(json_metadata, testEnvironment, testParameters, testCaseInfo, testResults)
 
         # Assert test result.
-        for result in self.testResults:
+        for result in testResults:
             assert (result['checkPointResult'] == "passed")
-
 
     def test_example(self):
         print ("***************************test Example************************************")
