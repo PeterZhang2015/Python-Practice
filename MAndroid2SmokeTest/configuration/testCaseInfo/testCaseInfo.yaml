@@ -1,4 +1,4 @@
-VoiceCallTestCaseInfo:
+VoiceCall:
     TestCaseID: 'MAndroid2_Smoke_Test_001_Voice_Call'
     Description: 'Basic voice call.'
     Precondition: 'None.'

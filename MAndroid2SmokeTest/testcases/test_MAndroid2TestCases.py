@@ -12,8 +12,8 @@ import pytest
 
 from MAndroid2SmokeTest.library.MAndroid2BaseYaml import getYam
 from MAndroid2SmokeTest.library.MAndroid2BaseMCloud import MCloudControl
-from MAndroid2SmokeTest.library.MAndroid2BaseCommon import connectToTestUsers, addJsonReportMetaData, executeTestLogic, \
-    verifyTestCaseResult
+from MAndroid2SmokeTest.library.MAndroid2BaseCommon import addJsonReportMetaData, executeTestLogic, \
+    verifyTestCaseResult, connectTestUsers, checkTestEnvironmentConfig, checkTestParametersConfig
 from MAndroid2SmokeTest.library.MAndroid2BaseCommon import disconnectTestUsers
 from MAndroid2SmokeTest.library.MAndroid2BaseYaml import getAllConfigureInfo
 from MAndroid2SmokeTest.library.MAndroid2BaseYaml import getConfigureInfo
@@ -51,38 +51,23 @@ class TestMAndroid2TestCases():
         self.testResults = []
         testCaseKey = 'VoiceCall'
         testCaseInfoFileName = "../configuration/testCaseInfo/testCaseInfo.yaml"
-        testCaseInfoName = "VoiceCallTestCaseInfo"
-
-        # Read test case info.
-        self.testCaseInfo = getConfigureInfo(testCaseInfoFileName, testCaseInfoName)
 
         # Checking Test parameters.
-        self.checkConfiguration(testEnvironment)
-        assert ("VoiceCall" in self.testParameters)
-        assert ("Duration" in self.testParameters['VoiceCall'])
-        print("Voice call duration is {}".format(testParameters['VoiceCall']['Duration']))
+        checkTestEnvironmentConfig(testEnvironment)
+        checkTestParametersConfig(self.testParameters, testCaseKey)
 
-        # Connect available test handset on mcloud from specified IMSI.
-        mcloud = MCloudControl()
+        # Read test case info.
+        self.testCaseInfo = getConfigureInfo(testCaseInfoFileName, testCaseKey)
 
-        # Set test environment variables.
-        mcloud.mcloudBaseUrl = self.testEnvironment['MCloud']['baseUrl']
-        mcloud.mcloudLoginUser = self.testEnvironment['Login']['User']
-        mcloud.mcloudLoginToken = self.testEnvironment['Login']['accessToken']
-
-        self.testEnvironment['testUsers']['MO']['handsetID'] = mcloud.connectToMcloudUser(self.testEnvironment['testUsers']['MO']['IMSI'])
-        print("MO Handset ID is {}".format(self.testEnvironment['testUsers']['MO']['handsetID']))
-
-        self.testEnvironment['testUsers']['MT']['handsetID'] = mcloud.connectToMcloudUser(self.testEnvironment['testUsers']['MT']['IMSI'])
-        print("MT Handset ID is {}".format(self.testEnvironment['testUsers']['MT']['handsetID']))
+        # ConnectTestUsers.
+        connectTestUsers(self.testEnvironment, "MOMT")
 
         # Starting test logic.
         print("Starting voice call test case.")
         self.responseList = executeTestLogic(self.testEnvironment, self.testCaseInfo, testCaseKey, self.testParameters)
 
         # Disconnect testing users.
-        print("deviceSerialList to be disconnected is {}".format(mcloud.deviceSerialList))
-        mcloud.tearDownUsingDevices(mcloud.deviceSerialList)
+        disconnectTestUsers()
 
         # Verify test result.
         self.testResults = verifyTestCaseResult(self.testCaseInfo, testCaseKey, self.responseList)
@@ -97,25 +82,6 @@ class TestMAndroid2TestCases():
 
     def test_example(self):
         print ("***************************test Example************************************")
-
-    def checkConfiguration(self, testEnvironment):
-        # Check test environment information from configuration file.
-        assert ("MCloud" in testEnvironment)
-        assert ("baseUrl" in testEnvironment['MCloud'])
-        assert ("Login" in testEnvironment)
-        assert ("User" in testEnvironment['Login'])
-        assert ("accessToken" in testEnvironment['Login'])
-        assert ("MAndroid2AgentPath" in testEnvironment)
-
-        assert ("testUsers" in testEnvironment)
-        assert ("MO" in testEnvironment['testUsers'])
-        assert ("IMSI" in testEnvironment['testUsers']['MO'])
-        assert ("MSISDN" in testEnvironment['testUsers']['MO'])
-
-        assert ("MT" in testEnvironment['testUsers'])
-        assert ("IMSI" in testEnvironment['testUsers']['MT'])
-        assert ("MSISDN" in testEnvironment['testUsers']['MT'])
-
 
 
 

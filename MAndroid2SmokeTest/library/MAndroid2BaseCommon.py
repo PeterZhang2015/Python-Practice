@@ -16,39 +16,38 @@ PATH = lambda p: os.path.abspath(
 )
 
 
-
-
-def connectToTestUsers(testUser):
-    # Initialize variables.
-    mo = {}
-    mt = {}
-
-    print("testUser is {}".format(testUser))
-
-    # Connect to MO user.
+def connectTestUsers(testEnvironment, userFlag):
+    # Connect available test handset on mcloud from specified IMSI.
     mcloud = MCloudControl()
-    mcloud.deviceSerialList = []
-    print("deviceSerialList before connecting is {}".format(mcloud.deviceSerialList))
-    if ("MO" in testUser):
-        mo['IMSI'] = testUser['MO']['IMSI']
 
-        # Connect available test handset on mcloud from specified IMSI.
-        mo['handsetID'] = mcloud.connectToMcloudUser(mo['IMSI'])
-        print("Handset ID is {}".format(mo['handsetID']))
+    # Set test environment variables.
+    mcloud.mcloudBaseUrl = testEnvironment['MCloud']['baseUrl']
+    mcloud.mcloudLoginUser = testEnvironment['Login']['User']
+    mcloud.mcloudLoginToken = testEnvironment['Login']['accessToken']
 
-        assert (mo['handsetID'] != None)
+    if (userFlag == "MO"):
+        testEnvironment['testUsers']['MO']['handsetID'] = mcloud.connectToMcloudUser(
+            testEnvironment['testUsers']['MO']['IMSI'])
+        assert (testEnvironment['testUsers']['MO']['handsetID'] != None)
+        print("MO Handset ID is {}".format(testEnvironment['testUsers']['MO']['handsetID']))
+    elif (userFlag == "MT"):
+        testEnvironment['testUsers']['MT']['handsetID'] = mcloud.connectToMcloudUser(
+            testEnvironment['testUsers']['MT']['IMSI'])
+        assert (testEnvironment['testUsers']['MT']['handsetID'] != None)
+        print("MT Handset ID is {}".format(testEnvironment['testUsers']['MT']['handsetID']))
+    elif (userFlag == "MOMT"):
+        testEnvironment['testUsers']['MO']['handsetID'] = mcloud.connectToMcloudUser(
+            testEnvironment['testUsers']['MO']['IMSI'])
+        assert (testEnvironment['testUsers']['MO']['handsetID'] != None)
+        print("MO Handset ID is {}".format(testEnvironment['testUsers']['MO']['handsetID']))
+        testEnvironment['testUsers']['MT']['handsetID'] = mcloud.connectToMcloudUser(
+            testEnvironment['testUsers']['MT']['IMSI'])
+        assert (testEnvironment['testUsers']['MT']['handsetID'] != None)
+        print("MT Handset ID is {}".format(testEnvironment['testUsers']['MT']['handsetID']))
+    else:
+        print("Cannot recognize userFlag {}".format(userFlag))
 
-    # Connect to MT user.
-    if ("MT" in testUser):
-        mt['IMSI'] = testUser['MT']['IMSI']
-
-        # Connect available test handset on mcloud from specified IMSI.
-        mt['handsetID'] = mcloud.connectToMcloudUser(mt['IMSI'])
-        print("Handset ID is {}".format(mt['handsetID']))
-
-        assert (mt['handsetID'] != None)
-
-    print("deviceSerialList after connecting is {}".format(mcloud.deviceSerialList))
+    return testEnvironment
 
 def disconnectTestUsers():
     # Disconnect connected devices.
@@ -56,13 +55,37 @@ def disconnectTestUsers():
     print("deviceSerialList to be disconnected is {}".format(mcloud.deviceSerialList))
     mcloud.tearDownUsingDevices(mcloud.deviceSerialList)
 
+
 def addJsonReportMetaData(json_metadata, testEnvironment, testParameters, testCaseInfo, testResults):
     json_metadata['testEnvironment'] = testEnvironment
     json_metadata['testParameters'] = testParameters
     json_metadata['testCaseInfo'] = testCaseInfo
     json_metadata['testResults'] = testResults
 
+def checkTestEnvironmentConfig(testEnvironment):
+    # Check test environment information from configuration file.
+    assert ("MCloud" in testEnvironment)
+    assert ("baseUrl" in testEnvironment['MCloud'])
+    assert ("Login" in testEnvironment)
+    assert ("User" in testEnvironment['Login'])
+    assert ("accessToken" in testEnvironment['Login'])
+    assert ("MAndroid2AgentPath" in testEnvironment)
 
+    assert ("testUsers" in testEnvironment)
+    assert ("MO" in testEnvironment['testUsers'])
+    assert ("IMSI" in testEnvironment['testUsers']['MO'])
+    assert ("MSISDN" in testEnvironment['testUsers']['MO'])
+
+    assert ("MT" in testEnvironment['testUsers'])
+    assert ("IMSI" in testEnvironment['testUsers']['MT'])
+    assert ("MSISDN" in testEnvironment['testUsers']['MT'])
+
+def checkTestParametersConfig(testParameters, testCaseKey):
+    # Check test parameters from configuration file.
+    if (testCaseKey == 'VoiceCall'):
+        assert ("VoiceCall" in testParameters)
+        assert ("Duration" in testParameters['VoiceCall'])
+        print("Voice call duration is {}".format(testParameters['VoiceCall']['Duration']))
 
 def executeTestLogic(testEnvironment, testCaseInfo, testCaseKey, testParameters):
     responseList = []
