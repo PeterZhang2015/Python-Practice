@@ -66,7 +66,7 @@ import json
 # str1 = ''.join(json.dumps(e) for e in list1)
 # print (str1)
 
-excelReportPath = "/reports/excel/"
+excelReportPath = "../reports/excel/"
 print("excelReportPath is {}.".format(excelReportPath))
 
 
@@ -74,11 +74,9 @@ absExcelReportPath = os.path.abspath(excelReportPath)
 print("absExcelReportPath is {}.".format(absExcelReportPath))
 
 
-if (os.path.exists(absExcelReportPath)):
-    print ("{} exists.".format(absExcelReportPath))
-else:
-    print ("{} does not exist.".format(absExcelReportPath))
-    # os.makedirs(absExcelReportPath)
+if (os.path.exists(absExcelReportPath) == False):
+    os.makedirs(absExcelReportPath)
+
 
 
 

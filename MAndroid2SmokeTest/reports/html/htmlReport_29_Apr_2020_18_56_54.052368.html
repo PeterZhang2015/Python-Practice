@@ -242,8 +242,8 @@ function filter_table(elem) {
     not_found_message.hidden = !all_rows_hidden;
 }
 </script>
-    <h1>htmlReport_27_Apr_2020_19_14_42.873906.html</h1>
-    <p>Report generated on 27-Apr-2020 at 19:16:52 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v2.1.1</p>
+    <h1>htmlReport_29_Apr_2020_18_56_54.052368.html</h1>
+    <p>Report generated on 29-Apr-2020 at 19:01:38 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v2.1.1</p>
     <h2>Environment</h2>
     <table id="environment">
       <tr>
@@ -262,8 +262,8 @@ function filter_table(elem) {
         <td>Python</td>
         <td>3.7.1</td></tr></table>
     <h2>Summary</h2>
-    <p>5 tests ran in 127.27 seconds. </p>
-    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="passed">5 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
+    <p>4 tests ran in 281.81 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="passed">4 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
     <h2>Results</h2>
     <table id="results-table">
       <thead id="results-table-head">
@@ -278,13 +278,14 @@ function filter_table(elem) {
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">MAndroid2SmokeTest/testcases/test_MAndroid2TestCases.py::TestMAndroid2TestCases::test_MAndroid2_VoiceCall[testParameters0-testEnvironment0]</td>
-          <td class="col-duration">34.61</td>
+          <td class="col-duration">78.92</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>{&#x27;VoiceCallTestCaseInfo&#x27;: {&#x27;TestCaseID&#x27;: &#x27;MAndroid2_Smoke_Test_001_Voice_Call&#x27;, &#x27;Description&#x27;: &#x27;Basic voice call.&#x27;, &#x27;Precondition&#x27;: &#x27;None.&#x27;, &#x27;TestSteps&#x27;: [&#x27;Place voice call.&#x27;, &#x27;Receive voice call.&#x27;, &#x27;Wait for call duraton.&#x27;, &#x27;End voice call.&#x27;], &#x27;CheckPoints&#x27;: [&#x27;Place voice call successfully.&#x27;, &#x27;Receive voice call successfully.&#x27;, &#x27;End voice call successfully.&#x27;]}}
+            <div class="log"> -----------------------------Captured stdout setup------------------------------ <br/>------ Setup before class TestMAndroid2TestCases ------
+<br/> ------------------------------Captured stdout call------------------------------ <br/>Voice call duration is 2
+{&#x27;VoiceCall&#x27;: {&#x27;TestCaseID&#x27;: &#x27;MAndroid2_Smoke_Test_001_Voice_Call&#x27;, &#x27;Description&#x27;: &#x27;Basic voice call.&#x27;, &#x27;Precondition&#x27;: &#x27;None.&#x27;, &#x27;TestSteps&#x27;: [&#x27;Place voice call.&#x27;, &#x27;Receive voice call.&#x27;, &#x27;Wait for call duraton.&#x27;, &#x27;End voice call.&#x27;], &#x27;CheckPoints&#x27;: [&#x27;Place voice call successfully.&#x27;, &#x27;Receive voice call successfully.&#x27;, &#x27;End voice call successfully.&#x27;]}}
 Read test configuration yaml file ../configuration/testCaseInfo/testCaseInfo.yaml successfully.
-Voice call duration is 10
 ##########Calling REST API to get devices list on MCloud.
 http://mcloud.matrium.com.au:7100/api/v1/devices
 Handset with IMSI 505025104559746 has not been occupied.
@@ -317,11 +318,11 @@ remoteConnectUrl is  mcloud.matrium.com.au:7569
 MT Handset ID is mcloud.matrium.com.au:7569
 Starting voice call test case.
 Command of placing basic voice call is:  java -jar c:\tmp\MatriumMAndroid2-release.jar mcloud.matrium.com.au:7541 3010 call_phonenum +61402537622
-Response of placing basic voice call is:  {&#x27;isSuccess&#x27;: True, &#x27;startTime&#x27;: 1587978854779, &#x27;callee&#x27;: &#x27;+61402537622&#x27;, &#x27;networkModeBeforeCall&#x27;: &#x27;LTE&#x27;, &#x27;description&#x27;: &#x27;Make a call successfully&#x27;}
+Response of placing basic voice call is:  {&#x27;isSuccess&#x27;: True, &#x27;startTime&#x27;: 1588150623251, &#x27;callee&#x27;: &#x27;+61402537622&#x27;, &#x27;networkModeBeforeCall&#x27;: &#x27;LTE&#x27;, &#x27;description&#x27;: &#x27;Make a call successfully&#x27;}
 Command of receiving basic voice call is:  java -jar c:\tmp\MatriumMAndroid2-release.jar mcloud.matrium.com.au:7569 3011 
-Response of receiving basic voice call is:  {&#x27;ringingTime&#x27;: &#x27;1587978894240&#x27;, &#x27;callDuration&#x27;: &#x27;null&#x27;, &#x27;networkModeBeforeCall&#x27;: &#x27;UMTS&#x27;, &#x27;screenshotURL&#x27;: &#x27;/sdcard/MAndroid2/Output/Screenshot/takescreen_20200427_191450.png&#x27;, &#x27;caller&#x27;: &#x27;0418673947&#x27;, &#x27;callAnswered&#x27;: &#x27;true&#x27;, &#x27;answerTime&#x27;: &#x27;1587978897261&#x27;, &#x27;description&#x27;: &#x27;Call is connected successfully.&#x27;, &#x27;endTime&#x27;: &#x27;0&#x27;, &#x27;networkModeDuringCall&#x27;: &#x27;UMTS&#x27;, &#x27;networkModeAfterCall&#x27;: &#x27;null&#x27;, &#x27;isSuccess&#x27;: &#x27;true&#x27;}
+Response of receiving basic voice call is:  {&#x27;ringingTime&#x27;: &#x27;1588150669011&#x27;, &#x27;callDuration&#x27;: &#x27;null&#x27;, &#x27;networkModeBeforeCall&#x27;: &#x27;UMTS&#x27;, &#x27;screenshotURL&#x27;: &#x27;/sdcard/MAndroid2/Output/Screenshot/takescreen_20200429_185741.png&#x27;, &#x27;caller&#x27;: &#x27;0418673947&#x27;, &#x27;callAnswered&#x27;: &#x27;true&#x27;, &#x27;answerTime&#x27;: &#x27;1588150672629&#x27;, &#x27;description&#x27;: &#x27;Call is connected successfully.&#x27;, &#x27;endTime&#x27;: &#x27;0&#x27;, &#x27;networkModeDuringCall&#x27;: &#x27;HSPAP&#x27;, &#x27;networkModeAfterCall&#x27;: &#x27;null&#x27;, &#x27;isSuccess&#x27;: &#x27;true&#x27;}
 Command of receiving basic voice call is:  java -jar c:\tmp\MatriumMAndroid2-release.jar mcloud.matrium.com.au:7541 3012
-Response of ending basic voice call is:  {&#x27;isSuccess&#x27;: True, &#x27;endTime&#x27;: 1587978881554, &#x27;networkModeAfterCall&#x27;: &#x27;LTE&#x27;, &#x27;description&#x27;: &#x27;End the call successfully&#x27;, &#x27;screenshotURL&#x27;: &#x27;/sdcard/MAndroid2/Output/Screenshot/takescreen_20200427_071441.png&#x27;}
+Response of ending basic voice call is:  {&#x27;isSuccess&#x27;: True, &#x27;endTime&#x27;: 1588150654746, &#x27;networkModeAfterCall&#x27;: &#x27;LTE&#x27;, &#x27;description&#x27;: &#x27;End the call successfully&#x27;, &#x27;screenshotURL&#x27;: &#x27;/sdcard/MAndroid2/Output/Screenshot/takescreen_20200429_065734.png&#x27;}
 deviceSerialList to be disconnected is [&#x27;25cb81cc6f0d7ece&#x27;, &#x27;ce12160ccd1f323f05&#x27;]
 disconnected everything
 ##########Calling REST API to release device 25cb81cc6f0d7ece on MCloud.
@@ -340,13 +341,13 @@ disconnected everything
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">MAndroid2SmokeTest/testcases/test_MAndroid2TestCases.py::TestMAndroid2TestCases::test_MAndroid2_VoiceCall[testParameters0-testEnvironment1]</td>
-          <td class="col-duration">33.36</td>
+          <td class="col-duration">70.64</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>{&#x27;VoiceCallTestCaseInfo&#x27;: {&#x27;TestCaseID&#x27;: &#x27;MAndroid2_Smoke_Test_001_Voice_Call&#x27;, &#x27;Description&#x27;: &#x27;Basic voice call.&#x27;, &#x27;Precondition&#x27;: &#x27;None.&#x27;, &#x27;TestSteps&#x27;: [&#x27;Place voice call.&#x27;, &#x27;Receive voice call.&#x27;, &#x27;Wait for call duraton.&#x27;, &#x27;End voice call.&#x27;], &#x27;CheckPoints&#x27;: [&#x27;Place voice call successfully.&#x27;, &#x27;Receive voice call successfully.&#x27;, &#x27;End voice call successfully.&#x27;]}}
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>Voice call duration is 2
+{&#x27;VoiceCall&#x27;: {&#x27;TestCaseID&#x27;: &#x27;MAndroid2_Smoke_Test_001_Voice_Call&#x27;, &#x27;Description&#x27;: &#x27;Basic voice call.&#x27;, &#x27;Precondition&#x27;: &#x27;None.&#x27;, &#x27;TestSteps&#x27;: [&#x27;Place voice call.&#x27;, &#x27;Receive voice call.&#x27;, &#x27;Wait for call duraton.&#x27;, &#x27;End voice call.&#x27;], &#x27;CheckPoints&#x27;: [&#x27;Place voice call successfully.&#x27;, &#x27;Receive voice call successfully.&#x27;, &#x27;End voice call successfully.&#x27;]}}
 Read test configuration yaml file ../configuration/testCaseInfo/testCaseInfo.yaml successfully.
-Voice call duration is 10
 ##########Calling REST API to get devices list on MCloud.
 http://mcloud.matrium.com.au:7100/api/v1/devices
 Handset with IMSI 505025703492762 has not been occupied.
@@ -379,11 +380,11 @@ remoteConnectUrl is  mcloud.matrium.com.au:7541
 MT Handset ID is mcloud.matrium.com.au:7541
 Starting voice call test case.
 Command of placing basic voice call is:  java -jar c:\tmp\MatriumMAndroid2-release.jar mcloud.matrium.com.au:7569 3010 call_phonenum +61418673947
-Response of placing basic voice call is:  {&#x27;isSuccess&#x27;: True, &#x27;startTime&#x27;: 1587978888932, &#x27;callee&#x27;: &#x27;+61418673947&#x27;, &#x27;networkModeBeforeCall&#x27;: &#x27;LTE&#x27;, &#x27;description&#x27;: &#x27;Make a call successfully&#x27;}
+Response of placing basic voice call is:  {&#x27;isSuccess&#x27;: True, &#x27;startTime&#x27;: 1588150696428, &#x27;callee&#x27;: &#x27;+61418673947&#x27;, &#x27;networkModeBeforeCall&#x27;: &#x27;LTE&#x27;, &#x27;description&#x27;: &#x27;Make a call successfully&#x27;}
 Command of receiving basic voice call is:  java -jar c:\tmp\MatriumMAndroid2-release.jar mcloud.matrium.com.au:7541 3011 
-Response of receiving basic voice call is:  {&#x27;isSuccess&#x27;: True, &#x27;callAnswered&#x27;: True, &#x27;ringingTime&#x27;: 1587978892873, &#x27;answerTime&#x27;: 1587978892941, &#x27;endTime&#x27;: &#x27;1587978881554&#x27;, &#x27;caller&#x27;: &#x27;0402537622&#x27;, &#x27;callDuration&#x27;: &#x27;null&#x27;, &#x27;networkModeBeforeCall&#x27;: &#x27;LTE&#x27;, &#x27;networkModeDuringCall&#x27;: &#x27;LTE&#x27;, &#x27;networkModeAfterCall&#x27;: &#x27;&#x27;, &#x27;description&#x27;: &#x27;Call is connected successfully&#x27;, &#x27;screenshotURL&#x27;: &#x27;/sdcard/MAndroid2/Output/Screenshot/takescreen_20200427_071453.png&#x27;}
+Response of receiving basic voice call is:  {&#x27;isSuccess&#x27;: True, &#x27;callAnswered&#x27;: True, &#x27;ringingTime&#x27;: 1588150703647, &#x27;answerTime&#x27;: 1588150703852, &#x27;endTime&#x27;: &#x27;0&#x27;, &#x27;caller&#x27;: &#x27;0402537622&#x27;, &#x27;callDuration&#x27;: &#x27;null&#x27;, &#x27;networkModeBeforeCall&#x27;: &#x27;LTE&#x27;, &#x27;networkModeDuringCall&#x27;: &#x27;LTE&#x27;, &#x27;networkModeAfterCall&#x27;: &#x27;&#x27;, &#x27;description&#x27;: &#x27;Call is connected successfully&#x27;, &#x27;screenshotURL&#x27;: &#x27;/sdcard/MAndroid2/Output/Screenshot/takescreen_20200429_065824.png&#x27;}
 Command of receiving basic voice call is:  java -jar c:\tmp\MatriumMAndroid2-release.jar mcloud.matrium.com.au:7569 3012
-Response of ending basic voice call is:  {&#x27;screenshotURL&#x27;: &#x27;/sdcard/MAndroid2/Output/Screenshot/takescreen_20200427_191540.png&#x27;, &#x27;description&#x27;: &#x27;End the call successfully.&#x27;, &#x27;endTime&#x27;: &#x27;1587978947379&#x27;, &#x27;networkModeAfterCall&#x27;: &#x27;LTE&#x27;, &#x27;isSuccess&#x27;: &#x27;true&#x27;}
+Response of ending basic voice call is:  {&#x27;screenshotURL&#x27;: &#x27;/sdcard/MAndroid2/Output/Screenshot/takescreen_20200429_185906.png&#x27;, &#x27;description&#x27;: &#x27;End the call successfully.&#x27;, &#x27;endTime&#x27;: &#x27;1588150758404&#x27;, &#x27;networkModeAfterCall&#x27;: &#x27;LTE&#x27;, &#x27;isSuccess&#x27;: &#x27;true&#x27;}
 deviceSerialList to be disconnected is [&#x27;ce12160ccd1f323f05&#x27;, &#x27;25cb81cc6f0d7ece&#x27;]
 disconnected everything
 ##########Calling REST API to release device ce12160ccd1f323f05 on MCloud.
@@ -402,13 +403,13 @@ disconnected everything
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">MAndroid2SmokeTest/testcases/test_MAndroid2TestCases.py::TestMAndroid2TestCases::test_MAndroid2_VoiceCall[testParameters1-testEnvironment0]</td>
-          <td class="col-duration">29.83</td>
+          <td class="col-duration">64.94</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>{&#x27;VoiceCallTestCaseInfo&#x27;: {&#x27;TestCaseID&#x27;: &#x27;MAndroid2_Smoke_Test_001_Voice_Call&#x27;, &#x27;Description&#x27;: &#x27;Basic voice call.&#x27;, &#x27;Precondition&#x27;: &#x27;None.&#x27;, &#x27;TestSteps&#x27;: [&#x27;Place voice call.&#x27;, &#x27;Receive voice call.&#x27;, &#x27;Wait for call duraton.&#x27;, &#x27;End voice call.&#x27;], &#x27;CheckPoints&#x27;: [&#x27;Place voice call successfully.&#x27;, &#x27;Receive voice call successfully.&#x27;, &#x27;End voice call successfully.&#x27;]}}
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>Voice call duration is 5
+{&#x27;VoiceCall&#x27;: {&#x27;TestCaseID&#x27;: &#x27;MAndroid2_Smoke_Test_001_Voice_Call&#x27;, &#x27;Description&#x27;: &#x27;Basic voice call.&#x27;, &#x27;Precondition&#x27;: &#x27;None.&#x27;, &#x27;TestSteps&#x27;: [&#x27;Place voice call.&#x27;, &#x27;Receive voice call.&#x27;, &#x27;Wait for call duraton.&#x27;, &#x27;End voice call.&#x27;], &#x27;CheckPoints&#x27;: [&#x27;Place voice call successfully.&#x27;, &#x27;Receive voice call successfully.&#x27;, &#x27;End voice call successfully.&#x27;]}}
 Read test configuration yaml file ../configuration/testCaseInfo/testCaseInfo.yaml successfully.
-Voice call duration is 5
 ##########Calling REST API to get devices list on MCloud.
 http://mcloud.matrium.com.au:7100/api/v1/devices
 Handset with IMSI 505025104559746 has not been occupied.
@@ -441,11 +442,11 @@ remoteConnectUrl is  mcloud.matrium.com.au:7569
 MT Handset ID is mcloud.matrium.com.au:7569
 Starting voice call test case.
 Command of placing basic voice call is:  java -jar c:\tmp\MatriumMAndroid2-release.jar mcloud.matrium.com.au:7541 3010 call_phonenum +61402537622
-Response of placing basic voice call is:  {&#x27;isSuccess&#x27;: True, &#x27;startTime&#x27;: 1587978922139, &#x27;callee&#x27;: &#x27;+61402537622&#x27;, &#x27;networkModeBeforeCall&#x27;: &#x27;LTE&#x27;, &#x27;description&#x27;: &#x27;Make a call successfully&#x27;}
+Response of placing basic voice call is:  {&#x27;isSuccess&#x27;: True, &#x27;startTime&#x27;: 1588150763488, &#x27;callee&#x27;: &#x27;+61402537622&#x27;, &#x27;networkModeBeforeCall&#x27;: &#x27;LTE&#x27;, &#x27;description&#x27;: &#x27;Make a call successfully&#x27;}
 Command of receiving basic voice call is:  java -jar c:\tmp\MatriumMAndroid2-release.jar mcloud.matrium.com.au:7569 3011 
-Response of receiving basic voice call is:  {&#x27;ringingTime&#x27;: &#x27;1587978961762&#x27;, &#x27;callDuration&#x27;: &#x27;null&#x27;, &#x27;networkModeBeforeCall&#x27;: &#x27;HSPAP&#x27;, &#x27;screenshotURL&#x27;: &#x27;/sdcard/MAndroid2/Output/Screenshot/takescreen_20200427_191557.png&#x27;, &#x27;caller&#x27;: &#x27;0418673947&#x27;, &#x27;callAnswered&#x27;: &#x27;true&#x27;, &#x27;answerTime&#x27;: &#x27;1587978964764&#x27;, &#x27;description&#x27;: &#x27;Call is connected successfully.&#x27;, &#x27;endTime&#x27;: &#x27;0&#x27;, &#x27;networkModeDuringCall&#x27;: &#x27;HSPAP&#x27;, &#x27;networkModeAfterCall&#x27;: &#x27;null&#x27;, &#x27;isSuccess&#x27;: &#x27;true&#x27;}
+Response of receiving basic voice call is:  {&#x27;ringingTime&#x27;: &#x27;1588150808323&#x27;, &#x27;callDuration&#x27;: &#x27;null&#x27;, &#x27;networkModeBeforeCall&#x27;: &#x27;HSPAP&#x27;, &#x27;screenshotURL&#x27;: &#x27;/sdcard/MAndroid2/Output/Screenshot/takescreen_20200429_190001.png&#x27;, &#x27;caller&#x27;: &#x27;0418673947&#x27;, &#x27;callAnswered&#x27;: &#x27;true&#x27;, &#x27;answerTime&#x27;: &#x27;1588150812138&#x27;, &#x27;description&#x27;: &#x27;Call is connected successfully.&#x27;, &#x27;endTime&#x27;: &#x27;0&#x27;, &#x27;networkModeDuringCall&#x27;: &#x27;HSPAP&#x27;, &#x27;networkModeAfterCall&#x27;: &#x27;null&#x27;, &#x27;isSuccess&#x27;: &#x27;true&#x27;}
 Command of receiving basic voice call is:  java -jar c:\tmp\MatriumMAndroid2-release.jar mcloud.matrium.com.au:7541 3012
-Response of ending basic voice call is:  {&#x27;isSuccess&#x27;: True, &#x27;endTime&#x27;: 1587978944744, &#x27;networkModeAfterCall&#x27;: &#x27;LTE&#x27;, &#x27;description&#x27;: &#x27;End the call successfully&#x27;, &#x27;screenshotURL&#x27;: &#x27;/sdcard/MAndroid2/Output/Screenshot/takescreen_20200427_071544.png&#x27;}
+Response of ending basic voice call is:  {&#x27;isSuccess&#x27;: True, &#x27;endTime&#x27;: 1588150790495, &#x27;networkModeAfterCall&#x27;: &#x27;LTE&#x27;, &#x27;description&#x27;: &#x27;End the call successfully&#x27;, &#x27;screenshotURL&#x27;: &#x27;/sdcard/MAndroid2/Output/Screenshot/takescreen_20200429_065950.png&#x27;}
 deviceSerialList to be disconnected is [&#x27;25cb81cc6f0d7ece&#x27;, &#x27;ce12160ccd1f323f05&#x27;]
 disconnected everything
 ##########Calling REST API to release device 25cb81cc6f0d7ece on MCloud.
@@ -464,13 +465,13 @@ disconnected everything
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">MAndroid2SmokeTest/testcases/test_MAndroid2TestCases.py::TestMAndroid2TestCases::test_MAndroid2_VoiceCall[testParameters1-testEnvironment1]</td>
-          <td class="col-duration">29.30</td>
+          <td class="col-duration">66.94</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>{&#x27;VoiceCallTestCaseInfo&#x27;: {&#x27;TestCaseID&#x27;: &#x27;MAndroid2_Smoke_Test_001_Voice_Call&#x27;, &#x27;Description&#x27;: &#x27;Basic voice call.&#x27;, &#x27;Precondition&#x27;: &#x27;None.&#x27;, &#x27;TestSteps&#x27;: [&#x27;Place voice call.&#x27;, &#x27;Receive voice call.&#x27;, &#x27;Wait for call duraton.&#x27;, &#x27;End voice call.&#x27;], &#x27;CheckPoints&#x27;: [&#x27;Place voice call successfully.&#x27;, &#x27;Receive voice call successfully.&#x27;, &#x27;End voice call successfully.&#x27;]}}
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>Voice call duration is 5
+{&#x27;VoiceCall&#x27;: {&#x27;TestCaseID&#x27;: &#x27;MAndroid2_Smoke_Test_001_Voice_Call&#x27;, &#x27;Description&#x27;: &#x27;Basic voice call.&#x27;, &#x27;Precondition&#x27;: &#x27;None.&#x27;, &#x27;TestSteps&#x27;: [&#x27;Place voice call.&#x27;, &#x27;Receive voice call.&#x27;, &#x27;Wait for call duraton.&#x27;, &#x27;End voice call.&#x27;], &#x27;CheckPoints&#x27;: [&#x27;Place voice call successfully.&#x27;, &#x27;Receive voice call successfully.&#x27;, &#x27;End voice call successfully.&#x27;]}}
 Read test configuration yaml file ../configuration/testCaseInfo/testCaseInfo.yaml successfully.
-Voice call duration is 5
 ##########Calling REST API to get devices list on MCloud.
 http://mcloud.matrium.com.au:7100/api/v1/devices
 Handset with IMSI 505025703492762 has not been occupied.
@@ -503,11 +504,11 @@ remoteConnectUrl is  mcloud.matrium.com.au:7541
 MT Handset ID is mcloud.matrium.com.au:7541
 Starting voice call test case.
 Command of placing basic voice call is:  java -jar c:\tmp\MatriumMAndroid2-release.jar mcloud.matrium.com.au:7569 3010 call_phonenum +61418673947
-Response of placing basic voice call is:  {&#x27;isSuccess&#x27;: True, &#x27;startTime&#x27;: 1587978952519, &#x27;callee&#x27;: &#x27;+61418673947&#x27;, &#x27;networkModeBeforeCall&#x27;: &#x27;LTE&#x27;, &#x27;description&#x27;: &#x27;Make a call successfully&#x27;}
+Response of placing basic voice call is:  {&#x27;isSuccess&#x27;: True, &#x27;startTime&#x27;: 1588150828644, &#x27;callee&#x27;: &#x27;+61418673947&#x27;, &#x27;networkModeBeforeCall&#x27;: &#x27;LTE&#x27;, &#x27;description&#x27;: &#x27;Make a call successfully&#x27;}
 Command of receiving basic voice call is:  java -jar c:\tmp\MatriumMAndroid2-release.jar mcloud.matrium.com.au:7541 3011 
-Response of receiving basic voice call is:  {&#x27;isSuccess&#x27;: True, &#x27;callAnswered&#x27;: True, &#x27;ringingTime&#x27;: 1587978956573, &#x27;answerTime&#x27;: 1587978956700, &#x27;endTime&#x27;: &#x27;1587978944744&#x27;, &#x27;caller&#x27;: &#x27;0402537622&#x27;, &#x27;callDuration&#x27;: &#x27;null&#x27;, &#x27;networkModeBeforeCall&#x27;: &#x27;LTE&#x27;, &#x27;networkModeDuringCall&#x27;: &#x27;LTE&#x27;, &#x27;networkModeAfterCall&#x27;: &#x27;&#x27;, &#x27;description&#x27;: &#x27;Call is connected successfully&#x27;, &#x27;screenshotURL&#x27;: &#x27;/sdcard/MAndroid2/Output/Screenshot/takescreen_20200427_071557.png&#x27;}
+Response of receiving basic voice call is:  {&#x27;isSuccess&#x27;: True, &#x27;callAnswered&#x27;: True, &#x27;ringingTime&#x27;: 1588150835875, &#x27;answerTime&#x27;: 1588150836029, &#x27;endTime&#x27;: &#x27;0&#x27;, &#x27;caller&#x27;: &#x27;0402537622&#x27;, &#x27;callDuration&#x27;: &#x27;null&#x27;, &#x27;networkModeBeforeCall&#x27;: &#x27;LTE&#x27;, &#x27;networkModeDuringCall&#x27;: &#x27;LTE&#x27;, &#x27;networkModeAfterCall&#x27;: &#x27;&#x27;, &#x27;description&#x27;: &#x27;Call is connected successfully&#x27;, &#x27;screenshotURL&#x27;: &#x27;/sdcard/MAndroid2/Output/Screenshot/takescreen_20200429_070036.png&#x27;}
 Command of receiving basic voice call is:  java -jar c:\tmp\MatriumMAndroid2-release.jar mcloud.matrium.com.au:7569 3012
-Response of ending basic voice call is:  {&#x27;screenshotURL&#x27;: &#x27;/sdcard/MAndroid2/Output/Screenshot/takescreen_20200427_191639.png&#x27;, &#x27;description&#x27;: &#x27;End the call successfully.&#x27;, &#x27;endTime&#x27;: &#x27;1587979006290&#x27;, &#x27;networkModeAfterCall&#x27;: &#x27;LTE&#x27;, &#x27;isSuccess&#x27;: &#x27;true&#x27;}
+Response of ending basic voice call is:  {&#x27;screenshotURL&#x27;: &#x27;/sdcard/MAndroid2/Output/Screenshot/takescreen_20200429_190122.png&#x27;, &#x27;description&#x27;: &#x27;End the call successfully.&#x27;, &#x27;endTime&#x27;: &#x27;1588150891599&#x27;, &#x27;networkModeAfterCall&#x27;: &#x27;LTE&#x27;, &#x27;isSuccess&#x27;: &#x27;true&#x27;}
 deviceSerialList to be disconnected is [&#x27;ce12160ccd1f323f05&#x27;, &#x27;25cb81cc6f0d7ece&#x27;]
 disconnected everything
 ##########Calling REST API to release device ce12160ccd1f323f05 on MCloud.
@@ -521,14 +522,4 @@ resp.status_code is 200
 {&#x27;success&#x27;: True, &#x27;description&#x27;: &#x27;Device successfully removed&#x27;}
 Remaining released deviceSerialList is []
 disconnected everything
-<br/></div></td></tr></tbody>
-      <tbody class="passed results-table-row">
-        <tr>
-          <td class="col-result">Passed</td>
-          <td class="col-name">MAndroid2SmokeTest/testcases/test_MAndroid2TestCases.py::TestMAndroid2TestCases::test_example</td>
-          <td class="col-duration">0.00</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>***************************test Example************************************
 <br/></div></td></tr></tbody></table></body></html>

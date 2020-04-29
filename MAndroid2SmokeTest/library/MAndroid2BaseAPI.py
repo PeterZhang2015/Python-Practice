@@ -16,6 +16,48 @@ PATH = lambda p: os.path.abspath(
 PLACE_VOICE_CALL_CODE = '3010'
 RECEIVE_VOICE_CALL_CODE = '3011'
 END_VOICE_CALL_CODE = '3012'
+GET_MANDROID2_VERSION_CODE = '9001'
+GET_MANDROID2_AGENT_VERSION_CODE = '9002'
+GET_MANDROID2_PLUGIN_VERSION_CODE = '9003'
+
+def getMAndroid2Version(MAndroid2AgentPath, handsetId):
+    # Initialization
+    version = {}
+
+    # Construct command
+    command = "java -jar {} {} {}".format(MAndroid2AgentPath,
+                                          handsetId,
+                                          GET_MANDROID2_VERSION_CODE)
+    # Execute command
+    response = json.loads(subprocess.check_output(command.split()))
+    assert ('version' in response)
+
+    # Record version info
+    version['MAndroid2'] = response['version']
+
+    # Construct command
+    command = "java -jar {} {} {}".format(MAndroid2AgentPath,
+                                          handsetId,
+                                          GET_MANDROID2_AGENT_VERSION_CODE)
+    # Execute command
+    response = json.loads(subprocess.check_output(command.split()))
+    assert ('version' in response)
+
+    # Record version info
+    version['MAndroid2Agent'] = response['version']
+
+    # Construct command
+    command = "java -jar {} {} {}".format(MAndroid2AgentPath,
+                                          handsetId,
+                                          GET_MANDROID2_PLUGIN_VERSION_CODE)
+    # Execute command
+    response = json.loads(subprocess.check_output(command.split()))
+    assert ('version' in response)
+
+    # Record version info
+    version['MAndroid2Plugin'] = response['version']
+
+    return version
 
 def placeBasicVoiceCall(MAndroid2AgentPath, handsetId, calledUserNumber):
 

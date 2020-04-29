@@ -1,3 +1,4 @@
+import json
 import sys
 from os import listdir
 from time import sleep
@@ -7,7 +8,9 @@ import xlsxwriter
 import os
 from datetime import datetime
 
-from MAndroid2SmokeTest.library.MAndroid2BaseAPI import endBasicVoiceCall, placeBasicVoiceCall, receiveBasicVoiceCall
+from MAndroid2SmokeTest.library.MAndroid2BaseAPI import endBasicVoiceCall, placeBasicVoiceCall, receiveBasicVoiceCall, \
+    getMAndroid2Version
+from MAndroid2SmokeTest.library.MAndroid2BaseExcel import OperateReport
 from MAndroid2SmokeTest.library.MAndroid2BaseYaml import getYam
 from MAndroid2SmokeTest.library.MAndroid2BaseMCloud import MCloudControl
 
@@ -30,11 +33,16 @@ def connectTestUsers(testEnvironment, userFlag):
             testEnvironment['testUsers']['MO']['IMSI'])
         assert (testEnvironment['testUsers']['MO']['handsetID'] != None)
         print("MO Handset ID is {}".format(testEnvironment['testUsers']['MO']['handsetID']))
+        # Get MAndroid2 version info.
+        testEnvironment['testUsers']['MO']['versions'] = getMAndroid2Version(testEnvironment['testUsers']['MO']['handsetID'])
     elif (userFlag == "MT"):
         testEnvironment['testUsers']['MT']['handsetID'] = mcloud.connectToMcloudUser(
             testEnvironment['testUsers']['MT']['IMSI'])
         assert (testEnvironment['testUsers']['MT']['handsetID'] != None)
         print("MT Handset ID is {}".format(testEnvironment['testUsers']['MT']['handsetID']))
+        # Get MAndroid2 version info.
+        testEnvironment['testUsers']['MT']['versions'] = getMAndroid2Version(testEnvironment['testUsers']['MT']['handsetID'])
+
     elif (userFlag == "MOMT"):
         testEnvironment['testUsers']['MO']['handsetID'] = mcloud.connectToMcloudUser(
             testEnvironment['testUsers']['MO']['IMSI'])
@@ -44,6 +52,10 @@ def connectTestUsers(testEnvironment, userFlag):
             testEnvironment['testUsers']['MT']['IMSI'])
         assert (testEnvironment['testUsers']['MT']['handsetID'] != None)
         print("MT Handset ID is {}".format(testEnvironment['testUsers']['MT']['handsetID']))
+        # Get MAndroid2 version info.
+        testEnvironment['testUsers']['MO']['versions'] = getMAndroid2Version(testEnvironment['MAndroid2AgentPath'], testEnvironment['testUsers']['MO']['handsetID'])
+        testEnvironment['testUsers']['MT']['versions'] = getMAndroid2Version(testEnvironment['MAndroid2AgentPath'], testEnvironment['testUsers']['MT']['handsetID'])
+
     else:
         print("Cannot recognize userFlag {}".format(userFlag))
 
@@ -220,3 +232,81 @@ def verifyEndVoiceCallResponse(response):
 
     # Return result.
     return testResult
+
+def createExcelTestReport(excelReportPath):
+
+    # Get current time.
+    timeStamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    reportFileName = "{}MAndroid2TestReport_{}.xlsx".format(excelReportPath, timeStamp)
+
+    # Create an excel report.
+    workbook = xlsxwriter.Workbook(reportFileName)
+    summarySheet = workbook.add_worksheet("TestSummary")
+    detailSheet = workbook.add_worksheet("TestDetail")
+    excelReport = OperateReport(wd=workbook)
+
+    return excelReport, summarySheet, detailSheet
+
+
+def initializeExcelSummary(testCaseSummary):
+
+    testCaseSummary['sum'] = 0
+    testCaseSummary['pass'] = 0
+    testCaseSummary['fail'] = 0
+
+    testCaseSummary['MAndroid2AgentVersion'] = "None"
+    testCaseSummary['testingDate'] = "None"
+    testCaseSummary['testDuration'] = "0 s"
+
+    return testCaseSummary
+
+def writeExcelTestReportSummary(testCaseSummary, testResults, testEnvironment):
+
+    testCaseResult = True
+    for result in testResults:
+        if (result['checkPointResult'] != "passed"):
+            testCaseResult = False
+            break
+
+    testCaseSummary['sum'] = testCaseSummary['sum'] + 1
+    if (testCaseResult == True):
+        testCaseSummary['pass'] = testCaseSummary['pass'] + 1
+    else:
+        testCaseSummary['fail'] = testCaseSummary['fail'] + 1
+
+    testCaseSummary['MAndroid2AgentVersion'] = testEnvironment['testUsers']['MO']['versions']['MAndroid2Agent']
+
+    return testCaseSummary
+
+def writeExcelTestReportDetail(testCaseDetailList, testEnvironment, testParameters, testCaseInfo, testResults):
+
+    # Initialization.
+    testCaseDetail = {}
+    testCaseResult = True
+
+    # Fill information.
+    testCaseDetail['TestCaseID'] = testCaseInfo['TestCaseID']
+    testCaseDetail['Description'] = testCaseInfo['Description']
+
+    testCaseDetail['moInfo'] = json.dumps(testEnvironment['testUsers']['MO'])
+    testCaseDetail['mtInfo'] = json.dumps(testEnvironment['testUsers']['MT'])
+    testCaseDetail['testParameters'] = json.dumps(testParameters)
+
+    testCaseDetail['Precondition'] = '\n'.join(testCaseInfo['Precondition'])
+    testCaseDetail['TestSteps'] = '\n'.join(testCaseInfo['TestSteps'])
+    testCaseDetail['CheckPoints'] = '\n'.join(testCaseInfo['CheckPoints'])
+
+    testCaseDetail['testResultList'] = '\n'.join(json.dumps(element) for element in testResults)
+
+    for result in testResults:
+        if (result['checkPointResult'] != "passed"):
+            testCaseResult = False
+            break
+    if (testCaseResult == True):
+        testCaseDetail['testResult'] = "passed"
+    else:
+        testCaseDetail['testResult'] = "failed"
+
+    testCaseDetailList.append(testCaseDetail)
+
+    return testCaseDetailList

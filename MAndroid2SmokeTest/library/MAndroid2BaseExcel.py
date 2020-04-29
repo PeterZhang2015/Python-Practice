@@ -1,3 +1,5 @@
+import json
+
 import xlsxwriter
 import os
 from datetime import datetime
@@ -11,40 +13,41 @@ class OperateReport:
     def __init__(self, wd):
         self.wd = wd
 
-    def summary(self, worksheet, data, devices):
+    def summary(self, worksheet, data):
         # Set width for columns and rows
-        worksheet.set_column("A:A", 15)
-        worksheet.set_column("B:B", 20)
-        worksheet.set_column("C:C", 20)
-        worksheet.set_column("D:D", 20)
+        worksheet.set_column("A:A", 30)
+        worksheet.set_column("B:B", 30)
+        worksheet.set_column("C:C", 30)
+        worksheet.set_column("D:D", 30)
 
         worksheet.set_row(1, 30)
         worksheet.set_row(2, 30)
         worksheet.set_row(3, 30)
         worksheet.set_row(4, 30)
         worksheet.set_row(5, 30)
+        worksheet.set_row(6, 30)
 
         define_format_H1 = get_format(self.wd, {'bold': True, 'font_size': 18})
-        define_format_H2 = get_format(self.wd, {'bold': True, 'font_size': 14})
+        define_format_H1.set_align("center")
         define_format_H1.set_border(1)
 
+        define_format_H2 = get_format(self.wd, {'bold': True, 'font_size': 14})
         define_format_H2.set_border(1)
-        define_format_H1.set_align("center")
         define_format_H2.set_align("center")
         define_format_H2.set_bg_color("blue")
         define_format_H2.set_color("#ffffff")
 
-        worksheet.merge_range('A1:D1', 'Landslide Test Report Summary', define_format_H1)
+        worksheet.merge_range('A1:D1', 'MAndroid2 Test Report Summary', define_format_H1)
         worksheet.merge_range('A2:D2', 'Summary', define_format_H2)
-        worksheet.insert_image('A1', 'Telstra_Icon.png', {'x_scale': 1, 'y_scale': 0.63})
+        worksheet.insert_image('A1', '../resources/Matrium_Icon.png', {'x_scale': 0.45, 'y_scale': 0.15})
 
-        _write_center_bold(worksheet, "A3", 'Landslide Version', self.wd)
-        _write_center_bold(worksheet, "A4", 'Test Duration', self.wd)
-        _write_center_bold(worksheet, "A5", 'Testing Date', self.wd)
+        _write_center_bold(worksheet, "A3", 'MAndroid2 Agent Version', self.wd)
+        _write_center_bold(worksheet, "A4", 'Testing Date', self.wd)
+        _write_center_bold(worksheet, "A5", 'Test Duration', self.wd)
 
-        _write_center(worksheet, "B3", data['landslideVersion'], self.wd)
-        _write_center(worksheet, "B4", data['testSumDate'], self.wd)
-        _write_center(worksheet, "B5", data['testDate'], self.wd)
+        _write_center(worksheet, "B3", data['MAndroid2AgentVersion'], self.wd)
+        _write_center(worksheet, "B4", data['testingDate'], self.wd)
+        _write_center(worksheet, "B5", data['testDuration'], self.wd)
 
         _write_center_bold(worksheet, "C3", "Test Case Number", self.wd)
         _write_center_bold(worksheet, "C4", "Passed Number", self.wd)
@@ -66,43 +69,43 @@ class OperateReport:
         worksheet.set_column("F:F", 20)
         worksheet.set_column("G:G", 20)
         worksheet.set_column("H:H", 20)
+        worksheet.set_column("I:I", 20)
+        worksheet.set_column("J:J", 20)
 
-        worksheet.set_row(1, 30)
-        worksheet.set_row(2, 30)
-        worksheet.set_row(3, 30)
-        worksheet.set_row(4, 30)
-        worksheet.set_row(5, 30)
-        worksheet.set_row(6, 30)
-        worksheet.set_row(7, 30)
-        worksheet.set_row(8, 30)
-        worksheet.set_row(9, 30)
-        worksheet.set_row(10, 30)
+        maxRowNum = 100
+        for i in range(1, maxRowNum):
+            worksheet.set_row(i, 30)
 
-        worksheet.merge_range('A1:H1', 'Landslide Test Case Detail', get_format(self.wd, {'bold': True, 'font_size': 18, 'align': 'center',
+        worksheet.merge_range('A1:I1', 'MAndroid2 Test Case Detail', get_format(self.wd, {'bold': True, 'font_size': 18, 'align': 'center',
                                                                     'valign': 'vcenter', 'bg_color': 'blue',
                                                                     'font_color': '#ffffff'}))
 
         _write_center_bold(worksheet, "A2", 'Test Case ID', self.wd)
-        _write_center_bold(worksheet, "B2", 'Test Case Introduction', self.wd)
-        _write_center_bold(worksheet, "C2", 'Test case function', self.wd)
-        _write_center_bold(worksheet, "D2", 'Test Pre-condition', self.wd)
-        _write_center_bold(worksheet, "E2", 'Teset Steps', self.wd)
-        _write_center_bold(worksheet, "F2", 'Check Point', self.wd)
-        _write_center_bold(worksheet, "G2", 'Test Result', self.wd)
-        _write_center_bold(worksheet, "H2", 'Note', self.wd)
+        _write_center_bold(worksheet, "B2", 'Test Case Description', self.wd)
+        _write_center_bold(worksheet, "C2", 'MO Info', self.wd)
+        _write_center_bold(worksheet, "D2", 'MT Info', self.wd)
+        _write_center_bold(worksheet, "E2", 'Test Parameters', self.wd)
+        _write_center_bold(worksheet, "F2", 'Test Precondition', self.wd)
+        _write_center_bold(worksheet, "G2", 'Test Steps', self.wd)
+        _write_center_bold(worksheet, "H2", 'Check Points', self.wd)
+        _write_center_bold(worksheet, "I2", 'Test Result List', self.wd)
+        _write_center_bold(worksheet, "J2", 'Test Result', self.wd)
 
         temp = 3
         for item in info:
-            # print(item)
-            _write_center(worksheet, "A" + str(temp), item["id"], self.wd)
-            _write_center(worksheet, "B" + str(temp), item["title"], self.wd)
-            _write_center(worksheet, "C" + str(temp), item["caseName"], self.wd)
-            _write_center(worksheet, "D" + str(temp), item["info"], self.wd)
-            _write_center(worksheet, "E" + str(temp), item["step"], self.wd)
-            _write_center(worksheet, "F" + str(temp), item["checkStep"], self.wd)
-            _write_center(worksheet, "G" + str(temp), item["result"], self.wd)
-            _write_center(worksheet, "H" + str(temp), "", self.wd)
+            print("Current item is {}".format(item))
+            _write_center(worksheet, "A" + str(temp), item["TestCaseID"], self.wd)
+            _write_center(worksheet, "B" + str(temp), item["Description"], self.wd)
+            _write_center(worksheet, "C" + str(temp), item["moInfo"], self.wd)
+            _write_center(worksheet, "D" + str(temp), item["mtInfo"], self.wd)
+            _write_center(worksheet, "E" + str(temp), item["testParameters"], self.wd)
+            _write_center(worksheet, "F" + str(temp), item["Precondition"], self.wd)
+            _write_center(worksheet, "G" + str(temp), item["TestSteps"], self.wd)
+            _write_center(worksheet, "H" + str(temp), item["CheckPoints"], self.wd)
+            _write_center(worksheet, "I" + str(temp), item["testResultList"], self.wd)
+            _write_center(worksheet, "J" + str(temp), item["testResult"], self.wd)
 
+           # _write_center(worksheet, "L" + str(temp), "", self.wd)
             temp = temp + 1
 
     def close(self):
@@ -148,7 +151,7 @@ def set_row(worksheet, num, height):
 def draw_statistic_pie(workbook, worksheet):
     chart1 = workbook.add_chart({'type': 'pie'})
     chart1.add_series({
-        'name': 'Test automation statistics',
+        'name': 'Test Automation Statistics',
         'categories': '=TestSummary!$C$4:$C$5',
         'values': '=TestSummary!$D$4:$D$5',
     })
@@ -158,24 +161,33 @@ def draw_statistic_pie(workbook, worksheet):
 
 
 if __name__ == '__main__':
-    sum = {'testSumDate': '25 s', 'sum': 10, 'pass': 5, 'testDate': '2017-06-05 15:26:49', 'fail': 5,
-           'landslideVersion': '18.0', 'versionName': 'release'}
+    sum = {'MAndroid2AgentVersion': '36', 'testingDate': '2020-04-28 15:26:49', 'testDuration': '25 S',
+           'pass': 5, 'sum': 7, 'pass': 5, 'fail': 2}
 
-    info = [{"id": 1, "title": "3G voice", "caseName": "testf01", "result": "Passed", "img": "C:\\Temp\\screen_shot\\IR60.3.1_MS1(a)_calls_a_local_number_06-16-2018_13-23-34.png", "info": "None", "step": "None", "checkStep": "None", "result": "Passed"},
-            {"id": 2, "title": "4G data",
-             "caseName": "testf01", "result": "Passed", "img": "C:\\Temp\\screen_shot\\IR60.2.2_Account_enquiry_via_USSD_06-16-2018_12-22-47.png", "info": "None", "step": "None", "checkStep": "None", "result": "Passed"}]
+    moInfo = {"IMSI": "505025104559746", "MSISDN": "+61418673947", "handsetID": "mcloud.matrium.com.au:7541",
+              "versions": {"MAndroid2": "2.20.41Build2020-04-08_18:06:26", "MAndroid2Agent": "2.19.33Build2020-03-27_04:28:38",
+                           "MAndroid2Plugin": "2.19.17Build2020-03-30_03:13:15"}}
+    mtInfo = {"IMSI": "505025703492762", "MSISDN": "+61402537622", "handsetID": "mcloud.matrium.com.au:7569",
+              "versions": {"MAndroid2": "2.20.41Build2020-04-08_16:08:09", "MAndroid2Agent": "2.19.33Build2020-03-27_04:28:38",
+                  "MAndroid2Plugin": "2.19.17Build2020-03-30_03:13:15"}}
+    testParameters = {"VoiceCall": {"Duration": 2}}
+
+    info = [{"TestCaseID": 1, "Description": "Basic voice call.", "moInfo": json.dumps(moInfo), "mtInfo": json.dumps(mtInfo),
+             "testParameters": json.dumps(testParameters), "Precondition": "None", "TestSteps": "1.Place voice call", "CheckPoints": "none",
+             "testResult": "Passed"},
+            {"TestCaseID": 2, "Description": "SMS.", "moInfo": json.dumps(mtInfo), "mtInfo": json.dumps(moInfo),
+             "testParameters": json.dumps(testParameters), "Precondition": "None", "TestSteps": "1.Send SMS.", "CheckPoints": "none",
+             "testResult": "Passed"}]
 
     ts = datetime.now().strftime("%Y%m%d_%H%M%S")
     # reportFileName = "MAndroid2TestReport_{}.xlsx".format(ts)
-    reportFileName = "LandslideReport.xlsx"
+    reportFileName = "MAndroid2Report.xlsx"
 
     workbook = xlsxwriter.Workbook(reportFileName)
     worksheet = workbook.add_worksheet("TestSummary")
     worksheet2 = workbook.add_worksheet("TestDetail")
     bc = OperateReport(wd=workbook)
 
-    devices = [{"phone_name": "SUMSANG S7", "pass": "1", "fail": "0"}]
-
-    bc.summary(worksheet, sum, devices)
+    bc.summary(worksheet, sum)
     bc.detail(worksheet2, info)
     bc.close()

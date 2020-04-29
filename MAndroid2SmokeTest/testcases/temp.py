@@ -1,24 +1,22 @@
 import pytest
 
-class TimeLine:
-    def __init__(self, instances):
-        self.instances = instances
 
-@pytest.fixture
-def timeline(request):
-    print("Current request.param is {}".format(request.param))
-    return TimeLine(request.param)
+@pytest.fixture(scope='class')
+def api(request):
+    print("Setup")
+    yield
+    print("TearDown")
 
-@pytest.mark.parametrize(
-    'input',
-    ([1, 2, 3], [2, 4, 6], [6, 8, 10]),
-    indirect=True
-)
-def test_timeline(timeline):
-    print("Current timeline is {}".format(timeline))
-    for instance in timeline.instances:
-        print ("Current instance is {}".format(instance))
-        assert instance % 2 == 0
+class TestLogin(object):
+
+    tempList = [1, 3, 5]
+
+
+    def test_login_001(self,api):
+        assert  1==1
+    def test_login_002(self):
+        assert  1==1
+
 
 if __name__ == "__main__":
     pytest.main([__file__])

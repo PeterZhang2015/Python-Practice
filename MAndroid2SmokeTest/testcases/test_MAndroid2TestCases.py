@@ -14,12 +14,13 @@ from MAndroid2SmokeTest.library.MAndroid2BaseYaml import getYam
 from MAndroid2SmokeTest.library.MAndroid2BaseMCloud import MCloudControl
 from MAndroid2SmokeTest.library.MAndroid2BaseCommon import addJsonReportMetaData, executeTestLogic, \
     verifyTestCaseResult, connectTestUsers, checkTestEnvironmentConfig, checkTestParametersConfig, \
-    checkTestCaseInfoConfig
+    checkTestCaseInfoConfig, createExcelTestReport, writeExcelTestReportSummary, initializeExcelSummary, \
+    writeExcelTestReportDetail
 from MAndroid2SmokeTest.library.MAndroid2BaseCommon import disconnectTestUsers
 from MAndroid2SmokeTest.library.MAndroid2BaseYaml import getAllConfigureInfo
 from MAndroid2SmokeTest.library.MAndroid2BaseYaml import getConfigureInfo
 
-from MAndroid2SmokeTest.library.MAndroid2BaseAPI import placeBasicVoiceCall
+from MAndroid2SmokeTest.library.MAndroid2BaseAPI import placeBasicVoiceCall, getMAndroid2Version
 from MAndroid2SmokeTest.library.MAndroid2BaseAPI import receiveBasicVoiceCall
 from MAndroid2SmokeTest.library.MAndroid2BaseAPI import endBasicVoiceCall
 
@@ -38,9 +39,43 @@ class TestMAndroid2TestCases():
     testEnvironmentName = "testEnvironment"
     testParametersPath = "../configuration/testParameters/voiceCall/"
     testParametersName = "testParameters"
+    excelReportPath = "../reports/excel/"
+    testCaseSummary = {}
+    testCaseDetailList = []
 
     testEnvironment = getAllConfigureInfo(testEnvironmentPath, testEnvironmentName)
     testParameters = getAllConfigureInfo(testParametersPath, testParametersName)
+
+    @classmethod
+    def setup_class(cls):
+        print("------ Setup before class TestMAndroid2TestCases ------")
+        # Check excel report directory exist.
+        if (os.path.exists(os.path.abspath(cls.excelReportPath)) == False):
+            os.makedirs(cls.excelReportPath)
+
+        # Create excel report and initialize test case summary.
+        cls.excelReport, cls.summarySheet, cls.detailSheet = createExcelTestReport(cls.excelReportPath)
+        cls.testCaseSummary = initializeExcelSummary(cls.testCaseSummary)
+
+        # Get test case starting date.
+        cls.testSuiteStartingTime = datetime.now()
+        cls.testCaseSummary['testingDate'] = cls.testSuiteStartingTime.strftime("%d/%b/%Y_%H:%M:%S.%f")
+
+
+    @classmethod
+    def teardown_class(cls):
+        print("------ Teardown after class TestMAndroid2TestCases ------")
+
+        # Get test case ending date.
+        cls.testSuiteEndTime = datetime.now()
+        diff = cls.testSuiteEndTime - cls.testSuiteStartingTime  # the result is a datetime.timedelta object
+        cls.testCaseSummary['testDuration'] = "{} s".format(diff.total_seconds())
+
+        # Write excel test report.
+        cls.excelReport.summary(cls.summarySheet, cls.testCaseSummary)
+        print ("testCaseDetailList is {}".format(cls.testCaseDetailList))
+        cls.excelReport.detail(cls.detailSheet, cls.testCaseDetailList)
+        cls.excelReport.close()
 
     @pytest.mark.parametrize("testEnvironment", testEnvironment)
     @pytest.mark.parametrize("testParameters", testParameters)
@@ -75,16 +110,13 @@ class TestMAndroid2TestCases():
         # Adding information to json report.
         addJsonReportMetaData(json_metadata, testEnvironment, testParameters, testCaseInfo, testResults)
 
+        # Write test case summary and test case detail.
+        self.testCaseSummary = writeExcelTestReportSummary(self.testCaseSummary, testResults, testEnvironment)
+        self.testCaseDetailList = writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters, testCaseInfo, testResults)
+
         # Assert test result.
         for result in testResults:
             assert (result['checkPointResult'] == "passed")
-
-    def test_example(self):
-        print ("***************************test Example************************************")
-
-
-
-
 
 
 if __name__ == '__main__':
