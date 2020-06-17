@@ -2,28 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ae7478cc-ca1f-4331-9640-045e230ddbd3" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Install_MAndroid2_In_MCloud.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testParameters/MMS/testParameters1.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testParameters/MMS/testParameters2.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testParameters/SMS/testParameters1.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testParameters/SMS/testParameters2.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/excel/MAndroid2TestReport_20200616_155640.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/html/htmlReport_16_Jun_2020_15_56_37.870949.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/json/jsonReport_16_Jun_2020_15_56_37.870949.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testCaseInfo/testCaseInfo.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testCaseInfo/testCaseInfo.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testEnvironment/testEnvironment1.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testEnvironment/testEnvironment1.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testEnvironment/testEnvironment2.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testEnvironment/testEnvironment2.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testParameters/voiceCall/testParameters1.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testParameters/voiceCall/testParameters1.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testParameters/voiceCall/testParameters2.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testParameters/voiceCall/testParameters2.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testParameters/MMS/testParameters1.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testParameters/MMS/testParameters1.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testParameters/MMS/testParameters2.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testParameters/MMS/testParameters2.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/library/MAndroid2BaseAPI.py" beforeDir="false" afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/library/MAndroid2BaseAPI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/library/MAndroid2BaseCommon.py" beforeDir="false" afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/library/MAndroid2BaseCommon.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/library/MAndroid2BaseMCloud.py" beforeDir="false" afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/library/MAndroid2BaseMCloud.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/excel/MAndroid2TestReport_20200429_185656.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/html/htmlReport_29_Apr_2020_18_56_54.052368.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/json/jsonReport_29_Apr_2020_18_56_54.052368.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/library/MAndroid2BaseExcel.py" beforeDir="false" afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/library/MAndroid2BaseExcel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/excel/MAndroid2TestReport_20200616_155640.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/html/assets/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/html/htmlReport_16_Jun_2020_15_56_37.870949.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/json/jsonReport_16_Jun_2020_15_56_37.870949.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/testcases/test_MAndroid2TestCases.py" beforeDir="false" afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/testcases/test_MAndroid2TestCases.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/Temp.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -243,22 +232,22 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="533" y="95" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1587344653274" />
-    <state width="1259" height="94" key="GridCell.Tab.0.bottom" timestamp="1592289149259">
+    <state width="1259" height="199" key="GridCell.Tab.0.bottom" timestamp="1592376234370">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="94" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1592289149259" />
-    <state width="1259" height="94" key="GridCell.Tab.0.center" timestamp="1592289149259">
+    <state width="1259" height="199" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1592376234370" />
+    <state width="1259" height="199" key="GridCell.Tab.0.center" timestamp="1592376234370">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="94" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1592289149259" />
-    <state width="1259" height="94" key="GridCell.Tab.0.left" timestamp="1592289149259">
+    <state width="1259" height="199" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1592376234370" />
+    <state width="1259" height="199" key="GridCell.Tab.0.left" timestamp="1592376234370">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="94" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1592289149259" />
-    <state width="1259" height="94" key="GridCell.Tab.0.right" timestamp="1592289149259">
+    <state width="1259" height="199" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1592376234370" />
+    <state width="1259" height="199" key="GridCell.Tab.0.right" timestamp="1592376234370">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="94" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1592289149259" />
+    <state width="1259" height="199" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1592376234370" />
     <state width="1259" height="186" key="GridCell.Tab.1.bottom" timestamp="1592271968895">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -287,10 +276,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="272" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1280.680@0.0.1280.680" timestamp="1587617766733" />
-    <state x="446" y="0" width="612" height="680" key="find.popup" timestamp="1588135967937">
+    <state x="446" y="0" width="612" height="680" key="find.popup" timestamp="1592373025422">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="446" y="0" width="612" height="680" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1588135967937" />
+    <state x="446" y="0" width="612" height="680" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1592373025422" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

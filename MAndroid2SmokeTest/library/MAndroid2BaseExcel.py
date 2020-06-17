@@ -99,7 +99,7 @@ class OperateReport:
             _write_center(worksheet, "C" + str(temp), item["moInfo"], self.wd)
             _write_center(worksheet, "D" + str(temp), item["mtInfo"], self.wd)
             _write_center(worksheet, "E" + str(temp), item["testParameters"], self.wd)
-            _write_center(worksheet, "F" + str(temp), item["Precondition"], self.wd)
+            _write_center(worksheet, "F" + str(temp), item["Preconditions"], self.wd)
             _write_center(worksheet, "G" + str(temp), item["TestSteps"], self.wd)
             _write_center(worksheet, "H" + str(temp), item["CheckPoints"], self.wd)
             _write_center(worksheet, "I" + str(temp), item["testResultList"], self.wd)
@@ -173,10 +173,10 @@ if __name__ == '__main__':
     testParameters = {"VoiceCall": {"Duration": 2}}
 
     info = [{"TestCaseID": 1, "Description": "Basic voice call.", "moInfo": json.dumps(moInfo), "mtInfo": json.dumps(mtInfo),
-             "testParameters": json.dumps(testParameters), "Precondition": "None", "TestSteps": "1.Place voice call", "CheckPoints": "none",
+             "testParameters": json.dumps(testParameters), "Preconditions": "None", "TestSteps": "1.Place voice call", "CheckPoints": "none",
              "testResult": "Passed"},
             {"TestCaseID": 2, "Description": "SMS.", "moInfo": json.dumps(mtInfo), "mtInfo": json.dumps(moInfo),
-             "testParameters": json.dumps(testParameters), "Precondition": "None", "TestSteps": "1.Send SMS.", "CheckPoints": "none",
+             "testParameters": json.dumps(testParameters), "Preconditions": "None", "TestSteps": "1.Send SMS.", "CheckPoints": "none",
              "testResult": "Passed"}]
 
     ts = datetime.now().strftime("%Y%m%d_%H%M%S")

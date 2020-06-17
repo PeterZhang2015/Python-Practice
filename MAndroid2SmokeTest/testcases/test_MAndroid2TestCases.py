@@ -15,7 +15,7 @@ from MAndroid2SmokeTest.library.MAndroid2BaseMCloud import MCloudControl
 from MAndroid2SmokeTest.library.MAndroid2BaseCommon import addJsonReportMetaData, executeTestLogic, \
     verifyTestCaseResult, connectTestUsers, checkTestEnvironmentConfig, checkTestParametersConfig, \
     checkTestCaseInfoConfig, createExcelTestReport, writeExcelTestReportSummary, initializeExcelSummary, \
-    writeExcelTestReportDetail
+    writeExcelTestReportDetail, executeTestCase
 from MAndroid2SmokeTest.library.MAndroid2BaseCommon import disconnectTestUsers
 from MAndroid2SmokeTest.library.MAndroid2BaseYaml import getAllConfigureInfo
 from MAndroid2SmokeTest.library.MAndroid2BaseYaml import getConfigureInfo
@@ -65,7 +65,6 @@ class TestMAndroid2TestCases():
         cls.testSuiteStartingTime = datetime.now()
         cls.testCaseSummary['testingDate'] = cls.testSuiteStartingTime.strftime("%d/%b/%Y_%H:%M:%S.%f")
 
-
     @classmethod
     def teardown_class(cls):
         print("------ Teardown after class TestMAndroid2TestCases ------")
@@ -81,129 +80,59 @@ class TestMAndroid2TestCases():
         cls.excelReport.detail(cls.detailSheet, cls.testCaseDetailList)
         cls.excelReport.close()
 
-
     @pytest.mark.parametrize("testEnvironment", testEnvironment)
     @pytest.mark.parametrize("testParameters", voiceCallTestParameters)
     def test_MAndroid2_VoiceCall(self, json_metadata, testEnvironment, testParameters):
-        # Initialization
-        responseList = []
-        testResults = []
+        # Define test case variables.
         testCaseKey = 'VoiceCall'
-        testCaseInfoFileName = "../configuration/testCaseInfo/testCaseInfo.yaml"
+        userFlag = 'MOMT'
 
-        # Checking Test parameters.
-        checkTestEnvironmentConfig(testEnvironment)
-        checkTestParametersConfig(testParameters, testCaseKey)
+        # Get and check test case info.
+        testCaseInfo = checkTestCaseInfoConfig(testCaseKey)
 
-        # Read test case info.
-        testCaseInfo = getConfigureInfo(testCaseInfoFileName, testCaseKey)
-        checkTestCaseInfoConfig(testCaseInfo)
-
-        # ConnectTestUsers.
-        connectTestUsers(testEnvironment, "MOMT")
-
-        # Starting test logic.
-        print("Starting voice call test case.")
-        responseList = executeTestLogic(testEnvironment, testCaseInfo, testCaseKey, testParameters)
-
-        # Disconnect testing users.
-        disconnectTestUsers()
-
-        # Verify test result.
-        testResults = verifyTestCaseResult(testEnvironment, testParameters, testCaseInfo, testCaseKey, responseList)
-
-        # Adding information to json report.
-        addJsonReportMetaData(json_metadata, testEnvironment, testParameters, testCaseInfo, testResults)
+        # Execute test case.
+        testResults = executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testParameters, testCaseInfo)
 
         # Write test case summary and test case detail.
         self.testCaseSummary = writeExcelTestReportSummary(self.testCaseSummary, testResults, testEnvironment)
-        self.testCaseDetailList = writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters, testCaseInfo, testResults)
-
-        # Assert test result.
-        for result in testResults:
-            assert (result['checkPointResult'] == "passed")
+        self.testCaseDetailList = writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters,
+                                                             testCaseInfo, testResults)
 
     @pytest.mark.parametrize("testEnvironment", testEnvironment)
     @pytest.mark.parametrize("testParameters", smsTestParameters)
     def test_MAndroid2_SMS(self, json_metadata, testEnvironment, testParameters):
-        # Initialization
-        responseList = []
-        testResults = []
+        # Define test case variables.
         testCaseKey = 'SMS'
-        testCaseInfoFileName = "../configuration/testCaseInfo/testCaseInfo.yaml"
+        userFlag = 'MOMT'
 
-        # Checking Test parameters.
-        checkTestEnvironmentConfig(testEnvironment)
-        checkTestParametersConfig(testParameters, testCaseKey)
+        # Get and check test case info.
+        testCaseInfo = checkTestCaseInfoConfig(testCaseKey)
 
-        # Read test case info.
-        testCaseInfo = getConfigureInfo(testCaseInfoFileName, testCaseKey)
-        checkTestCaseInfoConfig(testCaseInfo)
-
-        # ConnectTestUsers.
-        connectTestUsers(testEnvironment, "MOMT")
-
-        # Starting test logic.
-        print("Starting SMS test case.")
-        responseList = executeTestLogic(testEnvironment, testCaseInfo, testCaseKey, testParameters)
-
-        # Disconnect testing users.
-        disconnectTestUsers()
-
-        # Verify test result.
-        testResults = verifyTestCaseResult(testEnvironment, testParameters, testCaseInfo, testCaseKey, responseList)
-
-        # Adding information to json report.
-        addJsonReportMetaData(json_metadata, testEnvironment, testParameters, testCaseInfo, testResults)
+        # Execute test case.
+        testResults = executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testParameters, testCaseInfo)
 
         # Write test case summary and test case detail.
         self.testCaseSummary = writeExcelTestReportSummary(self.testCaseSummary, testResults, testEnvironment)
-        self.testCaseDetailList = writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters, testCaseInfo, testResults)
-
-        # Assert test result.
-        for result in testResults:
-            assert (result['checkPointResult'] == "passed")
+        self.testCaseDetailList = writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters,
+                                                             testCaseInfo, testResults)
 
     @pytest.mark.parametrize("testEnvironment", testEnvironment)
     @pytest.mark.parametrize("testParameters", mmsTestParameters)
     def test_MAndroid2_MMS(self, json_metadata, testEnvironment, testParameters):
-        # Initialization
-        responseList = []
-        testResults = []
-        testCaseKey = 'SMS'
-        testCaseInfoFileName = "../configuration/testCaseInfo/testCaseInfo.yaml"
+        # Define test case variables.
+        testCaseKey = 'MMS'
+        userFlag = 'MOMT'
 
-        # Checking Test parameters.
-        checkTestEnvironmentConfig(testEnvironment)
-        checkTestParametersConfig(testParameters, testCaseKey)
+        # Get and check test case info.
+        testCaseInfo = checkTestCaseInfoConfig(testCaseKey)
 
-        # Read test case info.
-        testCaseInfo = getConfigureInfo(testCaseInfoFileName, testCaseKey)
-        checkTestCaseInfoConfig(testCaseInfo)
-
-        # ConnectTestUsers.
-        connectTestUsers(testEnvironment, "MOMT")
-
-        # Starting test logic.
-        print("Starting MMS test case.")
-        responseList = executeTestLogic(testEnvironment, testCaseInfo, testCaseKey, testParameters)
-
-        # Disconnect testing users.
-        disconnectTestUsers()
-
-        # Verify test result.
-        testResults = verifyTestCaseResult(testEnvironment, testParameters, testCaseInfo, testCaseKey, responseList)
-
-        # Adding information to json report.
-        addJsonReportMetaData(json_metadata, testEnvironment, testParameters, testCaseInfo, testResults)
+        # Execute test case.
+        testResults = executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testParameters, testCaseInfo)
 
         # Write test case summary and test case detail.
         self.testCaseSummary = writeExcelTestReportSummary(self.testCaseSummary, testResults, testEnvironment)
-        self.testCaseDetailList = writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters, testCaseInfo, testResults)
-
-        # Assert test result.
-        for result in testResults:
-            assert (result['checkPointResult'] == "passed")
+        self.testCaseDetailList = writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters,
+                                                             testCaseInfo, testResults)
 
 if __name__ == '__main__':
     # Generate timestamp.

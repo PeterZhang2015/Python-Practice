@@ -186,7 +186,6 @@ def receiveSMS(MAndroid2AgentPath, handsetId):
 
     return dicResponse
 
-
 def getMMSUrl(MAndroid2AgentPath, handsetId):
 
     # Construct command
@@ -221,7 +220,6 @@ def unlockHandsetScreen(MAndroid2AgentPath, handsetId):
 
     return dicResponse
 
-
 def sendMMS(MAndroid2AgentPath, handsetId, calledUserNumber, mmsBody, mmsUrl):
 
     # Initialization
@@ -231,7 +229,7 @@ def sendMMS(MAndroid2AgentPath, handsetId, calledUserNumber, mmsBody, mmsUrl):
     mmsBody = mmsBody.translate(str.maketrans({" ": r"\ "}))
     command = "java -jar {} {} {} mms_address {} mms_body \"{}\" mms_url \"{}\"".format(MAndroid2AgentPath,
                                                                          handsetId,
-                                                                         SEND_SMS_CODE,
+                                                                         SEND_MMS_CODE,
                                                                          calledUserNumber,
                                                                          mmsBody,
                                                                          mmsUrl)
@@ -241,6 +239,28 @@ def sendMMS(MAndroid2AgentPath, handsetId, calledUserNumber, mmsBody, mmsUrl):
     # Execute command
     response = subprocess.check_output(shlex.split(command))
     print("Response of sending MMS is: ", json.loads(response))
+
+    # Record command and response
+    dicResponse['command'] = command
+    dicResponse['response'] = json.loads(response)
+
+    return dicResponse
+
+def receiveMMS(MAndroid2AgentPath, handsetId):
+
+    # Initialization
+    dicResponse = {}
+
+    # Construct command
+    command = "java -jar {} {} {}".format(MAndroid2AgentPath,
+                                         handsetId,
+                                         RECEIVE_MMS_CODE)
+
+    print("Command of receiving MMS is: ", command)
+
+    # Execute command
+    response = subprocess.check_output(command.split())
+    print("Response of receiving MMS is: ", json.loads(response))
 
     # Record command and response
     dicResponse['command'] = command

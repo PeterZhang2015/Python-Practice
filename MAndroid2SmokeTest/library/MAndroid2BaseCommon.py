@@ -11,7 +11,7 @@ from datetime import datetime
 from MAndroid2SmokeTest.library.MAndroid2BaseAPI import endBasicVoiceCall, placeBasicVoiceCall, receiveBasicVoiceCall, \
     getMAndroid2Version, sendSMS, receiveSMS, getMMSUrl, unlockHandsetScreen, sendMMS, receiveMMS
 from MAndroid2SmokeTest.library.MAndroid2BaseExcel import OperateReport
-from MAndroid2SmokeTest.library.MAndroid2BaseYaml import getYam
+from MAndroid2SmokeTest.library.MAndroid2BaseYaml import getYam, getConfigureInfo
 from MAndroid2SmokeTest.library.MAndroid2BaseMCloud import MCloudControl
 
 PATH = lambda p: os.path.abspath(
@@ -106,14 +106,51 @@ def checkTestParametersConfig(testParameters, testCaseKey):
         assert ("Duration" in testParameters['MMS'])
         assert ("mmsBody" in testParameters['MMS'])
 
-def checkTestCaseInfoConfig(testCaseInfo):
+def checkTestCaseInfoConfig(testCaseKey):
+    # Get test case info configuration.
+    testCaseInfoFileName = "../configuration/testCaseInfo/testCaseInfo.yaml"
+    testCaseInfo = getConfigureInfo(testCaseInfoFileName, testCaseKey)
+
     # Check test case info from configuration file.
     assert ("TestCaseID" in testCaseInfo)
     assert ("Description" in testCaseInfo)
-    assert ("Precondition" in testCaseInfo)
+    assert ("Preconditions" in testCaseInfo)
     assert ("TestSteps" in testCaseInfo)
     assert ("CheckPoints" in testCaseInfo)
 
+    # Return
+    return testCaseInfo
+
+def executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testParameters, testCaseInfo):
+
+    # Initialization
+    responseList = []
+    testResults = []
+
+    # Checking Test parameters.
+    checkTestEnvironmentConfig(testEnvironment)
+    checkTestParametersConfig(testParameters, testCaseKey)
+
+    # ConnectTestUsers.
+    connectTestUsers(testEnvironment, userFlag)
+
+    # Starting test logic.
+    responseList = executeTestLogic(testEnvironment, testCaseInfo, testCaseKey, testParameters)
+
+    # Disconnect testing users.
+    disconnectTestUsers()
+
+    # Verify test result.
+    testResults = verifyTestCaseResult(testEnvironment, testParameters, testCaseInfo, testCaseKey, responseList)
+
+    # Adding information to json report.
+    addJsonReportMetaData(json_metadata, testEnvironment, testParameters, testCaseInfo, testResults)
+
+    # Assert test result.
+    for result in testResults:
+        assert (result['checkPointResult'] == "passed")
+
+    return testResults
 
 def executeTestLogic(testEnvironment, testCaseInfo, testCaseKey, testParameters):
 
@@ -170,7 +207,7 @@ def executeTestLogic(testEnvironment, testCaseInfo, testCaseKey, testParameters)
     # Test logic for MMS.
     elif (testCaseKey == 'MMS'):
 
-        testPreconditions = testCaseInfo['Precondition']
+        testPreconditions = testCaseInfo['Preconditions']
         for testPrecondition in testPreconditions:
             response = {}
             if (testPrecondition == 'Get a file as MMS url by 1033 API.'):
@@ -185,19 +222,19 @@ def executeTestLogic(testEnvironment, testCaseInfo, testCaseKey, testParameters)
                                           testEnvironment['testUsers']['MO']['handsetID'])
                 response['unlockHandsetScreen'] = unlockHandsetScreenResponse
             elif (testStep == 'Send MMS.'):
-                sendSMSResponse = sendMMS(testEnvironment['MAndroid2AgentPath'],
+                sendMMSResponse = sendMMS(testEnvironment['MAndroid2AgentPath'],
                                           testEnvironment['testUsers']['MO']['handsetID'],
                                           testEnvironment['testUsers']['MT']['MSISDN'],
                                           testParameters['MMS']['mmsBody'],
                                           mmsUrl)
-                response['sendMMS'] = sendSMSResponse
-            elif (testStep == 'Wait for SMS duraton.'):
-                if (testParameters['SMS']['Duration'] > 0):
-                        sleep(testParameters['SMS']['Duration'])
-            elif (testStep == 'Receive SMS.'):
-                receiveSMSResponse = receiveSMS(testEnvironment['MAndroid2AgentPath'],
+                response['sendMMS'] = sendMMSResponse
+            elif (testStep == 'Wait for MMS duraton.'):
+                if (testParameters['MMS']['Duration'] > 0):
+                        sleep(testParameters['MMS']['Duration'])
+            elif (testStep == 'Receive MMS.'):
+                receiveMMSResponse = receiveMMS(testEnvironment['MAndroid2AgentPath'],
                                                 testEnvironment['testUsers']['MT']['handsetID'])
-                response['receiveSMS'] = receiveSMSResponse
+                response['receiveMMS'] = receiveMMSResponse
             else:
                 assert ("Test step {} cannot be recognized in test case.".format(testStep))
 
@@ -563,7 +600,6 @@ def verifyReceiveMMSResponse(testEnvironment, testParameters, response):
     # Return result.
     return testResult
 
-
 def createExcelTestReport(excelReportPath):
 
     # Get current time.
@@ -577,7 +613,6 @@ def createExcelTestReport(excelReportPath):
     excelReport = OperateReport(wd=workbook)
 
     return excelReport, summarySheet, detailSheet
-
 
 def initializeExcelSummary(testCaseSummary):
 
@@ -623,7 +658,7 @@ def writeExcelTestReportDetail(testCaseDetailList, testEnvironment, testParamete
     testCaseDetail['mtInfo'] = json.dumps(testEnvironment['testUsers']['MT'])
     testCaseDetail['testParameters'] = json.dumps(testParameters)
 
-    testCaseDetail['Precondition'] = '\n'.join(testCaseInfo['Precondition'])
+    testCaseDetail['Preconditions'] = '\n'.join(testCaseInfo['Preconditions'])
     testCaseDetail['TestSteps'] = '\n'.join(testCaseInfo['TestSteps'])
     testCaseDetail['CheckPoints'] = '\n'.join(testCaseInfo['CheckPoints'])
 
