@@ -1,0 +1,7 @@
+testParameters:
+    MMS:
+        Duration: 8
+        mmsBody: 'MAndroid2 MMS test.'
+
+
+

@@ -2,41 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ae7478cc-ca1f-4331-9640-045e230ddbd3" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/library/MAndroid2Report.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/excel/MAndroid2TestReport_20200429_185656.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/html/htmlReport_29_Apr_2020_18_56_54.052368.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/json/jsonReport_29_Apr_2020_18_56_54.052368.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/resources/Matrium_Icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/testcases/Temp2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Install_MAndroid2_In_MCloud.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testParameters/MMS/testParameters1.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testParameters/MMS/testParameters2.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testParameters/SMS/testParameters1.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testParameters/SMS/testParameters2.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/excel/MAndroid2TestReport_20200616_155640.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/html/htmlReport_16_Jun_2020_15_56_37.870949.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/json/jsonReport_16_Jun_2020_15_56_37.870949.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testCaseInfo/testCaseInfo.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testCaseInfo/testCaseInfo.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testEnvironment/testEnvironment1.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testEnvironment/testEnvironment1.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testEnvironment/testEnvironment2.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testEnvironment/testEnvironment2.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testParameters/voiceCall/testParameters1.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testParameters/voiceCall/testParameters1.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testParameters/voiceCall/testParameters2.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/configuration/testParameters/voiceCall/testParameters2.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/library/MAndroid2BaseAPI.py" beforeDir="false" afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/library/MAndroid2BaseAPI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/library/MAndroid2BaseCommon.py" beforeDir="false" afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/library/MAndroid2BaseCommon.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/library/MAndroid2BaseExcel.py" beforeDir="false" afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/library/MAndroid2BaseExcel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/excel/MAndroid2TestReportTemplate.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/html/htmlReport_27_Apr_2020_16_12_46.056595.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/html/htmlReport_27_Apr_2020_18_33_35.927773.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/html/htmlReport_27_Apr_2020_18_35_44.622788.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/html/htmlReport_27_Apr_2020_18_37_22.465503.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/html/htmlReport_27_Apr_2020_18_38_18.000810.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/html/htmlReport_27_Apr_2020_18_39_13.160945.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/html/htmlReport_27_Apr_2020_18_48_01.508524.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/html/htmlReport_27_Apr_2020_18_49_05.206073.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/html/htmlReport_27_Apr_2020_18_55_23.076221.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/html/htmlReport_27_Apr_2020_19_03_43.430212.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/html/htmlReport_27_Apr_2020_19_14_42.873906.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/json/jsonReport_27_Apr_2020_16_12_46.056595.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/json/jsonReport_27_Apr_2020_18_33_35.927773.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/json/jsonReport_27_Apr_2020_18_35_44.622788.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/json/jsonReport_27_Apr_2020_18_37_22.465503.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/json/jsonReport_27_Apr_2020_18_38_18.000810.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/json/jsonReport_27_Apr_2020_18_39_13.160945.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/json/jsonReport_27_Apr_2020_18_48_01.508524.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/json/jsonReport_27_Apr_2020_18_49_05.206073.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/json/jsonReport_27_Apr_2020_18_55_23.076221.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/json/jsonReport_27_Apr_2020_19_03_43.430212.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/json/jsonReport_27_Apr_2020_19_14_42.873906.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/testcases/temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/testcases/temp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/library/MAndroid2BaseMCloud.py" beforeDir="false" afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/library/MAndroid2BaseMCloud.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/excel/MAndroid2TestReport_20200429_185656.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/html/htmlReport_29_Apr_2020_18_56_54.052368.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/reports/json/jsonReport_29_Apr_2020_18_56_54.052368.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/MAndroid2SmokeTest/testcases/test_MAndroid2TestCases.py" beforeDir="false" afterPath="$PROJECT_DIR$/MAndroid2SmokeTest/testcases/test_MAndroid2TestCases.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/Temp.py" afterDir="false" />
     </list>
@@ -68,7 +53,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/MAndroid2SmokeTest/testcases" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -87,7 +72,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.test_MAndroid2TestCases">
-    <configuration name="MAndroid2BaseExcel" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="MAndroid2BaseAPI" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Test" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -99,7 +84,49 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MAndroid2SmokeTest/library/MAndroid2BaseExcel.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MAndroid2SmokeTest/library/MAndroid2BaseAPI.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="MAndroid2BaseCommon" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Test" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MAndroid2SmokeTest/library" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MAndroid2SmokeTest/library/MAndroid2BaseCommon.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="MAndroid2BaseMCloud" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Test" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MAndroid2SmokeTest/library" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MAndroid2SmokeTest/library/MAndroid2BaseMCloud.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -121,48 +148,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Temp.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Temp2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Test" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MAndroid2SmokeTest/testcases" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MAndroid2SmokeTest/testcases/Temp2.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="temp" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Test" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MAndroid2SmokeTest/testcases" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MAndroid2SmokeTest/testcases/temp.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -194,18 +179,18 @@
     </configuration>
     <list>
       <item itemvalue="Python.test_MAndroid2TestCases" />
-      <item itemvalue="Python.temp" />
-      <item itemvalue="Python.MAndroid2BaseExcel" />
+      <item itemvalue="Python.MAndroid2BaseMCloud" />
+      <item itemvalue="Python.MAndroid2BaseCommon" />
+      <item itemvalue="Python.MAndroid2BaseAPI" />
       <item itemvalue="Python.Temp" />
-      <item itemvalue="Python.Temp2" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.test_MAndroid2TestCases" />
-        <item itemvalue="Python.Temp2" />
         <item itemvalue="Python.Temp" />
-        <item itemvalue="Python.MAndroid2BaseExcel" />
-        <item itemvalue="Python.temp" />
+        <item itemvalue="Python.MAndroid2BaseAPI" />
+        <item itemvalue="Python.MAndroid2BaseCommon" />
+        <item itemvalue="Python.MAndroid2BaseMCloud" />
       </list>
     </recent_temporary>
   </component>
@@ -258,42 +243,42 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="533" y="95" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1587344653274" />
-    <state width="1250" height="164" key="GridCell.Tab.0.bottom" timestamp="1588150612202">
+    <state width="1259" height="94" key="GridCell.Tab.0.bottom" timestamp="1592289149259">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1250" height="164" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1588150612202" />
-    <state width="1250" height="164" key="GridCell.Tab.0.center" timestamp="1588150612202">
+    <state width="1259" height="94" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1592289149259" />
+    <state width="1259" height="94" key="GridCell.Tab.0.center" timestamp="1592289149259">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1250" height="164" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1588150612202" />
-    <state width="1250" height="164" key="GridCell.Tab.0.left" timestamp="1588150612202">
+    <state width="1259" height="94" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1592289149259" />
+    <state width="1259" height="94" key="GridCell.Tab.0.left" timestamp="1592289149259">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1250" height="164" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1588150612202" />
-    <state width="1250" height="164" key="GridCell.Tab.0.right" timestamp="1588150612202">
+    <state width="1259" height="94" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1592289149259" />
+    <state width="1259" height="94" key="GridCell.Tab.0.right" timestamp="1592289149259">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1250" height="164" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1588150612202" />
-    <state width="1259" height="173" key="GridCell.Tab.1.bottom" timestamp="1585115894743">
+    <state width="1259" height="94" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1592289149259" />
+    <state width="1259" height="186" key="GridCell.Tab.1.bottom" timestamp="1592271968895">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="173" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1585115894743" />
-    <state width="1259" height="173" key="GridCell.Tab.1.center" timestamp="1585115894743">
+    <state width="1259" height="186" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1592271968895" />
+    <state width="1259" height="186" key="GridCell.Tab.1.center" timestamp="1592271968894">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="173" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1585115894743" />
-    <state width="1259" height="173" key="GridCell.Tab.1.left" timestamp="1585115894743">
+    <state width="1259" height="186" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1592271968894" />
+    <state width="1259" height="186" key="GridCell.Tab.1.left" timestamp="1592271968894">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="173" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1585115894743" />
-    <state width="1259" height="173" key="GridCell.Tab.1.right" timestamp="1585115894743">
+    <state width="1259" height="186" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1592271968894" />
+    <state width="1259" height="186" key="GridCell.Tab.1.right" timestamp="1592271968895">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1259" height="173" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1585115894743" />
-    <state x="142" y="0" key="SettingsEditor" timestamp="1588053186836">
+    <state width="1259" height="186" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1592271968895" />
+    <state x="106" y="0" key="SettingsEditor" timestamp="1591748614251">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1588053186836" />
+    <state x="106" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1591748614251" />
     <state x="336" y="166" key="com.intellij.ide.util.TipDialog" timestamp="1587259243962">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -306,10 +291,6 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="446" y="0" width="612" height="680" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1588135967937" />
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1580446907090">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1580446907090" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

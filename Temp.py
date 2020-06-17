@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import subprocess
 
 from selenium import webdriver
 
@@ -66,21 +67,32 @@ import json
 # str1 = ''.join(json.dumps(e) for e in list1)
 # print (str1)
 
-excelReportPath = "/reports/excel/"
-print("excelReportPath is {}.".format(excelReportPath))
+# excelReportPath = "/reports/excel/"
+# print("excelReportPath is {}.".format(excelReportPath))
+#
+#
+# absExcelReportPath = os.path.abspath(excelReportPath)
+# print("absExcelReportPath is {}.".format(absExcelReportPath))
+#
+#
+# if (os.path.exists(absExcelReportPath)):
+#     print ("{} exists.".format(absExcelReportPath))
+# else:
+#     print ("{} does not exist.".format(absExcelReportPath))
+#     # os.makedirs(absExcelReportPath)
+import shlex
 
+body = "MAndroid2 test example"
 
-absExcelReportPath = os.path.abspath(excelReportPath)
-print("absExcelReportPath is {}.".format(absExcelReportPath))
+strBody = body.translate(str.maketrans({" ":  r"\ "}))
 
+command1 = "echo java -jar sms_body \"{}\"".format(strBody)
 
-if (os.path.exists(absExcelReportPath)):
-    print ("{} exists.".format(absExcelReportPath))
-else:
-    print ("{} does not exist.".format(absExcelReportPath))
-    # os.makedirs(absExcelReportPath)
+print (command1)
 
+command2 = shlex.split(command1)
 
+print (command2)
 
-
-
+response = subprocess.check_output(command2)
+print("Response of sending SMS is: ", response)

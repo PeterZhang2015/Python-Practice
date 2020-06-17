@@ -102,6 +102,74 @@ class MCloudControl(object):
             print('[!] HTTP {0} calling [{1}]'.format(self._url('/user/devices/' + deviceSerial)))
             return False
 
+    def listDevices(self):
+        # Set authorization Token to acces mCloud through REST API.
+        headers = {"Authorization": self.mcloudLoginToken}
+
+        # Call REST API to get the devices list on mcloud.
+        print("##########Calling REST API to get devices list on MCloud.")
+        resp = requests.get(self._url('/devices'),
+                             headers=headers)
+        print (self._url('/devices'))
+        dictResponse = json.loads(resp.content)
+        # print(dictResponse)
+
+        if resp.status_code == 200:
+            return dictResponse['devices']
+        else:
+            print('[!] HTTP {0} calling [{1}]'.format(self._url('/devices')))
+            return None
+
+    def listAllAvailableDevices(self, testUser):
+        # Initialization.
+        availableDeviceList = []
+
+        # Set authorization Token to acces mCloud through REST API.
+        headers = {"Authorization": self.mcloudLoginToken}
+
+        # Call REST API to get the devices list on mcloud.
+        print("##########Calling REST API to get devices list on MCloud.")
+        resp = requests.get(self._url('/devices'),
+                            headers=headers)
+        print(self._url('/devices'))
+        dictResponse = json.loads(resp.content)
+        # print(dictResponse)
+
+        if resp.status_code == 200:
+            # Check REST API response.
+            # Get device list from response body.
+            devicesList = dictResponse['devices']
+
+            # Check whether any handset is connected on mcloud.
+            if (len(devicesList) == 0):
+                print('There is no handset connected to the mcloud.')
+                return None
+
+            # Loop to check the device that can be matched with the testing user IMSI.
+            for device in devicesList:
+                # Only check the present handsets.
+                phoneNumber = device["phone"]["phoneNumber"]
+                if (phoneNumber == None) and ("notes" in device) and (device["notes"] != ""):
+                    phoneNumber = device["notes"]
+
+                if ((device["present"] == True) and (device["ready"] == True) and (
+                        (device["owner"] == None) or (device["owner"]["email"] == testUser)) and (
+                        device["phone"]["imsi"] != None) and (phoneNumber != None) and (
+                        device["phone"]["network"] != "UNKNOWN")):
+                    availableDevice = {}
+                    availableDevice["serial"] = device["serial"]
+                    availableDevice["imsi"] = device["phone"]["imsi"]
+                    availableDevice["phoneNumber"] = phoneNumber
+                    availableDeviceList.append(availableDevice)
+
+            if (len(availableDeviceList) == 0):
+                print('There is no available device on MCloud.')
+                return None
+            else:
+                return availableDeviceList
+        else:
+            print('[!] HTTP {0} calling [{1}]'.format(self._url('/devices')))
+            return None
 
     def getDeviceSerialByImsi(self, userIMSI):
         # Initialize return value.
@@ -126,7 +194,7 @@ class MCloudControl(object):
 
             # Check whether any handset is connected on mcloud.
             if (len(devicesList) == 0):
-                raise SystemExit("There is not handset connected to the mcloud.")
+                raise SystemExit("There is no handset connected to the mcloud.")
 
             # Loop to check the device that can be matched with the testing user IMSI.
             for device in devicesList:
@@ -226,12 +294,29 @@ class MCloudControl(object):
 
 
 if __name__ == '__main__':
-    testIMSI = '505025504563848'
+    # testIMSI = '505025504563848'
+    # mcloud = MCloudControl()
+    # handset_id = mcloud.connectToMcloudUser(testIMSI)
+    #
+    # time.sleep (5)
+    # mcloud.tearDownUsingDevices(mcloud.deviceSerialList)
+
+
+    testUser = "Peter.Zhang@matrium.com.au"
+    apkPath = "C://Work//Mandroid2//app-debug.apk"
     mcloud = MCloudControl()
-    handset_id = mcloud.connectToMcloudUser(testIMSI)
+    availableDeviceList = mcloud.listAllAvailableDevices(testUser)
+    print(len(availableDeviceList))
+    print("Connected handset ID: {}".format(availableDeviceList))
 
-    time.sleep (5)
+    for availableDevice in availableDeviceList:
+        handset_id = mcloud.connectToMcloudUser(availableDevice["imsi"])
+        print("Connected handset ID: {}".format(availableDeviceList))
+
+        # Re-install latest MAndroid2 APK.
+        process = subprocess.Popen(['adb', '-s', handset_id, 'install', '-r', apkPath],
+                                   stdout=subprocess.PIPE,
+                                   universal_newlines=True)
     mcloud.tearDownUsingDevices(mcloud.deviceSerialList)
-
 
 

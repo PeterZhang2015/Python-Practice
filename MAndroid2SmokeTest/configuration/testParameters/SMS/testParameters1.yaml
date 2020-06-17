@@ -1,0 +1,6 @@
+testParameters:
+    SMS:
+        Duration: 5
+        smsBody: 'MAndroid2 SMS test.'
+
+

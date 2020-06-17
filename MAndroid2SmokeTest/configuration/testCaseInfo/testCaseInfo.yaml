@@ -1,7 +1,7 @@
 VoiceCall:
     TestCaseID: 'MAndroid2_Smoke_Test_001_Voice_Call'
     Description: 'Basic voice call.'
-    Precondition: 'None.'
+    Preconditions: 'None.'
     TestSteps:
     - 'Place voice call.'
     - 'Receive voice call.'
@@ -12,8 +12,31 @@ VoiceCall:
     - 'Receive voice call successfully.'
     - 'End voice call successfully.'
     
+SMS:
+    TestCaseID: 'MAndroid2_Smoke_Test_002_SMS'
+    Description: 'Basic SMS.'
+    Preconditions: 'None.'
+    TestSteps:
+    - 'Send SMS.'
+    - 'Wait for SMS duraton.'
+    - 'Receive SMS.'
+    CheckPoints:
+    - 'Send SMS successfully.'
+    - 'Receive SMS successfully.'
         
-        
-        
+MMS:
+    TestCaseID: 'MAndroid2_Smoke_Test_003_MMS'
+    Description: 'Basic MMS.'
+    Preconditions: 
+    - 'Get a file as MMS url by 1033 API.'
+    TestSteps:
+    - 'Unlock handset screen.'
+    - 'Send MMS.'
+    - 'Wait for MMS duraton.'
+    - 'Receive MMS.'
+    CheckPoints:
+    - 'Unlock handset screen successfully.'
+    - 'Send MMS successfully.'
+    - 'Receive MMS successfully.'    
 
 
