@@ -4,7 +4,7 @@ import sys
 
 # from ..library.MAndroid2BaseYaml import getYam
 # from ..library.MAndroid2BaseMCloud import MCloudControl
-from datetime import datetime
+from datetime import datetime, timedelta
 from os import listdir
 from time import sleep
 
@@ -42,6 +42,7 @@ class TestMAndroid2TestCases():
     voiceCallTestParametersPath = "../configuration/testParameters/voiceCall/"
     smsTestParametersPath = "../configuration/testParameters/SMS/"
     mmsTestParametersPath = "../configuration/testParameters/MMS/"
+    webBrowsingTestParametersPath = "../configuration/testParameters/webBrowsing/"
     testCaseSummary = {}
     testCaseDetailList = []
 
@@ -49,6 +50,7 @@ class TestMAndroid2TestCases():
     voiceCallTestParameters = getAllConfigureInfo(voiceCallTestParametersPath, testParametersName)
     smsTestParameters = getAllConfigureInfo(smsTestParametersPath, testParametersName)
     mmsTestParameters = getAllConfigureInfo(mmsTestParametersPath, testParametersName)
+    webBrowsingTestParameters = getAllConfigureInfo(webBrowsingTestParametersPath, testParametersName)
 
     @classmethod
     def setup_class(cls):
@@ -72,7 +74,8 @@ class TestMAndroid2TestCases():
         # Get test case ending date.
         cls.testSuiteEndTime = datetime.now()
         diff = cls.testSuiteEndTime - cls.testSuiteStartingTime  # the result is a datetime.timedelta object
-        cls.testCaseSummary['testDuration'] = "{} s".format(diff.total_seconds())
+        formatedDiff = str(timedelta(seconds=diff.seconds))
+        cls.testCaseSummary['testDuration'] = "{}".format(formatedDiff)
 
         # Write excel test report.
         cls.excelReport.summary(cls.summarySheet, cls.testCaseSummary)
@@ -98,6 +101,10 @@ class TestMAndroid2TestCases():
         self.testCaseDetailList = writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters,
                                                              testCaseInfo, testResults)
 
+        # Assert test result.
+        for result in testResults:
+            assert (result['checkPointResult'] == "passed")
+
     @pytest.mark.parametrize("testEnvironment", testEnvironment)
     @pytest.mark.parametrize("testParameters", smsTestParameters)
     def test_MAndroid2_SMS(self, json_metadata, testEnvironment, testParameters):
@@ -116,6 +123,10 @@ class TestMAndroid2TestCases():
         self.testCaseDetailList = writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters,
                                                              testCaseInfo, testResults)
 
+        # Assert test result.
+        for result in testResults:
+            assert (result['checkPointResult'] == "passed")
+
     @pytest.mark.parametrize("testEnvironment", testEnvironment)
     @pytest.mark.parametrize("testParameters", mmsTestParameters)
     def test_MAndroid2_MMS(self, json_metadata, testEnvironment, testParameters):
@@ -133,6 +144,32 @@ class TestMAndroid2TestCases():
         self.testCaseSummary = writeExcelTestReportSummary(self.testCaseSummary, testResults, testEnvironment)
         self.testCaseDetailList = writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters,
                                                              testCaseInfo, testResults)
+
+        # Assert test result.
+        for result in testResults:
+            assert (result['checkPointResult'] == "passed")
+
+    @pytest.mark.parametrize("testEnvironment", testEnvironment)
+    @pytest.mark.parametrize("testParameters", webBrowsingTestParameters)
+    def test_MAndroid2_WebBrowsing(self, json_metadata, testEnvironment, testParameters):
+        # Define test case variables.
+        testCaseKey = 'WebBrowsing'
+        userFlag = 'MO'
+
+        # Get and check test case info.
+        testCaseInfo = checkTestCaseInfoConfig(testCaseKey)
+
+        # Execute test case.
+        testResults = executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testParameters, testCaseInfo)
+
+        # Write test case summary and test case detail.
+        self.testCaseSummary = writeExcelTestReportSummary(self.testCaseSummary, testResults, testEnvironment)
+        self.testCaseDetailList = writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters,
+                                                             testCaseInfo, testResults)
+
+        # Assert test result.
+        for result in testResults:
+            assert (result['checkPointResult'] == "passed")
 
 if __name__ == '__main__':
     # Generate timestamp.

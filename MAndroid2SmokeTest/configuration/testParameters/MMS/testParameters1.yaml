@@ -1,5 +1,6 @@
 testParameters:
     MMS:
+        ScreenUnlockDuration: 5
         Duration: 10
         mmsBody: 'MAndroid2 MMS test.'
 

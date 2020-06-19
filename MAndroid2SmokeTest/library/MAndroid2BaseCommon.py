@@ -9,7 +9,7 @@ import os
 from datetime import datetime
 
 from MAndroid2SmokeTest.library.MAndroid2BaseAPI import endBasicVoiceCall, placeBasicVoiceCall, receiveBasicVoiceCall, \
-    getMAndroid2Version, sendSMS, receiveSMS, getMMSUrl, unlockHandsetScreen, sendMMS, receiveMMS
+    getMAndroid2Version, sendSMS, receiveSMS, getMMSUrl, unlockHandsetScreen, sendMMS, receiveMMS, webBrowsing
 from MAndroid2SmokeTest.library.MAndroid2BaseExcel import OperateReport
 from MAndroid2SmokeTest.library.MAndroid2BaseYaml import getYam, getConfigureInfo
 from MAndroid2SmokeTest.library.MAndroid2BaseMCloud import MCloudControl
@@ -34,14 +34,17 @@ def connectTestUsers(testEnvironment, userFlag):
         assert (testEnvironment['testUsers']['MO']['handsetID'] != None)
         print("MO Handset ID is {}".format(testEnvironment['testUsers']['MO']['handsetID']))
         # Get MAndroid2 version info.
-        testEnvironment['testUsers']['MO']['versions'] = getMAndroid2Version(testEnvironment['testUsers']['MO']['handsetID'])
+        testEnvironment['testUsers']['MO']['versions'] = getMAndroid2Version(testEnvironment['MAndroid2AgentPath'],
+                                                                             testEnvironment['testUsers']['MO']['handsetID'])
+
     elif (userFlag == "MT"):
         testEnvironment['testUsers']['MT']['handsetID'] = mcloud.connectToMcloudUser(
             testEnvironment['testUsers']['MT']['IMSI'])
         assert (testEnvironment['testUsers']['MT']['handsetID'] != None)
         print("MT Handset ID is {}".format(testEnvironment['testUsers']['MT']['handsetID']))
         # Get MAndroid2 version info.
-        testEnvironment['testUsers']['MT']['versions'] = getMAndroid2Version(testEnvironment['testUsers']['MT']['handsetID'])
+        testEnvironment['testUsers']['MT']['versions'] = getMAndroid2Version(testEnvironment['MAndroid2AgentPath'],
+                                                                             testEnvironment['testUsers']['MT']['handsetID'])
 
     elif (userFlag == "MOMT"):
         testEnvironment['testUsers']['MO']['handsetID'] = mcloud.connectToMcloudUser(
@@ -53,8 +56,10 @@ def connectTestUsers(testEnvironment, userFlag):
         assert (testEnvironment['testUsers']['MT']['handsetID'] != None)
         print("MT Handset ID is {}".format(testEnvironment['testUsers']['MT']['handsetID']))
         # Get MAndroid2 version info.
-        testEnvironment['testUsers']['MO']['versions'] = getMAndroid2Version(testEnvironment['MAndroid2AgentPath'], testEnvironment['testUsers']['MO']['handsetID'])
-        testEnvironment['testUsers']['MT']['versions'] = getMAndroid2Version(testEnvironment['MAndroid2AgentPath'], testEnvironment['testUsers']['MT']['handsetID'])
+        testEnvironment['testUsers']['MO']['versions'] = getMAndroid2Version(testEnvironment['MAndroid2AgentPath'],
+                                                                             testEnvironment['testUsers']['MO']['handsetID'])
+        testEnvironment['testUsers']['MT']['versions'] = getMAndroid2Version(testEnvironment['MAndroid2AgentPath'],
+                                                                             testEnvironment['testUsers']['MT']['handsetID'])
 
     else:
         print("Cannot recognize userFlag {}".format(userFlag))
@@ -105,6 +110,9 @@ def checkTestParametersConfig(testParameters, testCaseKey):
         assert ("MMS" in testParameters)
         assert ("Duration" in testParameters['MMS'])
         assert ("mmsBody" in testParameters['MMS'])
+    elif (testCaseKey == 'WebBrowsing'):
+        assert ("WebBrowsing" in testParameters)
+        assert ("webUrl" in testParameters['WebBrowsing'])
 
 def checkTestCaseInfoConfig(testCaseKey):
     # Get test case info configuration.
@@ -145,10 +153,6 @@ def executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testP
 
     # Adding information to json report.
     addJsonReportMetaData(json_metadata, testEnvironment, testParameters, testCaseInfo, testResults)
-
-    # Assert test result.
-    for result in testResults:
-        assert (result['checkPointResult'] == "passed")
 
     return testResults
 
@@ -221,6 +225,9 @@ def executeTestLogic(testEnvironment, testCaseInfo, testCaseKey, testParameters)
                 unlockHandsetScreenResponse = unlockHandsetScreen(testEnvironment['MAndroid2AgentPath'],
                                           testEnvironment['testUsers']['MO']['handsetID'])
                 response['unlockHandsetScreen'] = unlockHandsetScreenResponse
+            elif (testStep == 'Wait for screen unlock.'):
+                if (testParameters['MMS']['ScreenUnlockDuration'] > 0):
+                        sleep(testParameters['MMS']['ScreenUnlockDuration'])
             elif (testStep == 'Send MMS.'):
                 sendMMSResponse = sendMMS(testEnvironment['MAndroid2AgentPath'],
                                           testEnvironment['testUsers']['MO']['handsetID'],
@@ -239,7 +246,20 @@ def executeTestLogic(testEnvironment, testCaseInfo, testCaseKey, testParameters)
                 assert ("Test step {} cannot be recognized in test case.".format(testStep))
 
             responseList.append(response)
+    # Test logic for web browsing.
+    elif (testCaseKey == 'WebBrowsing'):
+        testSteps = testCaseInfo['TestSteps']
+        for testStep in testSteps:
+            response = {}
+            if (testStep == 'Web Browsing.'):
+                webBrowsingResponse = webBrowsing(testEnvironment['MAndroid2AgentPath'],
+                                                    testEnvironment['testUsers']['MO']['handsetID'],
+                                                    testParameters['WebBrowsing']['webUrl'])
+                response['webBrowsing'] = webBrowsingResponse
+            else:
+                assert ("Test step {} cannot be recognized in test case.".format(testStep))
 
+            responseList.append(response)
 
     return responseList
 
@@ -252,20 +272,24 @@ def verifyTestCaseResult(testEnvironment, testParameters, testCaseInfo, testCase
 
     if (testCaseKey == 'VoiceCall'):
         # Verify test case result for voice call.
-        testResults = verifyVoiceCall(testEnvironment, testParameters, testCaseInfo, testCaseKey, responseList)
+        testResults = verifyVoiceCall(testEnvironment, testParameters, testCaseInfo, responseList)
 
     elif (testCaseKey == 'SMS'):
         # Verify test case result for SMS.
-        testResults = verifySMS(testEnvironment, testParameters, testCaseInfo, testCaseKey, responseList)
+        testResults = verifySMS(testEnvironment, testParameters, testCaseInfo, responseList)
 
     elif (testCaseKey == 'MMS'):
         # Verify test case result for SMS.
-        testResults = verifyMMS(testEnvironment, testParameters, testCaseInfo, testCaseKey, responseList)
+        testResults = verifyMMS(testEnvironment, testParameters, testCaseInfo, responseList)
+
+    elif (testCaseKey == 'WebBrowsing'):
+        # Verify test case result for SMS.
+        testResults = verifyWebBrowsing(testEnvironment, testParameters, testCaseInfo, responseList)
 
 
     return testResults
 
-def verifyVoiceCall(testEnvironment, testParameters, testCaseInfo, testCaseKey, responseList):
+def verifyVoiceCall(testEnvironment, testParameters, testCaseInfo, responseList):
     # Variables initialization.
     testResults = []
 
@@ -301,7 +325,7 @@ def verifyVoiceCall(testEnvironment, testParameters, testCaseInfo, testCaseKey, 
 
     return testResults
 
-def verifySMS(testEnvironment, testParameters, testCaseInfo, testCaseKey, responseList):
+def verifySMS(testEnvironment, testParameters, testCaseInfo, responseList):
     # Variables initialization.
     testResults = []
 
@@ -332,7 +356,7 @@ def verifySMS(testEnvironment, testParameters, testCaseInfo, testCaseKey, respon
 
     return testResults
 
-def verifyMMS(testEnvironment, testParameters, testCaseInfo, testCaseKey, responseList):
+def verifyMMS(testEnvironment, testParameters, testCaseInfo, responseList):
     # Variables initialization.
     testResults = []
 
@@ -367,6 +391,33 @@ def verifyMMS(testEnvironment, testParameters, testCaseInfo, testCaseKey, respon
         testResults.append(testResult)
 
     return testResults
+
+def verifyWebBrowsing(testEnvironment, testParameters, testCaseInfo, responseList):
+    # Variables initialization.
+    testResults = []
+
+    # Verify voice call result with test case check points.
+    checkPoints = testCaseInfo['CheckPoints']
+    for checkPoint in checkPoints:
+        testResult = {}
+        testResult['checkPointResult'] = "failed"
+        verifiedCheckPointFlag = False
+        if (checkPoint == 'Web browsing successfully.'):
+            for response in responseList:
+                if 'webBrowsing' in response:
+                    testResult = verifyWebBrowsingResponse(testEnvironment, testParameters, response['webBrowsing'])
+                    verifiedCheckPointFlag = True
+
+        if (verifiedCheckPointFlag == False):
+            testResult['failedReason'] = "Cannot verify this check point in test case."
+            testResult['command'] = response['command']
+            testResult['response'] = response['response']
+
+        testResult['checkPoint'] = checkPoint
+        testResults.append(testResult)
+
+    return testResults
+
 
 def verifyPlaceVoiceCallResponse(testEnvironment, testParameters, response):
     # Initialization.
@@ -600,6 +651,31 @@ def verifyReceiveMMSResponse(testEnvironment, testParameters, response):
     # Return result.
     return testResult
 
+def verifyWebBrowsingResponse(testEnvironment, testParameters, response):
+    # Initialization.
+    testResult = {}
+    testResult['checkPointResult'] = "failed"
+    testResult['failedReason'] = "none"
+    testResult['command'] = response['command']
+    testResult['response'] = response['response']
+
+    # Verification.
+    # Verification for 'isSuccess'.
+    if ('isSuccess' in response['response']):
+        if ((response['response']['isSuccess'] == True) or (response['response']['isSuccess'] == 'true')):
+            testResult['checkPointResult'] = "passed"
+        else:
+            testResult['checkPointResult'] = "failed"
+            testResult['failedReason'] = "Failed to browse web url."
+            return testResult
+    else:
+        testResult['failedReason'] = "Cannot find 'isSuccess' in the response."
+        return testResult
+
+    # Return result.
+    return testResult
+
+
 def createExcelTestReport(excelReportPath):
 
     # Get current time.
@@ -676,3 +752,6 @@ def writeExcelTestReportDetail(testCaseDetailList, testEnvironment, testParamete
     testCaseDetailList.append(testCaseDetail)
 
     return testCaseDetailList
+
+
+

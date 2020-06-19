@@ -14,6 +14,7 @@ PATH = lambda p: os.path.abspath(
     os.path.join(os.path.dirname(__file__), p)
 )
 
+UNLOCK_HANDSET_SCREEN_CODE = '1031'
 BACK_TO_HOME_SCREEN_CODE = '1033'
 
 PLACE_VOICE_CALL_CODE = '3010'
@@ -23,6 +24,8 @@ SEND_SMS_CODE = '3001'
 RECEIVE_SMS_CODE = '3002'
 SEND_MMS_CODE = '3003'
 RECEIVE_MMS_CODE = '3004'
+WEB_BROWSING_CODE = '3030'
+HTTP_DOWNLOAD_CODE = '3060'
 GET_MANDROID2_VERSION_CODE = '9001'
 GET_MANDROID2_AGENT_VERSION_CODE = '9002'
 GET_MANDROID2_PLUGIN_VERSION_CODE = '9003'
@@ -209,7 +212,7 @@ def unlockHandsetScreen(MAndroid2AgentPath, handsetId):
     # Construct command
     command = "java -jar {} {} {}".format(MAndroid2AgentPath,
                                          handsetId,
-                                         BACK_TO_HOME_SCREEN_CODE)
+                                         UNLOCK_HANDSET_SCREEN_CODE)
 
     # Execute command
     response = subprocess.check_output(shlex.split(command))
@@ -268,5 +271,50 @@ def receiveMMS(MAndroid2AgentPath, handsetId):
 
     return dicResponse
 
+def webBrowsing(MAndroid2AgentPath, handsetId, webUrl):
 
+    # Initialization
+    dicResponse = {}
 
+    # Construct command
+    command = "java -jar {} {} {} web_url \"{}\"".format(MAndroid2AgentPath,
+                                                     handsetId,
+                                                     WEB_BROWSING_CODE,
+                                                     webUrl)
+
+    print("Command of web browsing is: ", command)
+
+    # Execute command
+    response = subprocess.check_output(command.split())
+    print("Response of web browsing is: ", json.loads(response))
+
+    # Record command and response
+    dicResponse['command'] = command
+    dicResponse['response'] = json.loads(response)
+
+    return dicResponse
+
+def httpDownloading(MAndroid2AgentPath, handsetId, downloadUrl):
+
+    # Initialization
+    dicResponse = {}
+
+    # Construct command
+    str(downloadUrl).split("/")
+    command = "java -jar {} {} {} download_url \"{}\" fileName \"{}\"".format(MAndroid2AgentPath,
+                                                                         handsetId,
+                                                                         WEB_BROWSING_CODE,
+                                                                         downloadUrl,
+                                                                         downloadFileName)
+
+    print("Command of web browsing is: ", command)
+
+    # Execute command
+    response = subprocess.check_output(command.split())
+    print("Response of web browsing is: ", json.loads(response))
+
+    # Record command and response
+    dicResponse['command'] = command
+    dicResponse['response'] = json.loads(response)
+
+    return dicResponse

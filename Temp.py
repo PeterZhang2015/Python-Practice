@@ -80,19 +80,33 @@ import json
 # else:
 #     print ("{} does not exist.".format(absExcelReportPath))
 #     # os.makedirs(absExcelReportPath)
-import shlex
+# import shlex
+#
+# body = "MAndroid2 test example"
+#
+# strBody = body.translate(str.maketrans({" ":  r"\ "}))
+#
+# command1 = "echo java -jar sms_body \"{}\"".format(strBody)
+#
+# print (command1)
+#
+# command2 = shlex.split(command1)
+#
+# print (command2)
+#
+# response = subprocess.check_output(command2)
+# print("Response of sending SMS is: ", response)
 
-body = "MAndroid2 test example"
 
-strBody = body.translate(str.maketrans({" ":  r"\ "}))
+# from datetime import datetime, timedelta
+#
+# testSuiteStartTime = datetime.now()
+#
+# time.sleep(2)
+#
+# testSuiteEndTime = datetime.now()
+#
+# diff = testSuiteEndTime - testSuiteStartTime  # the result is a datetime.timedelta object
+# formatedDiff = str(timedelta(seconds=diff.seconds))
+# print (formatedDiff)
 
-command1 = "echo java -jar sms_body \"{}\"".format(strBody)
-
-print (command1)
-
-command2 = shlex.split(command1)
-
-print (command2)
-
-response = subprocess.check_output(command2)
-print("Response of sending SMS is: ", response)

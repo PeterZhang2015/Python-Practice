@@ -76,7 +76,7 @@ class OperateReport:
         for i in range(1, maxRowNum):
             worksheet.set_row(i, 30)
 
-        worksheet.merge_range('A1:I1', 'MAndroid2 Test Case Detail', get_format(self.wd, {'bold': True, 'font_size': 18, 'align': 'center',
+        worksheet.merge_range('A1:J1', 'MAndroid2 Test Case Detail', get_format(self.wd, {'bold': True, 'font_size': 18, 'align': 'center',
                                                                     'valign': 'vcenter', 'bg_color': 'blue',
                                                                     'font_color': '#ffffff'}))
 
