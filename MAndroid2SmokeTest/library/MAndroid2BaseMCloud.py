@@ -194,8 +194,8 @@ class MCloudControl(object):
 
             # Check whether any handset is connected on mcloud.
             if (len(devicesList) == 0):
-                raise SystemExit("There is no handset connected to the mcloud.")
-
+                print("There is no handset connected to the mcloud.")
+                return None
             # Loop to check the device that can be matched with the testing user IMSI.
             for device in devicesList:
                 # Only check the present handsets.
@@ -287,7 +287,7 @@ class MCloudControl(object):
         for deviceSerial in tempList:
             result = self.releaseDevice(deviceSerial)
             if (result == False):
-                sys.exit("Failed to release device ", deviceSerial)
+                print("Failed to release device ", deviceSerial)
             print("Remaining released deviceSerialList is {}".format(deviceSerialList))
 
         # ADB disconnect to all devices.

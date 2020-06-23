@@ -85,93 +85,97 @@ class TestMAndroid2TestCases():
         cls.excelReport.detail(cls.detailSheet, cls.testCaseDetailList)
         cls.excelReport.close()
 
-    # @pytest.mark.parametrize("testEnvironment", testEnvironment)
-    # @pytest.mark.parametrize("testParameters", voiceCallTestParameters)
-    # def test_MAndroid2_VoiceCall(self, json_metadata, testEnvironment, testParameters):
-    #     # Define test case variables.
-    #     testCaseKey = 'VoiceCall'
-    #     userFlag = 'MOMT'
-    #
-    #     # Get and check test case info.
-    #     testCaseInfo = checkTestCaseInfoConfig(testCaseKey)
-    #
-    #     # Execute test case.
-    #     testResults = executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testParameters, testCaseInfo)
-    #
-    #     # Write test case summary and test case detail.
-    #     self.testCaseSummary = writeExcelTestReportSummary(self.testCaseSummary, testResults, testEnvironment)
-    #     self.testCaseDetailList = writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters,
-    #                                                          testCaseInfo, testResults)
-    #
-    #     # Assert test result.
-    #     for result in testResults:
-    #         assert (result['checkPointResult'] == "passed")
+    @pytest.mark.parametrize("testEnvironment", testEnvironment)
+    @pytest.mark.parametrize("testParameters", voiceCallTestParameters)
+    def test_MAndroid2_VoiceCall(self, json_metadata, testEnvironment, testParameters):
+        # Define test case variables.
+        testCaseKey = 'VoiceCall'
+        userFlag = 'MOMT'
 
-    # @pytest.mark.parametrize("testEnvironment", testEnvironment)
-    # @pytest.mark.parametrize("testParameters", smsTestParameters)
-    # def test_MAndroid2_SMS(self, json_metadata, testEnvironment, testParameters):
-    #     # Define test case variables.
-    #     testCaseKey = 'SMS'
-    #     userFlag = 'MOMT'
-    #
-    #     # Get and check test case info.
-    #     testCaseInfo = checkTestCaseInfoConfig(testCaseKey)
-    #
-    #     # Execute test case.
-    #     testResults = executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testParameters, testCaseInfo)
-    #
-    #     # Write test case summary and test case detail.
-    #     self.testCaseSummary = writeExcelTestReportSummary(self.testCaseSummary, testResults, testEnvironment)
-    #     self.testCaseDetailList = writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters,
-    #                                                          testCaseInfo, testResults)
-    #
-    #     # Assert test result.
-    #     for result in testResults:
-    #         assert (result['checkPointResult'] == "passed")
-    #
-    # @pytest.mark.parametrize("testEnvironment", testEnvironment)
-    # @pytest.mark.parametrize("testParameters", mmsTestParameters)
-    # def test_MAndroid2_MMS(self, json_metadata, testEnvironment, testParameters):
-    #     # Define test case variables.
-    #     testCaseKey = 'MMS'
-    #     userFlag = 'MOMT'
-    #
-    #     # Get and check test case info.
-    #     testCaseInfo = checkTestCaseInfoConfig(testCaseKey)
-    #
-    #     # Execute test case.
-    #     testResults = executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testParameters, testCaseInfo)
-    #
-    #     # Write test case summary and test case detail.
-    #     self.testCaseSummary = writeExcelTestReportSummary(self.testCaseSummary, testResults, testEnvironment)
-    #     self.testCaseDetailList = writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters,
-    #                                                          testCaseInfo, testResults)
-    #
-    #     # Assert test result.
-    #     for result in testResults:
-    #         assert (result['checkPointResult'] == "passed")
-    #
-    # @pytest.mark.parametrize("testEnvironment", testEnvironment)
-    # @pytest.mark.parametrize("testParameters", webBrowsingTestParameters)
-    # def test_MAndroid2_WebBrowsing(self, json_metadata, testEnvironment, testParameters):
-    #     # Define test case variables.
-    #     testCaseKey = 'WebBrowsing'
-    #     userFlag = 'MO'
-    #
-    #     # Get and check test case info.
-    #     testCaseInfo = checkTestCaseInfoConfig(testCaseKey)
-    #
-    #     # Execute test case.
-    #     testResults = executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testParameters, testCaseInfo)
-    #
-    #     # Write test case summary and test case detail.
-    #     self.testCaseSummary = writeExcelTestReportSummary(self.testCaseSummary, testResults, testEnvironment)
-    #     self.testCaseDetailList = writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters,
-    #                                                          testCaseInfo, testResults)
-    #
-    #     # Assert test result.
-    #     for result in testResults:
-    #         assert (result['checkPointResult'] == "passed")
+        # Get and check test case info.
+        testCaseInfo = checkTestCaseInfoConfig(testCaseKey)
+
+        # Execute test case.
+        testResults = executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testParameters,
+                                      testCaseInfo, self.testCaseSummary, self.testCaseDetailList)
+
+        # Write test case summary and test case detail.
+        writeExcelTestReportSummary(self.testCaseSummary, testResults, testEnvironment)
+        writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters,
+                                                             testCaseInfo, testResults)
+
+        # Assert test result.
+        for result in testResults:
+            assert (result['checkPointResult'] == "passed")
+
+    @pytest.mark.parametrize("testEnvironment", testEnvironment)
+    @pytest.mark.parametrize("testParameters", smsTestParameters)
+    def test_MAndroid2_SMS(self, json_metadata, testEnvironment, testParameters):
+        # Define test case variables.
+        testCaseKey = 'SMS'
+        userFlag = 'MOMT'
+
+        # Get and check test case info.
+        testCaseInfo = checkTestCaseInfoConfig(testCaseKey)
+
+        # Execute test case.
+        testResults = executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testParameters,
+                                      testCaseInfo, self.testCaseSummary, self.testCaseDetailList)
+
+        # Write test case summary and test case detail.
+        writeExcelTestReportSummary(self.testCaseSummary, testResults, testEnvironment)
+        writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters,
+                                                             testCaseInfo, testResults)
+
+        # Assert test result.
+        for result in testResults:
+            assert (result['checkPointResult'] == "passed")
+
+    @pytest.mark.parametrize("testEnvironment", testEnvironment)
+    @pytest.mark.parametrize("testParameters", mmsTestParameters)
+    def test_MAndroid2_MMS(self, json_metadata, testEnvironment, testParameters):
+        # Define test case variables.
+        testCaseKey = 'MMS'
+        userFlag = 'MOMT'
+
+        # Get and check test case info.
+        testCaseInfo = checkTestCaseInfoConfig(testCaseKey)
+
+        # Execute test case.
+        testResults = executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testParameters,
+                                      testCaseInfo, self.testCaseSummary, self.testCaseDetailList)
+
+        # Write test case summary and test case detail.
+        writeExcelTestReportSummary(self.testCaseSummary, testResults, testEnvironment)
+        writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters,
+                                                             testCaseInfo, testResults)
+
+        # Assert test result.
+        for result in testResults:
+            assert (result['checkPointResult'] == "passed")
+
+    @pytest.mark.parametrize("testEnvironment", testEnvironment)
+    @pytest.mark.parametrize("testParameters", webBrowsingTestParameters)
+    def test_MAndroid2_WebBrowsing(self, json_metadata, testEnvironment, testParameters):
+        # Define test case variables.
+        testCaseKey = 'WebBrowsing'
+        userFlag = 'MO'
+
+        # Get and check test case info.
+        testCaseInfo = checkTestCaseInfoConfig(testCaseKey)
+
+        # Execute test case.
+        testResults = executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testParameters,
+                                      testCaseInfo, self.testCaseSummary, self.testCaseDetailList)
+
+        # Write test case summary and test case detail.
+        writeExcelTestReportSummary(self.testCaseSummary, testResults, testEnvironment)
+        writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters,
+                                                             testCaseInfo, testResults)
+
+        # Assert test result.
+        for result in testResults:
+            assert (result['checkPointResult'] == "passed")
 
     @pytest.mark.parametrize("testEnvironment", testEnvironment)
     @pytest.mark.parametrize("testParameters", httpDownloadTestParameters)
@@ -184,7 +188,8 @@ class TestMAndroid2TestCases():
         testCaseInfo = checkTestCaseInfoConfig(testCaseKey)
 
         # Execute test case.
-        testResults = executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testParameters, testCaseInfo)
+        testResults = executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testParameters,
+                                      testCaseInfo, self.testCaseSummary, self.testCaseDetailList)
 
         # Write test case summary and test case detail.
         # self.testCaseSummary = writeExcelTestReportSummary(self.testCaseSummary, testResults, testEnvironment)

@@ -96,7 +96,37 @@ def writeExcelTestReportDetail(testCaseDetailList, testEnvironment, testParamete
 
     return testCaseDetailList
 
-def connectTestUsers(testEnvironment, userFlag):
+def writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment, testParameters, testCaseInfo):
+    # Initialization.
+    testCaseDetail = {}
+
+    # Write test case detail.
+    testCaseDetail['TestCaseID'] = testCaseInfo['TestCaseID']
+    testCaseDetail['Description'] = testCaseInfo['Description']
+
+    testCaseDetail['moInfo'] = json.dumps(testEnvironment['testUsers']['MO'])
+    testCaseDetail['mtInfo'] = json.dumps(testEnvironment['testUsers']['MT'])
+    testCaseDetail['testParameters'] = json.dumps(testParameters)
+
+    testCaseDetail['Preconditions'] = '\n'.join(testCaseInfo['Preconditions'])
+    testCaseDetail['TestSteps'] = '\n'.join(testCaseInfo['TestSteps'])
+    testCaseDetail['CheckPoints'] = '\n'.join(testCaseInfo['CheckPoints'])
+
+    testCaseDetail['testResultList'] = failedReason
+    testCaseDetail['testResult'] = "failed"
+
+    testCaseDetailList.append(testCaseDetail)
+
+    # Write test case summary.
+    testCaseSummary['sum'] = testCaseSummary['sum'] + 1
+    testCaseSummary['fail'] = testCaseSummary['fail'] + 1
+    testCaseSummary['MAndroid2AgentVersion'] = testEnvironment['testUsers']['MO']['versions']['MAndroid2Agent']
+
+
+
+
+
+def connectTestUsers(testEnvironment, userFlag, testParameters, testCaseInfo, testCaseSummary, testCaseDetailList):
     # Connect available test handset on mcloud from specified IMSI.
     mcloud = MCloudControl()
 
@@ -106,42 +136,82 @@ def connectTestUsers(testEnvironment, userFlag):
     mcloud.mcloudLoginToken = testEnvironment['Login']['accessToken']
 
     if (userFlag == "MO"):
-        testEnvironment['testUsers']['MO']['handsetID'] = mcloud.connectToMcloudUser(
-            testEnvironment['testUsers']['MO']['IMSI'])
+        testEnvironment['testUsers']['MO']['handsetID'] = mcloud.connectToMcloudUser(testEnvironment['testUsers']['MO']['IMSI'])
+
+        if testEnvironment['testUsers']['MO']['handsetID'] == None:
+            failedReason = "Cannot connect to user {}".format(testEnvironment['testUsers']['MO']['handsetID'])
+            writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
+                                       testParameters, testCaseInfo)
         assert (testEnvironment['testUsers']['MO']['handsetID'] != None)
         print("MO Handset ID is {}".format(testEnvironment['testUsers']['MO']['handsetID']))
-        # Get MAndroid2 version info.
-        testEnvironment['testUsers']['MO']['versions'] = getMAndroid2Version(testEnvironment['MAndroid2AgentPath'],
-                                                                             testEnvironment['testUsers']['MO']['handsetID'])
 
+        # Get MAndroid2 version info.
+        version = getMAndroid2Version(testEnvironment['MAndroid2AgentPath'],
+                                      testEnvironment['testUsers']['MO']['handsetID'])
+        if version != None:
+            testEnvironment['testUsers']['MO']['versions'] = version
+        else:
+            failedReason = "Cannot get MAndroid2 version from {}".format(testEnvironment['testUsers']['MO']['handsetID'])
+            writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
+                                       testParameters, testCaseInfo)
     elif (userFlag == "MT"):
-        testEnvironment['testUsers']['MT']['handsetID'] = mcloud.connectToMcloudUser(
-            testEnvironment['testUsers']['MT']['IMSI'])
+        testEnvironment['testUsers']['MT']['handsetID'] = mcloud.connectToMcloudUser(testEnvironment['testUsers']['MT']['IMSI'])
+
+        if testEnvironment['testUsers']['MT']['handsetID'] == None:
+            failedReason = "Cannot connect to user {}".format(testEnvironment['testUsers']['MT']['handsetID'])
+            writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
+                                       testParameters, testCaseInfo)
         assert (testEnvironment['testUsers']['MT']['handsetID'] != None)
         print("MT Handset ID is {}".format(testEnvironment['testUsers']['MT']['handsetID']))
+
         # Get MAndroid2 version info.
-        testEnvironment['testUsers']['MT']['versions'] = getMAndroid2Version(testEnvironment['MAndroid2AgentPath'],
-                                                                             testEnvironment['testUsers']['MT']['handsetID'])
+        version = getMAndroid2Version(testEnvironment['MAndroid2AgentPath'],
+                                      testEnvironment['testUsers']['MT']['handsetID'])
+        if version != None:
+            testEnvironment['testUsers']['MT']['versions'] = version
+        else:
+            failedReason = "Cannot get MAndroid2 version from {}".format(testEnvironment['testUsers']['MT']['handsetID'])
+            writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
+                                       testParameters, testCaseInfo)
 
     elif (userFlag == "MOMT"):
-        testEnvironment['testUsers']['MO']['handsetID'] = mcloud.connectToMcloudUser(
-            testEnvironment['testUsers']['MO']['IMSI'])
+        testEnvironment['testUsers']['MO']['handsetID'] = mcloud.connectToMcloudUser(testEnvironment['testUsers']['MO']['IMSI'])
+
+        if testEnvironment['testUsers']['MO']['handsetID'] == None:
+            failedReason = "Cannot connect to user {}".format(testEnvironment['testUsers']['MO']['handsetID'])
+            writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
+                                       testParameters, testCaseInfo)
         assert (testEnvironment['testUsers']['MO']['handsetID'] != None)
         print("MO Handset ID is {}".format(testEnvironment['testUsers']['MO']['handsetID']))
-        testEnvironment['testUsers']['MT']['handsetID'] = mcloud.connectToMcloudUser(
-            testEnvironment['testUsers']['MT']['IMSI'])
+
+        testEnvironment['testUsers']['MT']['handsetID'] = mcloud.connectToMcloudUser(testEnvironment['testUsers']['MT']['IMSI'])
+        if testEnvironment['testUsers']['MT']['handsetID'] == None:
+            failedReason = "Cannot connect to user {}".format(testEnvironment['testUsers']['MT']['handsetID'])
+            writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
+                                       testParameters, testCaseInfo)
         assert (testEnvironment['testUsers']['MT']['handsetID'] != None)
         print("MT Handset ID is {}".format(testEnvironment['testUsers']['MT']['handsetID']))
         # Get MAndroid2 version info.
-        testEnvironment['testUsers']['MO']['versions'] = getMAndroid2Version(testEnvironment['MAndroid2AgentPath'],
-                                                                             testEnvironment['testUsers']['MO']['handsetID'])
-        testEnvironment['testUsers']['MT']['versions'] = getMAndroid2Version(testEnvironment['MAndroid2AgentPath'],
-                                                                             testEnvironment['testUsers']['MT']['handsetID'])
+        version = getMAndroid2Version(testEnvironment['MAndroid2AgentPath'],
+                                      testEnvironment['testUsers']['MO']['handsetID'])
+        if version != None:
+            testEnvironment['testUsers']['MO']['versions'] = version
+        else:
+            failedReason = "Cannot get MAndroid2 version from {}".format(testEnvironment['testUsers']['MO']['handsetID'])
+            writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
+                                       testParameters, testCaseInfo)
 
+        version = getMAndroid2Version(testEnvironment['MAndroid2AgentPath'],
+                                      testEnvironment['testUsers']['MT']['handsetID'])
+        if version != None:
+            testEnvironment['testUsers']['MT']['versions'] = version
+        else:
+            failedReason = "Cannot get MAndroid2 version from {}".format(testEnvironment['testUsers']['MT']['handsetID'])
+            writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
+                                       testParameters, testCaseInfo)
     else:
         print("Cannot recognize userFlag {}".format(userFlag))
 
-    return testEnvironment
 
 def disconnectTestUsers():
     # Disconnect connected devices.
@@ -209,7 +279,7 @@ def checkTestCaseInfoConfig(testCaseKey):
     # Return
     return testCaseInfo
 
-def executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testParameters, testCaseInfo):
+def executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testParameters, testCaseInfo, testCaseSummary, testCaseDetailList):
 
     # Initialization
     responseList = []
@@ -220,10 +290,10 @@ def executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testP
     checkTestParametersConfig(testParameters, testCaseKey)
 
     # ConnectTestUsers.
-    connectTestUsers(testEnvironment, userFlag)
+    connectTestUsers(testEnvironment, userFlag, testParameters, testCaseInfo, testCaseSummary, testCaseDetailList)
 
     # Starting test logic.
-    responseList = executeTestLogic(testEnvironment, testCaseInfo, testCaseKey, testParameters)
+    responseList = executeTestLogic(testEnvironment, testCaseInfo, testCaseKey, testParameters, testCaseSummary, testCaseDetailList)
 
     # Disconnect testing users.
     disconnectTestUsers()
@@ -236,7 +306,7 @@ def executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testP
 
     return testResults
 
-def executeTestLogic(testEnvironment, testCaseInfo, testCaseKey, testParameters):
+def executeTestLogic(testEnvironment, testCaseInfo, testCaseKey, testParameters, testCaseSummary, testCaseDetailList):
 
     # Variables initialization.
     responseList = []
@@ -263,6 +333,9 @@ def executeTestLogic(testEnvironment, testCaseInfo, testCaseKey, testParameters)
                                                 testEnvironment['testUsers']['MO']['handsetID'])
                 response['endVoiceCall'] = endVoiceCallResponse
             else:
+                failedReason = "Test step {} cannot be recognized in test case.".format(testStep)
+                writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
+                                           testParameters, testCaseInfo)
                 assert ("Test step {} cannot be recognized in test case.".format(testStep))
 
             responseList.append(response)
@@ -285,6 +358,9 @@ def executeTestLogic(testEnvironment, testCaseInfo, testCaseKey, testParameters)
                                                 testEnvironment['testUsers']['MT']['handsetID'])
                 response['receiveSMS'] = receiveSMSResponse
             else:
+                failedReason = "Test step {} cannot be recognized in test case.".format(testStep)
+                writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
+                                           testParameters, testCaseInfo)
                 assert ("Test step {} cannot be recognized in test case.".format(testStep))
 
             responseList.append(response)
@@ -297,6 +373,11 @@ def executeTestLogic(testEnvironment, testCaseInfo, testCaseKey, testParameters)
             if (testPrecondition == 'Get a file as MMS url by 1033 API.'):
                 mmsUrl = getMMSUrl(testEnvironment['MAndroid2AgentPath'],
                           testEnvironment['testUsers']['MO']['handsetID'])
+                if mmsUrl == None:
+                    failedReason = "Cannot get MMS URL on {}.".format(testEnvironment['testUsers']['MO']['handsetID'])
+                    writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
+                                               testParameters, testCaseInfo)
+                    assert ("Cannot get MMS URL on {}.".format(testEnvironment['testUsers']['MO']['handsetID']))
 
         testSteps = testCaseInfo['TestSteps']
         for testStep in testSteps:
@@ -323,6 +404,9 @@ def executeTestLogic(testEnvironment, testCaseInfo, testCaseKey, testParameters)
                                                 testEnvironment['testUsers']['MT']['handsetID'])
                 response['receiveMMS'] = receiveMMSResponse
             else:
+                failedReason = "Test step {} cannot be recognized in test case.".format(testStep)
+                writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
+                                           testParameters, testCaseInfo)
                 assert ("Test step {} cannot be recognized in test case.".format(testStep))
 
             responseList.append(response)
@@ -337,6 +421,9 @@ def executeTestLogic(testEnvironment, testCaseInfo, testCaseKey, testParameters)
                                                     testParameters['WebBrowsing']['webUrl'])
                 response['webBrowsing'] = webBrowsingResponse
             else:
+                failedReason = "Test step {} cannot be recognized in test case.".format(testStep)
+                writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
+                                           testParameters, testCaseInfo)
                 assert ("Test step {} cannot be recognized in test case.".format(testStep))
 
             responseList.append(response)
@@ -352,8 +439,8 @@ def executeTestLogic(testEnvironment, testCaseInfo, testCaseKey, testParameters)
                 response['startHTTPDownload'] = startHTTPDownloadResponse
                 if ('downloadFile' in response['startHTTPDownload']):
                     downloadedFileInfoResponse = getFileInfo(testEnvironment['MAndroid2AgentPath'],
-                                                                testEnvironment['testUsers']['MO']['handsetID'],
-                                                                response['startHTTPDownload']['downloadFile'])
+                                                             testEnvironment['testUsers']['MO']['handsetID'],
+                                                             response['startHTTPDownload']['downloadFile'])
                     response['downloadedFileInfo'] = downloadedFileInfoResponse
 
             elif (testStep == 'Wait for HTTP download completion.'):
@@ -361,6 +448,9 @@ def executeTestLogic(testEnvironment, testCaseInfo, testCaseKey, testParameters)
                         sleep(testParameters['HTTPDownload']['Duration'])
 
             else:
+                failedReason = "Test step {} cannot be recognized in test case.".format(testStep)
+                writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
+                                           testParameters, testCaseInfo)
                 assert ("Test step {} cannot be recognized in test case.".format(testStep))
 
             responseList.append(response)

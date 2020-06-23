@@ -41,7 +41,8 @@ def getMAndroid2Version(MAndroid2AgentPath, handsetId):
     # Execute command
     response = json.loads(subprocess.check_output(command.split()))
     print (response)
-    assert ('version' in response)
+    if ('version' not in response):
+        return None
 
     # Record version info
     version['MAndroid2'] = response['version']
@@ -52,7 +53,8 @@ def getMAndroid2Version(MAndroid2AgentPath, handsetId):
                                           GET_MANDROID2_AGENT_VERSION_CODE)
     # Execute command
     response = json.loads(subprocess.check_output(command.split()))
-    assert ('version' in response)
+    if ('version' not in response):
+        return None
 
     # Record version info
     version['MAndroid2Agent'] = response['version']
@@ -63,7 +65,8 @@ def getMAndroid2Version(MAndroid2AgentPath, handsetId):
                                           GET_MANDROID2_PLUGIN_VERSION_CODE)
     # Execute command
     response = json.loads(subprocess.check_output(command.split()))
-    assert ('version' in response)
+    if ('version' not in response):
+        return None
 
     # Record version info
     version['MAndroid2Plugin'] = response['version']
@@ -201,9 +204,10 @@ def getMMSUrl(MAndroid2AgentPath, handsetId):
 
     # Get screenshotURL as mmsURL from response
     dicResponse = json.loads(response)
-    assert ('screenshotURL' in dicResponse)
-
-    return dicResponse['screenshotURL']
+    if ('screenshotURL' not in dicResponse):
+        return None
+    else:
+        return dicResponse['screenshotURL']
 
 def unlockHandsetScreen(MAndroid2AgentPath, handsetId):
     # Initialization
@@ -300,7 +304,6 @@ def startHTTPDownload(MAndroid2AgentPath, handsetId, downloadUrl):
     dicResponse = {}
 
     # Construct command
-    assert (len(str(downloadUrl)) > 0)
     downloadFileName = str(downloadUrl).split("/")[-1]
     command = "java -jar {} {} {} download_url \"{}\" fileName \"{}\"".format(MAndroid2AgentPath,
                                                                          handsetId,
