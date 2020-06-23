@@ -207,6 +207,7 @@ class MCloudControl(object):
                     deviceSerial = device['serial']
                     break
 
+
             if (deviceSerial) == None:
                 print("There is no device that can be matched with the testing user IMSI.")
                 return None

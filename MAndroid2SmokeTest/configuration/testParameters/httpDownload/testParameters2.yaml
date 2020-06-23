@@ -1,8 +1,6 @@
 testParameters:
-    MMS:
-        ScreenUnlockDuration: 5
+    HTTPDownload:
+        downloadUrl: 'http://freeweb.siol.net/tehnika/test5M.dat'
         Duration: 10
-        mmsBody: 'MAndroid2 MMS test.'
-
 
 

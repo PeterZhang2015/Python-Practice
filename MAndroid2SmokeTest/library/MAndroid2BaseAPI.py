@@ -294,27 +294,46 @@ def webBrowsing(MAndroid2AgentPath, handsetId, webUrl):
 
     return dicResponse
 
-def httpDownloading(MAndroid2AgentPath, handsetId, downloadUrl):
+def startHTTPDownload(MAndroid2AgentPath, handsetId, downloadUrl):
 
     # Initialization
     dicResponse = {}
 
     # Construct command
-    str(downloadUrl).split("/")
+    assert (len(str(downloadUrl)) > 0)
+    downloadFileName = str(downloadUrl).split("/")[-1]
     command = "java -jar {} {} {} download_url \"{}\" fileName \"{}\"".format(MAndroid2AgentPath,
                                                                          handsetId,
-                                                                         WEB_BROWSING_CODE,
+                                                                         HTTP_DOWNLOAD_CODE,
                                                                          downloadUrl,
                                                                          downloadFileName)
 
-    print("Command of web browsing is: ", command)
+    print("Command of HTTP downloading is: ", command)
 
     # Execute command
     response = subprocess.check_output(command.split())
-    print("Response of web browsing is: ", json.loads(response))
+    print("Response of HTTP downloading is: ", json.loads(response))
 
     # Record command and response
     dicResponse['command'] = command
     dicResponse['response'] = json.loads(response)
 
     return dicResponse
+
+def getFileInfo(MAndroid2AgentPath, handsetId, fileUrl):
+
+    # Initialization
+    dicResponse = {}
+
+    # Construct command
+    command = "adb -s {} shell ls -la {}".format(handsetId, fileUrl)
+
+    # Execute command
+    response = subprocess.check_output(command.split()).decode('utf-8').split()
+
+    # Record command and response
+    dicResponse['command'] = command
+    dicResponse['response'] = response
+
+    return dicResponse
+

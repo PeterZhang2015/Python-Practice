@@ -110,3 +110,10 @@ import json
 # formatedDiff = str(timedelta(seconds=diff.seconds))
 # print (formatedDiff)
 
+command = "adb -s ce071607a2e74a1a05 shell ls -la /sdcard/MAndroid2/output/Screenshot/takescreen_20200129_020117.png"
+
+# Execute command
+response = subprocess.check_output(command.split()).decode('utf-8').split()
+print("Response is: ", response)
+print("Size is: ", response[4])
+print("Path is: ", response[-1])

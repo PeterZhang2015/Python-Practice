@@ -9,7 +9,8 @@ import os
 from datetime import datetime
 
 from MAndroid2SmokeTest.library.MAndroid2BaseAPI import endBasicVoiceCall, placeBasicVoiceCall, receiveBasicVoiceCall, \
-    getMAndroid2Version, sendSMS, receiveSMS, getMMSUrl, unlockHandsetScreen, sendMMS, receiveMMS, webBrowsing
+    getMAndroid2Version, sendSMS, receiveSMS, getMMSUrl, unlockHandsetScreen, sendMMS, receiveMMS, webBrowsing, \
+    startHTTPDownload, getFileInfo
 from MAndroid2SmokeTest.library.MAndroid2BaseExcel import OperateReport
 from MAndroid2SmokeTest.library.MAndroid2BaseYaml import getYam, getConfigureInfo
 from MAndroid2SmokeTest.library.MAndroid2BaseMCloud import MCloudControl
@@ -18,6 +19,82 @@ PATH = lambda p: os.path.abspath(
     os.path.join(os.path.dirname(__file__), p)
 )
 
+def createExcelTestReport(excelReportPath):
+
+    # Get current time.
+    timeStamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    reportFileName = "{}MAndroid2TestReport_{}.xlsx".format(excelReportPath, timeStamp)
+
+    # Create an excel report.
+    workbook = xlsxwriter.Workbook(reportFileName)
+    summarySheet = workbook.add_worksheet("TestSummary")
+    detailSheet = workbook.add_worksheet("TestDetail")
+    excelReport = OperateReport(wd=workbook)
+
+    return excelReport, summarySheet, detailSheet
+
+def initializeExcelSummary(testCaseSummary):
+
+    testCaseSummary['sum'] = 0
+    testCaseSummary['pass'] = 0
+    testCaseSummary['fail'] = 0
+
+    testCaseSummary['MAndroid2AgentVersion'] = "None"
+    testCaseSummary['testingDate'] = "None"
+    testCaseSummary['testDuration'] = "0 s"
+
+    return testCaseSummary
+
+def writeExcelTestReportSummary(testCaseSummary, testResults, testEnvironment):
+
+    testCaseResult = True
+    for result in testResults:
+        if (result['checkPointResult'] != "passed"):
+            testCaseResult = False
+            break
+
+    testCaseSummary['sum'] = testCaseSummary['sum'] + 1
+    if (testCaseResult == True):
+        testCaseSummary['pass'] = testCaseSummary['pass'] + 1
+    else:
+        testCaseSummary['fail'] = testCaseSummary['fail'] + 1
+
+    testCaseSummary['MAndroid2AgentVersion'] = testEnvironment['testUsers']['MO']['versions']['MAndroid2Agent']
+
+    return testCaseSummary
+
+def writeExcelTestReportDetail(testCaseDetailList, testEnvironment, testParameters, testCaseInfo, testResults):
+
+    # Initialization.
+    testCaseDetail = {}
+    testCaseResult = True
+
+    # Fill information.
+    testCaseDetail['TestCaseID'] = testCaseInfo['TestCaseID']
+    testCaseDetail['Description'] = testCaseInfo['Description']
+
+    testCaseDetail['moInfo'] = json.dumps(testEnvironment['testUsers']['MO'])
+    testCaseDetail['mtInfo'] = json.dumps(testEnvironment['testUsers']['MT'])
+    testCaseDetail['testParameters'] = json.dumps(testParameters)
+
+    testCaseDetail['Preconditions'] = '\n'.join(testCaseInfo['Preconditions'])
+    testCaseDetail['TestSteps'] = '\n'.join(testCaseInfo['TestSteps'])
+    testCaseDetail['CheckPoints'] = '\n'.join(testCaseInfo['CheckPoints'])
+
+    testCaseDetail['testResultList'] = '\n'.join(json.dumps(element) for element in testResults)
+
+    for result in testResults:
+        if (result['checkPointResult'] != "passed"):
+            testCaseResult = False
+            break
+    if (testCaseResult == True):
+        testCaseDetail['testResult'] = "passed"
+    else:
+        testCaseDetail['testResult'] = "failed"
+
+    testCaseDetailList.append(testCaseDetail)
+
+    return testCaseDetailList
 
 def connectTestUsers(testEnvironment, userFlag):
     # Connect available test handset on mcloud from specified IMSI.
@@ -72,7 +149,6 @@ def disconnectTestUsers():
     print("deviceSerialList to be disconnected is {}".format(mcloud.deviceSerialList))
     mcloud.tearDownUsingDevices(mcloud.deviceSerialList)
 
-
 def addJsonReportMetaData(json_metadata, testEnvironment, testParameters, testCaseInfo, testResults):
     json_metadata['testEnvironment'] = testEnvironment
     json_metadata['testParameters'] = testParameters
@@ -113,6 +189,10 @@ def checkTestParametersConfig(testParameters, testCaseKey):
     elif (testCaseKey == 'WebBrowsing'):
         assert ("WebBrowsing" in testParameters)
         assert ("webUrl" in testParameters['WebBrowsing'])
+    elif (testCaseKey == 'HTTPDownload'):
+        assert ("HTTPDownload" in testParameters)
+        assert ("downloadUrl" in testParameters['HTTPDownload'])
+        assert ("Duration" in testParameters['HTTPDownload'])
 
 def checkTestCaseInfoConfig(testCaseKey):
     # Get test case info configuration.
@@ -260,7 +340,30 @@ def executeTestLogic(testEnvironment, testCaseInfo, testCaseKey, testParameters)
                 assert ("Test step {} cannot be recognized in test case.".format(testStep))
 
             responseList.append(response)
+    # Test logic for HTTP Download.
+    elif (testCaseKey == 'HTTPDownload'):
+        testSteps = testCaseInfo['TestSteps']
+        for testStep in testSteps:
+            response = {}
+            if (testStep == 'Start HTTP download.'):
+                startHTTPDownloadResponse = startHTTPDownload(testEnvironment['MAndroid2AgentPath'],
+                                                              testEnvironment['testUsers']['MO']['handsetID'],
+                                                              testParameters['HTTPDownload']['downloadUrl'])
+                response['startHTTPDownload'] = startHTTPDownloadResponse
+                if ('downloadFile' in response['startHTTPDownload']):
+                    downloadedFileInfoResponse = getFileInfo(testEnvironment['MAndroid2AgentPath'],
+                                                                testEnvironment['testUsers']['MO']['handsetID'],
+                                                                response['startHTTPDownload']['downloadFile'])
+                    response['downloadedFileInfo'] = downloadedFileInfoResponse
 
+            elif (testStep == 'Wait for HTTP download completion.'):
+                if (testParameters['HTTPDownload']['Duration'] > 0):
+                        sleep(testParameters['HTTPDownload']['Duration'])
+
+            else:
+                assert ("Test step {} cannot be recognized in test case.".format(testStep))
+
+            responseList.append(response)
     return responseList
 
 def verifyTestCaseResult(testEnvironment, testParameters, testCaseInfo, testCaseKey, responseList):
@@ -279,12 +382,16 @@ def verifyTestCaseResult(testEnvironment, testParameters, testCaseInfo, testCase
         testResults = verifySMS(testEnvironment, testParameters, testCaseInfo, responseList)
 
     elif (testCaseKey == 'MMS'):
-        # Verify test case result for SMS.
+        # Verify test case result for MMS.
         testResults = verifyMMS(testEnvironment, testParameters, testCaseInfo, responseList)
 
     elif (testCaseKey == 'WebBrowsing'):
-        # Verify test case result for SMS.
+        # Verify test case result for web browsing.
         testResults = verifyWebBrowsing(testEnvironment, testParameters, testCaseInfo, responseList)
+
+    elif (testCaseKey == 'HTTPDownload'):
+        # Verify test case result for HTTP downloading.
+        testResults = verifyHTTPDownload(testEnvironment, testParameters, testCaseInfo, responseList)
 
 
     return testResults
@@ -293,7 +400,7 @@ def verifyVoiceCall(testEnvironment, testParameters, testCaseInfo, responseList)
     # Variables initialization.
     testResults = []
 
-    # Verify voice call result with test case check points.
+    # Verify result with test case check points.
     checkPoints = testCaseInfo['CheckPoints']
     for checkPoint in checkPoints:
         testResult = {}
@@ -329,7 +436,7 @@ def verifySMS(testEnvironment, testParameters, testCaseInfo, responseList):
     # Variables initialization.
     testResults = []
 
-    # Verify SMS result with test case check points.
+    # Verify result with test case check points.
     checkPoints = testCaseInfo['CheckPoints']
     for checkPoint in checkPoints:
         testResult = {}
@@ -360,7 +467,7 @@ def verifyMMS(testEnvironment, testParameters, testCaseInfo, responseList):
     # Variables initialization.
     testResults = []
 
-    # Verify MMS result with test case check points.
+    # Verify result with test case check points.
     checkPoints = testCaseInfo['CheckPoints']
     for checkPoint in checkPoints:
         testResult = {}
@@ -396,7 +503,7 @@ def verifyWebBrowsing(testEnvironment, testParameters, testCaseInfo, responseLis
     # Variables initialization.
     testResults = []
 
-    # Verify voice call result with test case check points.
+    # Verify result with test case check points.
     checkPoints = testCaseInfo['CheckPoints']
     for checkPoint in checkPoints:
         testResult = {}
@@ -406,6 +513,36 @@ def verifyWebBrowsing(testEnvironment, testParameters, testCaseInfo, responseLis
             for response in responseList:
                 if 'webBrowsing' in response:
                     testResult = verifyWebBrowsingResponse(testEnvironment, testParameters, response['webBrowsing'])
+                    verifiedCheckPointFlag = True
+
+        if (verifiedCheckPointFlag == False):
+            testResult['failedReason'] = "Cannot verify this check point in test case."
+            testResult['command'] = response['command']
+            testResult['response'] = response['response']
+
+        testResult['checkPoint'] = checkPoint
+        testResults.append(testResult)
+
+    return testResults
+
+def verifyHTTPDownload(testEnvironment, testParameters, testCaseInfo, responseList):
+    # Variables initialization.
+    testResults = []
+
+    # Verify result with test case check points.
+    checkPoints = testCaseInfo['CheckPoints']
+    for checkPoint in checkPoints:
+        testResult = {}
+        testResult['checkPointResult'] = "failed"
+        verifiedCheckPointFlag = False
+        if (checkPoint == 'HTTP download successfully.'):
+            for response in responseList:
+                if 'startHTTPDownload' in response:
+                    testResult = verifyStartHTTPDownloadResponse(testEnvironment, testParameters, response['startHTTPDownload'])
+                    verifiedCheckPointFlag = True
+
+                if 'getDownloadedFileInfo' in response:
+                    testResult = verifyDownloadedFileInfoResponse(testEnvironment, testParameters, response['downloadedFileInfo'])
                     verifiedCheckPointFlag = True
 
         if (verifiedCheckPointFlag == False):
@@ -675,83 +812,64 @@ def verifyWebBrowsingResponse(testEnvironment, testParameters, response):
     # Return result.
     return testResult
 
-
-def createExcelTestReport(excelReportPath):
-
-    # Get current time.
-    timeStamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    reportFileName = "{}MAndroid2TestReport_{}.xlsx".format(excelReportPath, timeStamp)
-
-    # Create an excel report.
-    workbook = xlsxwriter.Workbook(reportFileName)
-    summarySheet = workbook.add_worksheet("TestSummary")
-    detailSheet = workbook.add_worksheet("TestDetail")
-    excelReport = OperateReport(wd=workbook)
-
-    return excelReport, summarySheet, detailSheet
-
-def initializeExcelSummary(testCaseSummary):
-
-    testCaseSummary['sum'] = 0
-    testCaseSummary['pass'] = 0
-    testCaseSummary['fail'] = 0
-
-    testCaseSummary['MAndroid2AgentVersion'] = "None"
-    testCaseSummary['testingDate'] = "None"
-    testCaseSummary['testDuration'] = "0 s"
-
-    return testCaseSummary
-
-def writeExcelTestReportSummary(testCaseSummary, testResults, testEnvironment):
-
-    testCaseResult = True
-    for result in testResults:
-        if (result['checkPointResult'] != "passed"):
-            testCaseResult = False
-            break
-
-    testCaseSummary['sum'] = testCaseSummary['sum'] + 1
-    if (testCaseResult == True):
-        testCaseSummary['pass'] = testCaseSummary['pass'] + 1
-    else:
-        testCaseSummary['fail'] = testCaseSummary['fail'] + 1
-
-    testCaseSummary['MAndroid2AgentVersion'] = testEnvironment['testUsers']['MO']['versions']['MAndroid2Agent']
-
-    return testCaseSummary
-
-def writeExcelTestReportDetail(testCaseDetailList, testEnvironment, testParameters, testCaseInfo, testResults):
-
+def verifyStartHTTPDownloadResponse(testEnvironment, testParameters, response):
     # Initialization.
-    testCaseDetail = {}
-    testCaseResult = True
+    testResult = {}
+    testResult['checkPointResult'] = "failed"
+    testResult['failedReason'] = "none"
+    testResult['command'] = response['command']
+    testResult['response'] = response['response']
 
-    # Fill information.
-    testCaseDetail['TestCaseID'] = testCaseInfo['TestCaseID']
-    testCaseDetail['Description'] = testCaseInfo['Description']
-
-    testCaseDetail['moInfo'] = json.dumps(testEnvironment['testUsers']['MO'])
-    testCaseDetail['mtInfo'] = json.dumps(testEnvironment['testUsers']['MT'])
-    testCaseDetail['testParameters'] = json.dumps(testParameters)
-
-    testCaseDetail['Preconditions'] = '\n'.join(testCaseInfo['Preconditions'])
-    testCaseDetail['TestSteps'] = '\n'.join(testCaseInfo['TestSteps'])
-    testCaseDetail['CheckPoints'] = '\n'.join(testCaseInfo['CheckPoints'])
-
-    testCaseDetail['testResultList'] = '\n'.join(json.dumps(element) for element in testResults)
-
-    for result in testResults:
-        if (result['checkPointResult'] != "passed"):
-            testCaseResult = False
-            break
-    if (testCaseResult == True):
-        testCaseDetail['testResult'] = "passed"
+    # Verification.
+    # Verification for 'isSuccess'.
+    if ('isSuccess' in response['response']):
+        if ((response['response']['isSuccess'] == True) or (response['response']['isSuccess'] == 'true')):
+            testResult['checkPointResult'] = "passed"
+        else:
+            testResult['checkPointResult'] = "failed"
+            testResult['failedReason'] = "Failed to HTTP download."
+            return testResult
     else:
-        testCaseDetail['testResult'] = "failed"
+        testResult['failedReason'] = "Cannot find 'isSuccess' in the response."
+        return testResult
 
-    testCaseDetailList.append(testCaseDetail)
+    # Verification for 'downloadFile'.
+    if ('downloadFile' in response['response']):
+        if (len(response['response']['downloadFile']) > 0):
+            testResult['checkPointResult'] = "passed"
+        else:
+            testResult['checkPointResult'] = "failed"
+            testResult['failedReason'] = "There is no 'downloadFile' value in the response."
+            return testResult
+    else:
+        testResult['failedReason'] = "Cannot find 'downloadFile' in the response."
+        return testResult
 
-    return testCaseDetailList
+    # Return result.
+    return testResult
+
+def verifyDownloadedFileInfoResponse(testEnvironment, testParameters, response):
+    # Initialization.
+    testResult = {}
+    testResult['checkPointResult'] = "failed"
+    testResult['failedReason'] = "none"
+    testResult['command'] = response['command']
+    testResult['response'] = response['response']
+
+    # Verification.
+    if (len(response['response']) == 8):
+        fileSize = response['response'][4]
+        filePath = response['response'][-1]
+        if ((fileSize > 0) and (len(filePath) > 0)):
+            testResult['checkPointResult'] = "passed"
+    else:
+        testResult['failedReason'] = "Incorrect response length of checking download file info."
+        return testResult
+
+    # Return result.
+    return testResult
+
+
 
 
 

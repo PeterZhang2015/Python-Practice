@@ -49,5 +49,12 @@ WebBrowsing:
     CheckPoints:
     - 'Web browsing successfully.'
 
-
-
+HTTPDownload:
+    TestCaseID: 'MAndroid2_Smoke_Test_005_HTTPDownload'
+    Description: 'Basic HTTP download.'
+    Preconditions: 'None.'
+    TestSteps:
+    - 'Start HTTP download.'
+    - 'Wait for HTTP download completion.'
+    CheckPoints:
+    - 'HTTP download successfully.'
