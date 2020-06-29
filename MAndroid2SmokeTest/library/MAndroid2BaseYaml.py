@@ -29,7 +29,8 @@ def getAllConfigureInfo(configurePath, name):
 
     # Check all configure files.
     configurationFileList = listdir(configurePath)
-    assert (len(configurationFileList) != 0)
+    if (len(configurationFileList) == 0):
+        return None
 
     # Get all test data list from configuration files.
     for filename in configurationFileList:
@@ -38,10 +39,13 @@ def getAllConfigureInfo(configurePath, name):
 
         if (yaml[0] == False):
             print("Failed to read test configuration yaml file {} from {}".format(filename, testDataPath))
-            sys.exit("Failed to read test configuration yaml file {} from {}".format(filename, testDataPath))
+            return None
         else:
             print("Read test configuration yaml file {} from {} successfully.".format(filename, testDataPath))
-            assert (name in yaml[1])
+
+            if (name not in yaml[1]):
+                print("Cannot find {} in {}.".format(name, yaml[1]))
+                return None
             print("{}: {}".format(name, yaml[1][name]))
             parametersList.append(yaml[1][name])
 
@@ -54,11 +58,14 @@ def getConfigureInfo(fileName, keyName):
 
     if (yaml[0] == False):
         print("Failed to read test configuration yaml file {}".format(fileName))
-        sys.exit("Failed to read test configuration yaml file {}".format(fileName))
+        return None
     else:
         print("Read test configuration yaml file {} successfully.".format(fileName))
-        assert keyName in yaml[1], "Cannot find {} in {}.".format(keyName, fileName)
-
+        if (keyName not in yaml[1]):
+            print ("Cannot find {} in {}.".format(keyName, fileName))
+            return None
+        else:
+            print ("yaml[1][keyName] is {}.".format(yaml[1][keyName]))
     return yaml[1][keyName]
 
 

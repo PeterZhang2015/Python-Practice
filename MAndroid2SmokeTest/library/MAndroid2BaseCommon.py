@@ -1,3 +1,4 @@
+import copy
 import json
 import sys
 from os import listdir
@@ -120,7 +121,8 @@ def writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList
     # Write test case summary.
     testCaseSummary['sum'] = testCaseSummary['sum'] + 1
     testCaseSummary['fail'] = testCaseSummary['fail'] + 1
-    testCaseSummary['MAndroid2AgentVersion'] = testEnvironment['testUsers']['MO']['versions']['MAndroid2Agent']
+    if 'versions' in testEnvironment['testUsers']['MO'] and 'MAndroid2Agent' in testEnvironment['testUsers']['MO']['versions']:
+        testCaseSummary['MAndroid2AgentVersion'] = testEnvironment['testUsers']['MO']['versions']['MAndroid2Agent']
 
 
 
@@ -128,6 +130,7 @@ def writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList
 
 def connectTestUsers(testEnvironment, userFlag, testParameters, testCaseInfo, testCaseSummary, testCaseDetailList):
     # Connect available test handset on mcloud from specified IMSI.
+    result = {}
     mcloud = MCloudControl()
 
     # Set test environment variables.
@@ -136,14 +139,17 @@ def connectTestUsers(testEnvironment, userFlag, testParameters, testCaseInfo, te
     mcloud.mcloudLoginToken = testEnvironment['Login']['accessToken']
 
     if (userFlag == "MO"):
-        testEnvironment['testUsers']['MO']['handsetID'] = mcloud.connectToMcloudUser(testEnvironment['testUsers']['MO']['IMSI'])
+        result = mcloud.connectToMcloudUser(testEnvironment['testUsers']['MO']['IMSI'])
 
-        if testEnvironment['testUsers']['MO']['handsetID'] == None:
-            failedReason = "Cannot connect to user {}".format(testEnvironment['testUsers']['MO']['handsetID'])
+        if result["failedFlag"] == True or result["remoteConnectUrl"] == None:
+            failedReason = result["failedReason"]
             writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
                                        testParameters, testCaseInfo)
-        assert (testEnvironment['testUsers']['MO']['handsetID'] != None)
-        print("MO Handset ID is {}".format(testEnvironment['testUsers']['MO']['handsetID']))
+        else:
+            testEnvironment['testUsers']['MO']['handsetID'] = result["remoteConnectUrl"]
+
+        assert (result["remoteConnectUrl"] != None)
+        print("MO Handset ID is {}".format(result["remoteConnectUrl"]))
 
         # Get MAndroid2 version info.
         version = getMAndroid2Version(testEnvironment['MAndroid2AgentPath'],
@@ -154,15 +160,19 @@ def connectTestUsers(testEnvironment, userFlag, testParameters, testCaseInfo, te
             failedReason = "Cannot get MAndroid2 version from {}".format(testEnvironment['testUsers']['MO']['handsetID'])
             writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
                                        testParameters, testCaseInfo)
+        assert (version != None)
     elif (userFlag == "MT"):
-        testEnvironment['testUsers']['MT']['handsetID'] = mcloud.connectToMcloudUser(testEnvironment['testUsers']['MT']['IMSI'])
+        result = mcloud.connectToMcloudUser(testEnvironment['testUsers']['MT']['IMSI'])
 
-        if testEnvironment['testUsers']['MT']['handsetID'] == None:
-            failedReason = "Cannot connect to user {}".format(testEnvironment['testUsers']['MT']['handsetID'])
+        if result["failedFlag"] == True or result["remoteConnectUrl"] == None:
+            failedReason = result["failedReason"]
             writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
                                        testParameters, testCaseInfo)
-        assert (testEnvironment['testUsers']['MT']['handsetID'] != None)
-        print("MT Handset ID is {}".format(testEnvironment['testUsers']['MT']['handsetID']))
+        else:
+            testEnvironment['testUsers']['MT']['handsetID'] = result["remoteConnectUrl"]
+
+        assert (result["remoteConnectUrl"] != None)
+        print("MT Handset ID is {}".format(result["remoteConnectUrl"]))
 
         # Get MAndroid2 version info.
         version = getMAndroid2Version(testEnvironment['MAndroid2AgentPath'],
@@ -173,24 +183,33 @@ def connectTestUsers(testEnvironment, userFlag, testParameters, testCaseInfo, te
             failedReason = "Cannot get MAndroid2 version from {}".format(testEnvironment['testUsers']['MT']['handsetID'])
             writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
                                        testParameters, testCaseInfo)
+        assert (version != None)
 
     elif (userFlag == "MOMT"):
-        testEnvironment['testUsers']['MO']['handsetID'] = mcloud.connectToMcloudUser(testEnvironment['testUsers']['MO']['IMSI'])
+        result = mcloud.connectToMcloudUser(testEnvironment['testUsers']['MO']['IMSI'])
 
-        if testEnvironment['testUsers']['MO']['handsetID'] == None:
-            failedReason = "Cannot connect to user {}".format(testEnvironment['testUsers']['MO']['handsetID'])
+        if result["failedFlag"] == True or result["remoteConnectUrl"] == None:
+            failedReason = result["failedReason"]
             writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
                                        testParameters, testCaseInfo)
-        assert (testEnvironment['testUsers']['MO']['handsetID'] != None)
-        print("MO Handset ID is {}".format(testEnvironment['testUsers']['MO']['handsetID']))
+        else:
+            testEnvironment['testUsers']['MO']['handsetID'] = result["remoteConnectUrl"]
 
-        testEnvironment['testUsers']['MT']['handsetID'] = mcloud.connectToMcloudUser(testEnvironment['testUsers']['MT']['IMSI'])
-        if testEnvironment['testUsers']['MT']['handsetID'] == None:
-            failedReason = "Cannot connect to user {}".format(testEnvironment['testUsers']['MT']['handsetID'])
+        assert (result["remoteConnectUrl"] != None)
+        print("MO Handset ID is {}".format(result["remoteConnectUrl"]))
+
+        result = mcloud.connectToMcloudUser(testEnvironment['testUsers']['MT']['IMSI'])
+
+        if result["failedFlag"] == True or result["remoteConnectUrl"] == None:
+            failedReason = result["failedReason"]
             writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
                                        testParameters, testCaseInfo)
-        assert (testEnvironment['testUsers']['MT']['handsetID'] != None)
-        print("MT Handset ID is {}".format(testEnvironment['testUsers']['MT']['handsetID']))
+        else:
+            testEnvironment['testUsers']['MT']['handsetID'] = result["remoteConnectUrl"]
+
+        assert (result["remoteConnectUrl"] != None)
+        print("MT Handset ID is {}".format(result["remoteConnectUrl"]))
+
         # Get MAndroid2 version info.
         version = getMAndroid2Version(testEnvironment['MAndroid2AgentPath'],
                                       testEnvironment['testUsers']['MO']['handsetID'])
@@ -200,6 +219,7 @@ def connectTestUsers(testEnvironment, userFlag, testParameters, testCaseInfo, te
             failedReason = "Cannot get MAndroid2 version from {}".format(testEnvironment['testUsers']['MO']['handsetID'])
             writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
                                        testParameters, testCaseInfo)
+        assert (version != None)
 
         version = getMAndroid2Version(testEnvironment['MAndroid2AgentPath'],
                                       testEnvironment['testUsers']['MT']['handsetID'])
@@ -209,6 +229,7 @@ def connectTestUsers(testEnvironment, userFlag, testParameters, testCaseInfo, te
             failedReason = "Cannot get MAndroid2 version from {}".format(testEnvironment['testUsers']['MT']['handsetID'])
             writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
                                        testParameters, testCaseInfo)
+        assert (version != None)
     else:
         print("Cannot recognize userFlag {}".format(userFlag))
 
@@ -268,6 +289,7 @@ def checkTestCaseInfoConfig(testCaseKey):
     # Get test case info configuration.
     testCaseInfoFileName = "../configuration/testCaseInfo/testCaseInfo.yaml"
     testCaseInfo = getConfigureInfo(testCaseInfoFileName, testCaseKey)
+    assert (testCaseInfo != None)
 
     # Check test case info from configuration file.
     assert ("TestCaseID" in testCaseInfo)
@@ -959,7 +981,96 @@ def verifyDownloadedFileInfoResponse(testEnvironment, testParameters, response):
     # Return result.
     return testResult
 
+def getAllAvailableDevices(testEnvironment):
+
+    # Initialization.
+    deviceList = []
+    availableDeviceList = []
+
+    # Set test environment variables.
+    mcloud = MCloudControl()
+    mcloud.mcloudBaseUrl = testEnvironment['MCloud']['baseUrl']
+    mcloud.mcloudLoginUser = testEnvironment['Login']['User']
+    mcloud.mcloudLoginToken = testEnvironment['Login']['accessToken']
+
+    # Get device list.
+    allAvailableDeviceList = mcloud.listAllAvailableDevices(testEnvironment['Login']['User'])
+    return allAvailableDeviceList
+
+def getAllEnvironments(testEnvironments):
+
+    # Initialization.
+    userEnvironments = []
+    testUserExistFlag = False
 
 
+    # Get user combinations under each test environment.
+    for testEnvironment in testEnvironments:
+        # Initialization
+        userCombinations = []
+        userCombination = {'MO': {'IMSI': None, 'MSISDN': None},
+                           'MT': {'IMSI': None, 'MSISDN': None}}
+        userEnvironment = {}
+        # Get all available test handsets
+        allAvailableDevices = getAllAvailableDevices(testEnvironment)
+        print("allAvailableDevices is: {}".format(allAvailableDevices))
+        if allAvailableDevices != None:
+            # Need at least two handsets under each test environment.
+            if len(allAvailableDevices) > 1:
+                testUserExistFlag = True
+            else:
+                continue
+        else:
+            continue
+
+        # Get MO user
+        for device in allAvailableDevices:
+            userCombination['MO']['IMSI'] = device['imsi']
+            userCombination['MO']['MSISDN'] = device['phoneNumber']
+
+            # Get MT user
+            for anotherDevice in allAvailableDevices:
+                if (anotherDevice['imsi'] != userCombination['MO']['IMSI']):
+                    userCombination['MT']['IMSI'] = anotherDevice['imsi']
+                    userCombination['MT']['MSISDN'] = anotherDevice['phoneNumber']
+                    userCombinations.append(copy.deepcopy(userCombination))
+
+        print("userCombinations is: {}".format(userCombinations))
+
+        # Get test environment with different user combination
+        for userCombination in userCombinations:
+            userEnvironment['MCloud'] = testEnvironment['MCloud']
+            userEnvironment['Login'] = testEnvironment['Login']
+            userEnvironment['MAndroid2AgentPath'] = testEnvironment['MAndroid2AgentPath']
+            userEnvironment['testUsers'] = userCombination
+            userEnvironments.append(copy.deepcopy(userEnvironment))
+
+    if testUserExistFlag == False:
+        return None
+    else:
+        return userEnvironments
 
 
+def getAllAvailableDevicesUnderDifferentEnvironment(testEnvironments):
+
+    # Initialization.
+    baseUrlList = []
+    baseUrlList.append(testEnvironments[0]['MCloud']['baseUrl'])
+
+    differentEnvironments = []
+    differentEnvironments.append(testEnvironments[0])
+    environments = []
+
+    # Get different test environments.
+    for testEnvironment in testEnvironments:
+        for baseUrl in baseUrlList:
+            if testEnvironment['MCloud']['baseUrl'] != baseUrl:
+                baseUrlList.append(testEnvironment['MCloud']['baseUrl'])
+                differentEnvironments.append(testEnvironment)
+
+    print("differentEnvironments is: {}".format(differentEnvironments))
+
+    # Get all available test handsets from each test environment with different base URL.
+    environments = getAllEnvironments(differentEnvironments)
+
+    return environments

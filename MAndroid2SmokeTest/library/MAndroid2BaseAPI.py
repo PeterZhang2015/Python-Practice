@@ -38,6 +38,7 @@ def getMAndroid2Version(MAndroid2AgentPath, handsetId):
     command = "java -jar {} {} {}".format(MAndroid2AgentPath,
                                           handsetId,
                                           GET_MANDROID2_VERSION_CODE)
+    print (command)
     # Execute command
     response = json.loads(subprocess.check_output(command.split()))
     print (response)
@@ -51,8 +52,10 @@ def getMAndroid2Version(MAndroid2AgentPath, handsetId):
     command = "java -jar {} {} {}".format(MAndroid2AgentPath,
                                           handsetId,
                                           GET_MANDROID2_AGENT_VERSION_CODE)
+    print (command)
     # Execute command
     response = json.loads(subprocess.check_output(command.split()))
+    print (response)
     if ('version' not in response):
         return None
 
@@ -63,7 +66,9 @@ def getMAndroid2Version(MAndroid2AgentPath, handsetId):
     command = "java -jar {} {} {}".format(MAndroid2AgentPath,
                                           handsetId,
                                           GET_MANDROID2_PLUGIN_VERSION_CODE)
+    print (command)
     # Execute command
+    print (response)
     response = json.loads(subprocess.check_output(command.split()))
     if ('version' not in response):
         return None

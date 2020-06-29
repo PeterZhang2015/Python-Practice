@@ -4,6 +4,7 @@ import requests
 import json
 import time
 import subprocess
+import re
 
 from MAndroid2SmokeTest.library.MAndroid2BaseYaml import getConfigureInfo
 
@@ -172,6 +173,12 @@ class MCloudControl(object):
             return None
 
     def getDeviceSerialByImsi(self, userIMSI):
+        # Initializaation.
+        result = {}
+        result['failedFlag'] = False
+        result['failedReason'] = None
+        result['deviceSerial'] = None
+
         # Initialize return value.
         deviceSerial = None
 
@@ -194,8 +201,10 @@ class MCloudControl(object):
 
             # Check whether any handset is connected on mcloud.
             if (len(devicesList) == 0):
-                print("There is no handset connected to the mcloud.")
-                return None
+                result['failedFlag'] = True
+                result['failedReason'] = "There is no handset connected to the mcloud."
+                print(result['failedReason'])
+                return result
             # Loop to check the device that can be matched with the testing user IMSI.
             for device in devicesList:
                 # Only check the present handsets.
@@ -209,8 +218,11 @@ class MCloudControl(object):
 
 
             if (deviceSerial) == None:
-                print("There is no device that can be matched with the testing user IMSI.")
-                return None
+                result['failedFlag'] = True
+                result['failedReason'] = "There is no device that can be matched with the testing user IMSI."
+                print(result['failedReason'])
+
+                return result
 
             # Check that whether the device has been occupied by someone else
             if (device['owner'] != None):
@@ -226,57 +238,91 @@ class MCloudControl(object):
                                                                                     self.mcloudLoginUser))
 
             else:
-                print("Handset with IMSI {} has been occupied by mcloud user {}.".format(userIMSI,
-                                                                           device['owner']['email']))
-                return None
+                result['failedFlag'] = True
+                result['failedReason'] = "Handset with IMSI {} has been occupied by mcloud user {}.".format(userIMSI, device['owner']['email'])
+                print(result['failedReason'])
 
-            return deviceSerial
+                return result
+
+            result['deviceSerial'] = deviceSerial
+            return result
         else:
-            print('[!] HTTP {0} calling [{1}]'.format(self._url('/devices')))
-            return None
 
+            result['failedFlag'] = True
+            result['failedReason'] = '[!] HTTP {0} calling [{1}]'.format(self._url('/devices'))
+            print(result['failedReason'])
 
+            return result
 
     def connectToMcloudUser(self, userIMSI):
-        # Try to find the device serial of the matched IMSI.
-        deviceSerial = self.getDeviceSerialByImsi(userIMSI)
+        # Initializaation.
+        result = {}
+        result['failedFlag'] = False
+        result['failedReason'] = None
+        result['remoteConnectUrl'] = None
 
-        if (deviceSerial == None):
-            print ("Cannot find the matched IMSI {} on mcloud".format(userIMSI))
-            return None
+        # Try to find the device serial of the matched IMSI.
+        resultGetDeviceSerialByImsi = self.getDeviceSerialByImsi(userIMSI)
+
+        if (resultGetDeviceSerialByImsi['failedFlag'] == True or resultGetDeviceSerialByImsi['deviceSerial'] == None):
+            result['failedFlag'] = True
+            result['failedReason'] = "Cannot find the matched IMSI {} on mcloud".format(userIMSI)
+            print(result['failedReason'])
+            return result
         else:
             print("Find the matched IMSI {} on mcloud".format(userIMSI))
 
         # Use the device on mcloud.
-        result = self.requestDevice(deviceSerial)
-        if (result == False):
-            print("Failed to use the device {} on mcloud.".format(deviceSerial))
-            return None
+        resultRequestDevice = self.requestDevice(resultGetDeviceSerialByImsi['deviceSerial'])
+        if (resultRequestDevice == False):
+            result['failedFlag'] = True
+            result['failedReason'] = "Failed to use the device {} on mcloud.".format(resultGetDeviceSerialByImsi['deviceSerial'])
+            print(result['failedReason'])
+            return result
 
         # Get the device remote control url.
-        resp = self.remoteConnect(deviceSerial)
+        resp = self.remoteConnect(resultGetDeviceSerialByImsi['deviceSerial'])
         # Abort the execution if failed to call the API.
         if (resp == None):
-            print ("Fail to remoteConnect {} on mcloud".format(userIMSI))
-            return None
+            result['failedFlag'] = True
+            result['failedReason'] = "Fail to remoteConnect {} on mcloud".format(userIMSI)
+            print(result['failedReason'])
+            return result
 
         dictResponse = json.loads(resp.content)
 
         # Abort the execution if it cannot get the remote control url of the testing device.
         if (dictResponse['success'] != True):
-            print ("Fail to remoteConnect {} on mcloud".format(userIMSI))
-            return None
+            result['failedFlag'] = True
+            result['failedReason'] = "Fail to remoteConnect {} on mcloud according to response".format(userIMSI)
+            print(result['failedReason'])
+            return result
         else:
             print ("connect {} on mcloud successfully".format(userIMSI))
+            print ("remoteConnectUrl is ", dictResponse['remoteConnectUrl'])
 
-        # ADB connect to the device on mCloud.
-        process = subprocess.Popen(['adb', 'connect', dictResponse['remoteConnectUrl']],
-                                   stdout=subprocess.PIPE,
-                                   universal_newlines=True)
+        # adb connect
+        command = "adb connect {}".format(dictResponse['remoteConnectUrl'])
 
-        print ("remoteConnectUrl is ", dictResponse['remoteConnectUrl'])
+        response = subprocess.check_output(command.split())
+        print("Response of adb connect {} is: {}".format(dictResponse['remoteConnectUrl'], response))
 
-        return dictResponse['remoteConnectUrl']
+        # Check adb connect result by adb devices after waiting 2 seconds.
+        time.sleep(2)
+        command = "adb devices"
+        response = subprocess.check_output(command.split()).decode('utf-8')
+        print("Response of adb devices is: {}".format(response))
+
+        findResult = re.findall(r"(.+)\t+device", response)
+        print(findResult)
+        if dictResponse['remoteConnectUrl'] in findResult:
+            result['remoteConnectUrl'] = dictResponse['remoteConnectUrl']
+            return result
+        else:
+            result['failedFlag'] = True
+            result['failedReason'] = "Cannot find device {} after adb connect".format(dictResponse['remoteConnectUrl'])
+            print(result['failedReason'])
+            return result
 
     def tearDownUsingDevices(self, deviceSerialList):
         # ADB disconnect to all devices.
@@ -311,13 +357,21 @@ if __name__ == '__main__':
     print("Connected handset ID: {}".format(availableDeviceList))
 
     for availableDevice in availableDeviceList:
-        handset_id = mcloud.connectToMcloudUser(availableDevice["imsi"])
+        result = mcloud.connectToMcloudUser(availableDevice["imsi"])
         print("Connected handset ID: {}".format(availableDeviceList))
 
-        # Re-install latest MAndroid2 APK.
-        process = subprocess.Popen(['adb', '-s', handset_id, 'install', '-r', apkPath],
-                                   stdout=subprocess.PIPE,
-                                   universal_newlines=True)
+        if result["failedFlag"] == True or result["remoteConnectUrl"] == None:
+            print("Cannot connect to user: {}".format(availableDevice["imsi"]))
+            continue
+        else:
+            handset_id = result["remoteConnectUrl"]
+            # Re-install latest MAndroid2 APK.
+            # Construct command
+            command = "adb -s {} install -r {}".format(handset_id, apkPath)
+
+            response = subprocess.check_output(command.split())
+            print("Response of adb install for {} is: {}".format(handset_id, response))
+
     mcloud.tearDownUsingDevices(mcloud.deviceSerialList)
 
 

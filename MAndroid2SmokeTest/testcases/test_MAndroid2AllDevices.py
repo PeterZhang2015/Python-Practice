@@ -15,7 +15,7 @@ from MAndroid2SmokeTest.library.MAndroid2BaseMCloud import MCloudControl
 from MAndroid2SmokeTest.library.MAndroid2BaseCommon import addJsonReportMetaData, executeTestLogic, \
     verifyTestCaseResult, connectTestUsers, checkTestEnvironmentConfig, checkTestParametersConfig, \
     checkTestCaseInfoConfig, createExcelTestReport, writeExcelTestReportSummary, initializeExcelSummary, \
-    writeExcelTestReportDetail, executeTestCase
+    writeExcelTestReportDetail, executeTestCase, getAllAvailableDevicesUnderDifferentEnvironment
 from MAndroid2SmokeTest.library.MAndroid2BaseCommon import disconnectTestUsers
 from MAndroid2SmokeTest.library.MAndroid2BaseYaml import getAllConfigureInfo
 from MAndroid2SmokeTest.library.MAndroid2BaseYaml import getConfigureInfo
@@ -32,7 +32,7 @@ RELPATH = lambda p: os.path.relpath(
     os.path.join(os.path.dirname(__file__), p)
 )
 
-@pytest.mark.specifiDeviceSmokeTest
+@pytest.mark.allAvailableDeviceSmokeTest
 
 class TestMAndroid2TestCases():
     # Initialize variables.
@@ -40,26 +40,45 @@ class TestMAndroid2TestCases():
     testEnvironmentName = "testEnvironment"
     testParametersName = "testParameters"
     excelReportPath = "../reports/excel/"
-    voiceCallTestParametersPath = "../configuration/testParameters/voiceCall/"
-    smsTestParametersPath = "../configuration/testParameters/SMS/"
-    mmsTestParametersPath = "../configuration/testParameters/MMS/"
-    webBrowsingTestParametersPath = "../configuration/testParameters/webBrowsing/"
-    httpDownloadTestParametersPath = "../configuration/testParameters/httpDownload/"
+    voiceCallTestParametersPath = "../configuration/testParameters/voiceCall/testParameters1.yaml"
+    smsTestParametersPath = "../configuration/testParameters/SMS/testParameters1.yaml"
+    mmsTestParametersPath = "../configuration/testParameters/MMS/testParameters1.yaml"
+    webBrowsingTestParametersPath = "../configuration/testParameters/webBrowsing/testParameters1.yaml"
+    httpDownloadTestParametersPath = "../configuration/testParameters/httpDownload/testParameters1.yaml"
     testCaseSummary = {}
     testCaseDetailList = []
+    voiceCallTestParameters = []
+    smsTestParameters = []
+    mmsTestParameters = []
+    webBrowsingTestParameters = []
+    httpDownloadTestParameters = []
 
     testEnvironments = getAllConfigureInfo(testEnvironmentPath, testEnvironmentName)
     assert (testEnvironments != None)
-    voiceCallTestParameters = getAllConfigureInfo(voiceCallTestParametersPath, testParametersName)
-    assert (voiceCallTestParameters != None)
-    smsTestParameters = getAllConfigureInfo(smsTestParametersPath, testParametersName)
-    assert (smsTestParameters != None)
-    mmsTestParameters = getAllConfigureInfo(mmsTestParametersPath, testParametersName)
-    assert (mmsTestParameters != None)
-    webBrowsingTestParameters = getAllConfigureInfo(webBrowsingTestParametersPath, testParametersName)
-    assert (webBrowsingTestParameters != None)
-    httpDownloadTestParameters = getAllConfigureInfo(httpDownloadTestParametersPath, testParametersName)
-    assert (httpDownloadTestParameters != None)
+
+    parameters = getConfigureInfo(voiceCallTestParametersPath, testParametersName)
+    assert (parameters != None)
+    voiceCallTestParameters.append(parameters)
+
+    parameters = getConfigureInfo(smsTestParametersPath, testParametersName)
+    assert (parameters != None)
+    smsTestParameters.append(parameters)
+
+    parameters = getConfigureInfo(mmsTestParametersPath, testParametersName)
+    assert (parameters != None)
+    mmsTestParameters.append(parameters)
+
+    parameters = getConfigureInfo(webBrowsingTestParametersPath, testParametersName)
+    assert (parameters != None)
+    webBrowsingTestParameters.append(parameters)
+
+    parameters = getConfigureInfo(httpDownloadTestParametersPath, testParametersName)
+    assert (parameters != None)
+    httpDownloadTestParameters.append(parameters)
+
+    testEnvironmentCombinations = getAllAvailableDevicesUnderDifferentEnvironment(testEnvironments)
+
+    print("testEnvironmentCombinations is: {}".format(testEnvironmentCombinations))
 
     @classmethod
     def setup_class(cls):
@@ -92,7 +111,7 @@ class TestMAndroid2TestCases():
         cls.excelReport.detail(cls.detailSheet, cls.testCaseDetailList)
         cls.excelReport.close()
 
-    @pytest.mark.parametrize("testEnvironment", testEnvironments)
+    @pytest.mark.parametrize("testEnvironment", testEnvironmentCombinations)
     @pytest.mark.parametrize("testParameters", voiceCallTestParameters)
     def test_MAndroid2_VoiceCall(self, json_metadata, testEnvironment, testParameters):
         # Define test case variables.
@@ -101,7 +120,7 @@ class TestMAndroid2TestCases():
 
         # Get and check test case info.
         testCaseInfo = checkTestCaseInfoConfig(testCaseKey)
-
+        print ("testParameters is: {}".format(testParameters))
         # Execute test case.
         testResults = executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testParameters,
                                       testCaseInfo, self.testCaseSummary, self.testCaseDetailList)
@@ -115,7 +134,7 @@ class TestMAndroid2TestCases():
         for result in testResults:
             assert (result['checkPointResult'] == "passed")
 
-    @pytest.mark.parametrize("testEnvironment", testEnvironments)
+    @pytest.mark.parametrize("testEnvironment", testEnvironmentCombinations)
     @pytest.mark.parametrize("testParameters", smsTestParameters)
     def test_MAndroid2_SMS(self, json_metadata, testEnvironment, testParameters):
         # Define test case variables.
@@ -138,7 +157,7 @@ class TestMAndroid2TestCases():
         for result in testResults:
             assert (result['checkPointResult'] == "passed")
 
-    @pytest.mark.parametrize("testEnvironment", testEnvironments)
+    @pytest.mark.parametrize("testEnvironment", testEnvironmentCombinations)
     @pytest.mark.parametrize("testParameters", mmsTestParameters)
     def test_MAndroid2_MMS(self, json_metadata, testEnvironment, testParameters):
         # Define test case variables.
@@ -161,9 +180,12 @@ class TestMAndroid2TestCases():
         for result in testResults:
             assert (result['checkPointResult'] == "passed")
 
-    @pytest.mark.parametrize("testEnvironment", testEnvironments)
+    @pytest.mark.parametrize("testEnvironment", testEnvironmentCombinations)
     @pytest.mark.parametrize("testParameters", webBrowsingTestParameters)
     def test_MAndroid2_WebBrowsing(self, json_metadata, testEnvironment, testParameters):
+
+        print("testParameters is: {}".format(testParameters))
+
         # Define test case variables.
         testCaseKey = 'WebBrowsing'
         userFlag = 'MO'
@@ -184,7 +206,7 @@ class TestMAndroid2TestCases():
         for result in testResults:
             assert (result['checkPointResult'] == "passed")
 
-    @pytest.mark.parametrize("testEnvironment", testEnvironments)
+    @pytest.mark.parametrize("testEnvironment", testEnvironmentCombinations)
     @pytest.mark.parametrize("testParameters", httpDownloadTestParameters)
     def test_MAndroid2_HTTPDownload(self, json_metadata, testEnvironment, testParameters):
         # Define test case variables.
@@ -209,6 +231,7 @@ class TestMAndroid2TestCases():
         for result in testResults:
             assert (result['checkPointResult'] == "passed")
 
+
 if __name__ == '__main__':
     # Generate timestamp.
     dateTimeObj = datetime.now()
@@ -221,7 +244,7 @@ if __name__ == '__main__':
     print(jsonReport)
 
     # Execute test case.
-    generateReportCommand = "pytest -m 'specifiDeviceSmokeTest' -q -r test_MAndroid2TestCases.py {} {}".format(jsonReport, htmlReport)
+    generateReportCommand = "pytest -m 'allAvailableDeviceSmokeTest' -q -r test_MAndroid2AllDevices.py {} {}".format(jsonReport, htmlReport)
     print(generateReportCommand)
     output3 = os.system(generateReportCommand)
 

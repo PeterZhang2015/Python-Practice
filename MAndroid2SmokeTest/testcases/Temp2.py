@@ -1,3 +1,38 @@
+import os
+import subprocess
+import sys
+
+# from ..library.MAndroid2BaseYaml import getYam
+# from ..library.MAndroid2BaseMCloud import MCloudControl
+from datetime import datetime, timedelta
+from os import listdir
+from time import sleep
+
+import pytest
+
+from MAndroid2SmokeTest.library.MAndroid2BaseYaml import getYam
+from MAndroid2SmokeTest.library.MAndroid2BaseMCloud import MCloudControl
+from MAndroid2SmokeTest.library.MAndroid2BaseCommon import addJsonReportMetaData, executeTestLogic, \
+    verifyTestCaseResult, connectTestUsers, checkTestEnvironmentConfig, checkTestParametersConfig, \
+    checkTestCaseInfoConfig, createExcelTestReport, writeExcelTestReportSummary, initializeExcelSummary, \
+    writeExcelTestReportDetail, executeTestCase, getAllAvailableDevicesUnderDifferentEnvironment
+from MAndroid2SmokeTest.library.MAndroid2BaseCommon import disconnectTestUsers
+from MAndroid2SmokeTest.library.MAndroid2BaseYaml import getAllConfigureInfo
+from MAndroid2SmokeTest.library.MAndroid2BaseYaml import getConfigureInfo
+
+from MAndroid2SmokeTest.library.MAndroid2BaseAPI import placeBasicVoiceCall, getMAndroid2Version
+from MAndroid2SmokeTest.library.MAndroid2BaseAPI import receiveBasicVoiceCall
+from MAndroid2SmokeTest.library.MAndroid2BaseAPI import endBasicVoiceCall
+
+PATH = lambda p: os.path.abspath(
+    os.path.join(os.path.dirname(__file__), p)
+)
+
+RELPATH = lambda p: os.path.relpath(
+    os.path.join(os.path.dirname(__file__), p)
+)
+
+
 # -*- coding: utf-8 -*-
 import os
 
@@ -66,17 +101,53 @@ import json
 # str1 = ''.join(json.dumps(e) for e in list1)
 # print (str1)
 
-excelReportPath = "../reports/excel/"
-print("excelReportPath is {}.".format(excelReportPath))
+# excelReportPath = "../reports/excel/"
+# print("excelReportPath is {}.".format(excelReportPath))
+#
+#
+# absExcelReportPath = os.path.abspath(excelReportPath)
+# print("absExcelReportPath is {}.".format(absExcelReportPath))
+#
+#
+# if (os.path.exists(absExcelReportPath) == False):
+#     os.makedirs(absExcelReportPath)
 
 
-absExcelReportPath = os.path.abspath(excelReportPath)
-print("absExcelReportPath is {}.".format(absExcelReportPath))
+# list1 = [1,2,3,4,5]
+#
+# for i in list1:
+#     for j in list1:
+#         print ("i is {} and j is {}".format(i, j))
+# testParametersName = "testParameters"
+# voiceCallTestParametersPath = "../configuration/testParameters/voiceCall/testParameters1.yaml"
+# voiceCallTestParameters = getConfigureInfo(voiceCallTestParametersPath, testParametersName)
+# print (voiceCallTestParameters)
+# assert (voiceCallTestParameters != None)
+#
+# # voiceCallTestParameters3 = list(voiceCallTestParameters)
+#
+#
+# # Check adb connect result by adb devices
+# handsetId = "mcloud.matrium.com.au:7902"
+#
+# command = "adb devices"
+# response = subprocess.check_output(command.split()).decode('utf-8')
+# print (response)
+#
+# findResult = re.findall(r"(.+)\t+device", response)
+# print (findResult)
+# if handsetId in findResult:
+#     print ("Passed")
+# else:
+#     print ("Failed")
 
 
-if (os.path.exists(absExcelReportPath) == False):
-    os.makedirs(absExcelReportPath)
-
+expected_result = {}
+expected_result["1"]["expected_result"] = "The eBGP neighbor should form properly between the MRS_1 and PE routers"
+expected_result["1"]["result"] = "Passed"
+expected_result["2"]["expected_result"] = "Routes with the appropriate Autonomous System (AS) path attribute should be seen on the PE BGP routing table"
+expected_result["2"]["result"] = "Passed"
+print (expected_result)
 
 
 
