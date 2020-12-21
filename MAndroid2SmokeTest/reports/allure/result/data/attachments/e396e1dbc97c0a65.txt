@@ -1,0 +1,63 @@
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: 41aa4e17-a58a-42a1-ab3e-145ec7b6aba6
+INFO     MAndroid2SmokeTest.conftest:test_MAndroid2AllDevices.py:153 Test case info: {'TestCaseID': 'MAndroid2_Smoke_Test_001_Voice_Call', 'Description': 'Basic voice call.', 'Preconditions': 'None.', 'TestSteps': ['Place voice call.', 'Receive voice call.', 'Wait for call duraton.', 'End voice call.'], 'CheckPoints': ['Place voice call successfully.', 'Receive voice call successfully.', 'End voice call successfully.']}.
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: 41aa4e17-a58a-42a1-ab3e-145ec7b6aba6
+INFO     MAndroid2SmokeTest.conftest:test_MAndroid2AllDevices.py:154 Test environment: {'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025104559746', 'MSISDN': '+61418673947'}, 'MT': {'IMSI': '505025504563848', 'MSISDN': '+61431202671'}}}.
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: 41aa4e17-a58a-42a1-ab3e-145ec7b6aba6
+INFO     MAndroid2SmokeTest.conftest:test_MAndroid2AllDevices.py:155 Test testParameters: {'VoiceCall': {'Duration': 8}}.
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: 41aa4e17-a58a-42a1-ab3e-145ec7b6aba6
+INFO     MAndroid2SmokeTest.conftest:test_MAndroid2AllDevices.py:158 Executing test logic.
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: 41aa4e17-a58a-42a1-ab3e-145ec7b6aba6
+DEBUG    urllib3.connectionpool:connectionpool.py:225 Starting new HTTP connection (1): mcloud.matrium.com.au:7100
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: 41aa4e17-a58a-42a1-ab3e-145ec7b6aba6
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://mcloud.matrium.com.au:7100 "GET /api/v1/devices HTTP/1.1" 200 24584
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: 41aa4e17-a58a-42a1-ab3e-145ec7b6aba6
+DEBUG    urllib3.connectionpool:connectionpool.py:225 Starting new HTTP connection (1): mcloud.matrium.com.au:7100
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: 41aa4e17-a58a-42a1-ab3e-145ec7b6aba6
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://mcloud.matrium.com.au:7100 "POST /api/v1/user/devices HTTP/1.1" 200 58
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: 41aa4e17-a58a-42a1-ab3e-145ec7b6aba6
+DEBUG    urllib3.connectionpool:connectionpool.py:225 Starting new HTTP connection (1): mcloud.matrium.com.au:7100
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: 41aa4e17-a58a-42a1-ab3e-145ec7b6aba6
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://mcloud.matrium.com.au:7100 "POST /api/v1/user/devices/9886734d5647434c32/remoteConnect HTTP/1.1" 200 64
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: 41aa4e17-a58a-42a1-ab3e-145ec7b6aba6
+DEBUG    urllib3.connectionpool:connectionpool.py:225 Starting new HTTP connection (1): mcloud.matrium.com.au:7100
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: 41aa4e17-a58a-42a1-ab3e-145ec7b6aba6
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://mcloud.matrium.com.au:7100 "GET /api/v1/devices HTTP/1.1" 200 24698
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: 41aa4e17-a58a-42a1-ab3e-145ec7b6aba6
+DEBUG    urllib3.connectionpool:connectionpool.py:225 Starting new HTTP connection (1): mcloud.matrium.com.au:7100
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: 41aa4e17-a58a-42a1-ab3e-145ec7b6aba6
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://mcloud.matrium.com.au:7100 "POST /api/v1/user/devices HTTP/1.1" 200 58
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: 41aa4e17-a58a-42a1-ab3e-145ec7b6aba6
+DEBUG    urllib3.connectionpool:connectionpool.py:225 Starting new HTTP connection (1): mcloud.matrium.com.au:7100
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: 41aa4e17-a58a-42a1-ab3e-145ec7b6aba6
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://mcloud.matrium.com.au:7100 "POST /api/v1/user/devices/21f982c0b00c7ece/remoteConnect HTTP/1.1" 200 64
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: 41aa4e17-a58a-42a1-ab3e-145ec7b6aba6
+DEBUG    urllib3.connectionpool:connectionpool.py:225 Starting new HTTP connection (1): mcloud.matrium.com.au:7100
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: 41aa4e17-a58a-42a1-ab3e-145ec7b6aba6
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://mcloud.matrium.com.au:7100 "DELETE /api/v1/user/devices/9886734d5647434c32 HTTP/1.1" 200 60
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: 41aa4e17-a58a-42a1-ab3e-145ec7b6aba6
+DEBUG    urllib3.connectionpool:connectionpool.py:225 Starting new HTTP connection (1): mcloud.matrium.com.au:7100
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: 41aa4e17-a58a-42a1-ab3e-145ec7b6aba6
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://mcloud.matrium.com.au:7100 "DELETE /api/v1/user/devices/21f982c0b00c7ece HTTP/1.1" 200 60
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: 41aa4e17-a58a-42a1-ab3e-145ec7b6aba6
+INFO     MAndroid2SmokeTest.conftest:test_MAndroid2AllDevices.py:168 Test result: [{'checkPointResult': 'passed', 'failedReason': 'none', 'command': 'java -jar c:/tmp/MatriumMAndroid2-release.jar mcloud.matrium.com.au:7453 3010 call_phonenum +61431202671', 'response': {'isSuccess': True, 'startTime': 1599277706640, 'callee': '+61431202671', 'networkModeBeforeCall': 'LTE', 'description': 'Make a call successfully'}, 'checkPoint': 'Place voice call successfully.'}, {'checkPointResult': 'passed', 'failedReason': 'none', 'command': 'java -jar c:/tmp/MatriumMAndroid2-release.jar mcloud.matrium.com.au:7918 3011 ', 'response': {'ringingTime': '1599277712268', 'callDuration': 'null', 'networkModeBeforeCall': 'LTE', 'screenshotURL': '/sdcard/MAndroid2/Output/Screenshot/takescreen_20200905_134830.png', 'caller': '+61418673947', 'callAnswered': 'true', 'answerTime': '1599277714330', 'description': 'Call is connected successfully.', 'endTime': '0', 'networkModeDuringCall': 'LTE', 'networkModeAfterCall': 'null', 'isSuccess': 'true'}, 'checkPoint': 'Receive voice call successfully.'}, {'checkPointResult': 'passed', 'failedReason': 'none', 'command': 'java -jar c:/tmp/MatriumMAndroid2-release.jar mcloud.matrium.com.au:7453 3012', 'response': {'isSuccess': True, 'endTime': 1599277726474, 'networkModeAfterCall': 'LTE', 'description': 'End the call successfully', 'screenshotURL': '/sdcard/MAndroid2/Output/Screenshot/takescreen_20200905_014846.png'}, 'checkPoint': 'End voice call successfully.'}].

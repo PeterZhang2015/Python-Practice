@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Test Report</title>
+    <link href="assets/style.css" rel="stylesheet" type="text/css"/></head>
+  <body onLoad="init()">
+    <script>/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+
+function toArray(iter) {
+    if (iter === null) {
+        return null;
+    }
+    return Array.prototype.slice.call(iter);
+}
+
+function find(selector, elem) {
+    if (!elem) {
+        elem = document;
+    }
+    return elem.querySelector(selector);
+}
+
+function find_all(selector, elem) {
+    if (!elem) {
+        elem = document;
+    }
+    return toArray(elem.querySelectorAll(selector));
+}
+
+function sort_column(elem) {
+    toggle_sort_states(elem);
+    var colIndex = toArray(elem.parentNode.childNodes).indexOf(elem);
+    var key;
+    if (elem.classList.contains('numeric')) {
+        key = key_num;
+    } else if (elem.classList.contains('result')) {
+        key = key_result;
+    } else {
+        key = key_alpha;
+    }
+    sort_table(elem, key(colIndex));
+}
+
+function show_all_extras() {
+    find_all('.col-result').forEach(show_extras);
+}
+
+function hide_all_extras() {
+    find_all('.col-result').forEach(hide_extras);
+}
+
+function show_extras(colresult_elem) {
+    var extras = colresult_elem.parentNode.nextElementSibling;
+    var expandcollapse = colresult_elem.firstElementChild;
+    extras.classList.remove("collapsed");
+    expandcollapse.classList.remove("expander");
+    expandcollapse.classList.add("collapser");
+}
+
+function hide_extras(colresult_elem) {
+    var extras = colresult_elem.parentNode.nextElementSibling;
+    var expandcollapse = colresult_elem.firstElementChild;
+    extras.classList.add("collapsed");
+    expandcollapse.classList.remove("collapser");
+    expandcollapse.classList.add("expander");
+}
+
+function show_filters() {
+    var filter_items = document.getElementsByClassName('filter');
+    for (var i = 0; i < filter_items.length; i++)
+        filter_items[i].hidden = false;
+}
+
+function add_collapse() {
+    // Add links for show/hide all
+    var resulttable = find('table#results-table');
+    var showhideall = document.createElement("p");
+    showhideall.innerHTML = '<a href="javascript:show_all_extras()">Show all details</a> / ' +
+                            '<a href="javascript:hide_all_extras()">Hide all details</a>';
+    resulttable.parentElement.insertBefore(showhideall, resulttable);
+
+    // Add show/hide link to each result
+    find_all('.col-result').forEach(function(elem) {
+        var collapsed = get_query_parameter('collapsed') || 'Passed';
+        var extras = elem.parentNode.nextElementSibling;
+        var expandcollapse = document.createElement("span");
+        if (extras.classList.contains("collapsed")) {
+            expandcollapse.classList.add("expander")
+        } else if (collapsed.includes(elem.innerHTML)) {
+            extras.classList.add("collapsed");
+            expandcollapse.classList.add("expander");
+        } else {
+            expandcollapse.classList.add("collapser");
+        }
+        elem.appendChild(expandcollapse);
+
+        elem.addEventListener("click", function(event) {
+            if (event.currentTarget.parentNode.nextElementSibling.classList.contains("collapsed")) {
+                show_extras(event.currentTarget);
+            } else {
+                hide_extras(event.currentTarget);
+            }
+        });
+    })
+}
+
+function get_query_parameter(name) {
+    var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+
+function init () {
+    reset_sort_headers();
+
+    add_collapse();
+
+    show_filters();
+
+    sort_column(find('.initial-sort'));
+
+    find_all('.sortable').forEach(function(elem) {
+        elem.addEventListener("click",
+                              function(event) {
+                                  sort_column(elem);
+                              }, false)
+    });
+
+};
+
+function sort_table(clicked, key_func) {
+    var rows = find_all('.results-table-row');
+    var reversed = !clicked.classList.contains('asc');
+    var sorted_rows = sort(rows, key_func, reversed);
+    /* Whole table is removed here because browsers acts much slower
+     * when appending existing elements.
+     */
+    var thead = document.getElementById("results-table-head");
+    document.getElementById('results-table').remove();
+    var parent = document.createElement("table");
+    parent.id = "results-table";
+    parent.appendChild(thead);
+    sorted_rows.forEach(function(elem) {
+        parent.appendChild(elem);
+    });
+    document.getElementsByTagName("BODY")[0].appendChild(parent);
+}
+
+function sort(items, key_func, reversed) {
+    var sort_array = items.map(function(item, i) {
+        return [key_func(item), i];
+    });
+
+    sort_array.sort(function(a, b) {
+        var key_a = a[0];
+        var key_b = b[0];
+
+        if (key_a == key_b) return 0;
+
+        if (reversed) {
+            return (key_a < key_b ? 1 : -1);
+        } else {
+            return (key_a > key_b ? 1 : -1);
+        }
+    });
+
+    return sort_array.map(function(item) {
+        var index = item[1];
+        return items[index];
+    });
+}
+
+function key_alpha(col_index) {
+    return function(elem) {
+        return elem.childNodes[1].childNodes[col_index].firstChild.data.toLowerCase();
+    };
+}
+
+function key_num(col_index) {
+    return function(elem) {
+        return parseFloat(elem.childNodes[1].childNodes[col_index].firstChild.data);
+    };
+}
+
+function key_result(col_index) {
+    return function(elem) {
+        var strings = ['Error', 'Failed', 'Rerun', 'XFailed', 'XPassed',
+                       'Skipped', 'Passed'];
+        return strings.indexOf(elem.childNodes[1].childNodes[col_index].firstChild.data);
+    };
+}
+
+function reset_sort_headers() {
+    find_all('.sort-icon').forEach(function(elem) {
+        elem.parentNode.removeChild(elem);
+    });
+    find_all('.sortable').forEach(function(elem) {
+        var icon = document.createElement("div");
+        icon.className = "sort-icon";
+        icon.textContent = "vvv";
+        elem.insertBefore(icon, elem.firstChild);
+        elem.classList.remove("desc", "active");
+        elem.classList.add("asc", "inactive");
+    });
+}
+
+function toggle_sort_states(elem) {
+    //if active, toggle between asc and desc
+    if (elem.classList.contains('active')) {
+        elem.classList.toggle('asc');
+        elem.classList.toggle('desc');
+    }
+
+    //if inactive, reset all other functions and add ascending active
+    if (elem.classList.contains('inactive')) {
+        reset_sort_headers();
+        elem.classList.remove('inactive');
+        elem.classList.add('active');
+    }
+}
+
+function is_all_rows_hidden(value) {
+  return value.hidden == false;
+}
+
+function filter_table(elem) {
+    var outcome_att = "data-test-result";
+    var outcome = elem.getAttribute(outcome_att);
+    class_outcome = outcome + " results-table-row";
+    var outcome_rows = document.getElementsByClassName(class_outcome);
+
+    for(var i = 0; i < outcome_rows.length; i++){
+        outcome_rows[i].hidden = !elem.checked;
+    }
+
+    var rows = find_all('.results-table-row').filter(is_all_rows_hidden);
+    var all_rows_hidden = rows.length == 0 ? true : false;
+    var not_found_message = document.getElementById("not-found-message");
+    not_found_message.hidden = !all_rows_hidden;
+}
+</script>
+    <h1>htmlReport_14-09-2020_15-22-58.html</h1>
+    <p>Report generated on 14-Sep-2020 at 15:23:21 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v2.1.1</p>
+    <h2>Environment</h2>
+    <table id="environment">
+      <tr>
+        <td>CI</td>
+        <td>true</td></tr>
+      <tr>
+        <td>CI_COMMIT_REF_NAME</td>
+        <td>develop</td></tr>
+      <tr>
+        <td>CI_COMMIT_REF_SLUG</td>
+        <td>develop</td></tr>
+      <tr>
+        <td>CI_COMMIT_SHA</td>
+        <td>9494a062f1a740dc7684400fa4cbbc8fe8d27db8</td></tr>
+      <tr>
+        <td>CI_DEBUG_TRACE</td>
+        <td>true</td></tr>
+      <tr>
+        <td>CI_JOB_ID</td>
+        <td>735454456</td></tr>
+      <tr>
+        <td>CI_JOB_NAME</td>
+        <td>smokeTest</td></tr>
+      <tr>
+        <td>CI_JOB_STAGE</td>
+        <td>smokeTest</td></tr>
+      <tr>
+        <td>CI_JOB_TOKEN</td>
+        <td>BwudGyMMzZiYZeDduvkM</td></tr>
+      <tr>
+        <td>CI_PIPELINE_ID</td>
+        <td>189410762</td></tr>
+      <tr>
+        <td>CI_PROJECT_DIR</td>
+        <td>C:\Setup\GitLab-Runner\builds\CWzDzWSE\0\matrium\MAndroid2</td></tr>
+      <tr>
+        <td>CI_PROJECT_ID</td>
+        <td>7364135</td></tr>
+      <tr>
+        <td>CI_PROJECT_NAME</td>
+        <td>MAndroid2</td></tr>
+      <tr>
+        <td>CI_PROJECT_NAMESPACE</td>
+        <td>matrium</td></tr>
+      <tr>
+        <td>CI_PROJECT_PATH</td>
+        <td>matrium/MAndroid2</td></tr>
+      <tr>
+        <td>CI_PROJECT_URL</td>
+        <td><a href="https://gitlab.com/matrium/MAndroid2" target="_blank">https://gitlab.com/matrium/MAndroid2</a></td></tr>
+      <tr>
+        <td>CI_REGISTRY</td>
+        <td>registry.gitlab.com</td></tr>
+      <tr>
+        <td>CI_REGISTRY_IMAGE</td>
+        <td>registry.gitlab.com/matrium/mandroid2</td></tr>
+      <tr>
+        <td>CI_REGISTRY_PASSWORD</td>
+        <td>BwudGyMMzZiYZeDduvkM</td></tr>
+      <tr>
+        <td>CI_REGISTRY_USER</td>
+        <td>gitlab-ci-token</td></tr>
+      <tr>
+        <td>CI_REPOSITORY_URL</td>
+        <td><a href="https://gitlab-ci-token:BwudGyMMzZiYZeDduvkM@gitlab.com/matrium/MAndroid2.git" target="_blank">https://gitlab-ci-token:BwudGyMMzZiYZeDduvkM@gitlab.com/matrium/MAndroid2.git</a></td></tr>
+      <tr>
+        <td>CI_RUNNER_DESCRIPTION</td>
+        <td>Peter-Win10</td></tr>
+      <tr>
+        <td>CI_RUNNER_ID</td>
+        <td>2080590</td></tr>
+      <tr>
+        <td>CI_RUNNER_TAGS</td>
+        <td>Peter</td></tr>
+      <tr>
+        <td>CI_SERVER</td>
+        <td>yes</td></tr>
+      <tr>
+        <td>CI_SERVER_NAME</td>
+        <td>GitLab</td></tr>
+      <tr>
+        <td>CI_SERVER_REVISION</td>
+        <td>e8494dacb65</td></tr>
+      <tr>
+        <td>CI_SERVER_VERSION</td>
+        <td>13.4.0-pre</td></tr>
+      <tr>
+        <td>GITLAB_CI</td>
+        <td>true</td></tr>
+      <tr>
+        <td>GITLAB_USER_EMAIL</td>
+        <td>peter.zhang@matrium.com.au</td></tr>
+      <tr>
+        <td>GITLAB_USER_ID</td>
+        <td>1984703</td></tr>
+      <tr>
+        <td>JAVA_HOME</td>
+        <td>C:\Program Files\Java\jdk1.8.0_162</td></tr>
+      <tr>
+        <td>Packages</td>
+        <td>{"pluggy": "0.13.1", "py": "1.8.1", "pytest": "5.3.4"}</td></tr>
+      <tr>
+        <td>Platform</td>
+        <td>Windows-10-10.0.18362-SP0</td></tr>
+      <tr>
+        <td>Plugins</td>
+        <td>{"allure-pytest": "2.8.7", "html": "2.1.1", "json-report": "1.2.1", "metadata": "1.8.0", "reportportal": "5.0.3", "rerunfailures": "9.0"}</td></tr>
+      <tr>
+        <td>Python</td>
+        <td>3.7.1</td></tr></table>
+    <h2>Summary</h2>
+    <p>0 tests ran in 21.63 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="passed">0 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="error">1 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>, <input checked="true" class="filter" data-test-result="rerun" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="rerun">0 rerun</span>
+    <h2>Results</h2>
+    <table id="results-table">
+      <thead id="results-table-head">
+        <tr>
+          <th class="sortable result initial-sort" col="result">Result</th>
+          <th class="sortable" col="name">Test</th>
+          <th class="sortable numeric" col="duration">Duration</th>
+          <th>Links</th></tr>
+        <tr hidden="true" id="not-found-message">
+          <th colspan="4">No results found. Try to check the filters</th></tr></thead>
+      <tbody class="error results-table-row">
+        <tr>
+          <td class="col-result">Error</td>
+          <td class="col-name">testcases/test_MAndroid2AllDevices.py::collect</td>
+          <td class="col-duration">0.00</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">c:\setup\python37\lib\site-packages\urllib3\connection.py:157: in _new_conn<br/>    (self._dns_host, self.port), self.timeout, **extra_kw<br/>c:\setup\python37\lib\site-packages\urllib3\util\connection.py:84: in create_connection<br/>    raise err<br/>c:\setup\python37\lib\site-packages\urllib3\util\connection.py:74: in create_connection<br/>    sock.connect(sa)<br/><span class="error">E   TimeoutError: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond</span><br/><br/>During handling of the above exception, another exception occurred:<br/>c:\setup\python37\lib\site-packages\urllib3\connectionpool.py:672: in urlopen<br/>    chunked=chunked,<br/>c:\setup\python37\lib\site-packages\urllib3\connectionpool.py:387: in _make_request<br/>    conn.request(method, url, **httplib_request_kw)<br/>c:\setup\python37\lib\http\client.py:1229: in request<br/>    self._send_request(method, url, body, headers, encode_chunked)<br/>c:\setup\python37\lib\http\client.py:1275: in _send_request<br/>    self.endheaders(body, encode_chunked=encode_chunked)<br/>c:\setup\python37\lib\http\client.py:1224: in endheaders<br/>    self._send_output(message_body, encode_chunked=encode_chunked)<br/>c:\setup\python37\lib\http\client.py:1016: in _send_output<br/>    self.send(msg)<br/>c:\setup\python37\lib\http\client.py:956: in send<br/>    self.connect()<br/>c:\setup\python37\lib\site-packages\urllib3\connection.py:184: in connect<br/>    conn = self._new_conn()<br/>c:\setup\python37\lib\site-packages\urllib3\connection.py:169: in _new_conn<br/>    self, &quot;Failed to establish a new connection: %s&quot; % e<br/><span class="error">E   urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x0000027DCFE8C828&gt;: Failed to establish a new connection: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond</span><br/><br/>During handling of the above exception, another exception occurred:<br/>c:\setup\python37\lib\site-packages\requests\adapters.py:449: in send<br/>    timeout=timeout<br/>c:\setup\python37\lib\site-packages\urllib3\connectionpool.py:720: in urlopen<br/>    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]<br/>c:\setup\python37\lib\site-packages\urllib3\util\retry.py:436: in increment<br/>    raise MaxRetryError(_pool, url, error or ResponseError(cause))<br/><span class="error">E   urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host=&#x27;mcloud.matrium.com.au&#x27;, port=7100): Max retries exceeded with url: /api/v1/devices (Caused by NewConnectionError(&#x27;&lt;urllib3.connection.HTTPConnection object at 0x0000027DCFE8C828&gt;: Failed to establish a new connection: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond&#x27;))</span><br/><br/>During handling of the above exception, another exception occurred:<br/>test_MAndroid2AllDevices.py:39: in &lt;module&gt;<br/>    @pytest.mark.allAvailableDeviceSmokeTest<br/>test_MAndroid2AllDevices.py:83: in TestMAndroid2TestCases<br/>    testEnvironmentCombinations = getAllAvailableDevicesUnderDifferentEnvironment(testEnvironments)<br/>..\library\MAndroid2BaseCommon.py:1078: in getAllAvailableDevicesUnderDifferentEnvironment<br/>    environments = getAllEnvironments(differentEnvironments)<br/>..\library\MAndroid2BaseCommon.py:1019: in getAllEnvironments<br/>    allAvailableDevices = getAllAvailableDevices(testEnvironment)<br/>..\library\MAndroid2BaseCommon.py:1001: in getAllAvailableDevices<br/>    allAvailableDeviceList = mcloud.listAllAvailableDevices(testEnvironment[&#x27;Login&#x27;][&#x27;User&#x27;])<br/>..\library\MAndroid2BaseMCloud.py:134: in listAllAvailableDevices<br/>    headers=headers)<br/>c:\setup\python37\lib\site-packages\requests\api.py:76: in get<br/>    return request(&#x27;get&#x27;, url, params=params, **kwargs)<br/>c:\setup\python37\lib\site-packages\requests\api.py:61: in request<br/>    return session.request(method=method, url=url, **kwargs)<br/>c:\setup\python37\lib\site-packages\requests\sessions.py:530: in request<br/>    resp = self.send(prep, **send_kwargs)<br/>c:\setup\python37\lib\site-packages\requests\sessions.py:643: in send<br/>    r = adapter.send(request, **kwargs)<br/>c:\setup\python37\lib\site-packages\requests\adapters.py:516: in send<br/>    raise ConnectionError(e, request=request)<br/><span class="error">E   requests.exceptions.ConnectionError: HTTPConnectionPool(host=&#x27;mcloud.matrium.com.au&#x27;, port=7100): Max retries exceeded with url: /api/v1/devices (Caused by NewConnectionError(&#x27;&lt;urllib3.connection.HTTPConnection object at 0x0000027DCFE8C828&gt;: Failed to establish a new connection: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond&#x27;))</span><br/> --------------------------------Captured stdout--------------------------------- <br/>{&#x27;testEnvironment&#x27;: {&#x27;MCloud&#x27;: {&#x27;baseUrl&#x27;: &#x27;http://mcloud.matrium.com.au:7100/api/v1&#x27;}, &#x27;Login&#x27;: {&#x27;User&#x27;: &#x27;Peter.Zhang@matrium.com.au&#x27;, &#x27;accessToken&#x27;: &#x27;Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e&#x27;}, &#x27;MAndroid2AgentPath&#x27;: &#x27;c:/tmp/MatriumMAndroid2-release.jar&#x27;, &#x27;testUsers&#x27;: {&#x27;MO&#x27;: {&#x27;IMSI&#x27;: &#x27;505025104559746&#x27;, &#x27;MSISDN&#x27;: &#x27;+61418673947&#x27;}, &#x27;MT&#x27;: {&#x27;IMSI&#x27;: &#x27;505025703492762&#x27;, &#x27;MSISDN&#x27;: &#x27;+61402537622&#x27;}}}}
+Read test configuration yaml file testEnvironment1.yaml from ../configuration/testEnvironment/testEnvironment1.yaml successfully.
+testEnvironment: {&#x27;MCloud&#x27;: {&#x27;baseUrl&#x27;: &#x27;http://mcloud.matrium.com.au:7100/api/v1&#x27;}, &#x27;Login&#x27;: {&#x27;User&#x27;: &#x27;Peter.Zhang@matrium.com.au&#x27;, &#x27;accessToken&#x27;: &#x27;Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e&#x27;}, &#x27;MAndroid2AgentPath&#x27;: &#x27;c:/tmp/MatriumMAndroid2-release.jar&#x27;, &#x27;testUsers&#x27;: {&#x27;MO&#x27;: {&#x27;IMSI&#x27;: &#x27;505025104559746&#x27;, &#x27;MSISDN&#x27;: &#x27;+61418673947&#x27;}, &#x27;MT&#x27;: {&#x27;IMSI&#x27;: &#x27;505025703492762&#x27;, &#x27;MSISDN&#x27;: &#x27;+61402537622&#x27;}}}
+{&#x27;testEnvironment&#x27;: {&#x27;MCloud&#x27;: {&#x27;baseUrl&#x27;: &#x27;http://mcloud.matrium.com.au:7100/api/v1&#x27;}, &#x27;Login&#x27;: {&#x27;User&#x27;: &#x27;Peter.Zhang@matrium.com.au&#x27;, &#x27;accessToken&#x27;: &#x27;Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e&#x27;}, &#x27;MAndroid2AgentPath&#x27;: &#x27;c:/tmp/MatriumMAndroid2-release.jar&#x27;, &#x27;testUsers&#x27;: {&#x27;MO&#x27;: {&#x27;IMSI&#x27;: &#x27;505025703492762&#x27;, &#x27;MSISDN&#x27;: &#x27;+61402537622&#x27;}, &#x27;MT&#x27;: {&#x27;IMSI&#x27;: &#x27;505025104559746&#x27;, &#x27;MSISDN&#x27;: &#x27;+61418673947&#x27;}}}}
+Read test configuration yaml file testEnvironment2.yaml from ../configuration/testEnvironment/testEnvironment2.yaml successfully.
+testEnvironment: {&#x27;MCloud&#x27;: {&#x27;baseUrl&#x27;: &#x27;http://mcloud.matrium.com.au:7100/api/v1&#x27;}, &#x27;Login&#x27;: {&#x27;User&#x27;: &#x27;Peter.Zhang@matrium.com.au&#x27;, &#x27;accessToken&#x27;: &#x27;Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e&#x27;}, &#x27;MAndroid2AgentPath&#x27;: &#x27;c:/tmp/MatriumMAndroid2-release.jar&#x27;, &#x27;testUsers&#x27;: {&#x27;MO&#x27;: {&#x27;IMSI&#x27;: &#x27;505025703492762&#x27;, &#x27;MSISDN&#x27;: &#x27;+61402537622&#x27;}, &#x27;MT&#x27;: {&#x27;IMSI&#x27;: &#x27;505025104559746&#x27;, &#x27;MSISDN&#x27;: &#x27;+61418673947&#x27;}}}
+{&#x27;testParameters&#x27;: {&#x27;VoiceCall&#x27;: {&#x27;Duration&#x27;: 8}}}
+Read test configuration yaml file ../configuration/testParameters/voiceCall/testParameters1.yaml successfully.
+yaml[1][keyName] is {&#x27;VoiceCall&#x27;: {&#x27;Duration&#x27;: 8}}.
+{&#x27;testParameters&#x27;: {&#x27;SMS&#x27;: {&#x27;Duration&#x27;: 5, &#x27;smsBody&#x27;: &#x27;MAndroid2 SMS test.&#x27;}}}
+Read test configuration yaml file ../configuration/testParameters/SMS/testParameters1.yaml successfully.
+yaml[1][keyName] is {&#x27;SMS&#x27;: {&#x27;Duration&#x27;: 5, &#x27;smsBody&#x27;: &#x27;MAndroid2 SMS test.&#x27;}}.
+{&#x27;testParameters&#x27;: {&#x27;MMS&#x27;: {&#x27;ScreenUnlockDuration&#x27;: 5, &#x27;Duration&#x27;: 10, &#x27;mmsBody&#x27;: &#x27;MAndroid2 MMS test.&#x27;}}}
+Read test configuration yaml file ../configuration/testParameters/MMS/testParameters1.yaml successfully.
+yaml[1][keyName] is {&#x27;MMS&#x27;: {&#x27;ScreenUnlockDuration&#x27;: 5, &#x27;Duration&#x27;: 10, &#x27;mmsBody&#x27;: &#x27;MAndroid2 MMS test.&#x27;}}.
+{&#x27;testParameters&#x27;: {&#x27;WebBrowsing&#x27;: {&#x27;webUrl&#x27;: &#x27;https://www.google.com&#x27;}}}
+Read test configuration yaml file ../configuration/testParameters/webBrowsing/testParameters1.yaml successfully.
+yaml[1][keyName] is {&#x27;WebBrowsing&#x27;: {&#x27;webUrl&#x27;: &#x27;https://www.google.com&#x27;}}.
+{&#x27;testParameters&#x27;: {&#x27;HTTPDownload&#x27;: {&#x27;downloadUrl&#x27;: &#x27;http://freeweb.siol.net/tehnika/test5M.dat&#x27;, &#x27;Duration&#x27;: 10}}}
+Read test configuration yaml file ../configuration/testParameters/httpDownload/testParameters1.yaml successfully.
+yaml[1][keyName] is {&#x27;HTTPDownload&#x27;: {&#x27;downloadUrl&#x27;: &#x27;http://freeweb.siol.net/tehnika/test5M.dat&#x27;, &#x27;Duration&#x27;: 10}}.
+differentEnvironments is: [{&#x27;MCloud&#x27;: {&#x27;baseUrl&#x27;: &#x27;http://mcloud.matrium.com.au:7100/api/v1&#x27;}, &#x27;Login&#x27;: {&#x27;User&#x27;: &#x27;Peter.Zhang@matrium.com.au&#x27;, &#x27;accessToken&#x27;: &#x27;Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e&#x27;}, &#x27;MAndroid2AgentPath&#x27;: &#x27;c:/tmp/MatriumMAndroid2-release.jar&#x27;, &#x27;testUsers&#x27;: {&#x27;MO&#x27;: {&#x27;IMSI&#x27;: &#x27;505025104559746&#x27;, &#x27;MSISDN&#x27;: &#x27;+61418673947&#x27;}, &#x27;MT&#x27;: {&#x27;IMSI&#x27;: &#x27;505025703492762&#x27;, &#x27;MSISDN&#x27;: &#x27;+61402537622&#x27;}}}]
+##########Calling REST API to get devices list on MCloud.
+<br/></div></td></tr></tbody></table></body></html>

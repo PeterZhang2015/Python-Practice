@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
+import ipaddress
 import os
 import subprocess
+from ipaddress import ip_interface, ip_network
 
 from selenium import webdriver
 
@@ -110,10 +112,229 @@ import json
 # formatedDiff = str(timedelta(seconds=diff.seconds))
 # print (formatedDiff)
 
-command = "adb -s ce071607a2e74a1a05 shell ls -la /sdcard/MAndroid2/output/Screenshot/takescreen_20200129_020117.png"
+# command = "adb -s ce071607a2e74a1a05 shell ls -la /sdcard/MAndroid2/output/Screenshot/takescreen_20200129_020117.png"
+#
+# # Execute command
+# response = subprocess.check_output(command.split()).decode('utf-8').split()
+# print("Response is: ", response)
+# print("Size is: ", response[4])
+# print("Path is: ", response[-1])
 
-# Execute command
-response = subprocess.check_output(command.split()).decode('utf-8').split()
-print("Response is: ", response)
-print("Size is: ", response[4])
-print("Path is: ", response[-1])
+
+# file = open("response.txt", "r")
+# response = file.read()
+#
+#
+# lines = response.splitlines()
+#
+# print (lines)
+# print (len(lines))
+# lineNumbers = 8
+#
+# sections = []
+# sectionNumbers = int (len(lines)/lineNumbers)
+#
+#
+# for i in range(0, sectionNumbers):
+#     section = []
+#     for j in range(0, (i+1)*lineNumbers):
+#         section.append(lines[j])
+#     sections.append(section)
+#
+# print (sections)
+# print (len(sections))
+
+# count = 1
+# for line in response:
+#     print(line)
+#     section = []
+#     section = section.append(line)
+#     print("section is {}".format(section))
+#     if count > lineNumber and count%lineNumber == 1:
+#         sections = sections.append(section)
+#         section = []
+#
+#     count += 1
+
+# print (len(sections))
+#
+#
+#
+#
+#
+# file.close()
+
+
+# import re
+#
+# pageValuesList = []
+# columnCaptionsList = []
+#
+# columnCaptions = "Port {Sessions Up} {Sessions Down} {Sessions Not Started} {Sessions Total}"
+# pageValues = "{{{Ethernet - 001} 1 0 0 1}}"
+#
+#
+# columnCaptionsList = columnCaptions.replace(" {", ',').replace("} {", ',').replace("}", '').split(',')
+# print (columnCaptionsList)
+# print (columnCaptionsList[1])
+#
+# sessionsUpIndex = columnCaptionsList.index("Sessions Up")
+# print (sessionsUpIndex)
+#
+# sessionsTotalIndex = columnCaptionsList.index("Sessions Total")
+# print (sessionsTotalIndex)
+#
+# tempList = pageValues.replace("{{{", '').replace("}}", '').split("} ")
+# print (tempList)
+# pageValuesList.append(tempList[0])
+# pageValuesList = pageValuesList + tempList[1].split()
+# print (pageValuesList)
+#
+# if (sessionsUpIndex < len(pageValuesList)):
+#     sessonsUp = pageValuesList[sessionsUpIndex]
+#     print (sessonsUp)
+#
+# if (sessionsTotalIndex < len(pageValuesList)):
+#     sessionsTotal = pageValuesList[sessionsTotalIndex]
+#     print (sessionsTotal)
+
+
+# from jinja2 import Environment, FileSystemLoader
+#
+# env = Environment()
+# # template = env.from_string(
+# #     """{% if x>0 %}x>0{% else %}x<0{% endif %}"""
+# # )
+#
+#
+# # env = Environment(loader=FileSystemLoader('templates'))
+# env = Environment(loader=FileSystemLoader('./'))
+# template = env.get_template('testTemplate.j2')
+#
+# Configure1 = template.render(x=1)
+# Configure2 = template.render(x=-1)
+#
+# # to save the results
+# filename = "testConfig.cfg"
+# try:
+#     with open(filename, "w") as fh:
+#         fh.write(Configure1)
+# except IOError as e:
+#     print(f'save failed: unable to write to file {filename}: {e}')
+# else:
+#     print(Configure1)
+
+
+# result = dict()
+# result = "pseudowire-class MPLS_VPWS_Eth"
+# # mlsClass = "pseudowire-class"
+# mlsClass = "pseudowire-class"
+#
+# # m = re.sub(r'(mlsClass) (.*)', r'\1\2{}'.format(className), result)
+# # className = re.search(r'{} (.*)'.format(className), result).group(0)
+# classNameObj = re.search(r'{} (.*)'.format(mlsClass), result)
+# if classNameObj:
+#    print("searchObj.group(0) : ", classNameObj.group(0))
+#    print("searchObj.group(1) : ", classNameObj.group(1))
+# else:
+#    print("Nothing found!!")
+#
+# print(classNameObj)
+
+
+# f = open("response.txt", "r")
+# text=f.read()
+# lines=text.split("\n")
+# print(lines)
+#
+# for line in lines:
+#
+#     line = line.strip()
+#
+#     if not line:
+#     # if line != "":
+#         print("Not empty")
+#     else:
+#         print("Empty")
+
+
+# mls_wan_interface = "GigabitEthernet4.1"
+#
+# mls_wan_phy_interface = mls_wan_interface.split(".")[0]
+#
+# print(mls_wan_phy_interface)
+
+# dhcp_start_ip = ipaddress.IPv4Address('72.0.0.2')
+# dhcp_end_ip = ipaddress.IPv4Address('72.0.0.253')
+#
+# discoveredAddresses = ['72.0.0.2','10.0.0.2','72.0.0.3','72.0.0.4','72.0.0.5','72.0.0.6','72.0.0.7','72.0.0.8','72.0.0.9','72.0.0.10','72.0.0.11']
+#
+# for ip in discoveredAddresses:
+#     dhcp_client_ip = ipaddress.IPv4Address(ip)
+#     dhcp_client_ip = ipaddress.IPv4Address(ip)
+#     if int(dhcp_client_ip) not in range(int(dhcp_start_ip), int(dhcp_end_ip)):
+#         print("{} is not in range".format(dhcp_client_ip))
+
+# from datetime import timedelta
+#
+#
+# delta = timedelta(hours=1, minutes=2, seconds=3)
+# total_seconds = delta.total_seconds()
+# minutes = int(total_seconds // 60)
+# seconds = int(total_seconds % 60)
+#
+# print('{minutes}:{seconds}'.format(minutes=minutes, seconds=seconds))
+#
+#
+# my_time = '1:2:3'
+# factors = (60, 1, 1/60)
+#
+# t1 = sum(i*j for i, j in zip(map(int, my_time.split(':')), factors))
+# print(t1)
+#
+# import re
+# string = '1:2:3'
+# pattern = re.compile("^([0-9]+:[0-9]+:[0-9]+)+$")
+#
+# if re.match(pattern, string):
+#     print("Match")
+# else:
+#     print("Not match")
+import json
+
+# className = "CM-NBN-TC4-INTERNET-BE"
+# service_policy = {}
+#
+# print(service_policy)
+# if (className == "CM-NBN-TC4-INTERNET-BE") and (not service_policy):
+#     print("OK")
+# else:
+#     print("Wrong")
+
+# cpu_stats = [
+#   [
+#     0,
+#     '9.7'
+#   ]
+# ]
+# # cpus = [int(float(item[1])) for item in cpu_stats]
+#
+# cpus = [float(item[1]) for item in cpu_stats]
+#
+# print (cpus)
+
+max_output_throughput = 7021800.0
+max_input_throughput = 75501608.0
+expected_throughput = 70000000.0
+
+if max_input_throughput >= expected_throughput and max_output_throughput >= expected_throughput:
+  print("expected!")
+else:
+  print("Unexpected!")
+
+
+
+
+
+
+

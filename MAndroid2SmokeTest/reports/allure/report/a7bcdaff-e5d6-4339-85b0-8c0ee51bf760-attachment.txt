@@ -1,0 +1,39 @@
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: ab876caf-3a0c-4033-8acf-419d42aca47f
+INFO     MAndroid2SmokeTest.conftest:test_MAndroid2AllDevices.py:278 Test case info: {'TestCaseID': 'MAndroid2_Smoke_Test_005_HTTPDownload', 'Description': 'Basic HTTP download.', 'Preconditions': 'None.', 'TestSteps': ['Start HTTP download.', 'Wait for HTTP download completion.'], 'CheckPoints': ['HTTP download successfully.']}.
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: ab876caf-3a0c-4033-8acf-419d42aca47f
+INFO     MAndroid2SmokeTest.conftest:test_MAndroid2AllDevices.py:279 Test environment: {'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025104559746', 'MSISDN': '+61418673947', 'handsetID': 'mcloud.matrium.com.au:7453', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}, 'MT': {'IMSI': '505025504563848', 'MSISDN': '+61431202671', 'handsetID': 'mcloud.matrium.com.au:7918', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}}}.
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: ab876caf-3a0c-4033-8acf-419d42aca47f
+INFO     MAndroid2SmokeTest.conftest:test_MAndroid2AllDevices.py:280 Test testParameters: {'HTTPDownload': {'downloadUrl': 'http://freeweb.siol.net/tehnika/test5M.dat', 'Duration': 10}}.
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: ab876caf-3a0c-4033-8acf-419d42aca47f
+INFO     MAndroid2SmokeTest.conftest:test_MAndroid2AllDevices.py:283 Executing test logic.
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: ab876caf-3a0c-4033-8acf-419d42aca47f
+DEBUG    urllib3.connectionpool:connectionpool.py:225 Starting new HTTP connection (1): mcloud.matrium.com.au:7100
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: ab876caf-3a0c-4033-8acf-419d42aca47f
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://mcloud.matrium.com.au:7100 "GET /api/v1/devices HTTP/1.1" 200 24585
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: ab876caf-3a0c-4033-8acf-419d42aca47f
+DEBUG    urllib3.connectionpool:connectionpool.py:225 Starting new HTTP connection (1): mcloud.matrium.com.au:7100
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: ab876caf-3a0c-4033-8acf-419d42aca47f
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://mcloud.matrium.com.au:7100 "POST /api/v1/user/devices HTTP/1.1" 200 58
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: ab876caf-3a0c-4033-8acf-419d42aca47f
+DEBUG    urllib3.connectionpool:connectionpool.py:225 Starting new HTTP connection (1): mcloud.matrium.com.au:7100
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: ab876caf-3a0c-4033-8acf-419d42aca47f
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://mcloud.matrium.com.au:7100 "POST /api/v1/user/devices/9886734d5647434c32/remoteConnect HTTP/1.1" 200 64
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: ab876caf-3a0c-4033-8acf-419d42aca47f
+DEBUG    urllib3.connectionpool:connectionpool.py:225 Starting new HTTP connection (1): mcloud.matrium.com.au:7100
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: ab876caf-3a0c-4033-8acf-419d42aca47f
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://mcloud.matrium.com.au:7100 "DELETE /api/v1/user/devices/9886734d5647434c32 HTTP/1.1" 200 60
+DEBUG    urllib3.connectionpool:connectionpool.py:437 http://192.168.0.7:8080 "POST /api/v2/mandroid2smoketest/log HTTP/1.1" 201 45
+DEBUG    reportportal_client.service:service.py:406 log - ID: ab876caf-3a0c-4033-8acf-419d42aca47f
+INFO     MAndroid2SmokeTest.conftest:test_MAndroid2AllDevices.py:295 Test result: [{'checkPointResult': 'passed', 'failedReason': 'none', 'command': 'java -jar c:/tmp/MatriumMAndroid2-release.jar mcloud.matrium.com.au:7453 3060 download_url "http://freeweb.siol.net/tehnika/test5M.dat" fileName "test5M.dat"', 'response': {'isSuccess': True, 'startTime': 1599297571352, 'downloadFile': 'sdcard/MAndroid2/Output/DownloadFiles/test5M.dat', 'queryId': '1856', 'description': 'The file is downloading,check it later'}, 'checkPoint': 'HTTP download successfully.'}].

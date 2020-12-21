@@ -141,15 +141,21 @@ import json
 # else:
 #     print ("Failed")
 
+def test_expectedResult():
+    expected_result = {}
+    expected_result["1"] = {}
+    expected_result["2"] = {}
+    expected_result["1"]["expected_result"] = "The eBGP neighbor should form properly between the MRS_1 and PE routers"
+    expected_result["1"]["result"] = "Passed"
+    expected_result["2"]["expected_result"] = "Routes with the appropriate Autonomous System (AS) path attribute should be seen on the PE BGP routing table"
+    expected_result["2"]["result"] = "Passed"
+    print (expected_result)
 
-expected_result = {}
-expected_result["1"]["expected_result"] = "The eBGP neighbor should form properly between the MRS_1 and PE routers"
-expected_result["1"]["result"] = "Passed"
-expected_result["2"]["expected_result"] = "Routes with the appropriate Autonomous System (AS) path attribute should be seen on the PE BGP routing table"
-expected_result["2"]["result"] = "Passed"
-print (expected_result)
 
-
-
+if __name__ == '__main__':
+    generateReportCommand = "pytest --reruns 5 --reruns-delay 1 -q -r Temp2.py"
+    print(generateReportCommand)
+    output3 = os.system(generateReportCommand)
+    print(output3)
 
 

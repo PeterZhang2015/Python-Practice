@@ -1,13 +1,9 @@
 import logging
 import sys
-from os import listdir
 
 import pytest
 
 from pytest_reportportal import RPLogger, RPLogHandler
-
-from MAndroid2SmokeTest.library.MAndroid2BaseYaml import getYam
-from MCloud import MCloudControl
 
 
 @pytest.fixture(scope="session")
@@ -30,22 +26,7 @@ def rp_logger(request):
     rp_handler.setLevel(logging.INFO)
     return logger
 
-@pytest.fixture(scope="session")
-def setupMOMT(testEnvironment, testUsers):
-    # Connect available test handset on mcloud from specified IMSI.
-    mcloud = MCloudControl()
 
-    # Set test environment variables.
-    mcloud.mcloudBaseUrl = testEnvironment['MCloud']['baseUrl']
-    mcloud.mcloudLoginUser = testEnvironment['Login']['User']
-    mcloud.mcloudLoginToken = testEnvironment['Login']['accessToken']
-
-    testUsers['MO']['handsetID'] = mcloud.connectToMcloudUser(testUsers['MO']['IMSI'])
-    print("MO Handset ID is {}".format(testUsers['MO']['handsetID']))
-
-    testUsers['MT']['handsetID'] = mcloud.connectToMcloudUser(testUsers['MT']['IMSI'])
-    print("MT Handset ID is {}".format(testUsers['MT']['handsetID']))
-    return testUsers
 
 
 

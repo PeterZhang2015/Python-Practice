@@ -1,0 +1,373 @@
+{
+  "uid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
+  "name" : "timeline",
+  "children" : [ {
+    "name" : "Peter-Zhang",
+    "children" : [ {
+      "name" : "50656-MainThread",
+      "children" : [ {
+        "name" : "test_MAndroid2_SMS[testParameters0-testEnvironment1]",
+        "uid" : "a554c00bb7899a95",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1599296561357,
+          "stop" : 1599296594752,
+          "duration" : 33395
+        },
+        "flaky" : false,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025504563848', 'MSISDN': '+61431202671', 'handsetID': 'mcloud.matrium.com.au:7918', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}, 'MT': {'IMSI': '505025703492762', 'MSISDN': '+61402537622', 'handsetID': 'mcloud.matrium.com.au:7457', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}}}", "{'SMS': {'Duration': 5, 'smsBody': 'MAndroid2 SMS test.'}}" ]
+      }, {
+        "name" : "test_MAndroid2_WebBrowsing[testParameters0-testEnvironment0]",
+        "uid" : "dc0bddc373f7d707",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1599297373751,
+          "stop" : 1599297391555,
+          "duration" : 17804
+        },
+        "flaky" : false,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025504563848', 'MSISDN': '+61431202671', 'handsetID': 'mcloud.matrium.com.au:7918', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}, 'MT': {'IMSI': '505025104559746', 'MSISDN': '+61418673947', 'handsetID': 'mcloud.matrium.com.au:7453', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}}}", "{'WebBrowsing': {'webUrl': 'https://www.google.com'}}" ]
+      }, {
+        "name" : "test_MAndroid2_VoiceCall[testParameters0-testEnvironment4]",
+        "uid" : "f4a1dcdd3631337b",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "failed",
+        "time" : {
+          "start" : 1599296500889,
+          "stop" : 1599296501075,
+          "duration" : 186
+        },
+        "flaky" : true,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025703492762', 'MSISDN': '+61402537622'}, 'MT': {'IMSI': '505025504563848', 'MSISDN': '+61431202671'}}}", "{'VoiceCall': {'Duration': 8}}" ]
+      }, {
+        "name" : "test_MAndroid2_HTTPDownload[testParameters0-testEnvironment3]",
+        "uid" : "a80ccc68a1bde95f",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1599297588173,
+          "stop" : 1599297621530,
+          "duration" : 33357
+        },
+        "flaky" : false,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025104559746', 'MSISDN': '+61418673947', 'handsetID': 'mcloud.matrium.com.au:7453', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}, 'MT': {'IMSI': '505025703492762', 'MSISDN': '+61402537622', 'handsetID': 'mcloud.matrium.com.au:7457', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}}}", "{'HTTPDownload': {'downloadUrl': 'http://freeweb.siol.net/tehnika/test5M.dat', 'Duration': 10}}" ]
+      }, {
+        "name" : "test_MAndroid2_VoiceCall[testParameters0-testEnvironment3]",
+        "uid" : "6f5f87ed929edba2",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "failed",
+        "time" : {
+          "start" : 1599296494224,
+          "stop" : 1599296494403,
+          "duration" : 179
+        },
+        "flaky" : true,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025104559746', 'MSISDN': '+61418673947'}, 'MT': {'IMSI': '505025703492762', 'MSISDN': '+61402537622'}}}", "{'VoiceCall': {'Duration': 8}}" ]
+      }, {
+        "name" : "test_MAndroid2_HTTPDownload[testParameters0-testEnvironment1]",
+        "uid" : "dc7ecb1708449330",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1599297528174,
+          "stop" : 1599297554443,
+          "duration" : 26269
+        },
+        "flaky" : false,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025504563848', 'MSISDN': '+61431202671', 'handsetID': 'mcloud.matrium.com.au:7918', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}, 'MT': {'IMSI': '505025703492762', 'MSISDN': '+61402537622', 'handsetID': 'mcloud.matrium.com.au:7457', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}}}", "{'HTTPDownload': {'downloadUrl': 'http://freeweb.siol.net/tehnika/test5M.dat', 'Duration': 10}}" ]
+      }, {
+        "name" : "test_MAndroid2_WebBrowsing[testParameters0-testEnvironment1]",
+        "uid" : "9e2b0c02e247cbb4",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1599297391584,
+          "stop" : 1599297408985,
+          "duration" : 17401
+        },
+        "flaky" : false,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025504563848', 'MSISDN': '+61431202671', 'handsetID': 'mcloud.matrium.com.au:7918', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}, 'MT': {'IMSI': '505025703492762', 'MSISDN': '+61402537622', 'handsetID': 'mcloud.matrium.com.au:7457', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}}}", "{'WebBrowsing': {'webUrl': 'https://www.google.com'}}" ]
+      }, {
+        "name" : "test_MAndroid2_MMS[testParameters0-testEnvironment0]",
+        "uid" : "b8111a468f49da7",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1599296751856,
+          "stop" : 1599296844452,
+          "duration" : 92596
+        },
+        "flaky" : true,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025504563848', 'MSISDN': '+61431202671', 'handsetID': 'mcloud.matrium.com.au:7918', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}, 'MT': {'IMSI': '505025104559746', 'MSISDN': '+61418673947', 'handsetID': 'mcloud.matrium.com.au:7453', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}}}", "{'MMS': {'ScreenUnlockDuration': 5, 'Duration': 10, 'mmsBody': 'MAndroid2 MMS test.'}}" ]
+      }, {
+        "name" : "test_MAndroid2_SMS[testParameters0-testEnvironment2]",
+        "uid" : "cb4e191717da2409",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1599296594795,
+          "stop" : 1599296635093,
+          "duration" : 40298
+        },
+        "flaky" : false,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025104559746', 'MSISDN': '+61418673947'}, 'MT': {'IMSI': '505025504563848', 'MSISDN': '+61431202671'}}}", "{'SMS': {'Duration': 5, 'smsBody': 'MAndroid2 SMS test.'}}" ]
+      }, {
+        "name" : "test_MAndroid2_SMS[testParameters0-testEnvironment0]",
+        "uid" : "689d1d0fe699d8ef",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1599296519734,
+          "stop" : 1599296561322,
+          "duration" : 41588
+        },
+        "flaky" : true,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025504563848', 'MSISDN': '+61431202671', 'handsetID': 'mcloud.matrium.com.au:7918', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}, 'MT': {'IMSI': '505025104559746', 'MSISDN': '+61418673947', 'handsetID': 'mcloud.matrium.com.au:7453', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}}}", "{'SMS': {'Duration': 5, 'smsBody': 'MAndroid2 SMS test.'}}" ]
+      }, {
+        "name" : "test_MAndroid2_MMS[testParameters0-testEnvironment1]",
+        "uid" : "90892a6a9b4b818b",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1599296929775,
+          "stop" : 1599297017248,
+          "duration" : 87473
+        },
+        "flaky" : true,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025504563848', 'MSISDN': '+61431202671', 'handsetID': 'mcloud.matrium.com.au:7918', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}, 'MT': {'IMSI': '505025703492762', 'MSISDN': '+61402537622', 'handsetID': 'mcloud.matrium.com.au:7457', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}}}", "{'MMS': {'ScreenUnlockDuration': 5, 'Duration': 10, 'mmsBody': 'MAndroid2 MMS test.'}}" ]
+      }, {
+        "name" : "test_MAndroid2_WebBrowsing[testParameters0-testEnvironment2]",
+        "uid" : "bb24bd2bd28d8115",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1599297409018,
+          "stop" : 1599297436917,
+          "duration" : 27899
+        },
+        "flaky" : false,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025104559746', 'MSISDN': '+61418673947', 'handsetID': 'mcloud.matrium.com.au:7453', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}, 'MT': {'IMSI': '505025504563848', 'MSISDN': '+61431202671', 'handsetID': 'mcloud.matrium.com.au:7918', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}}}", "{'WebBrowsing': {'webUrl': 'https://www.google.com'}}" ]
+      }, {
+        "name" : "test_MAndroid2_MMS[testParameters0-testEnvironment3]",
+        "uid" : "a4f0c13a103d4e10",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1599297106540,
+          "stop" : 1599297198361,
+          "duration" : 91821
+        },
+        "flaky" : false,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025104559746', 'MSISDN': '+61418673947', 'handsetID': 'mcloud.matrium.com.au:7453', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}, 'MT': {'IMSI': '505025703492762', 'MSISDN': '+61402537622', 'handsetID': 'mcloud.matrium.com.au:7457', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}}}", "{'MMS': {'ScreenUnlockDuration': 5, 'Duration': 10, 'mmsBody': 'MAndroid2 MMS test.'}}" ]
+      }, {
+        "name" : "test_MAndroid2_HTTPDownload[testParameters0-testEnvironment0]",
+        "uid" : "8933e79d07f24e0f",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1599297501695,
+          "stop" : 1599297528140,
+          "duration" : 26445
+        },
+        "flaky" : false,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025504563848', 'MSISDN': '+61431202671', 'handsetID': 'mcloud.matrium.com.au:7918', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}, 'MT': {'IMSI': '505025104559746', 'MSISDN': '+61418673947', 'handsetID': 'mcloud.matrium.com.au:7453', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}}}", "{'HTTPDownload': {'downloadUrl': 'http://freeweb.siol.net/tehnika/test5M.dat', 'Duration': 10}}" ]
+      }, {
+        "name" : "test_MAndroid2_MMS[testParameters0-testEnvironment5]",
+        "uid" : "eea0adf3be94beb7",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1599297282181,
+          "stop" : 1599297373716,
+          "duration" : 91535
+        },
+        "flaky" : false,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025703492762', 'MSISDN': '+61402537622', 'handsetID': 'mcloud.matrium.com.au:7457', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}, 'MT': {'IMSI': '505025104559746', 'MSISDN': '+61418673947', 'handsetID': 'mcloud.matrium.com.au:7453', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}}}", "{'MMS': {'ScreenUnlockDuration': 5, 'Duration': 10, 'mmsBody': 'MAndroid2 MMS test.'}}" ]
+      }, {
+        "name" : "test_MAndroid2_VoiceCall[testParameters0-testEnvironment1]",
+        "uid" : "8cd2c0f8f8116b1d",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1599296424246,
+          "stop" : 1599296480949,
+          "duration" : 56703
+        },
+        "flaky" : false,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025504563848', 'MSISDN': '+61431202671'}, 'MT': {'IMSI': '505025703492762', 'MSISDN': '+61402537622'}}}", "{'VoiceCall': {'Duration': 8}}" ]
+      }, {
+        "name" : "test_MAndroid2_WebBrowsing[testParameters0-testEnvironment5]",
+        "uid" : "cf099f47a121114e",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1599297482879,
+          "stop" : 1599297501664,
+          "duration" : 18785
+        },
+        "flaky" : false,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025703492762', 'MSISDN': '+61402537622', 'handsetID': 'mcloud.matrium.com.au:7457', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}, 'MT': {'IMSI': '505025104559746', 'MSISDN': '+61418673947', 'handsetID': 'mcloud.matrium.com.au:7453', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}}}", "{'WebBrowsing': {'webUrl': 'https://www.google.com'}}" ]
+      }, {
+        "name" : "test_MAndroid2_VoiceCall[testParameters0-testEnvironment0]",
+        "uid" : "ee4266b8fe2e4069",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1599296371937,
+          "stop" : 1599296424180,
+          "duration" : 52243
+        },
+        "flaky" : false,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025504563848', 'MSISDN': '+61431202671'}, 'MT': {'IMSI': '505025104559746', 'MSISDN': '+61418673947'}}}", "{'VoiceCall': {'Duration': 8}}" ]
+      }, {
+        "name" : "test_MAndroid2_VoiceCall[testParameters0-testEnvironment2]",
+        "uid" : "c923e5b1d0b2847d",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "failed",
+        "time" : {
+          "start" : 1599296487433,
+          "stop" : 1599296487611,
+          "duration" : 178
+        },
+        "flaky" : true,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025104559746', 'MSISDN': '+61418673947'}, 'MT': {'IMSI': '505025504563848', 'MSISDN': '+61431202671'}}}", "{'VoiceCall': {'Duration': 8}}" ]
+      }, {
+        "name" : "test_MAndroid2_HTTPDownload[testParameters0-testEnvironment4]",
+        "uid" : "6eb13aac12c23ef4",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1599297621570,
+          "stop" : 1599297648892,
+          "duration" : 27322
+        },
+        "flaky" : false,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025703492762', 'MSISDN': '+61402537622', 'handsetID': 'mcloud.matrium.com.au:7457', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}, 'MT': {'IMSI': '505025504563848', 'MSISDN': '+61431202671', 'handsetID': 'mcloud.matrium.com.au:7918', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}}}", "{'HTTPDownload': {'downloadUrl': 'http://freeweb.siol.net/tehnika/test5M.dat', 'Duration': 10}}" ]
+      }, {
+        "name" : "test_MAndroid2_SMS[testParameters0-testEnvironment3]",
+        "uid" : "65af3dbfb0b381be",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1599296635127,
+          "stop" : 1599296676967,
+          "duration" : 41840
+        },
+        "flaky" : false,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025104559746', 'MSISDN': '+61418673947'}, 'MT': {'IMSI': '505025703492762', 'MSISDN': '+61402537622'}}}", "{'SMS': {'Duration': 5, 'smsBody': 'MAndroid2 SMS test.'}}" ]
+      }, {
+        "name" : "test_MAndroid2_HTTPDownload[testParameters0-testEnvironment2]",
+        "uid" : "531ed6c1e221723c",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1599297554469,
+          "stop" : 1599297588142,
+          "duration" : 33673
+        },
+        "flaky" : false,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025104559746', 'MSISDN': '+61418673947', 'handsetID': 'mcloud.matrium.com.au:7453', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}, 'MT': {'IMSI': '505025504563848', 'MSISDN': '+61431202671', 'handsetID': 'mcloud.matrium.com.au:7918', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}}}", "{'HTTPDownload': {'downloadUrl': 'http://freeweb.siol.net/tehnika/test5M.dat', 'Duration': 10}}" ]
+      }, {
+        "name" : "test_MAndroid2_WebBrowsing[testParameters0-testEnvironment3]",
+        "uid" : "d19d4bb3ce151c4a",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1599297436949,
+          "stop" : 1599297462623,
+          "duration" : 25674
+        },
+        "flaky" : false,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025104559746', 'MSISDN': '+61418673947', 'handsetID': 'mcloud.matrium.com.au:7453', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}, 'MT': {'IMSI': '505025703492762', 'MSISDN': '+61402537622', 'handsetID': 'mcloud.matrium.com.au:7457', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}}}", "{'WebBrowsing': {'webUrl': 'https://www.google.com'}}" ]
+      }, {
+        "name" : "test_MAndroid2_HTTPDownload[testParameters0-testEnvironment5]",
+        "uid" : "6c06bd6affb705e8",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1599297648936,
+          "stop" : 1599297676470,
+          "duration" : 27534
+        },
+        "flaky" : false,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025703492762', 'MSISDN': '+61402537622', 'handsetID': 'mcloud.matrium.com.au:7457', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}, 'MT': {'IMSI': '505025104559746', 'MSISDN': '+61418673947', 'handsetID': 'mcloud.matrium.com.au:7453', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}}}", "{'HTTPDownload': {'downloadUrl': 'http://freeweb.siol.net/tehnika/test5M.dat', 'Duration': 10}}" ]
+      }, {
+        "name" : "test_MAndroid2_WebBrowsing[testParameters0-testEnvironment4]",
+        "uid" : "de04bab50894ac5e",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1599297462657,
+          "stop" : 1599297482843,
+          "duration" : 20186
+        },
+        "flaky" : false,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025703492762', 'MSISDN': '+61402537622', 'handsetID': 'mcloud.matrium.com.au:7457', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}, 'MT': {'IMSI': '505025504563848', 'MSISDN': '+61431202671', 'handsetID': 'mcloud.matrium.com.au:7918', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}}}", "{'WebBrowsing': {'webUrl': 'https://www.google.com'}}" ]
+      }, {
+        "name" : "test_MAndroid2_VoiceCall[testParameters0-testEnvironment5]",
+        "uid" : "b8e812cd47516dde",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "failed",
+        "time" : {
+          "start" : 1599296507561,
+          "stop" : 1599296507730,
+          "duration" : 169
+        },
+        "flaky" : true,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025703492762', 'MSISDN': '+61402537622'}, 'MT': {'IMSI': '505025104559746', 'MSISDN': '+61418673947'}}}", "{'VoiceCall': {'Duration': 8}}" ]
+      }, {
+        "name" : "test_MAndroid2_MMS[testParameters0-testEnvironment2]",
+        "uid" : "e3cfb5e5287fec95",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1599297017286,
+          "stop" : 1599297106504,
+          "duration" : 89218
+        },
+        "flaky" : false,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025104559746', 'MSISDN': '+61418673947', 'handsetID': 'mcloud.matrium.com.au:7453', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}, 'MT': {'IMSI': '505025504563848', 'MSISDN': '+61431202671', 'handsetID': 'mcloud.matrium.com.au:7918', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}}}", "{'MMS': {'ScreenUnlockDuration': 5, 'Duration': 10, 'mmsBody': 'MAndroid2 MMS test.'}}" ]
+      }, {
+        "name" : "test_MAndroid2_MMS[testParameters0-testEnvironment4]",
+        "uid" : "abf4eeea83ff7745",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1599297198385,
+          "stop" : 1599297282144,
+          "duration" : 83759
+        },
+        "flaky" : false,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025703492762', 'MSISDN': '+61402537622', 'handsetID': 'mcloud.matrium.com.au:7457', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}, 'MT': {'IMSI': '505025504563848', 'MSISDN': '+61431202671', 'handsetID': 'mcloud.matrium.com.au:7918', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}}}", "{'MMS': {'ScreenUnlockDuration': 5, 'Duration': 10, 'mmsBody': 'MAndroid2 MMS test.'}}" ]
+      }, {
+        "name" : "test_MAndroid2_SMS[testParameters0-testEnvironment4]",
+        "uid" : "714876f5c3630f69",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1599296677029,
+          "stop" : 1599296710186,
+          "duration" : 33157
+        },
+        "flaky" : false,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025703492762', 'MSISDN': '+61402537622'}, 'MT': {'IMSI': '505025504563848', 'MSISDN': '+61431202671'}}}", "{'SMS': {'Duration': 5, 'smsBody': 'MAndroid2 SMS test.'}}" ]
+      }, {
+        "name" : "test_MAndroid2_SMS[testParameters0-testEnvironment5]",
+        "uid" : "c7d15c25f96537a5",
+        "parentUid" : "5173f59b55c0198b320897301236664e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1599296710224,
+          "stop" : 1599296751819,
+          "duration" : 41595
+        },
+        "flaky" : false,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025703492762', 'MSISDN': '+61402537622'}, 'MT': {'IMSI': '505025104559746', 'MSISDN': '+61418673947'}}}", "{'SMS': {'Duration': 5, 'smsBody': 'MAndroid2 SMS test.'}}" ]
+      } ],
+      "uid" : "5173f59b55c0198b320897301236664e"
+    } ],
+    "uid" : "5e0f6626245758c452ab12715c866883"
+  } ]
+}

@@ -24,7 +24,7 @@ def createExcelTestReport(excelReportPath):
 
     # Get current time.
     timeStamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    reportFileName = "{}MAndroid2TestReport_{}.xlsx".format(excelReportPath, timeStamp)
+    reportFileName = "{}/MAndroid2TestReport_{}.xlsx".format(excelReportPath, timeStamp)
 
     # Create an excel report.
     workbook = xlsxwriter.Workbook(reportFileName)
@@ -234,9 +234,13 @@ def connectTestUsers(testEnvironment, userFlag, testParameters, testCaseInfo, te
         print("Cannot recognize userFlag {}".format(userFlag))
 
 
-def disconnectTestUsers():
+def disconnectTestUsers(testEnvironment):
     # Disconnect connected devices.
     mcloud = MCloudControl()
+    mcloud.mcloudBaseUrl = testEnvironment['MCloud']['baseUrl']
+    mcloud.mcloudLoginUser = testEnvironment['Login']['User']
+    mcloud.mcloudLoginToken = testEnvironment['Login']['accessToken']
+
     print("deviceSerialList to be disconnected is {}".format(mcloud.deviceSerialList))
     mcloud.tearDownUsingDevices(mcloud.deviceSerialList)
 
@@ -301,6 +305,31 @@ def checkTestCaseInfoConfig(testCaseKey):
     # Return
     return testCaseInfo
 
+def checkTestReportConfig(testRepotConfigPath, testReportConfigName):
+    # Get test case info configuration.
+    testReportConfig = getConfigureInfo(testRepotConfigPath, testReportConfigName)
+    assert (testReportConfig != None)
+
+    # Check test report config info from configuration file.
+    assert ("reportPath" in testReportConfig)
+    assert ("reportType" in testReportConfig)
+
+    reportType = testReportConfig["reportType"]
+    assert ("htmlReport" in reportType)
+    assert ("jsonReport" in reportType)
+    assert ("excelReport" in reportType)
+    assert ("allureReport" in reportType)
+    assert ("reportPortalReport" in reportType)
+
+    reportPath = testReportConfig["reportPath"]
+    assert ("htmlReportPath" in reportPath)
+    assert ("jsonReportPath" in reportPath)
+    assert ("excelReportPath" in reportPath)
+    assert ("allureReportPath" in reportPath)
+
+    # Return
+    return testReportConfig
+
 def executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testParameters, testCaseInfo, testCaseSummary, testCaseDetailList):
 
     # Initialization
@@ -318,7 +347,7 @@ def executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testP
     responseList = executeTestLogic(testEnvironment, testCaseInfo, testCaseKey, testParameters, testCaseSummary, testCaseDetailList)
 
     # Disconnect testing users.
-    disconnectTestUsers()
+    disconnectTestUsers(testEnvironment)
 
     # Verify test result.
     testResults = verifyTestCaseResult(testEnvironment, testParameters, testCaseInfo, testCaseKey, responseList)

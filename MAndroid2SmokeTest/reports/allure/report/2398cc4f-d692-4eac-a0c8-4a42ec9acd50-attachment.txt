@@ -1,0 +1,80 @@
+{'VoiceCall': {'TestCaseID': 'MAndroid2_Smoke_Test_001_Voice_Call', 'Description': 'Basic voice call.', 'Preconditions': 'None.', 'TestSteps': ['Place voice call.', 'Receive voice call.', 'Wait for call duraton.', 'End voice call.'], 'CheckPoints': ['Place voice call successfully.', 'Receive voice call successfully.', 'End voice call successfully.']}, 'SMS': {'TestCaseID': 'MAndroid2_Smoke_Test_002_SMS', 'Description': 'Basic SMS.', 'Preconditions': 'None.', 'TestSteps': ['Send SMS.', 'Wait for SMS duraton.', 'Receive SMS.'], 'CheckPoints': ['Send SMS successfully.', 'Receive SMS successfully.']}, 'MMS': {'TestCaseID': 'MAndroid2_Smoke_Test_003_MMS', 'Description': 'Basic MMS.', 'Preconditions': ['Get a file as MMS url by 1033 API.'], 'TestSteps': ['Unlock handset screen.', 'Wait for screen unlock.', 'Send MMS.', 'Wait for MMS duraton.', 'Receive MMS.'], 'CheckPoints': ['Unlock handset screen successfully.', 'Send MMS successfully.', 'Receive MMS successfully.']}, 'WebBrowsing': {'TestCaseID': 'MAndroid2_Smoke_Test_004_WebBrowsing', 'Description': 'Basic web browsing.', 'Preconditions': 'None.', 'TestSteps': ['Web Browsing.'], 'CheckPoints': ['Web browsing successfully.']}, 'HTTPDownload': {'TestCaseID': 'MAndroid2_Smoke_Test_005_HTTPDownload', 'Description': 'Basic HTTP download.', 'Preconditions': 'None.', 'TestSteps': ['Start HTTP download.', 'Wait for HTTP download completion.'], 'CheckPoints': ['HTTP download successfully.']}}
+Read test configuration yaml file ../configuration/testCaseInfo/testCaseInfo.yaml successfully.
+yaml[1][keyName] is {'TestCaseID': 'MAndroid2_Smoke_Test_003_MMS', 'Description': 'Basic MMS.', 'Preconditions': ['Get a file as MMS url by 1033 API.'], 'TestSteps': ['Unlock handset screen.', 'Wait for screen unlock.', 'Send MMS.', 'Wait for MMS duraton.', 'Receive MMS.'], 'CheckPoints': ['Unlock handset screen successfully.', 'Send MMS successfully.', 'Receive MMS successfully.']}.
+Test case info: {'TestCaseID': 'MAndroid2_Smoke_Test_003_MMS', 'Description': 'Basic MMS.', 'Preconditions': ['Get a file as MMS url by 1033 API.'], 'TestSteps': ['Unlock handset screen.', 'Wait for screen unlock.', 'Send MMS.', 'Wait for MMS duraton.', 'Receive MMS.'], 'CheckPoints': ['Unlock handset screen successfully.', 'Send MMS successfully.', 'Receive MMS successfully.']}.
+Test environment: {'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025104559746', 'MSISDN': '+61418673947', 'handsetID': 'mcloud.matrium.com.au:7453', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}, 'MT': {'IMSI': '505025504563848', 'MSISDN': '+61431202671', 'handsetID': 'mcloud.matrium.com.au:7918', 'versions': {'MAndroid2': '2.20.41Build2020-06-09_14:00:07', 'MAndroid2Agent': '2.19.33Build2020-03-27_04:28:38', 'MAndroid2Plugin': '2.19.16Build2019-10-24_15:57:51'}}}}.
+Test testParameters: {'MMS': {'ScreenUnlockDuration': 5, 'Duration': 10, 'mmsBody': 'MAndroid2 MMS test.'}}.
+Executing test logic.
+##########Calling REST API to get devices list on MCloud.
+http://mcloud.matrium.com.au:7100/api/v1/devices
+Handset with IMSI 505025104559746 has not been occupied.
+Corresponding device serial is 9886734d5647434c32.
+Find the matched IMSI 505025104559746 on mcloud
+##########Calling REST API to use device 9886734d5647434c32 on MCloud.
+http://mcloud.matrium.com.au:7100/api/v1/user/devices
+{'success': True, 'description': 'Device successfully added'}
+Adding 9886734d5647434c32 to deviceSerialList
+##########Calling REST API to get the remote debug URL of the testing device 9886734d5647434c32 on MCloud.
+http://mcloud.matrium.com.au:7100/api/v1/user/devices/9886734d5647434c32/remoteConnect
+{'success': True, 'remoteConnectUrl': 'mcloud.matrium.com.au:7453'}
+connect 505025104559746 on mcloud successfully
+remoteConnectUrl is  mcloud.matrium.com.au:7453
+Response of adb connect mcloud.matrium.com.au:7453 is: b'failed to authenticate to mcloud.matrium.com.au:7453\r\n'
+Response of adb devices is: List of devices attached
+mcloud.matrium.com.au:7453	device
+
+
+['mcloud.matrium.com.au:7453']
+MO Handset ID is mcloud.matrium.com.au:7453
+##########Calling REST API to get devices list on MCloud.
+http://mcloud.matrium.com.au:7100/api/v1/devices
+Handset with IMSI 505025504563848 has not been occupied.
+Corresponding device serial is 21f982c0b00c7ece.
+Find the matched IMSI 505025504563848 on mcloud
+##########Calling REST API to use device 21f982c0b00c7ece on MCloud.
+http://mcloud.matrium.com.au:7100/api/v1/user/devices
+{'success': True, 'description': 'Device successfully added'}
+Adding 21f982c0b00c7ece to deviceSerialList
+##########Calling REST API to get the remote debug URL of the testing device 21f982c0b00c7ece on MCloud.
+http://mcloud.matrium.com.au:7100/api/v1/user/devices/21f982c0b00c7ece/remoteConnect
+{'success': True, 'remoteConnectUrl': 'mcloud.matrium.com.au:7918'}
+connect 505025504563848 on mcloud successfully
+remoteConnectUrl is  mcloud.matrium.com.au:7918
+Response of adb connect mcloud.matrium.com.au:7918 is: b'failed to authenticate to mcloud.matrium.com.au:7918\r\n'
+Response of adb devices is: List of devices attached
+mcloud.matrium.com.au:7453	device
+mcloud.matrium.com.au:7918	device
+
+
+['mcloud.matrium.com.au:7453', 'mcloud.matrium.com.au:7918']
+MT Handset ID is mcloud.matrium.com.au:7918
+java -jar c:/tmp/MatriumMAndroid2-release.jar mcloud.matrium.com.au:7453 9001
+{'isSuccess': True, 'startTime': 1599278397569, 'version': '2.20.41Build2020-06-09_14:00:07', 'description': 'MAndroid2 Version is: 2.20.41Build2020-06-09_14:00:07'}
+java -jar c:/tmp/MatriumMAndroid2-release.jar mcloud.matrium.com.au:7453 9002
+{'description': 'MAndroid2 Agent Version is: 2.19.33Build2020-03-27_04:28:38', 'startTime': 1599278401066, 'version': '2.19.33Build2020-03-27_04:28:38', 'isSuccess': True}
+java -jar c:/tmp/MatriumMAndroid2-release.jar mcloud.matrium.com.au:7453 9003
+{'description': 'MAndroid2 Agent Version is: 2.19.33Build2020-03-27_04:28:38', 'startTime': 1599278401066, 'version': '2.19.33Build2020-03-27_04:28:38', 'isSuccess': True}
+java -jar c:/tmp/MatriumMAndroid2-release.jar mcloud.matrium.com.au:7918 9001
+{'isSuccess': True, 'startTime': 1599278406817, 'version': '2.20.41Build2020-06-09_14:00:07', 'description': 'MAndroid2 Version is: 2.20.41Build2020-06-09_14:00:07'}
+java -jar c:/tmp/MatriumMAndroid2-release.jar mcloud.matrium.com.au:7918 9002
+{'description': 'MAndroid2 Agent Version is: 2.19.33Build2020-03-27_04:28:38', 'startTime': 1599278409193, 'version': '2.19.33Build2020-03-27_04:28:38', 'isSuccess': True}
+java -jar c:/tmp/MatriumMAndroid2-release.jar mcloud.matrium.com.au:7918 9003
+{'description': 'MAndroid2 Agent Version is: 2.19.33Build2020-03-27_04:28:38', 'startTime': 1599278409193, 'version': '2.19.33Build2020-03-27_04:28:38', 'isSuccess': True}
+Command of sending MMS is:  java -jar c:/tmp/MatriumMAndroid2-release.jar mcloud.matrium.com.au:7453 3003 mms_address +61431202671 mms_body "MAndroid2\ MMS\ test." mms_url "/sdcard/MAndroid2/Output/Screenshot/takescreen_20200905_140012.png"
+Response of sending MMS is:  {'isSuccess': True, 'startTime': 1599278430602, 'description': 'Send MMS successfully', 'screenshotURL': '/sdcard/MAndroid2/Output/Screenshot/takescreen_20200905_140030.png'}
+Command of receiving MMS is:  java -jar c:/tmp/MatriumMAndroid2-release.jar mcloud.matrium.com.au:7918 3004
+Response of receiving MMS is:  {'isSuccess': True, 'startTime': 1599278472455, 'receivedTime': 1599278443, 'mmsFrom': '+61418673947', 'mmsBody': 'MAndroid2 MMS test.', 'attachType': 'image/jpeg', 'description': 'Received MMS successfully'}
+deviceSerialList to be disconnected is ['9886734d5647434c32', '21f982c0b00c7ece']
+disconnected everything
+##########Calling REST API to release device 9886734d5647434c32 on MCloud.
+http://mcloud.matrium.com.au:7100/api/v1/user/devices/9886734d5647434c32
+resp.status_code is 200
+{'success': True, 'description': 'Device successfully removed'}
+Remaining released deviceSerialList is ['21f982c0b00c7ece']
+##########Calling REST API to release device 21f982c0b00c7ece on MCloud.
+http://mcloud.matrium.com.au:7100/api/v1/user/devices/21f982c0b00c7ece
+resp.status_code is 200
+{'success': True, 'description': 'Device successfully removed'}
+Remaining released deviceSerialList is []
+disconnected everything
+Test result: [{'checkPointResult': 'passed', 'failedReason': 'none', 'command': 'java -jar c:/tmp/MatriumMAndroid2-release.jar mcloud.matrium.com.au:7453 1031', 'response': {'isSuccess': True, 'startTime': 1599278420087, 'description': "It's already on!", 'screenshotURL': '/sdcard/MAndroid2/Output/Screenshot/takescreen_20200905_020020.png'}, 'checkPoint': 'Unlock handset screen successfully.'}, {'checkPointResult': 'passed', 'failedReason': 'none', 'command': 'java -jar c:/tmp/MatriumMAndroid2-release.jar mcloud.matrium.com.au:7453 3003 mms_address +61431202671 mms_body "MAndroid2\\ MMS\\ test." mms_url "/sdcard/MAndroid2/Output/Screenshot/takescreen_20200905_140012.png"', 'response': {'isSuccess': True, 'startTime': 1599278430602, 'description': 'Send MMS successfully', 'screenshotURL': '/sdcard/MAndroid2/Output/Screenshot/takescreen_20200905_140030.png'}, 'checkPoint': 'Send MMS successfully.'}, {'checkPointResult': 'passed', 'failedReason': 'none', 'command': 'java -jar c:/tmp/MatriumMAndroid2-release.jar mcloud.matrium.com.au:7918 3004', 'response': {'isSuccess': True, 'startTime': 1599278472455, 'receivedTime': 1599278443, 'mmsFrom': '+61418673947', 'mmsBody': 'MAndroid2 MMS test.', 'attachType': 'image/jpeg', 'description': 'Received MMS successfully'}, 'checkPoint': 'Receive MMS successfully.'}].

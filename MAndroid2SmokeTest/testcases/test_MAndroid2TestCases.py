@@ -5,6 +5,7 @@ import sys
 # from ..library.MAndroid2BaseYaml import getYam
 # from ..library.MAndroid2BaseMCloud import MCloudControl
 from datetime import datetime, timedelta
+from distutils.dir_util import copy_tree
 from os import listdir
 from time import sleep
 
@@ -15,7 +16,7 @@ from MAndroid2SmokeTest.library.MAndroid2BaseMCloud import MCloudControl
 from MAndroid2SmokeTest.library.MAndroid2BaseCommon import addJsonReportMetaData, executeTestLogic, \
     verifyTestCaseResult, connectTestUsers, checkTestEnvironmentConfig, checkTestParametersConfig, \
     checkTestCaseInfoConfig, createExcelTestReport, writeExcelTestReportSummary, initializeExcelSummary, \
-    writeExcelTestReportDetail, executeTestCase
+    writeExcelTestReportDetail, executeTestCase, checkTestReportConfig
 from MAndroid2SmokeTest.library.MAndroid2BaseCommon import disconnectTestUsers
 from MAndroid2SmokeTest.library.MAndroid2BaseYaml import getAllConfigureInfo
 from MAndroid2SmokeTest.library.MAndroid2BaseYaml import getConfigureInfo
@@ -37,19 +38,24 @@ RELPATH = lambda p: os.path.relpath(
 class TestMAndroid2TestCases():
     # Initialize variables.
     testEnvironmentPath = "../configuration/testEnvironment/"
-    testEnvironmentName = "testEnvironment"
-    testParametersName = "testParameters"
-    excelReportPath = "../reports/excel/"
+    testReportConfigPath = "../configuration/testReportConfig/testReportConfig.yaml"
     voiceCallTestParametersPath = "../configuration/testParameters/voiceCall/"
     smsTestParametersPath = "../configuration/testParameters/SMS/"
     mmsTestParametersPath = "../configuration/testParameters/MMS/"
     webBrowsingTestParametersPath = "../configuration/testParameters/webBrowsing/"
     httpDownloadTestParametersPath = "../configuration/testParameters/httpDownload/"
+    testEnvironmentName = "testEnvironment"
+    testParametersName = "testParameters"
+    testReportConfigName = "testReportConfig"
+
     testCaseSummary = {}
     testCaseDetailList = []
 
     testEnvironments = getAllConfigureInfo(testEnvironmentPath, testEnvironmentName)
     assert (testEnvironments != None)
+
+    reportConfig = checkTestReportConfig(testReportConfigPath, testReportConfigName)
+
     voiceCallTestParameters = getAllConfigureInfo(voiceCallTestParametersPath, testParametersName)
     assert (voiceCallTestParameters != None)
     smsTestParameters = getAllConfigureInfo(smsTestParametersPath, testParametersName)
@@ -65,11 +71,11 @@ class TestMAndroid2TestCases():
     def setup_class(cls):
         print("------ Setup before class TestMAndroid2TestCases ------")
         # Check excel report directory exist.
-        if (os.path.exists(os.path.abspath(cls.excelReportPath)) == False):
-            os.makedirs(cls.excelReportPath)
+        if (os.path.exists(os.path.abspath(cls.reportConfig["reportPath"]["excelReportPath"])) == False):
+            os.makedirs(cls.reportConfig["reportPath"]["excelReportPath"])
 
         # Create excel report and initialize test case summary.
-        cls.excelReport, cls.summarySheet, cls.detailSheet = createExcelTestReport(cls.excelReportPath)
+        cls.excelReport, cls.summarySheet, cls.detailSheet = createExcelTestReport(cls.reportConfig["reportPath"]["excelReportPath"])
         cls.testCaseSummary = initializeExcelSummary(cls.testCaseSummary)
 
         # Get test case starting date.
@@ -214,16 +220,58 @@ if __name__ == '__main__':
     dateTimeObj = datetime.now()
     timestampStr = dateTimeObj.strftime("%d_%b_%Y_%H_%M_%S.%f")
 
+    # Get test report config.
+    testReportConfigPath = "../configuration/testReportConfig/testReportConfig.yaml"
+    testReportConfigName = "testReportConfig"
+    reportConfig = checkTestReportConfig(testReportConfigPath, testReportConfigName)
+
     # Construct report parameters.
-    reportPath = RELPATH("../reports")
-    htmlReport = "--html={}/html/htmlReport_{}.html".format(reportPath, timestampStr)
-    jsonReport = "--json-report --json-report-file {}/json/jsonReport_{}.json".format(reportPath, timestampStr)
-    print(jsonReport)
+    htmlReportPath = reportConfig["reportPath"]["htmlReportPath"]
+    jsonReportPath = reportConfig["reportPath"]["jsonReportPath"]
+    allureReportPath = reportConfig["reportPath"]["allureReportPath"]
+
+    htmlReport = " --html={}/htmlReport_{}.html".format(htmlReportPath, timestampStr)
+    jsonReport = " --json-report --json-report-file {}/jsonReport_{}.json".format(jsonReportPath, timestampStr)
+    allureReportDir = "{}/report".format(allureReportPath)
+    allureResultDir = "{}/result".format(allureReportPath)
+    allureReport = " --alluredir {}".format(allureReportDir)
+    reportPortal = " --reportportal"
 
     # Execute test case.
-    generateReportCommand = "pytest -m 'specifiDeviceSmokeTest' -q -r test_MAndroid2TestCases.py {} {}".format(jsonReport, htmlReport)
-    print(generateReportCommand)
-    output3 = os.system(generateReportCommand)
+    baseExecuteCommand = "pytest --reruns 5 --reruns-delay 1 -v test_MAndroid2TestCases.py"
+    executeCommand = baseExecuteCommand
+    if (reportConfig["reportType"]["htmlReport"] == "True"):
+        executeCommand = executeCommand + htmlReport
+
+    if (reportConfig["reportType"]["jsonReport"] == "True"):
+        executeCommand = executeCommand + jsonReport
+
+    if (reportConfig["reportType"]["allureReport"] == "True"):
+        executeCommand = executeCommand + allureReport
+
+    if (reportConfig["reportType"]["reportPortalReport"] == "True"):
+        executeCommand = executeCommand + reportPortal
+
+    print (executeCommand)
+
+    # executeCommand = "pytest --reruns 5 --reruns-delay 1 -v test_MAndroid2SimpleTestCases.py {} {} {}".format(jsonReport, htmlReport, allureReport)
+    # print(executeCommand)
+
+    output3 = os.system(executeCommand)
+    # response = subprocess.check_output(generateReportCommand.split())
+    # print("Response of test case executing is: ", response)
+
+    if (reportConfig["reportType"]["allureReport"] == "True"):
+        # Generate allure result.
+        allureCommand = "allure generate --clean  {} -o {}".format(allureReportPath, allureResultDir)
+        output4 = os.system(allureCommand)
+
+        # Copy history to allure report.
+        if (os.path.exists("{}/history".format(allureResultDir))):
+            copy_tree("{}/history".format(allureResultDir), "{}/history".format(allureReportDir))
+
+        # Regenerate allure result with history reports.
+        output6 = os.system(allureCommand)
 
     # Execute test cases and generate reports. Not sure why it is not working for json report.
     # pytest.main(["-q", "-r", "test_MAndroid2TestCases.py", jsonReport, htmlReport])

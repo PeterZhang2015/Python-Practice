@@ -1,0 +1,82 @@
+{'VoiceCall': {'TestCaseID': 'MAndroid2_Smoke_Test_001_Voice_Call', 'Description': 'Basic voice call.', 'Preconditions': 'None.', 'TestSteps': ['Place voice call.', 'Receive voice call.', 'Wait for call duraton.', 'End voice call.'], 'CheckPoints': ['Place voice call successfully.', 'Receive voice call successfully.', 'End voice call successfully.']}, 'SMS': {'TestCaseID': 'MAndroid2_Smoke_Test_002_SMS', 'Description': 'Basic SMS.', 'Preconditions': 'None.', 'TestSteps': ['Send SMS.', 'Wait for SMS duraton.', 'Receive SMS.'], 'CheckPoints': ['Send SMS successfully.', 'Receive SMS successfully.']}, 'MMS': {'TestCaseID': 'MAndroid2_Smoke_Test_003_MMS', 'Description': 'Basic MMS.', 'Preconditions': ['Get a file as MMS url by 1033 API.'], 'TestSteps': ['Unlock handset screen.', 'Wait for screen unlock.', 'Send MMS.', 'Wait for MMS duraton.', 'Receive MMS.'], 'CheckPoints': ['Unlock handset screen successfully.', 'Send MMS successfully.', 'Receive MMS successfully.']}, 'WebBrowsing': {'TestCaseID': 'MAndroid2_Smoke_Test_004_WebBrowsing', 'Description': 'Basic web browsing.', 'Preconditions': 'None.', 'TestSteps': ['Web Browsing.'], 'CheckPoints': ['Web browsing successfully.']}, 'HTTPDownload': {'TestCaseID': 'MAndroid2_Smoke_Test_005_HTTPDownload', 'Description': 'Basic HTTP download.', 'Preconditions': 'None.', 'TestSteps': ['Start HTTP download.', 'Wait for HTTP download completion.'], 'CheckPoints': ['HTTP download successfully.']}}
+Read test configuration yaml file ../configuration/testCaseInfo/testCaseInfo.yaml successfully.
+yaml[1][keyName] is {'TestCaseID': 'MAndroid2_Smoke_Test_001_Voice_Call', 'Description': 'Basic voice call.', 'Preconditions': 'None.', 'TestSteps': ['Place voice call.', 'Receive voice call.', 'Wait for call duraton.', 'End voice call.'], 'CheckPoints': ['Place voice call successfully.', 'Receive voice call successfully.', 'End voice call successfully.']}.
+Test case info: {'TestCaseID': 'MAndroid2_Smoke_Test_001_Voice_Call', 'Description': 'Basic voice call.', 'Preconditions': 'None.', 'TestSteps': ['Place voice call.', 'Receive voice call.', 'Wait for call duraton.', 'End voice call.'], 'CheckPoints': ['Place voice call successfully.', 'Receive voice call successfully.', 'End voice call successfully.']}.
+Test environment: {'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025104559746', 'MSISDN': '+61418673947'}, 'MT': {'IMSI': '505025703492762', 'MSISDN': '+61402537622'}}}.
+Test testParameters: {'VoiceCall': {'Duration': 8}}.
+Executing test logic.
+##########Calling REST API to get devices list on MCloud.
+http://mcloud.matrium.com.au:7100/api/v1/devices
+Handset with IMSI 505025104559746 has not been occupied.
+Corresponding device serial is 9886734d5647434c32.
+Find the matched IMSI 505025104559746 on mcloud
+##########Calling REST API to use device 9886734d5647434c32 on MCloud.
+http://mcloud.matrium.com.au:7100/api/v1/user/devices
+{'success': True, 'description': 'Device successfully added'}
+Adding 9886734d5647434c32 to deviceSerialList
+##########Calling REST API to get the remote debug URL of the testing device 9886734d5647434c32 on MCloud.
+http://mcloud.matrium.com.au:7100/api/v1/user/devices/9886734d5647434c32/remoteConnect
+{'success': True, 'remoteConnectUrl': 'mcloud.matrium.com.au:7453'}
+connect 505025104559746 on mcloud successfully
+remoteConnectUrl is  mcloud.matrium.com.au:7453
+Response of adb connect mcloud.matrium.com.au:7453 is: b'failed to authenticate to mcloud.matrium.com.au:7453\r\n'
+Response of adb devices is: List of devices attached
+mcloud.matrium.com.au:7453	device
+
+
+['mcloud.matrium.com.au:7453']
+MO Handset ID is mcloud.matrium.com.au:7453
+##########Calling REST API to get devices list on MCloud.
+http://mcloud.matrium.com.au:7100/api/v1/devices
+Handset with IMSI 505025703492762 has not been occupied.
+Corresponding device serial is ce12160ccd1f323f05.
+Find the matched IMSI 505025703492762 on mcloud
+##########Calling REST API to use device ce12160ccd1f323f05 on MCloud.
+http://mcloud.matrium.com.au:7100/api/v1/user/devices
+{'success': True, 'description': 'Device successfully added'}
+Adding ce12160ccd1f323f05 to deviceSerialList
+##########Calling REST API to get the remote debug URL of the testing device ce12160ccd1f323f05 on MCloud.
+http://mcloud.matrium.com.au:7100/api/v1/user/devices/ce12160ccd1f323f05/remoteConnect
+{'success': True, 'remoteConnectUrl': 'mcloud.matrium.com.au:7457'}
+connect 505025703492762 on mcloud successfully
+remoteConnectUrl is  mcloud.matrium.com.au:7457
+Response of adb connect mcloud.matrium.com.au:7457 is: b'failed to authenticate to mcloud.matrium.com.au:7457\r\n'
+Response of adb devices is: List of devices attached
+mcloud.matrium.com.au:7453	device
+mcloud.matrium.com.au:7457	device
+
+
+['mcloud.matrium.com.au:7453', 'mcloud.matrium.com.au:7457']
+MT Handset ID is mcloud.matrium.com.au:7457
+java -jar c:/tmp/MatriumMAndroid2-release.jar mcloud.matrium.com.au:7453 9001
+{'isSuccess': True, 'startTime': 1599276279182, 'version': '2.20.41Build2020-06-09_14:00:07', 'description': 'MAndroid2 Version is: 2.20.41Build2020-06-09_14:00:07'}
+java -jar c:/tmp/MatriumMAndroid2-release.jar mcloud.matrium.com.au:7453 9002
+{'description': 'MAndroid2 Agent Version is: 2.19.33Build2020-03-27_04:28:38', 'startTime': 1599276282763, 'version': '2.19.33Build2020-03-27_04:28:38', 'isSuccess': True}
+java -jar c:/tmp/MatriumMAndroid2-release.jar mcloud.matrium.com.au:7453 9003
+{'description': 'MAndroid2 Agent Version is: 2.19.33Build2020-03-27_04:28:38', 'startTime': 1599276282763, 'version': '2.19.33Build2020-03-27_04:28:38', 'isSuccess': True}
+java -jar c:/tmp/MatriumMAndroid2-release.jar mcloud.matrium.com.au:7457 9001
+{'isSuccess': True, 'startTime': 1599276288101, 'version': '2.20.41Build2020-06-09_14:00:07', 'description': 'MAndroid2 Version is: 2.20.41Build2020-06-09_14:00:07'}
+java -jar c:/tmp/MatriumMAndroid2-release.jar mcloud.matrium.com.au:7457 9002
+{'description': 'MAndroid2 Agent Version is: 2.19.33Build2020-03-27_04:28:38', 'startTime': 1599276291329, 'version': '2.19.33Build2020-03-27_04:28:38', 'isSuccess': True}
+java -jar c:/tmp/MatriumMAndroid2-release.jar mcloud.matrium.com.au:7457 9003
+{'description': 'MAndroid2 Agent Version is: 2.19.33Build2020-03-27_04:28:38', 'startTime': 1599276291329, 'version': '2.19.33Build2020-03-27_04:28:38', 'isSuccess': True}
+Command of placing basic voice call is:  java -jar c:/tmp/MatriumMAndroid2-release.jar mcloud.matrium.com.au:7453 3010 call_phonenum +61402537622
+Response of placing basic voice call is:  {'isSuccess': True, 'startTime': 1599276296945, 'callee': '+61402537622', 'networkModeBeforeCall': 'LTE', 'description': 'Make a call successfully'}
+Command of receiving basic voice call is:  java -jar c:/tmp/MatriumMAndroid2-release.jar mcloud.matrium.com.au:7457 3011 
+Response of receiving basic voice call is:  {'ringingTime': '1599276307939', 'callDuration': 'null', 'networkModeBeforeCall': 'UMTS', 'screenshotURL': '/sdcard/MAndroid2/Output/Screenshot/takescreen_20200905_132500.png', 'caller': '0418673947', 'callAnswered': 'true', 'answerTime': '1599276309864', 'description': 'Call is connected successfully.', 'endTime': '0', 'networkModeDuringCall': 'UMTS', 'networkModeAfterCall': 'null', 'isSuccess': 'true'}
+Command of receiving basic voice call is:  java -jar c:/tmp/MatriumMAndroid2-release.jar mcloud.matrium.com.au:7453 3012
+Response of ending basic voice call is:  {'isSuccess': True, 'endTime': 1599276322474, 'networkModeAfterCall': 'LTE', 'description': 'End the call successfully', 'screenshotURL': '/sdcard/MAndroid2/Output/Screenshot/takescreen_20200905_012522.png'}
+deviceSerialList to be disconnected is ['9886734d5647434c32', 'ce12160ccd1f323f05']
+disconnected everything
+##########Calling REST API to release device 9886734d5647434c32 on MCloud.
+http://mcloud.matrium.com.au:7100/api/v1/user/devices/9886734d5647434c32
+resp.status_code is 200
+{'success': True, 'description': 'Device successfully removed'}
+Remaining released deviceSerialList is ['ce12160ccd1f323f05']
+##########Calling REST API to release device ce12160ccd1f323f05 on MCloud.
+http://mcloud.matrium.com.au:7100/api/v1/user/devices/ce12160ccd1f323f05
+resp.status_code is 200
+{'success': True, 'description': 'Device successfully removed'}
+Remaining released deviceSerialList is []
+disconnected everything
+Test result: [{'checkPointResult': 'passed', 'failedReason': 'none', 'command': 'java -jar c:/tmp/MatriumMAndroid2-release.jar mcloud.matrium.com.au:7453 3010 call_phonenum +61402537622', 'response': {'isSuccess': True, 'startTime': 1599276296945, 'callee': '+61402537622', 'networkModeBeforeCall': 'LTE', 'description': 'Make a call successfully'}, 'checkPoint': 'Place voice call successfully.'}, {'checkPointResult': 'passed', 'failedReason': 'none', 'command': 'java -jar c:/tmp/MatriumMAndroid2-release.jar mcloud.matrium.com.au:7457 3011 ', 'response': {'ringingTime': '1599276307939', 'callDuration': 'null', 'networkModeBeforeCall': 'UMTS', 'screenshotURL': '/sdcard/MAndroid2/Output/Screenshot/takescreen_20200905_132500.png', 'caller': '0418673947', 'callAnswered': 'true', 'answerTime': '1599276309864', 'description': 'Call is connected successfully.', 'endTime': '0', 'networkModeDuringCall': 'UMTS', 'networkModeAfterCall': 'null', 'isSuccess': 'true'}, 'checkPoint': 'Receive voice call successfully.'}, {'checkPointResult': 'passed', 'failedReason': 'none', 'command': 'java -jar c:/tmp/MatriumMAndroid2-release.jar mcloud.matrium.com.au:7453 3012', 'response': {'isSuccess': True, 'endTime': 1599276322474, 'networkModeAfterCall': 'LTE', 'description': 'End the call successfully', 'screenshotURL': '/sdcard/MAndroid2/Output/Screenshot/takescreen_20200905_012522.png'}, 'checkPoint': 'End voice call successfully.'}].

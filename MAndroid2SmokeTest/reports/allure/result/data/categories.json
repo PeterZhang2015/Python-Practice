@@ -1,0 +1,61 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "name" : "categories",
+  "children" : [ {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "AssertionError",
+      "children" : [ {
+        "name" : "test_MAndroid2_VoiceCall[testParameters0-testEnvironment2]",
+        "uid" : "c923e5b1d0b2847d",
+        "parentUid" : "a0017ad855102fea08b8682d27fec4ca",
+        "status" : "failed",
+        "time" : {
+          "start" : 1599296487433,
+          "stop" : 1599296487611,
+          "duration" : 178
+        },
+        "flaky" : true,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025104559746', 'MSISDN': '+61418673947'}, 'MT': {'IMSI': '505025504563848', 'MSISDN': '+61431202671'}}}", "{'VoiceCall': {'Duration': 8}}" ]
+      }, {
+        "name" : "test_MAndroid2_VoiceCall[testParameters0-testEnvironment3]",
+        "uid" : "6f5f87ed929edba2",
+        "parentUid" : "a0017ad855102fea08b8682d27fec4ca",
+        "status" : "failed",
+        "time" : {
+          "start" : 1599296494224,
+          "stop" : 1599296494403,
+          "duration" : 179
+        },
+        "flaky" : true,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025104559746', 'MSISDN': '+61418673947'}, 'MT': {'IMSI': '505025703492762', 'MSISDN': '+61402537622'}}}", "{'VoiceCall': {'Duration': 8}}" ]
+      }, {
+        "name" : "test_MAndroid2_VoiceCall[testParameters0-testEnvironment4]",
+        "uid" : "f4a1dcdd3631337b",
+        "parentUid" : "a0017ad855102fea08b8682d27fec4ca",
+        "status" : "failed",
+        "time" : {
+          "start" : 1599296500889,
+          "stop" : 1599296501075,
+          "duration" : 186
+        },
+        "flaky" : true,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025703492762', 'MSISDN': '+61402537622'}, 'MT': {'IMSI': '505025504563848', 'MSISDN': '+61431202671'}}}", "{'VoiceCall': {'Duration': 8}}" ]
+      }, {
+        "name" : "test_MAndroid2_VoiceCall[testParameters0-testEnvironment5]",
+        "uid" : "b8e812cd47516dde",
+        "parentUid" : "a0017ad855102fea08b8682d27fec4ca",
+        "status" : "failed",
+        "time" : {
+          "start" : 1599296507561,
+          "stop" : 1599296507730,
+          "duration" : 169
+        },
+        "flaky" : true,
+        "parameters" : [ "{'MCloud': {'baseUrl': 'http://mcloud.matrium.com.au:7100/api/v1'}, 'Login': {'User': 'Peter.Zhang@matrium.com.au', 'accessToken': 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'}, 'MAndroid2AgentPath': 'c:/tmp/MatriumMAndroid2-release.jar', 'testUsers': {'MO': {'IMSI': '505025703492762', 'MSISDN': '+61402537622'}, 'MT': {'IMSI': '505025104559746', 'MSISDN': '+61418673947'}}}", "{'VoiceCall': {'Duration': 8}}" ]
+      } ],
+      "uid" : "a0017ad855102fea08b8682d27fec4ca"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  } ]
+}

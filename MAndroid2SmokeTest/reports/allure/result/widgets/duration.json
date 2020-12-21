@@ -1,0 +1,301 @@
+[ {
+  "uid" : "a554c00bb7899a95",
+  "name" : "test_MAndroid2_SMS[testParameters0-testEnvironment1]",
+  "time" : {
+    "start" : 1599296561357,
+    "stop" : 1599296594752,
+    "duration" : 33395
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "dc0bddc373f7d707",
+  "name" : "test_MAndroid2_WebBrowsing[testParameters0-testEnvironment0]",
+  "time" : {
+    "start" : 1599297373751,
+    "stop" : 1599297391555,
+    "duration" : 17804
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "f4a1dcdd3631337b",
+  "name" : "test_MAndroid2_VoiceCall[testParameters0-testEnvironment4]",
+  "time" : {
+    "start" : 1599296500889,
+    "stop" : 1599296501075,
+    "duration" : 186
+  },
+  "status" : "failed",
+  "severity" : "normal"
+}, {
+  "uid" : "a80ccc68a1bde95f",
+  "name" : "test_MAndroid2_HTTPDownload[testParameters0-testEnvironment3]",
+  "time" : {
+    "start" : 1599297588173,
+    "stop" : 1599297621530,
+    "duration" : 33357
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "6f5f87ed929edba2",
+  "name" : "test_MAndroid2_VoiceCall[testParameters0-testEnvironment3]",
+  "time" : {
+    "start" : 1599296494224,
+    "stop" : 1599296494403,
+    "duration" : 179
+  },
+  "status" : "failed",
+  "severity" : "normal"
+}, {
+  "uid" : "dc7ecb1708449330",
+  "name" : "test_MAndroid2_HTTPDownload[testParameters0-testEnvironment1]",
+  "time" : {
+    "start" : 1599297528174,
+    "stop" : 1599297554443,
+    "duration" : 26269
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "9e2b0c02e247cbb4",
+  "name" : "test_MAndroid2_WebBrowsing[testParameters0-testEnvironment1]",
+  "time" : {
+    "start" : 1599297391584,
+    "stop" : 1599297408985,
+    "duration" : 17401
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "b8111a468f49da7",
+  "name" : "test_MAndroid2_MMS[testParameters0-testEnvironment0]",
+  "time" : {
+    "start" : 1599296751856,
+    "stop" : 1599296844452,
+    "duration" : 92596
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "cb4e191717da2409",
+  "name" : "test_MAndroid2_SMS[testParameters0-testEnvironment2]",
+  "time" : {
+    "start" : 1599296594795,
+    "stop" : 1599296635093,
+    "duration" : 40298
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "689d1d0fe699d8ef",
+  "name" : "test_MAndroid2_SMS[testParameters0-testEnvironment0]",
+  "time" : {
+    "start" : 1599296519734,
+    "stop" : 1599296561322,
+    "duration" : 41588
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "90892a6a9b4b818b",
+  "name" : "test_MAndroid2_MMS[testParameters0-testEnvironment1]",
+  "time" : {
+    "start" : 1599296929775,
+    "stop" : 1599297017248,
+    "duration" : 87473
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "bb24bd2bd28d8115",
+  "name" : "test_MAndroid2_WebBrowsing[testParameters0-testEnvironment2]",
+  "time" : {
+    "start" : 1599297409018,
+    "stop" : 1599297436917,
+    "duration" : 27899
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "a4f0c13a103d4e10",
+  "name" : "test_MAndroid2_MMS[testParameters0-testEnvironment3]",
+  "time" : {
+    "start" : 1599297106540,
+    "stop" : 1599297198361,
+    "duration" : 91821
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "8933e79d07f24e0f",
+  "name" : "test_MAndroid2_HTTPDownload[testParameters0-testEnvironment0]",
+  "time" : {
+    "start" : 1599297501695,
+    "stop" : 1599297528140,
+    "duration" : 26445
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "eea0adf3be94beb7",
+  "name" : "test_MAndroid2_MMS[testParameters0-testEnvironment5]",
+  "time" : {
+    "start" : 1599297282181,
+    "stop" : 1599297373716,
+    "duration" : 91535
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "8cd2c0f8f8116b1d",
+  "name" : "test_MAndroid2_VoiceCall[testParameters0-testEnvironment1]",
+  "time" : {
+    "start" : 1599296424246,
+    "stop" : 1599296480949,
+    "duration" : 56703
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "cf099f47a121114e",
+  "name" : "test_MAndroid2_WebBrowsing[testParameters0-testEnvironment5]",
+  "time" : {
+    "start" : 1599297482879,
+    "stop" : 1599297501664,
+    "duration" : 18785
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "ee4266b8fe2e4069",
+  "name" : "test_MAndroid2_VoiceCall[testParameters0-testEnvironment0]",
+  "time" : {
+    "start" : 1599296371937,
+    "stop" : 1599296424180,
+    "duration" : 52243
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "c923e5b1d0b2847d",
+  "name" : "test_MAndroid2_VoiceCall[testParameters0-testEnvironment2]",
+  "time" : {
+    "start" : 1599296487433,
+    "stop" : 1599296487611,
+    "duration" : 178
+  },
+  "status" : "failed",
+  "severity" : "normal"
+}, {
+  "uid" : "6eb13aac12c23ef4",
+  "name" : "test_MAndroid2_HTTPDownload[testParameters0-testEnvironment4]",
+  "time" : {
+    "start" : 1599297621570,
+    "stop" : 1599297648892,
+    "duration" : 27322
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "65af3dbfb0b381be",
+  "name" : "test_MAndroid2_SMS[testParameters0-testEnvironment3]",
+  "time" : {
+    "start" : 1599296635127,
+    "stop" : 1599296676967,
+    "duration" : 41840
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "531ed6c1e221723c",
+  "name" : "test_MAndroid2_HTTPDownload[testParameters0-testEnvironment2]",
+  "time" : {
+    "start" : 1599297554469,
+    "stop" : 1599297588142,
+    "duration" : 33673
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "d19d4bb3ce151c4a",
+  "name" : "test_MAndroid2_WebBrowsing[testParameters0-testEnvironment3]",
+  "time" : {
+    "start" : 1599297436949,
+    "stop" : 1599297462623,
+    "duration" : 25674
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "6c06bd6affb705e8",
+  "name" : "test_MAndroid2_HTTPDownload[testParameters0-testEnvironment5]",
+  "time" : {
+    "start" : 1599297648936,
+    "stop" : 1599297676470,
+    "duration" : 27534
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "de04bab50894ac5e",
+  "name" : "test_MAndroid2_WebBrowsing[testParameters0-testEnvironment4]",
+  "time" : {
+    "start" : 1599297462657,
+    "stop" : 1599297482843,
+    "duration" : 20186
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "b8e812cd47516dde",
+  "name" : "test_MAndroid2_VoiceCall[testParameters0-testEnvironment5]",
+  "time" : {
+    "start" : 1599296507561,
+    "stop" : 1599296507730,
+    "duration" : 169
+  },
+  "status" : "failed",
+  "severity" : "normal"
+}, {
+  "uid" : "e3cfb5e5287fec95",
+  "name" : "test_MAndroid2_MMS[testParameters0-testEnvironment2]",
+  "time" : {
+    "start" : 1599297017286,
+    "stop" : 1599297106504,
+    "duration" : 89218
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "abf4eeea83ff7745",
+  "name" : "test_MAndroid2_MMS[testParameters0-testEnvironment4]",
+  "time" : {
+    "start" : 1599297198385,
+    "stop" : 1599297282144,
+    "duration" : 83759
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "714876f5c3630f69",
+  "name" : "test_MAndroid2_SMS[testParameters0-testEnvironment4]",
+  "time" : {
+    "start" : 1599296677029,
+    "stop" : 1599296710186,
+    "duration" : 33157
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "c7d15c25f96537a5",
+  "name" : "test_MAndroid2_SMS[testParameters0-testEnvironment5]",
+  "time" : {
+    "start" : 1599296710224,
+    "stop" : 1599296751819,
+    "duration" : 41595
+  },
+  "status" : "passed",
+  "severity" : "normal"
+} ]
