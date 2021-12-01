@@ -19,7 +19,8 @@ from MAndroid2SmokeTest.library.MAndroid2BaseMCloud import MCloudControl
 from MAndroid2SmokeTest.library.MAndroid2BaseCommon import addJsonReportMetaData, executeTestLogic, \
     verifyTestCaseResult, connectTestUsers, checkTestEnvironmentConfig, checkTestParametersConfig, \
     checkTestCaseInfoConfig, createExcelTestReport, writeExcelTestReportSummary, initializeExcelSummary, \
-    writeExcelTestReportDetail, executeTestCase, getAllAvailableDevicesUnderDifferentEnvironment, checkTestReportConfig
+    writeExcelTestReportDetail, executeTestCase, getAllAvailableDevicesUnderDifferentEnvironment, checkTestReportConfig, \
+    writeExcelFailedTestReport, writeTestReportInfo
 from MAndroid2SmokeTest.library.MAndroid2BaseCommon import disconnectTestUsers
 from MAndroid2SmokeTest.library.MAndroid2BaseYaml import getAllConfigureInfo
 from MAndroid2SmokeTest.library.MAndroid2BaseYaml import getConfigureInfo
@@ -60,6 +61,7 @@ class TestMAndroid2TestCases():
     httpDownloadTestParameters = []
 
     testEnvironments = getAllConfigureInfo(testEnvironmentPath, testEnvironmentName)
+    print(testEnvironments)
     assert (testEnvironments != None)
 
     reportConfig = checkTestReportConfig(testReportConfigPath, testReportConfigName)
@@ -163,10 +165,8 @@ class TestMAndroid2TestCases():
         testResults = executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testParameters,
                                       testCaseInfo, self.testCaseSummary, self.testCaseDetailList)
 
-        # Write test case summary and test case detail.
-        writeExcelTestReportSummary(self.testCaseSummary, testResults, testEnvironment)
-        writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters,
-                                                             testCaseInfo, testResults)
+        # Write test report info.
+        writeTestReportInfo(json_metadata, testEnvironment, testParameters, testCaseInfo, self.testCaseSummary, self.testCaseDetailList, testResults)
 
         # Assert test result.
         rp_logger.info("Test result: {}.".format(testResults))
@@ -194,10 +194,8 @@ class TestMAndroid2TestCases():
         testResults = executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testParameters,
                                       testCaseInfo, self.testCaseSummary, self.testCaseDetailList)
 
-        # Write test case summary and test case detail.
-        writeExcelTestReportSummary(self.testCaseSummary, testResults, testEnvironment)
-        writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters,
-                                                             testCaseInfo, testResults)
+        # Write test report info.
+        writeTestReportInfo(json_metadata, testEnvironment, testParameters, testCaseInfo, self.testCaseSummary, self.testCaseDetailList, testResults)
 
         # Assert test result.
         rp_logger.info("Test result: {}.".format(testResults))
@@ -225,10 +223,8 @@ class TestMAndroid2TestCases():
         testResults = executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testParameters,
                                       testCaseInfo, self.testCaseSummary, self.testCaseDetailList)
 
-        # Write test case summary and test case detail.
-        writeExcelTestReportSummary(self.testCaseSummary, testResults, testEnvironment)
-        writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters,
-                                                             testCaseInfo, testResults)
+        # Write test report info.
+        writeTestReportInfo(json_metadata, testEnvironment, testParameters, testCaseInfo, self.testCaseSummary, self.testCaseDetailList, testResults)
 
         # Assert test result.
         rp_logger.info("Test result: {}.".format(testResults))
@@ -257,10 +253,8 @@ class TestMAndroid2TestCases():
         testResults = executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testParameters,
                                       testCaseInfo, self.testCaseSummary, self.testCaseDetailList)
 
-        # Write test case summary and test case detail.
-        writeExcelTestReportSummary(self.testCaseSummary, testResults, testEnvironment)
-        writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters,
-                                                             testCaseInfo, testResults)
+        # Write test report info.
+        writeTestReportInfo(json_metadata, testEnvironment, testParameters, testCaseInfo, self.testCaseSummary, self.testCaseDetailList, testResults)
 
         # Assert test result.
         rp_logger.info("Test result: {}.".format(testResults))
@@ -288,13 +282,9 @@ class TestMAndroid2TestCases():
         testResults = executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testParameters,
                                       testCaseInfo, self.testCaseSummary, self.testCaseDetailList)
 
-        # Write test case summary and test case detail.
-        # self.testCaseSummary = writeExcelTestReportSummary(self.testCaseSummary, testResults, testEnvironment)
-        # self.testCaseDetailList = writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters,
-        #                                                      testCaseInfo, testResults)
-        writeExcelTestReportSummary(self.testCaseSummary, testResults, testEnvironment)
-        writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters,
-                                                             testCaseInfo, testResults)
+        # Write test report info.
+        writeTestReportInfo(json_metadata, testEnvironment, testParameters, testCaseInfo, self.testCaseSummary, self.testCaseDetailList, testResults)
+
         # Assert test result.
         rp_logger.info("Test result: {}.".format(testResults))
         for result in testResults:
@@ -326,7 +316,7 @@ if __name__ == '__main__':
     reportPortal = " --reportportal"
 
     # Execute test case.
-    baseExecuteCommand = "pytest --reruns 5 --reruns-delay 1 -v test_MAndroid2AllDevices.py"
+    baseExecuteCommand = "pytest --reruns 1 --reruns-delay 1 -v test_MAndroid2AllDevices.py"
     executeCommand = baseExecuteCommand
     if (reportConfig["reportType"]["htmlReport"] == "True"):
         executeCommand = executeCommand + htmlReport

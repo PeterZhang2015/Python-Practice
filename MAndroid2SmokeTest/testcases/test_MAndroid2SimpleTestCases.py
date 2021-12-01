@@ -17,7 +17,8 @@ from MAndroid2SmokeTest.library.MAndroid2BaseMCloud import MCloudControl
 from MAndroid2SmokeTest.library.MAndroid2BaseCommon import addJsonReportMetaData, executeTestLogic, \
     verifyTestCaseResult, connectTestUsers, checkTestEnvironmentConfig, checkTestParametersConfig, \
     checkTestCaseInfoConfig, createExcelTestReport, writeExcelTestReportSummary, initializeExcelSummary, \
-    writeExcelTestReportDetail, executeTestCase, getAllAvailableDevicesUnderDifferentEnvironment, checkTestReportConfig
+    writeExcelTestReportDetail, executeTestCase, getAllAvailableDevicesUnderDifferentEnvironment, checkTestReportConfig, \
+    writeTestReportInfo
 from MAndroid2SmokeTest.library.MAndroid2BaseCommon import disconnectTestUsers
 from MAndroid2SmokeTest.library.MAndroid2BaseYaml import getAllConfigureInfo
 from MAndroid2SmokeTest.library.MAndroid2BaseYaml import getConfigureInfo
@@ -130,10 +131,8 @@ class TestMAndroid2TestCases():
         testResults = executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testParameters,
                                       testCaseInfo, self.testCaseSummary, self.testCaseDetailList)
 
-        # Write test case summary and test case detail.
-        writeExcelTestReportSummary(self.testCaseSummary, testResults, testEnvironment)
-        writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters,
-                                                             testCaseInfo, testResults)
+        # Write test report info.
+        writeTestReportInfo(json_metadata, testEnvironment, testParameters, testCaseInfo, self.testCaseSummary, self.testCaseDetailList, testResults)
 
         # Assert test result.
         for result in testResults:
@@ -156,10 +155,8 @@ class TestMAndroid2TestCases():
         testResults = executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testParameters,
                                       testCaseInfo, self.testCaseSummary, self.testCaseDetailList)
 
-        # Write test case summary and test case detail.
-        writeExcelTestReportSummary(self.testCaseSummary, testResults, testEnvironment)
-        writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters,
-                                                             testCaseInfo, testResults)
+        # Write test report info.
+        writeTestReportInfo(json_metadata, testEnvironment, testParameters, testCaseInfo, self.testCaseSummary, self.testCaseDetailList, testResults)
 
         # Assert test result.
         for result in testResults:
@@ -182,10 +179,8 @@ class TestMAndroid2TestCases():
         testResults = executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testParameters,
                                       testCaseInfo, self.testCaseSummary, self.testCaseDetailList)
 
-        # Write test case summary and test case detail.
-        writeExcelTestReportSummary(self.testCaseSummary, testResults, testEnvironment)
-        writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters,
-                                                             testCaseInfo, testResults)
+        # Write test report info.
+        writeTestReportInfo(json_metadata, testEnvironment, testParameters, testCaseInfo, self.testCaseSummary, self.testCaseDetailList, testResults)
 
         # Assert test result.
         for result in testResults:
@@ -209,10 +204,8 @@ class TestMAndroid2TestCases():
         testResults = executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testParameters,
                                       testCaseInfo, self.testCaseSummary, self.testCaseDetailList)
 
-        # Write test case summary and test case detail.
-        writeExcelTestReportSummary(self.testCaseSummary, testResults, testEnvironment)
-        writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters,
-                                                             testCaseInfo, testResults)
+        # Write test report info.
+        writeTestReportInfo(json_metadata, testEnvironment, testParameters, testCaseInfo, self.testCaseSummary, self.testCaseDetailList, testResults)
 
         # Assert test result.
         for result in testResults:
@@ -235,13 +228,9 @@ class TestMAndroid2TestCases():
         testResults = executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testParameters,
                                       testCaseInfo, self.testCaseSummary, self.testCaseDetailList)
 
-        # Write test case summary and test case detail.
-        # self.testCaseSummary = writeExcelTestReportSummary(self.testCaseSummary, testResults, testEnvironment)
-        # self.testCaseDetailList = writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters,
-        #                                                      testCaseInfo, testResults)
-        writeExcelTestReportSummary(self.testCaseSummary, testResults, testEnvironment)
-        writeExcelTestReportDetail(self.testCaseDetailList, testEnvironment, testParameters,
-                                                             testCaseInfo, testResults)
+        # Write test report info.
+        writeTestReportInfo(json_metadata, testEnvironment, testParameters, testCaseInfo, self.testCaseSummary, self.testCaseDetailList, testResults)
+
         # Assert test result.
         for result in testResults:
             assert (result['checkPointResult'] == "passed")

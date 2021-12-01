@@ -40,6 +40,9 @@ class MCloudControl(object):
                              data=json.dumps(data),)
 
         print (self._url('/user/devices'))
+        print(json.dumps(data))
+        print(headers)
+        print(resp)
 
         if resp.status_code == 200:
             # Check REST API response.
@@ -153,10 +156,14 @@ class MCloudControl(object):
                 if (phoneNumber == None) and ("notes" in device) and (device["notes"] != ""):
                     phoneNumber = device["notes"]
 
+                # if ((device["present"] == True) and (device["ready"] == True) and (
+                #         (device["owner"] == None) or (device["owner"]["email"] == testUser)) and (
+                #         device["phone"]["imsi"] != None) and (phoneNumber != None) and (
+                #         device["phone"]["network"] != "UNKNOWN")):
                 if ((device["present"] == True) and (device["ready"] == True) and (
-                        (device["owner"] == None) or (device["owner"]["email"] == testUser)) and (
-                        device["phone"]["imsi"] != None) and (phoneNumber != None) and (
-                        device["phone"]["network"] != "UNKNOWN")):
+                        (device["owner"] == None) or (device["owner"]["email"] == testUser))
+                        and (device["serial"] != None)
+                        and (phoneNumber != None) and (device["phone"]["network"] != "UNKNOWN")):
                     availableDevice = {}
                     availableDevice["serial"] = device["serial"]
                     availableDevice["imsi"] = device["phone"]["imsi"]
@@ -169,7 +176,7 @@ class MCloudControl(object):
             else:
                 return availableDeviceList
         else:
-            print('[!] HTTP {0} calling [{1}]'.format(self._url('/devices')))
+            print('[!] HTTP {0} calling [{1}]'.format(resp.status_code, self._url('/devices')))
             return None
 
     def getDeviceSerialByImsi(self, userIMSI):
@@ -254,38 +261,48 @@ class MCloudControl(object):
 
             return result
 
-    def connectToMcloudUser(self, userIMSI):
+    def connectToMcloudUser(self, userSerial):
         # Initializaation.
         result = {}
         result['failedFlag'] = False
         result['failedReason'] = None
         result['remoteConnectUrl'] = None
 
-        # Try to find the device serial of the matched IMSI.
-        resultGetDeviceSerialByImsi = self.getDeviceSerialByImsi(userIMSI)
-
-        if (resultGetDeviceSerialByImsi['failedFlag'] == True or resultGetDeviceSerialByImsi['deviceSerial'] == None):
-            result['failedFlag'] = True
-            result['failedReason'] = "Cannot find the matched IMSI {} on mcloud".format(userIMSI)
-            print(result['failedReason'])
-            return result
-        else:
-            print("Find the matched IMSI {} on mcloud".format(userIMSI))
+        # # Try to find the device serial of the matched IMSI.
+        # resultGetDeviceSerialByImsi = self.getDeviceSerialByImsi(userIMSI)
+        #
+        # if (resultGetDeviceSerialByImsi['failedFlag'] == True or resultGetDeviceSerialByImsi['deviceSerial'] == None):
+        #     result['failedFlag'] = True
+        #     result['failedReason'] = "Cannot find the matched IMSI {} on mcloud".format(userIMSI)
+        #     print(result['failedReason'])
+        #     return result
+        # else:
+        #     print("Find the matched IMSI {} on mcloud".format(userIMSI))
 
         # Use the device on mcloud.
-        resultRequestDevice = self.requestDevice(resultGetDeviceSerialByImsi['deviceSerial'])
+        resultRequestDevice = self.requestDevice(userSerial)
         if (resultRequestDevice == False):
-            result['failedFlag'] = True
-            result['failedReason'] = "Failed to use the device {} on mcloud.".format(resultGetDeviceSerialByImsi['deviceSerial'])
-            print(result['failedReason'])
-            return result
+            # Trying to release and request the occupied device.
+            resultReleaseDevice = self.releaseDevice(userSerial)
+            if (resultReleaseDevice == False):
+                result['failedFlag'] = True
+                result['failedReason'] = "Failed to release occupied device {} on mcloud.".format(userSerial)
+                print(result['failedReason'])
+                return result
+
+            resultRequestDevice = self.requestDevice(userSerial)
+            if (resultRequestDevice == False):
+                result['failedFlag'] = True
+                result['failedReason'] = "Failed to use the device {} on mcloud.".format(userSerial)
+                print(result['failedReason'])
+                return result
 
         # Get the device remote control url.
-        resp = self.remoteConnect(resultGetDeviceSerialByImsi['deviceSerial'])
+        resp = self.remoteConnect(userSerial)
         # Abort the execution if failed to call the API.
         if (resp == None):
             result['failedFlag'] = True
-            result['failedReason'] = "Fail to remoteConnect {} on mcloud".format(userIMSI)
+            result['failedReason'] = "Fail to remoteConnect {} on mcloud".format(userSerial)
             print(result['failedReason'])
             return result
 
@@ -294,11 +311,11 @@ class MCloudControl(object):
         # Abort the execution if it cannot get the remote control url of the testing device.
         if (dictResponse['success'] != True):
             result['failedFlag'] = True
-            result['failedReason'] = "Fail to remoteConnect {} on mcloud according to response".format(userIMSI)
+            result['failedReason'] = "Fail to remoteConnect {} on mcloud according to response".format(userSerial)
             print(result['failedReason'])
             return result
         else:
-            print ("connect {} on mcloud successfully".format(userIMSI))
+            print ("connect {} on mcloud successfully".format(userSerial))
             print ("remoteConnectUrl is ", dictResponse['remoteConnectUrl'])
 
         # adb connect
@@ -307,8 +324,8 @@ class MCloudControl(object):
         response = subprocess.check_output(command.split())
         print("Response of adb connect {} is: {}".format(dictResponse['remoteConnectUrl'], response))
 
-        # Check adb connect result by adb devices after waiting 2 seconds.
-        time.sleep(2)
+        # Check adb connect result by adb devices after waiting 5 seconds.
+        time.sleep(5)
         command = "adb devices"
         response = subprocess.check_output(command.split()).decode('utf-8')
         print("Response of adb devices is: {}".format(response))
@@ -357,7 +374,7 @@ if __name__ == '__main__':
     print("Connected handset ID: {}".format(availableDeviceList))
 
     for availableDevice in availableDeviceList:
-        result = mcloud.connectToMcloudUser(availableDevice["imsi"])
+        result = mcloud.connectToMcloudUser(availableDevice["serial"])
         print("Connected handset ID: {}".format(availableDeviceList))
 
         if result["failedFlag"] == True or result["remoteConnectUrl"] == None:

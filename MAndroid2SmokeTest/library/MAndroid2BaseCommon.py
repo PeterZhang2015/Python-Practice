@@ -132,6 +132,9 @@ def connectTestUsers(testEnvironment, userFlag, testParameters, testCaseInfo, te
     # Connect available test handset on mcloud from specified IMSI.
     result = {}
     mcloud = MCloudControl()
+    returnVal = {}
+    returnVal["failedFlag"] = False
+    returnVal["failedReason"] = False
 
     # Set test environment variables.
     mcloud.mcloudBaseUrl = testEnvironment['MCloud']['baseUrl']
@@ -139,100 +142,95 @@ def connectTestUsers(testEnvironment, userFlag, testParameters, testCaseInfo, te
     mcloud.mcloudLoginToken = testEnvironment['Login']['accessToken']
 
     if (userFlag == "MO"):
-        result = mcloud.connectToMcloudUser(testEnvironment['testUsers']['MO']['IMSI'])
+        result = mcloud.connectToMcloudUser(testEnvironment['testUsers']['MO']['serial'])
+        print("Result of connectToMcloudUser is: {}".format(result))
 
         if result["failedFlag"] == True or result["remoteConnectUrl"] == None:
-            failedReason = result["failedReason"]
-            writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
-                                       testParameters, testCaseInfo)
-        else:
-            testEnvironment['testUsers']['MO']['handsetID'] = result["remoteConnectUrl"]
+            returnVal["failedFlag"] = result["failedFlag"]
+            returnVal["failedReason"] = result["failedReason"]
+            return returnVal
 
-        assert (result["remoteConnectUrl"] != None)
+        testEnvironment['testUsers']['MO']['handsetID'] = result["remoteConnectUrl"]
         print("MO Handset ID is {}".format(result["remoteConnectUrl"]))
 
         # Get MAndroid2 version info.
         version = getMAndroid2Version(testEnvironment['MAndroid2AgentPath'],
                                       testEnvironment['testUsers']['MO']['handsetID'])
-        if version != None:
-            testEnvironment['testUsers']['MO']['versions'] = version
-        else:
-            failedReason = "Cannot get MAndroid2 version from {}".format(testEnvironment['testUsers']['MO']['handsetID'])
-            writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
-                                       testParameters, testCaseInfo)
-        assert (version != None)
+        if version == None:
+            returnVal["failedFlag"] = True
+            returnVal["failedReason"] = "Cannot get MAndroid2 version from {}".format(testEnvironment['testUsers']['MO']['handsetID'])
+            return returnVal
+
+        testEnvironment['testUsers']['MO']['versions'] = version
+
     elif (userFlag == "MT"):
-        result = mcloud.connectToMcloudUser(testEnvironment['testUsers']['MT']['IMSI'])
+        result = mcloud.connectToMcloudUser(testEnvironment['testUsers']['MT']['serial'])
+        print("Result of connectToMcloudUser is: {}".format(result))
 
         if result["failedFlag"] == True or result["remoteConnectUrl"] == None:
-            failedReason = result["failedReason"]
-            writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
-                                       testParameters, testCaseInfo)
-        else:
-            testEnvironment['testUsers']['MT']['handsetID'] = result["remoteConnectUrl"]
+            returnVal["failedFlag"] = result["failedFlag"]
+            returnVal["failedReason"] = result["failedReason"]
+            return returnVal
 
-        assert (result["remoteConnectUrl"] != None)
+        testEnvironment['testUsers']['MT']['handsetID'] = result["remoteConnectUrl"]
         print("MT Handset ID is {}".format(result["remoteConnectUrl"]))
 
         # Get MAndroid2 version info.
         version = getMAndroid2Version(testEnvironment['MAndroid2AgentPath'],
                                       testEnvironment['testUsers']['MT']['handsetID'])
-        if version != None:
-            testEnvironment['testUsers']['MT']['versions'] = version
-        else:
-            failedReason = "Cannot get MAndroid2 version from {}".format(testEnvironment['testUsers']['MT']['handsetID'])
-            writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
-                                       testParameters, testCaseInfo)
-        assert (version != None)
+        if version == None:
+            returnVal["failedFlag"] = True
+            returnVal["failedReason"] = "Cannot get MAndroid2 version from {}".format(
+                testEnvironment['testUsers']['MT']['handsetID'])
+
+        testEnvironment['testUsers']['MT']['versions'] = version
 
     elif (userFlag == "MOMT"):
-        result = mcloud.connectToMcloudUser(testEnvironment['testUsers']['MO']['IMSI'])
+        result = mcloud.connectToMcloudUser(testEnvironment['testUsers']['MO']['serial'])
+        print("Result of connectToMcloudUser is: {}".format(result))
 
         if result["failedFlag"] == True or result["remoteConnectUrl"] == None:
-            failedReason = result["failedReason"]
-            writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
-                                       testParameters, testCaseInfo)
-        else:
-            testEnvironment['testUsers']['MO']['handsetID'] = result["remoteConnectUrl"]
+            returnVal["failedFlag"] = result["failedFlag"]
+            returnVal["failedReason"] = result["failedReason"]
+            return returnVal
 
-        assert (result["remoteConnectUrl"] != None)
+        testEnvironment['testUsers']['MO']['handsetID'] = result["remoteConnectUrl"]
         print("MO Handset ID is {}".format(result["remoteConnectUrl"]))
 
-        result = mcloud.connectToMcloudUser(testEnvironment['testUsers']['MT']['IMSI'])
+        result = mcloud.connectToMcloudUser(testEnvironment['testUsers']['MT']['serial'])
+        print("Result of connectToMcloudUser is: {}".format(result))
 
         if result["failedFlag"] == True or result["remoteConnectUrl"] == None:
-            failedReason = result["failedReason"]
-            writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
-                                       testParameters, testCaseInfo)
-        else:
-            testEnvironment['testUsers']['MT']['handsetID'] = result["remoteConnectUrl"]
+            returnVal["failedFlag"] = result["failedFlag"]
+            returnVal["failedReason"] = result["failedReason"]
+            return returnVal
 
-        assert (result["remoteConnectUrl"] != None)
+        testEnvironment['testUsers']['MT']['handsetID'] = result["remoteConnectUrl"]
+
         print("MT Handset ID is {}".format(result["remoteConnectUrl"]))
 
         # Get MAndroid2 version info.
         version = getMAndroid2Version(testEnvironment['MAndroid2AgentPath'],
                                       testEnvironment['testUsers']['MO']['handsetID'])
-        if version != None:
-            testEnvironment['testUsers']['MO']['versions'] = version
-        else:
-            failedReason = "Cannot get MAndroid2 version from {}".format(testEnvironment['testUsers']['MO']['handsetID'])
-            writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
-                                       testParameters, testCaseInfo)
-        assert (version != None)
+        if version == None:
+            returnVal["failedFlag"] = result["failedFlag"]
+            returnVal["failedReason"] = "Cannot get MAndroid2 version from {}".format(testEnvironment['testUsers']['MO']['handsetID'])
+            return returnVal
+
+        testEnvironment['testUsers']['MO']['versions'] = version
 
         version = getMAndroid2Version(testEnvironment['MAndroid2AgentPath'],
                                       testEnvironment['testUsers']['MT']['handsetID'])
-        if version != None:
-            testEnvironment['testUsers']['MT']['versions'] = version
-        else:
-            failedReason = "Cannot get MAndroid2 version from {}".format(testEnvironment['testUsers']['MT']['handsetID'])
-            writeExcelFailedTestReport(failedReason, testCaseSummary, testCaseDetailList, testEnvironment,
-                                       testParameters, testCaseInfo)
-        assert (version != None)
+        if version == None:
+            returnVal["failedFlag"] = result["failedFlag"]
+            returnVal["failedReason"] = "Cannot get MAndroid2 version from {}".format(testEnvironment['testUsers']['MT']['handsetID'])
+            return returnVal
+
+        testEnvironment['testUsers']['MT']['versions'] = version
     else:
         print("Cannot recognize userFlag {}".format(userFlag))
 
+    return returnVal
 
 def disconnectTestUsers(testEnvironment):
     # Disconnect connected devices.
@@ -261,11 +259,11 @@ def checkTestEnvironmentConfig(testEnvironment):
 
     assert ("testUsers" in testEnvironment)
     assert ("MO" in testEnvironment['testUsers'])
-    assert ("IMSI" in testEnvironment['testUsers']['MO'])
+    assert ("serial" in testEnvironment['testUsers']['MO'])
     assert ("MSISDN" in testEnvironment['testUsers']['MO'])
 
     assert ("MT" in testEnvironment['testUsers'])
-    assert ("IMSI" in testEnvironment['testUsers']['MT'])
+    assert ("serial" in testEnvironment['testUsers']['MT'])
     assert ("MSISDN" in testEnvironment['testUsers']['MT'])
 
 def checkTestParametersConfig(testParameters, testCaseKey):
@@ -335,13 +333,18 @@ def executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testP
     # Initialization
     responseList = []
     testResults = []
+    result = {}
+    result['failedFlag'] = False
+    result['failedReason'] = None
 
     # Checking Test parameters.
     checkTestEnvironmentConfig(testEnvironment)
     checkTestParametersConfig(testParameters, testCaseKey)
 
     # ConnectTestUsers.
-    connectTestUsers(testEnvironment, userFlag, testParameters, testCaseInfo, testCaseSummary, testCaseDetailList)
+    result = connectTestUsers(testEnvironment, userFlag, testParameters, testCaseInfo, testCaseSummary, testCaseDetailList)
+    if ('failedFlag' in result) and (result['failedFlag'] == True) and ('failedReason' in result):
+        return result
 
     # Starting test logic.
     responseList = executeTestLogic(testEnvironment, testCaseInfo, testCaseKey, testParameters, testCaseSummary, testCaseDetailList)
@@ -351,9 +354,6 @@ def executeTestCase(testCaseKey, userFlag, json_metadata, testEnvironment, testP
 
     # Verify test result.
     testResults = verifyTestCaseResult(testEnvironment, testParameters, testCaseInfo, testCaseKey, responseList)
-
-    # Adding information to json report.
-    addJsonReportMetaData(json_metadata, testEnvironment, testParameters, testCaseInfo, testResults)
 
     return testResults
 
@@ -381,7 +381,7 @@ def executeTestLogic(testEnvironment, testCaseInfo, testCaseKey, testParameters,
                         sleep(testParameters['VoiceCall']['Duration'])
             elif (testStep == 'End voice call.'):
                 endVoiceCallResponse = endBasicVoiceCall(testEnvironment['MAndroid2AgentPath'],
-                                                testEnvironment['testUsers']['MO']['handsetID'])
+                                                testEnvironment['testUsers']['MT']['handsetID'])
                 response['endVoiceCall'] = endVoiceCallResponse
             else:
                 failedReason = "Test step {} cannot be recognized in test case.".format(testStep)
@@ -1037,8 +1037,8 @@ def getAllEnvironments(testEnvironments):
     for testEnvironment in testEnvironments:
         # Initialization
         userCombinations = []
-        userCombination = {'MO': {'IMSI': None, 'MSISDN': None},
-                           'MT': {'IMSI': None, 'MSISDN': None}}
+        userCombination = {'MO': {'serial': None, 'MSISDN': None},
+                           'MT': {'serial': None, 'MSISDN': None}}
         userEnvironment = {}
         # Get all available test handsets
         allAvailableDevices = getAllAvailableDevices(testEnvironment)
@@ -1056,12 +1056,19 @@ def getAllEnvironments(testEnvironments):
         for device in allAvailableDevices:
             userCombination['MO']['IMSI'] = device['imsi']
             userCombination['MO']['MSISDN'] = device['phoneNumber']
+            userCombination['MO']['serial'] = device['serial']
 
             # Get MT user
+            # for anotherDevice in allAvailableDevices:
+            #     if (anotherDevice['imsi'] != userCombination['MO']['IMSI']):
+            #         userCombination['MT']['IMSI'] = anotherDevice['imsi']
+            #         userCombination['MT']['MSISDN'] = anotherDevice['phoneNumber']
+            #         userCombinations.append(copy.deepcopy(userCombination))
             for anotherDevice in allAvailableDevices:
-                if (anotherDevice['imsi'] != userCombination['MO']['IMSI']):
+                if (anotherDevice['phoneNumber'] != userCombination['MO']['MSISDN']):
                     userCombination['MT']['IMSI'] = anotherDevice['imsi']
                     userCombination['MT']['MSISDN'] = anotherDevice['phoneNumber']
+                    userCombination['MT']['serial'] = anotherDevice['serial']
                     userCombinations.append(copy.deepcopy(userCombination))
 
         print("userCombinations is: {}".format(userCombinations))
@@ -1103,3 +1110,23 @@ def getAllAvailableDevicesUnderDifferentEnvironment(testEnvironments):
     environments = getAllEnvironments(differentEnvironments)
 
     return environments
+
+def writeTestReportInfo(json_metadata, testEnvironment, testParameters, testCaseInfo, testCaseSummary, testCaseDetailList, testResults):
+    # Adding information to json report.
+    addJsonReportMetaData(json_metadata, testEnvironment, testParameters, testCaseInfo, testResults)
+
+    if ('failedFlag' in testResults) and (testResults['failedFlag'] == True) and ('failedReason' in testResults):
+        writeExcelFailedTestReport(testResults['failedReason'], testCaseSummary, testCaseDetailList,
+                                   testEnvironment,
+                                   testParameters, testCaseInfo)
+        # Disconnect testing users.
+        disconnectTestUsers(testEnvironment)
+
+        assert (testResults['failedFlag'] != True)
+
+    # Write test case summary and test case detail.
+    writeExcelTestReportSummary(testCaseSummary, testResults, testEnvironment)
+    writeExcelTestReportDetail(testCaseDetailList, testEnvironment, testParameters,
+                               testCaseInfo, testResults)
+
+

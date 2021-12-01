@@ -3,14 +3,16 @@ testEnvironment:
         baseUrl: 'http://mcloud.matrium.com.au:7100/api/v1'
     Login:
         User: 'Peter.Zhang@matrium.com.au'
-        accessToken: 'Bearer 6fc22b08ce00468fa56cc53a22384012e16d1ac9ab12403abeaaa5e14496239e'
+        accessToken: 'Bearer 5da9a2eb965040cbada4e0b22440ac0eee4e666e02264e36bbc41dfffa271fba'
     MAndroid2AgentPath: 'c:/tmp/MatriumMAndroid2-release.jar'
     testUsers:
         MO:
-            IMSI: '505025104559746'
-            MSISDN: '+61418673947'
-        MT:
-            IMSI: '505025703492762'
+            serial: 'R5CN7187TJH'
             MSISDN: '+61402537622'
+        MT:
+            serial: 'R5CN30MJ2DJ'
+            MSISDN: '+61431202671'
+
+
 
 
