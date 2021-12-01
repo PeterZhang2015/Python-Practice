@@ -1,0 +1,15 @@
+testEnvironment:
+    Harbor:
+        IP: '192.168.100.121'
+        User: 'admin'
+        Password: 'Matrium123'
+    Image:
+        MO:
+            serial: 'ce12160ccd1f323f05'
+            MSISDN: '+61402537622'
+        MT:
+            serial: '21f982c0b00c7ece'
+            MSISDN: '+61431202671'
+
+
+https://192.168.100.121/api/v2.0/projects/landslide/repositories/landslide/artifacts/sha256:fbee8e426088aec84d477b1d7cce91fbc4fe7331b78b44b549d2e0bb24a34f14/additions/vulnerabilities

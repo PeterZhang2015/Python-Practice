@@ -1,0 +1,14 @@
+testReportConfig:
+    reportType:
+        htmlReport: 'True'
+        jsonReport: 'True'
+        excelReport: 'True'
+        allureReport: 'True'
+        reportPortalReport: 'True'
+    reportPath: 
+        htmlReportPath: 'C:\tmp\MAndroid2SmokeTestReport\html'
+        jsonReportPath: 'C:\tmp\MAndroid2SmokeTestReport\json'
+        excelReportPath: 'C:\tmp\MAndroid2SmokeTestReport\excel'
+        allureReportPath: 'C:\tmp\MAndroid2SmokeTestReport\allure'
+
+
